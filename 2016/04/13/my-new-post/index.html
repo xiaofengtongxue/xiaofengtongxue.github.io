@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>xiaofeng&#39;s Blog</title>
+  <title>first day | xiaofeng&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xiaofeng's Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="第一节课：   安装CentOs，及其配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限。   Ifconfig eth0 up/down ：开启/关闭 eth0网卡   Ifconfig eth0 192.168.188.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）   Ifconfig：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="first day">
+<meta property="og:url" content="http://yoursite.com/2016/04/13/my-new-post/index.html">
 <meta property="og:site_name" content="xiaofeng's Blog">
-<meta property="og:description">
+<meta property="og:description" content="第一节课：   安装CentOs，及其配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限。   Ifconfig eth0 up/down ：开启/关闭 eth0网卡   Ifconfig eth0 192.168.188.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）   Ifconfig：">
+<meta property="og:updated_time" content="2016-04-13T14:58:00.841Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xiaofeng's Blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="first day">
+<meta name="twitter:description" content="第一节课：   安装CentOs，及其配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限。   Ifconfig eth0 up/down ：开启/关闭 eth0网卡   Ifconfig eth0 192.168.188.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）   Ifconfig：">
   
     <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
   
@@ -66,9 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-my-new-post" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-my-new-post" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/13/my-new-post/" class="article-date">
   <time datetime="2016-04-13T14:55:22.000Z" itemprop="datePublished">2016-04-13</time>
@@ -81,8 +80,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/13/my-new-post/">first day</a>
+    <h1 class="article-title" itemprop="name">
+      first day
     </h1>
   
 
@@ -91,11 +90,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>  第一节课：<br>   安装CentOs，及其配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限。<br>   Ifconfig eth0 up/down ：开启/关闭 eth0网卡<br>   Ifconfig eth0 192.168.188.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）<br>   Ifconfig：查看与设置IP地址，子网掩码<br>   route add –net 192.168.188.0/24 gw 192.168.188.253 ：设置192.168.188.0网段的网关为192.168.188.253<br>   route add –host 192.168.188.110 gw 192.168.188.253 ：设置192.168.188.110主机的网关为192.168.188.253<br>   route add/del default gw 192.168.188.253 ：设置默认网关为192.168.188.253<br>     /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes，不然每次重启网卡就会重写）<br>   hostname：查看与设置主机名<br>     /etc/sysconfig/network<br>   route：查看路由信息，默认网关<br>     /etc/resolv.conf ：设置DNS服务器<br>     service network start|restart|stop ：重启网卡<br>   安装AMP及一些基础配置(管理权限，开机自启，防火墙配置等)，yum的操作(看看yum源)，安装vim<br>   安装MySQL命令：yum –y install mysql-server<br>     开机自启：chkonfig mysql on<br>   安装Apache命令：yum install httpd<br>     开机自启：chkconfig –levevs 235 httpd on<br>   安装Php命令：yum –y inastall php<br>     目录：/var/wwww/<br>   phpMyadmin目录：/usr/share/phpMyAdmin<br>   Apache配置：/etc/httpd/conf.d/php.conf</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/04/13/my-new-post/#more">Read More</a>
-          </p>
-        
+<a id="more"></a>
+
       
     </div>
     <footer class="article-footer">
@@ -107,55 +103,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/13/hello-world/" class="article-date">
-  <time datetime="2016-04-13T04:15:03.850Z" itemprop="datePublished">2016-04-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/13/hello-world/">Hello World</a>
-    </h1>
+    <a href="/2016/04/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/13/hello-world/" data-id="cimyzetvh0000ioav0505n1kg" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
