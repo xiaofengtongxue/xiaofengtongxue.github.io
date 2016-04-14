@@ -3,36 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>00x1 | xiaofeng&#39;s Blog</title>
+  <title>00x2 | xiaofeng&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
-  <meta name="description" content="第一节课：安装CentOs，及其配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限。
-Ifconfig eth0 up/down ：开启/关闭 eth0网卡
-Ifconfig eth0 192.168.188.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）
-Ifconfig：查看与设置IP地址，子网掩码
-route add –net 192.168.188.0/24 gw 192.168.188.253 ：设置192.168.188.0网段的网关为192.168.188.253
-route add –host 192.168.188.110 gw 192.168.188.253 ：设置192.168.188.110主机的网关为192.168.188.253
-route add/del default gw 192.168.188.253 ：设置默认网关为192.168.188.253
- /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes，不然每次重启网卡就会重写）
-hostname：查看与设置主机名
- /etc/sysconfig/network
-route：查看路由信息，默认网关
- /etc/resolv.conf ：设置DNS服务器
- service network start|restart|stop ：重启网卡
-安装AMP及一些基础配置(管理权限，开机自启，防火墙配置等)，yum的操作(看看yum源)，安装vim
-安装MySQL命令：yum –y install mysql-server
- 开机自启：chkonfig mysql on
-安装Apache命令：yum install httpd
- 开机自启：chkconfig --levevs 235 httpd on
-安装Php命令：yum –y inastall php
- 目录：/var/wwww/
-phpMyadmin目录：/usr/share/phpMyAdmin
-Apache配置：/etc/httpd/conf.d/php.conf">
+  <meta name="description" content="虚拟机挂载硬盘： 首先在虚拟机虚拟网卡上添加一块硬盘，然后重启虚拟机，运行fdisk –l 查看虚拟机主机硬盘的分区情况（如果之前是虚拟机安装的是一块硬盘，就会发现会多出一条信息，Disk: /dev/sdb 存在未分区的情况），然后就需要进行分区操作：
+  fdisk /dev/sdb  机会让你选择对该硬盘进行操作 m（帮助） n（新建一块分区） d（删去硬盘上分区） w（将分区写在硬盘上 前提是已经将硬盘分好区了） 
+  再次运行上面命令发现硬盘已经分区了，df –lh 看到硬盘并没有挂在到任何目录下，这是肯定的，因为还没有对硬盘进行挂载
+  挂载命令：
+    mkfs.ext3 /dev/sdb1  是对刚分好的区进行格式化
+    mount –t ext3 –o rw /dev/sdb1 /home/fans  该命令是将/dev/sdb1硬盘挂载到/home/fans目录下（前提是在/home/下已经创建过fans目录，cd到该目录，命令mkdir 文件 进行创建）
+ps 查看系统进程
+  最好的参数 ps –aux （查看系统所有的进程）
+top 以动态的方式进行动态的显示系统进程（跟win系统的任务管理器差不多的）
+以上方式都可以显示进程的PID号
+kill 终止进程
+ kaiiall 终止由一个软件开启的多线程">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="00x1"/>
+  <meta property="og:title" content="00x2"/>
   <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
 
   
@@ -72,40 +62,29 @@ Apache配置：/etc/httpd/conf.d/php.conf">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-04-13T14:55:22.000Z"><a href="/2016/04/13/my-new-post/">2016-04-13</a></time>
+        <time datetime="2016-04-14T00:37:02.000Z"><a href="/2016/04/14/The-second-day/">2016-04-14</a></time>
       
       
   
-    <h1 class="title">00x1</h1>
+    <h1 class="title">00x2</h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="第一节课："><a href="#第一节课：" class="headerlink" title="第一节课："></a>第一节课：</h2><pre><code>安装CentOs，及其配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限。
-Ifconfig eth0 up/down ：开启/关闭 eth0网卡
-Ifconfig eth0 192.168.188.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）
-Ifconfig：查看与设置IP地址，子网掩码
-route add –net 192.168.188.0/24 gw 192.168.188.253 ：设置192.168.188.0网段的网关为192.168.188.253
-route add –host 192.168.188.110 gw 192.168.188.253 ：设置192.168.188.110主机的网关为192.168.188.253
-route add/del default gw 192.168.188.253 ：设置默认网关为192.168.188.253
- /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes，不然每次重启网卡就会重写）
-hostname：查看与设置主机名
- /etc/sysconfig/network
-route：查看路由信息，默认网关
- /etc/resolv.conf ：设置DNS服务器
- service network start|restart|stop ：重启网卡
-安装AMP及一些基础配置(管理权限，开机自启，防火墙配置等)，yum的操作(看看yum源)，安装vim
-安装MySQL命令：yum –y install mysql-server
- 开机自启：chkonfig mysql on
-安装Apache命令：yum install httpd
- 开机自启：chkconfig --levevs 235 httpd on
-安装Php命令：yum –y inastall php
- 目录：/var/wwww/
-phpMyadmin目录：/usr/share/phpMyAdmin
-Apache配置：/etc/httpd/conf.d/php.conf
+        <h2 id="虚拟机挂载硬盘："><a href="#虚拟机挂载硬盘：" class="headerlink" title="虚拟机挂载硬盘："></a>虚拟机挂载硬盘：</h2><pre><code> 首先在虚拟机虚拟网卡上添加一块硬盘，然后重启虚拟机，运行fdisk –l 查看虚拟机主机硬盘的分区情况（如果之前是虚拟机安装的是一块硬盘，就会发现会多出一条信息，Disk: /dev/sdb 存在未分区的情况），然后就需要进行分区操作：
+  fdisk /dev/sdb  机会让你选择对该硬盘进行操作 m（帮助） n（新建一块分区） d（删去硬盘上分区） w（将分区写在硬盘上 前提是已经将硬盘分好区了） 
+  再次运行上面命令发现硬盘已经分区了，df –lh 看到硬盘并没有挂在到任何目录下，这是肯定的，因为还没有对硬盘进行挂载
+  挂载命令：
+    mkfs.ext3 /dev/sdb1  是对刚分好的区进行格式化
+    mount –t ext3 –o rw /dev/sdb1 /home/fans  该命令是将/dev/sdb1硬盘挂载到/home/fans目录下（前提是在/home/下已经创建过fans目录，cd到该目录，命令mkdir 文件 进行创建）
+ps 查看系统进程
+  最好的参数 ps –aux （查看系统所有的进程）
+top 以动态的方式进行动态的显示系统进程（跟win系统的任务管理器差不多的）
+以上方式都可以显示进程的PID号
+kill 终止进程
+ kaiiall 终止由一个软件开启的多线程
 </code></pre><a id="more"></a>
-
       
     </div>
     <footer>
@@ -157,7 +136,7 @@ Apache配置：/etc/httpd/conf.d/php.conf
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/2016/04/13/my-new-post/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2016/04/14/The-second-day/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>

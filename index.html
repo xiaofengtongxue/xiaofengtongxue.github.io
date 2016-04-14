@@ -1,137 +1,237 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>xiaofeng&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xiaofeng's Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="xiaofeng's Blog">
-<meta property="og:description">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xiaofeng's Blog">
-<meta name="twitter:description">
+
   
-    <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+
   
+    <meta property="og:image" content="undefined"/>
   
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 
 </head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">xiaofeng&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">一个不抽烟 不喝酒的少年</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
 </header>
-      <div class="outer">
-        <section id="main">
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
   
-    <article id="post-my-new-post" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/13/my-new-post/" class="article-date">
-  <time datetime="2016-04-13T14:55:22.000Z" itemprop="datePublished">2016-04-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-14T07:20:39.000Z"><a href="/2016/04/14/the-third-day/">2016-04-14</a></time>
+      
+      
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/13/my-new-post/">first day</a>
-    </h1>
+    <h1 class="title"><a href="/2016/04/14/the-third-day/">00x3</a></h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+    </header>
+    <div class="entry">
       
-        <p>  第一节课：<br>   安装CentOs，及其配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限。<br>   Ifconfig eth0 up/down ：开启/关闭 eth0网卡<br>   Ifconfig eth0 192.168.188.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）<br>   Ifconfig：查看与设置IP地址，子网掩码<br>   route add –net 192.168.188.0/24 gw 192.168.188.253 ：设置192.168.188.0网段的网关为192.168.188.253<br>   route add –host 192.168.188.110 gw 192.168.188.253 ：设置192.168.188.110主机的网关为192.168.188.253<br>   route add/del default gw 192.168.188.253 ：设置默认网关为192.168.188.253<br>     /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes，不然每次重启网卡就会重写）<br>   hostname：查看与设置主机名<br>     /etc/sysconfig/network<br>   route：查看路由信息，默认网关<br>     /etc/resolv.conf ：设置DNS服务器<br>     service network start|restart|stop ：重启网卡<br>   安装AMP及一些基础配置(管理权限，开机自启，防火墙配置等)，yum的操作(看看yum源)，安装vim<br>   安装MySQL命令：yum –y install mysql-server<br>     开机自启：chkonfig mysql on<br>   安装Apache命令：yum install httpd<br>     开机自启：chkconfig –levevs 235 httpd on<br>   安装Php命令：yum –y inastall php<br>     目录：/var/wwww/<br>   phpMyadmin目录：/usr/share/phpMyAdmin<br>   Apache配置：/etc/httpd/conf.d/php.conf</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/04/13/my-new-post/#more">Read More</a>
-          </p>
-        
+        <h5 id="1，打开虚拟机，用Xshell连接"><a href="#1，打开虚拟机，用Xshell连接" class="headerlink" title="1，打开虚拟机，用Xshell连接"></a>1，打开虚拟机，用Xshell连接</h5><h5 id="2，按照实验要求进行命令输入："><a href="#2，按照实验要求进行命令输入：" class="headerlink" title="2，按照实验要求进行命令输入："></a>2，按照实验要求进行命令输入：</h5><h3 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd:"></a>/etc/passwd:</h3><pre><code>可以看出信息由6个分号组成的7个信息:
+1:用户名
+2:密码(已经加密)
+3:UID(用户标识),操作系统自己用的
+4:GID组标识
+5:用户全名或本地帐号
+6:开始目录
+7:登录使用的Shell,就是对登录命令进行解析的工具。
+</code></pre><h3 id="etc-shadow"><a href="#etc-shadow" class="headerlink" title="/etc/shadow:"></a>/etc/shadow:</h3><pre><code>可以看出信息由8个分号组成的9个信息:
+1，账号名称
+2，密码（已加密）
+3，最近更改密码的时间
+4，密码不可被更改的天数
+5，密码需要重新变更的天数
+6，密码需要变更期限前的警告期限
+7，密码过期的怒限时间
+8，账号失效日期
+9，保留
+</code></pre><h3 id="etc-group"><a href="#etc-group" class="headerlink" title="/etc/group:"></a>/etc/group:</h3><pre><code>可以看出信息由3个分号组成的4个信息:
+1，用户组名称
+2，用户组密码
+3，GID
+4，用户列表 
+</code></pre><h3 id="分区的永久性挂载："><a href="#分区的永久性挂载：" class="headerlink" title="分区的永久性挂载："></a>分区的永久性挂载：</h3><pre><code>1，将虚拟机关机，在虚拟机设置上新增加一块2G硬盘，开机用Xshell链接
+2，运行fdisk -l 查看分区情况，会发现多处以个2G的硬盘
+3，对新硬盘进行分区：fdisk /dev/sdb  一步一步走下去
+4，对新分区进行格式化操作：mkfs.ext3 /dev/sdb1
+5，经刚分的区进行挂载在 /home/fans 目录下（我这里已经建立过fans目录）
+mount -t ext3 -o rw /dev/sdb1 /home/fans
+6，查看刚建分区的SSID：blkid /dev/sdb1
+7，在/etc下vim fstab 将分区的信息添加在文件中，重启生效
+</code></pre>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/13/my-new-post/" data-id="cimyzetvt0001ioavu9m9sgt5" class="article-share-link">Partager</a>
+    <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/04/14/the-third-day/#more" class="more-link">Read More</a>
+          </div>
+        
+        
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客，文章/">博客，文章</a></li></ul>
-
+      <div class="clearfix"></div>
     </footer>
   </div>
-  
 </article>
 
 
+
+
+  <article class="post">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/13/hello-world/" class="article-date">
-  <time datetime="2016-04-13T04:15:03.850Z" itemprop="datePublished">2016-04-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-14T00:37:02.000Z"><a href="/2016/04/14/The-second-day/">2016-04-14</a></time>
+      
+      
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/13/hello-world/">Hello World</a>
-    </h1>
+    <h1 class="title"><a href="/2016/04/14/The-second-day/">00x2</a></h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+    </header>
+    <div class="entry">
+      
+        <h2 id="虚拟机挂载硬盘："><a href="#虚拟机挂载硬盘：" class="headerlink" title="虚拟机挂载硬盘："></a>虚拟机挂载硬盘：</h2><pre><code> 首先在虚拟机虚拟网卡上添加一块硬盘，然后重启虚拟机，运行fdisk –l 查看虚拟机主机硬盘的分区情况（如果之前是虚拟机安装的是一块硬盘，就会发现会多出一条信息，Disk: /dev/sdb 存在未分区的情况），然后就需要进行分区操作：
+  fdisk /dev/sdb  机会让你选择对该硬盘进行操作 m（帮助） n（新建一块分区） d（删去硬盘上分区） w（将分区写在硬盘上 前提是已经将硬盘分好区了） 
+  再次运行上面命令发现硬盘已经分区了，df –lh 看到硬盘并没有挂在到任何目录下，这是肯定的，因为还没有对硬盘进行挂载
+  挂载命令：
+    mkfs.ext3 /dev/sdb1  是对刚分好的区进行格式化
+    mount –t ext3 –o rw /dev/sdb1 /home/fans  该命令是将/dev/sdb1硬盘挂载到/home/fans目录下（前提是在/home/下已经创建过fans目录，cd到该目录，命令mkdir 文件 进行创建）
+ps 查看系统进程
+  最好的参数 ps –aux （查看系统所有的进程）
+top 以动态的方式进行动态的显示系统进程（跟win系统的任务管理器差不多的）
+以上方式都可以显示进程的PID号
+kill 终止进程
+ kaiiall 终止由一个软件开启的多线程
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/04/14/The-second-day/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-13T14:55:22.000Z"><a href="/2016/04/13/my-new-post/">2016-04-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/13/my-new-post/">00x1</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="第一节课："><a href="#第一节课：" class="headerlink" title="第一节课："></a>第一节课：</h2><pre><code>安装CentOs，及其配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限。
+Ifconfig eth0 up/down ：开启/关闭 eth0网卡
+Ifconfig eth0 192.168.188.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）
+Ifconfig：查看与设置IP地址，子网掩码
+route add –net 192.168.188.0/24 gw 192.168.188.253 ：设置192.168.188.0网段的网关为192.168.188.253
+route add –host 192.168.188.110 gw 192.168.188.253 ：设置192.168.188.110主机的网关为192.168.188.253
+route add/del default gw 192.168.188.253 ：设置默认网关为192.168.188.253
+ /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes，不然每次重启网卡就会重写）
+hostname：查看与设置主机名
+ /etc/sysconfig/network
+route：查看路由信息，默认网关
+ /etc/resolv.conf ：设置DNS服务器
+ service network start|restart|stop ：重启网卡
+安装AMP及一些基础配置(管理权限，开机自启，防火墙配置等)，yum的操作(看看yum源)，安装vim
+安装MySQL命令：yum –y install mysql-server
+ 开机自启：chkonfig mysql on
+安装Apache命令：yum install httpd
+ 开机自启：chkconfig --levevs 235 httpd on
+安装Php命令：yum –y inastall php
+ 目录：/var/wwww/
+phpMyadmin目录：/usr/share/phpMyAdmin
+Apache配置：/etc/httpd/conf.d/php.conf
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/04/13/my-new-post/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-13T04:15:03.850Z"><a href="/2016/04/13/hello-world/">2016-04-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/13/hello-world/">Hello World</a></h1>
+  
+
+    </header>
+    <div class="entry">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
@@ -145,104 +245,70 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/13/hello-world/" data-id="cimyzetvh0000ioav0505n1kg" class="article-share-link">Partager</a>
+    <footer>
       
+        
+        
       
+      <div class="clearfix"></div>
     </footer>
   </div>
-  
 </article>
 
 
+
+
+
+<nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
   
 
-</section>
-        
-          <aside id="sidebar">
   
-    
-
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客，文章/">博客，文章</a></li></ul>
-    </div>
-  </div>
-
-
+    <li><a href="/tags/博客，文章/">博客，文章</a><small>3</small></li>
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/博客，文章/" style="font-size: 10px;">博客，文章</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
-    </div>
-  </div>
+  </ul>
+</div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/04/13/my-new-post/">first day</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/13/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 xiaofeng<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    <div class="clearfix"></div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+  <footer id="footer" class="inner"><div class="alignleft">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  &copy; 2016 xiaofeng
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
 </body>
 </html>

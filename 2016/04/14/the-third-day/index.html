@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>00x3 | xiaofeng&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="1，打开虚拟机，用Xshell连接2，按照实验要求进行命令输入：/etc/passwd:可以看出信息由6个分号组成的7个信息:
+1:用户名
+2:密码(已经加密)
+3:UID(用户标识),操作系统自己用的
+4:GID组标识
+5:用户全名或本地帐号
+6:开始目录
+7:登录使用的Shell,就是对登录命令进行解析的工具。
+/etc/shadow:可以看出信息由8个分号组成的9个信息:
+1，账号名称
+2，密码（已加密）
+3，最近更改密码的时间
+4，密码不可被更改的天数
+5，密码需要重新变更的天数
+6，密码需要变更期限前的警告期限
+7，密码过期的怒限时间
+8，账号失效日期
+9，保留
+/etc/group:可以看出信息由3个分号组成的4个信息:
+1，用户组名称
+2，用户组密码
+3，GID
+4，用户列表 
+分区的永久性挂载：1，将虚拟机关机，在虚拟机设置上新增加一块2G硬盘，开机用Xshell链接
+2，运行fdisk -l 查看分区情况，会发现多处以个2G的硬盘
+3，对新硬盘进行分区：fdisk /dev/sdb  一步一步走下去
+4，对新分区进行格式化操作：mkfs.ext3 /dev/sdb1
+5，经刚分的区进行挂载在 /home/fans 目录下（我这里已经建立过fans目录）
+mount -t ext3 -o rw /dev/sdb1 /home/fans
+6，查看刚建分区的SSID：blkid /dev/sdb1
+7，在/etc下vim fstab 将分区的信息添加在文件中，重启生效">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="00x3"/>
+  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-14T07:20:39.000Z"><a href="/2016/04/14/the-third-day/">2016-04-14</a></time>
+      
+      
+  
+    <h1 class="title">00x3</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h5 id="1，打开虚拟机，用Xshell连接"><a href="#1，打开虚拟机，用Xshell连接" class="headerlink" title="1，打开虚拟机，用Xshell连接"></a>1，打开虚拟机，用Xshell连接</h5><h5 id="2，按照实验要求进行命令输入："><a href="#2，按照实验要求进行命令输入：" class="headerlink" title="2，按照实验要求进行命令输入："></a>2，按照实验要求进行命令输入：</h5><h3 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd:"></a>/etc/passwd:</h3><pre><code>可以看出信息由6个分号组成的7个信息:
+1:用户名
+2:密码(已经加密)
+3:UID(用户标识),操作系统自己用的
+4:GID组标识
+5:用户全名或本地帐号
+6:开始目录
+7:登录使用的Shell,就是对登录命令进行解析的工具。
+</code></pre><h3 id="etc-shadow"><a href="#etc-shadow" class="headerlink" title="/etc/shadow:"></a>/etc/shadow:</h3><pre><code>可以看出信息由8个分号组成的9个信息:
+1，账号名称
+2，密码（已加密）
+3，最近更改密码的时间
+4，密码不可被更改的天数
+5，密码需要重新变更的天数
+6，密码需要变更期限前的警告期限
+7，密码过期的怒限时间
+8，账号失效日期
+9，保留
+</code></pre><h3 id="etc-group"><a href="#etc-group" class="headerlink" title="/etc/group:"></a>/etc/group:</h3><pre><code>可以看出信息由3个分号组成的4个信息:
+1，用户组名称
+2，用户组密码
+3，GID
+4，用户列表 
+</code></pre><h3 id="分区的永久性挂载："><a href="#分区的永久性挂载：" class="headerlink" title="分区的永久性挂载："></a>分区的永久性挂载：</h3><pre><code>1，将虚拟机关机，在虚拟机设置上新增加一块2G硬盘，开机用Xshell链接
+2，运行fdisk -l 查看分区情况，会发现多处以个2G的硬盘
+3，对新硬盘进行分区：fdisk /dev/sdb  一步一步走下去
+4，对新分区进行格式化操作：mkfs.ext3 /dev/sdb1
+5，经刚分的区进行挂载在 /home/fans 目录下（我这里已经建立过fans目录）
+mount -t ext3 -o rw /dev/sdb1 /home/fans
+6，查看刚建分区的SSID：blkid /dev/sdb1
+7，在/etc下vim fstab 将分区的信息添加在文件中，重启生效
+</code></pre><a id="more"></a>
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/博客，文章/">博客，文章</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/04/14/the-third-day/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/博客，文章/">博客，文章</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
