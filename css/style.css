@@ -10,11 +10,12 @@
   padding: 0;
 }
 body {
-  background: #eee;
+  background: #0ee;
   color: #444;
   font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 14px;
   text-shadow: 0 0 1px transparent;
+  background-image: url("/imgs/2.png");
 }
 @media screen and (max-width: 1260px) {
   body {
