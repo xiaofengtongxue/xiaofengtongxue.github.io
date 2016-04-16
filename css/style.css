@@ -157,7 +157,7 @@ article.link .icon:before {
 }
 article.link .title a:after {
   content: '\f08e';
-  color: #999;
+  color: #87ceeb;
   font: 12px FontAwesome;
   padding-left: 10px;
   vertical-align: super;
@@ -258,7 +258,7 @@ article header .icon:before {
   text-align: center;
 }
 article header time {
-  color: #999;
+  color: #87ceeb;
   font: 0.9em "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
   margin-bottom: 5px;
   display: block;
@@ -293,8 +293,8 @@ article .entry .video-container {
   margin-top: 15px;
 }
 article .entry blockquote {
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #87ceeb;
+  border-bottom: 1px solid #87ceeb;
   font-style: italic;
   font-family: "Georgia", serif;
   font-size: 1.2em;
@@ -323,13 +323,13 @@ article .entry code {
   padding: 0 5px;
   margin: 0 2px;
   font-size: 0.9em;
-  border: 1px solid #ddd;
+  border: 1px solid #87ceeb;
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 article .entry pre {
   background: #eee;
-  border: 1px solid #ddd;
+  border: 1px solid #87ceeb;
   margin-top: 15px;
   overflow: auto;
   padding: 7px 15px;
@@ -363,7 +363,7 @@ article .entry dl dl {
 article .entry h1,
 article .entry h2 {
   font-weight: normal;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #87ceeb;
   padding-bottom: 10px;
   margin-top: 20px;
 }
@@ -385,7 +385,7 @@ article .entry iframe {
 article .entry .caption {
   display: block;
   margin-top: 5px;
-  color: #999;
+  color: #87ceeb;
   position: relative;
   font-size: 0.9em;
   padding-left: 25px;
@@ -427,15 +427,15 @@ article .entry .pullquote {
 article footer {
   margin-top: 15px;
   padding-top: 10px;
-  border-top: 1px solid #ddd;
-  color: #999;
+  border-top: 1px solid #87ceeb;
+  color: #87ceeb;
   font-size: 0.9em;
   line-height: 16px;
   position: relative;
   min-height: 16px;
 }
 article footer a {
-  color: #999;
+  color: #87ceeb;
 }
 article footer a:hover {
   color: #258fb8;
@@ -493,8 +493,8 @@ article footer .addthis iframe {
 #pagination a {
   display: block;
   padding: 5px 10px;
-  background: #ddd;
-  color: #999;
+  background: #87ceeb;
+  color: #87ceeb;
   font-family: "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
   text-shadow: 0 0 1px #fff;
   margin-bottom: 50px;
@@ -516,7 +516,7 @@ article footer .addthis iframe {
   font-family: FontAwesome;
 }
 .archive-title {
-  color: #999;
+  color: #87ceeb;
   font-weight: normal;
   margin-bottom: 30px;
   text-shadow: 0 0 1px #fff;
@@ -533,9 +533,9 @@ article footer .addthis iframe {
   content: '\f07b';
 }
 .archive {
-  -webkit-box-shadow: 1px 2px 3px #ddd;
-  box-shadow: 1px 2px 3px #ddd;
-  border-bottom: 1px solid #ddd;
+  -webkit-box-shadow: 1px 2px 3px #87ceeb;
+  box-shadow: 1px 2px 3px #87ceeb;
+  border-bottom: 1px solid #87ceeb;
   margin-bottom: 50px;
 }
 .archive article {
@@ -565,7 +565,7 @@ article footer .addthis iframe {
 #sidebar .widget .title {
   padding: 15px 20px;
   font-size: 1em;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #87ceeb;
   font-weight: normal;
 }
 #sidebar .widget .entry {
@@ -598,19 +598,19 @@ article footer .addthis iframe {
   font-style: italic;
   font-size: 1em;
   padding: 10px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #87ceeb;
   width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  color: #999;
+  color: #87ceeb;
 }
 #sidebar .search input:focus {
   color: #444;
 }
 #sidebar .tag small {
   margin-left: 15px;
-  color: #999;
+  color: #87ceeb;
 }
 #sidebar .tag small:before {
   content: '(';
@@ -619,7 +619,7 @@ article footer .addthis iframe {
   content: ')';
 }
 #sidebar .twitter li {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #87ceeb;
   padding: 15px 20px;
   font-size: 0.9em;
 }
@@ -629,7 +629,7 @@ article footer .addthis iframe {
 #sidebar .twitter small {
   display: block;
   margin-top: 10px;
-  color: #999;
+  color: #87ceeb;
   line-height: 1;
 }
 #sidebar .tagcloud .entry {
@@ -640,14 +640,14 @@ article footer .addthis iframe {
   display: inline-block;
 }
 #footer {
-  color: #999;
+  color: #87ceeb;
   margin-bottom: 50px;
   font: 0.9em/1.6 "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
   text-shadow: 0 0 1px #fff;
 }
 .entry .gist {
   background: #eee;
-  border: 1px solid #ddd;
+  border: 1px solid #87ceeb;
   margin-top: 15px;
   padding: 7px 15px;
   -webkit-border-radius: 2px;
@@ -673,7 +673,7 @@ article footer .addthis iframe {
 }
 .entry .gist .gist-file .gist-meta {
   background: none;
-  color: #999;
+  color: #87ceeb;
   margin-top: 5px;
   padding: 0;
   text-shadow: 0 0 1px #fff;
@@ -687,7 +687,7 @@ article footer .addthis iframe {
 }
 figure.highlight {
   background: #eee;
-  border: 1px solid #ddd;
+  border: 1px solid #87ceeb;
   margin-top: 15px;
   padding: 7px 15px;
   -webkit-border-radius: 2px;
@@ -699,7 +699,7 @@ figure.highlight {
   font-size: 0.9em;
 }
 figure.highlight figcaption {
-  color: #999;
+  color: #87ceeb;
   margin-bottom: 5px;
   text-shadow: 0 0 1px #fff;
 }
@@ -717,9 +717,9 @@ figure.highlight table {
   border-spacing: 0;
 }
 figure.highlight .gutter {
-  color: #999;
+  color: #87ceeb;
   padding-right: 15px;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #87ceeb;
   text-align: right;
 }
 figure.highlight .code {

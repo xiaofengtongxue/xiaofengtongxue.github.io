@@ -50,6 +50,51 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-04-16T01:30:56.000Z"><a href="/2016/04/16/create/">2016-04-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/16/create/">搭建博客</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>###1，首先下载git:<br>    <a href="https://git-scm.com/download/win" target="_blank" rel="external">https://git-scm.com/download/win</a><br>    默认安装即可。<br>    安装后在桌面右键会有 Git Bash Here</p>
+<p>###2，安装hexo 这是官方中文文档<a href="https://hexo.io/zh-" target="_blank" rel="external">https://hexo.io/zh-</a> cn/docs/<br>   在桌面右键 Git Bash Here 打开命令模式：<br>     npm install –g hexo</p>
+<p>###3，在任意盘创建文件夹（你喜欢的都可以：C/D/E/F/G）命名为hexo（其实什么都可以的）<br>    进入到你所建文件的目录，记住是你刚创建的命名是什么我就不知道了，我的是hexo，鼠标右键Git Bash 也会出现命令模式</p>
+<p>###4，生成文件：<br>    hexo init<br>    安装依赖包：<br>    nmp install</p>
+<p>###5,上述命令成功完成后，可以看见hexo目录下新建了好多的文件，文件夹的。<br>    启动服务：<br>    hexo generate(其实 hexo g 效果是一样一样的)<br>    hexo server<br>    OK，本地静态博客已经搞定了，不信你在浏览器输入localhost:4000看看效果，是不是吓着你了，哈哈！</p>
+<p>###6，然后就是把博客部署到GitHub上，（至于为什么要选择GitHub，毕竟人家牛逼，关键又不要钱，也不限流量，问什么不呢？）</p>
+<p>###7，关于注册GitHub上创建账号就不多说了，作为一计算机专业，不会这，感觉好丢人的。</p>
+<p>###8,创建repository（在右下角）</p>
+<p>###9,创建一个repository，这里的话就是重点了，一定要是你GitHub名格式：<br>    你的名.github.io  明白？</p>
+<p>###10，将本地的静态部署到GitHub上，进入你刚在什么盘创建的什么目录（我真的不知道），有一个_config.yml的可编译文件，想怎么打开就怎么打开，打开就可以，修改下面几个地方：<br>    deploy:<br>     type: git<br>     repository: git@github.com:xiaofengtongxue/xiaofengtongxue.github.io.git<br>     branch: master<br>值得注意的是，每一个： 都有一个空格的。</p>
+<p>###11，然后就是完成部署：（依旧是刚才你创建的什么文件夹下）<br>    hexo g<br>    hexo d<br>    OK,基本搞定了，第一次需要点时间，然后在浏览器访问你的：你的名字/你的名字.github.io<br>看看有没有效果，是不是傻了你。</p>
+<p>###12，后续的优化再说吧，域名的绑定也很简单的，现在买个域名挺便宜的，十块钱左右，写个文件，做个DNS解析就可以的。</p>
+<p>##OK，巴拉完了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-04-15T07:28:04.000Z"><a href="/2016/04/15/clower/">2016-04-15</a></time>
       
       
@@ -245,7 +290,7 @@
   
     <li><a href="/tags/Linux基础/">Linux基础</a><small>2</small></li>
   
-    <li><a href="/tags/生活感悟/">生活感悟</a><small>1</small></li>
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
   
     <li><a href="/tags/读书笔记/">读书笔记</a><small>1</small></li>
   
