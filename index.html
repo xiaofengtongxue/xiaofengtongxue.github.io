@@ -60,19 +60,29 @@
     </header>
     <div class="entry">
       
-        <p>###1，首先下载git:<br>    <a href="https://git-scm.com/download/win" target="_blank" rel="external">https://git-scm.com/download/win</a><br>    默认安装即可。<br>    安装后在桌面右键会有 Git Bash Here</p>
-<p>###2，安装hexo 这是官方中文文档<a href="https://hexo.io/zh-" target="_blank" rel="external">https://hexo.io/zh-</a> cn/docs/<br>   在桌面右键 Git Bash Here 打开命令模式：<br>     npm install –g hexo</p>
-<p>###3，在任意盘创建文件夹（你喜欢的都可以：C/D/E/F/G）命名为hexo（其实什么都可以的）<br>    进入到你所建文件的目录，记住是你刚创建的命名是什么我就不知道了，我的是hexo，鼠标右键Git Bash 也会出现命令模式</p>
-<p>###4，生成文件：<br>    hexo init<br>    安装依赖包：<br>    nmp install</p>
-<p>###5,上述命令成功完成后，可以看见hexo目录下新建了好多的文件，文件夹的。<br>    启动服务：<br>    hexo generate(其实 hexo g 效果是一样一样的)<br>    hexo server<br>    OK，本地静态博客已经搞定了，不信你在浏览器输入localhost:4000看看效果，是不是吓着你了，哈哈！</p>
-<p>###6，然后就是把博客部署到GitHub上，（至于为什么要选择GitHub，毕竟人家牛逼，关键又不要钱，也不限流量，问什么不呢？）</p>
-<p>###7，关于注册GitHub上创建账号就不多说了，作为一计算机专业，不会这，感觉好丢人的。</p>
-<p>###8,创建repository（在右下角）</p>
-<p>###9,创建一个repository，这里的话就是重点了，一定要是你GitHub名格式：<br>    你的名.github.io  明白？</p>
-<p>###10，将本地的静态部署到GitHub上，进入你刚在什么盘创建的什么目录（我真的不知道），有一个_config.yml的可编译文件，想怎么打开就怎么打开，打开就可以，修改下面几个地方：<br>    deploy:<br>     type: git<br>     repository: git@github.com:xiaofengtongxue/xiaofengtongxue.github.io.git<br>     branch: master<br>值得注意的是，每一个： 都有一个空格的。</p>
-<p>###11，然后就是完成部署：（依旧是刚才你创建的什么文件夹下）<br>    hexo g<br>    hexo d<br>    OK,基本搞定了，第一次需要点时间，然后在浏览器访问你的：你的名字/你的名字.github.io<br>看看有没有效果，是不是傻了你。</p>
-<p>###12，后续的优化再说吧，域名的绑定也很简单的，现在买个域名挺便宜的，十块钱左右，写个文件，做个DNS解析就可以的。</p>
-<p>##OK，巴拉完了。</p>
+        <h3 id="1，首先下载git"><a href="#1，首先下载git" class="headerlink" title="1，首先下载git:"></a>1，首先下载git:</h3><pre><code>https://git-scm.com/download/win
+默认安装即可。
+安装后在桌面右键会有 Git Bash Here
+</code></pre><h3 id="2，安装hexo-这是官方中文文档https-hexo-io-zh-cn-docs"><a href="#2，安装hexo-这是官方中文文档https-hexo-io-zh-cn-docs" class="headerlink" title="2，安装hexo 这是官方中文文档https://hexo.io/zh- cn/docs/"></a>2，安装hexo 这是官方中文文档<a href="https://hexo.io/zh-" target="_blank" rel="external">https://hexo.io/zh-</a> cn/docs/</h3><p>   在桌面右键 Git Bash Here 打开命令模式：<br>     npm install –g hexo</p>
+<h3 id="3，在任意盘创建文件夹（你喜欢的都可以：C-D-E-F-G）命名为hexo（其实什么都可以的）"><a href="#3，在任意盘创建文件夹（你喜欢的都可以：C-D-E-F-G）命名为hexo（其实什么都可以的）" class="headerlink" title="3，在任意盘创建文件夹（你喜欢的都可以：C/D/E/F/G）命名为hexo（其实什么都可以的）"></a>3，在任意盘创建文件夹（你喜欢的都可以：C/D/E/F/G）命名为hexo（其实什么都可以的）</h3><pre><code>进入到你所建文件的目录，记住是你刚创建的命名是什么我就不知道了，我的是hexo，鼠标右键Git Bash 也会出现命令模式
+</code></pre><h3 id="4，生成文件："><a href="#4，生成文件：" class="headerlink" title="4，生成文件："></a>4，生成文件：</h3><pre><code>hexo init
+安装依赖包：
+nmp install
+</code></pre><h3 id="5-上述命令成功完成后，可以看见hexo目录下新建了好多的文件，文件夹的。"><a href="#5-上述命令成功完成后，可以看见hexo目录下新建了好多的文件，文件夹的。" class="headerlink" title="5,上述命令成功完成后，可以看见hexo目录下新建了好多的文件，文件夹的。"></a>5,上述命令成功完成后，可以看见hexo目录下新建了好多的文件，文件夹的。</h3><pre><code>启动服务：
+hexo generate(其实 hexo g 效果是一样一样的)
+hexo server 
+OK，本地静态博客已经搞定了，不信你在浏览器输入localhost:4000看看效果，是不是吓着你了，哈哈！
+</code></pre><h3 id="6，然后就是把博客部署到GitHub上，（至于为什么要选择GitHub，毕竟人家牛逼，关键又不要钱，也不限流量，问什么不呢？）"><a href="#6，然后就是把博客部署到GitHub上，（至于为什么要选择GitHub，毕竟人家牛逼，关键又不要钱，也不限流量，问什么不呢？）" class="headerlink" title="6，然后就是把博客部署到GitHub上，（至于为什么要选择GitHub，毕竟人家牛逼，关键又不要钱，也不限流量，问什么不呢？）"></a>6，然后就是把博客部署到GitHub上，（至于为什么要选择GitHub，毕竟人家牛逼，关键又不要钱，也不限流量，问什么不呢？）</h3><h3 id="7，关于注册GitHub上创建账号就不多说了，作为一计算机专业，不会这，感觉好丢人的。"><a href="#7，关于注册GitHub上创建账号就不多说了，作为一计算机专业，不会这，感觉好丢人的。" class="headerlink" title="7，关于注册GitHub上创建账号就不多说了，作为一计算机专业，不会这，感觉好丢人的。"></a>7，关于注册GitHub上创建账号就不多说了，作为一计算机专业，不会这，感觉好丢人的。</h3><h3 id="8-创建repository（在右下角）"><a href="#8-创建repository（在右下角）" class="headerlink" title="8,创建repository（在右下角）"></a>8,创建repository（在右下角）</h3><h3 id="9-创建一个repository，这里的话就是重点了，一定要是你GitHub名格式："><a href="#9-创建一个repository，这里的话就是重点了，一定要是你GitHub名格式：" class="headerlink" title="9,创建一个repository，这里的话就是重点了，一定要是你GitHub名格式："></a>9,创建一个repository，这里的话就是重点了，一定要是你GitHub名格式：</h3><pre><code>你的名.github.io  明白？
+</code></pre><h3 id="10，将本地的静态部署到GitHub上，进入你刚在什么盘创建的什么目录（我真的不知道），有一个-config-yml的可编译文件，想怎么打开就怎么打开，打开就可以，修改下面几个地方："><a href="#10，将本地的静态部署到GitHub上，进入你刚在什么盘创建的什么目录（我真的不知道），有一个-config-yml的可编译文件，想怎么打开就怎么打开，打开就可以，修改下面几个地方：" class="headerlink" title="10，将本地的静态部署到GitHub上，进入你刚在什么盘创建的什么目录（我真的不知道），有一个_config.yml的可编译文件，想怎么打开就怎么打开，打开就可以，修改下面几个地方："></a>10，将本地的静态部署到GitHub上，进入你刚在什么盘创建的什么目录（我真的不知道），有一个_config.yml的可编译文件，想怎么打开就怎么打开，打开就可以，修改下面几个地方：</h3><pre><code>deploy:
+ type: git
+ repository: git@github.com:xiaofengtongxue/xiaofengtongxue.github.io.git
+ branch: master
+</code></pre><p>值得注意的是，每一个： 都有一个空格的。</p>
+<h3 id="11，然后就是完成部署：（依旧是刚才你创建的什么文件夹下）"><a href="#11，然后就是完成部署：（依旧是刚才你创建的什么文件夹下）" class="headerlink" title="11，然后就是完成部署：（依旧是刚才你创建的什么文件夹下）"></a>11，然后就是完成部署：（依旧是刚才你创建的什么文件夹下）</h3><pre><code>hexo g
+hexo d
+OK,基本搞定了，第一次需要点时间，然后在浏览器访问你的：你的名字/你的名字.github.io
+</code></pre><p>看看有没有效果，是不是傻了你。</p>
+<h3 id="12，后续的优化再说吧，域名的绑定也很简单的，现在买个域名挺便宜的，十块钱左右，写个文件，做个DNS解析就可以的。"><a href="#12，后续的优化再说吧，域名的绑定也很简单的，现在买个域名挺便宜的，十块钱左右，写个文件，做个DNS解析就可以的。" class="headerlink" title="12，后续的优化再说吧，域名的绑定也很简单的，现在买个域名挺便宜的，十块钱左右，写个文件，做个DNS解析就可以的。"></a>12，后续的优化再说吧，域名的绑定也很简单的，现在买个域名挺便宜的，十块钱左右，写个文件，做个DNS解析就可以的。</h3><p>##OK，巴拉完了。</p>
 
       
     </div>
