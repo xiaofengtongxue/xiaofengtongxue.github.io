@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>构建端口扫描器 | xiaofeng&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：parser = optparse.OptionParser(&amp;apos;usage %prog –H &amp;lt;target
+host&amp;gt; -p &amp;lt;target port&amp;gt;&amp;apos;)
+parser.add_option(&amp;apos;-H&amp;apos;, dest=&amp;apos;tgtHost&amp;apos;, type=&amp;apos;string&amp;apos;,
+help=&amp;apos;specify target host&amp;apos;)
+parser.add_option(&amp;apos;-p&amp;apos;, dest=&amp;apos;tgtPort&amp;apos;, type=&amp;apos;int&amp;apos;,
+help=&amp;apos;specify target port&amp;apos;)
+(options, args) = parser.parse_args()
+tgtHost = options.tgtHost
+tgtPort = options.tgtPort
+第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="构建端口扫描器"/>
+  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-20T02:05:55.000Z"><a href="/2016/04/20/nmap1/">2016-04-20</a></time>
+      
+      
+  
+    <h1 class="title">构建端口扫描器</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"><a href="#前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。" class="headerlink" title="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"></a>前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。</h3><h4 id="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："><a href="#第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：" class="headerlink" title="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："></a>第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：</h4><pre><code>parser = optparse.OptionParser(&apos;usage %prog –H &lt;target
+host&gt; -p &lt;target port&gt;&apos;)
+parser.add_option(&apos;-H&apos;, dest=&apos;tgtHost&apos;, type=&apos;string&apos;,
+help=&apos;specify target host&apos;)
+parser.add_option(&apos;-p&apos;, dest=&apos;tgtPort&apos;, type=&apos;int&apos;,
+help=&apos;specify target port&apos;)
+(options, args) = parser.parse_args()
+tgtHost = options.tgtHost
+tgtPort = options.tgtPort
+</code></pre><h4 id="第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"><a href="#第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。" class="headerlink" title="第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"></a>第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。</h4><h4 id="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："><a href="#由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：" class="headerlink" title="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："></a>由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：</h4><a id="more"></a>
+<pre><code>def connScan(tgtHost,tgtPort):
+    try:
+        connSkt = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        connSkt.connect((tgtHost,tgtPort))
+        connSkt.send(&apos;ViolentPython\r\n&apos;)  #发消息等待验证
+        results=connSkt.recv(100)
+        screenLock.acquire()
+        print(&apos;[+]%d/tcp open&apos; % tgtPort)
+        print(&apos;[+]&apos;+str(results))
+        #connSkt.close()
+    except:
+        screenLock.acquire()
+        print(&apos;[-]%d/tcp closed&apos; % tgtPort)
+    finally:
+        screenLock.release()
+        connSkt.close()
+</code></pre><h4 id="基本就这些了，测试后觉得还可以，不过还有许多值得去改进的地方，待以后把python学的差不多了，再来改进。遇到问题，咱们不要慌，什么问题就解决什么问题，如今的网络这么发达，要学会去主动学习，而却编程这行，看的再多也比不上动手练习，因为在练习中我们会遇到很多意料不到的问题，这时就是考验我们解决问题的能力了。本人小菜，学的东西不多，但是我肯去学，这比什么都重要。"><a href="#基本就这些了，测试后觉得还可以，不过还有许多值得去改进的地方，待以后把python学的差不多了，再来改进。遇到问题，咱们不要慌，什么问题就解决什么问题，如今的网络这么发达，要学会去主动学习，而却编程这行，看的再多也比不上动手练习，因为在练习中我们会遇到很多意料不到的问题，这时就是考验我们解决问题的能力了。本人小菜，学的东西不多，但是我肯去学，这比什么都重要。" class="headerlink" title="基本就这些了，测试后觉得还可以，不过还有许多值得去改进的地方，待以后把python学的差不多了，再来改进。遇到问题，咱们不要慌，什么问题就解决什么问题，如今的网络这么发达，要学会去主动学习，而却编程这行，看的再多也比不上动手练习，因为在练习中我们会遇到很多意料不到的问题，这时就是考验我们解决问题的能力了。本人小菜，学的东西不多，但是我肯去学，这比什么都重要。"></a>基本就这些了，测试后觉得还可以，不过还有许多值得去改进的地方，待以后把python学的差不多了，再来改进。遇到问题，咱们不要慌，什么问题就解决什么问题，如今的网络这么发达，要学会去主动学习，而却编程这行，看的再多也比不上动手练习，因为在练习中我们会遇到很多意料不到的问题，这时就是考验我们解决问题的能力了。本人小菜，学的东西不多，但是我肯去学，这比什么都重要。</h4>
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/python/">python</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/04/20/nmap1/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
