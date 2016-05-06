@@ -55,6 +55,42 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-05-06T02:42:07.000Z"><a href="/2016/05/06/10/">2016-05-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/05/06/10/">小白到小黑</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="渗透测试基础知识"><a href="#渗透测试基础知识" class="headerlink" title="渗透测试基础知识"></a>渗透测试基础知识</h2><h4 id="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"><a href="#这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。" class="headerlink" title="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"></a>这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。</h4><p>网络、编程、系统。。。好多、好多、<br>    一、HTTP协议、操作系统<br>    系统：Windows/Linux<br>    服务：HTTP服务、FTP服务、SSH服务等<br>    文件系统、权限、防火墙等<br>    端口、IDS、IPS<br>    二、Web前端<br>    HTML/CSS、XML、JavaScript、Ajax、Jquery<br>    PHP、ASP、.NET、JSP 等<br>    三、数据库<br>    MySql、SqlServer、Oracle、DB2、Nosql<br>    四、常见漏洞<br>    IIS、Apache、Nginx<br>    五、注入<br>    主站相对来说比较安全，没有突破口，可以利用和主站在一个服务器上面的网站进行突破。<br>    六、探测<br>    在线工具网站（ip查询、端口扫描、CDN查询、二级域名、旁站查询、ICP备案、whois、web识别、社工库查询、Email、用户搜索、图片查询、短信验证等）涉及：端口信息、服务信息等<br>    七、漏洞扫描<br>    工具：Burp、AWVS、AppScan、Nessus、W3af、Shipfish<br>    八、测试工具<br>    Sqlmap、Havij、Pangolin、Waf3、Burp、nmap<br>    九、逻辑漏洞<br>    比如：任意用户密码重置、刷积分、信息泄露等<br>    程序的逻辑和人类的逻辑不一致导致漏洞产生<br>    十、XSS（跨站脚本攻击）<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/05/06/10/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-05-05T09:24:05.000Z"><a href="/2016/05/05/55/">2016-05-05</a></time>
       
       
@@ -228,67 +264,11 @@ m-n位的数字：^\d{m,n}$
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-20T01:02:56.000Z"><a href="/2016/04/20/3/">2016-04-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/20/3/">Linux基础命令</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="find命令："><a href="#find命令：" class="headerlink" title="find命令："></a>find命令：</h3><pre><code>-name   filename             #查找名为filename的文件
--perm                        #按执行权限来查找
--user    username            #按文件属主来查找
-</code></pre><h3 id="sed命令"><a href="#sed命令" class="headerlink" title="sed命令:"></a>sed命令:</h3><h5 id="sed-nefr-动作"><a href="#sed-nefr-动作" class="headerlink" title="sed [-nefr] [动作]"></a>sed [-nefr] [动作]</h5><pre><code>选项与参数：
--n ：使用安静(silent)模式。在一般 sed的用法中，所有来自 STDIN 的数据一般都会被列出到终端上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。
--e ：直接在命令列模式上进行 sed 的动作编辑；
--f ：直接将 sed 的动作写在一个文件内， -f filename 则可以运行 filename 内的 sed 动作；
--r ：sed 的动作支持的是延伸型正规表示法的语法。(默认是基础正规表示法语法)
--i ：直接修改读取的文件内容，而不是输出到终端。
-
-动作说明： [n1[,n2]]function
-n1, n2 ：不见得会存在，一般代表『选择进行动作的行数』，举例来说，如果我的动作是需要在 10 到 20 行之间进行的，则『 10,20[动作行为] 』
-
-function：
-a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～
-c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
-d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；
-i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；
-p ：列印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～
-s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法。
-</code></pre>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/04/20/3/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
   
-    <a href="/page/2/" class="alignright next">Nächste Seite</a>
+    <a href="/page/2/" class="alignright next">Siguiente</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -313,7 +293,7 @@ function search(formname) {
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">Etiquetas</h3>
   <ul class="entry">
   
     <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
@@ -321,6 +301,8 @@ function search(formname) {
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
     <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>1</small></li>
   
     <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
   

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Seite 2 | xiaofeng&#39;s Blog</title>
+  <title>Página 2 | xiaofeng&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
   
@@ -49,6 +49,62 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-20T01:02:56.000Z"><a href="/2016/04/20/3/">2016-04-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/20/3/">Linux基础命令</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="find命令："><a href="#find命令：" class="headerlink" title="find命令："></a>find命令：</h3><pre><code>-name   filename             #查找名为filename的文件
+-perm                        #按执行权限来查找
+-user    username            #按文件属主来查找
+</code></pre><h3 id="sed命令"><a href="#sed命令" class="headerlink" title="sed命令:"></a>sed命令:</h3><h5 id="sed-nefr-动作"><a href="#sed-nefr-动作" class="headerlink" title="sed [-nefr] [动作]"></a>sed [-nefr] [动作]</h5><pre><code>选项与参数：
+-n ：使用安静(silent)模式。在一般 sed的用法中，所有来自 STDIN 的数据一般都会被列出到终端上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。
+-e ：直接在命令列模式上进行 sed 的动作编辑；
+-f ：直接将 sed 的动作写在一个文件内， -f filename 则可以运行 filename 内的 sed 动作；
+-r ：sed 的动作支持的是延伸型正规表示法的语法。(默认是基础正规表示法语法)
+-i ：直接修改读取的文件内容，而不是输出到终端。
+
+动作说明： [n1[,n2]]function
+n1, n2 ：不见得会存在，一般代表『选择进行动作的行数』，举例来说，如果我的动作是需要在 10 到 20 行之间进行的，则『 10,20[动作行为] 』
+
+function：
+a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～
+c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；
+i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；
+p ：列印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～
+s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法。
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/04/20/3/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -223,51 +279,13 @@ nmp install
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-13T14:55:22.000Z"><a href="/2016/04/13/2/">2016-04-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/13/2/">Linux基础操作</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="自己学习Linux基础："><a href="#自己学习Linux基础：" class="headerlink" title="自己学习Linux基础："></a>自己学习Linux基础：</h2><p>   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。</p>
-<h3 id="下面是几条常用到的命令："><a href="#下面是几条常用到的命令：" class="headerlink" title="下面是几条常用到的命令："></a>下面是几条常用到的命令：</h3><pre><code>00x1：手动临时配置
-</code></pre><p>   Ifconfig eth0 up/down ：开启/关闭 eth0网卡<br>   Ifconfig eth0 192.168.1.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）<br>   Ifconfig：查看与设置IP地址，子网掩码<br>   route add/del default gw 192.168.1.2 ：设置默认网关为192.168.1.2</p>
-<pre><code>00x2：文件写入永久配置
-</code></pre><p>   /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes,IPADDR,NETMASK,GATEWAY等）<br>   /etc/resolv.conf ：设置DNS服务器<br>   service network start|restart|stop ：重启网卡<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/04/13/2/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/" class="alignleft prev">Vorherige Seite</a>
+    <a href="/" class="alignleft prev">Anterior</a>
   
+  
+    <a href="/page/3/" class="alignright next">Siguiente</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -292,7 +310,7 @@ function search(formname) {
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">Etiquetas</h3>
   <ul class="entry">
   
     <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
@@ -300,6 +318,8 @@ function search(formname) {
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
     <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>1</small></li>
   
     <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
   

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archivo: 2016 | xiaofeng&#39;s Blog</title>
+  <title>Página 3 | xiaofeng&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
   
@@ -49,73 +49,54 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2016</h2>
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-13T14:55:22.000Z"><a href="/2016/04/13/2/">2016-04-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/13/2/">Linux基础操作</a></h1>
+  
 
-
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-05-06T02:42:07.000Z"><a href="/2016/05/06/10/">2016-05-06</a></time>
-            
-              <h1 class="title"><a href="/2016/05/06/10/">小白到小黑</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-05-05T09:24:05.000Z"><a href="/2016/05/05/55/">2016-05-05</a></time>
-            
-              <h1 class="title"><a href="/2016/05/05/55/">我的大学生活</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-04-20T02:51:27.000Z"><a href="/2016/04/20/9/">2016-04-20</a></time>
-            
-              <h1 class="title"><a href="/2016/04/20/9/">php学习计划篇</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-04-20T02:05:55.000Z"><a href="/2016/04/20/8/">2016-04-20</a></time>
-            
-              <h1 class="title"><a href="/2016/04/20/8/">构建端口扫描器</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2016-04-20T01:29:47.000Z"><a href="/2016/04/20/4/">2016-04-20</a></time>
-            
-              <h1 class="title"><a href="/2016/04/20/4/">python正则表达式</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+    </header>
+    <div class="entry">
+      
+        <h2 id="自己学习Linux基础："><a href="#自己学习Linux基础：" class="headerlink" title="自己学习Linux基础："></a>自己学习Linux基础：</h2><p>   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。</p>
+<h3 id="下面是几条常用到的命令："><a href="#下面是几条常用到的命令：" class="headerlink" title="下面是几条常用到的命令："></a>下面是几条常用到的命令：</h3><pre><code>00x1：手动临时配置
+</code></pre><p>   Ifconfig eth0 up/down ：开启/关闭 eth0网卡<br>   Ifconfig eth0 192.168.1.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）<br>   Ifconfig：查看与设置IP地址，子网掩码<br>   route add/del default gw 192.168.1.2 ：设置默认网关为192.168.1.2</p>
+<pre><code>00x2：文件写入永久配置
+</code></pre><p>   /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes,IPADDR,NETMASK,GATEWAY等）<br>   /etc/resolv.conf ：设置DNS服务器<br>   service network start|restart|stop ：重启网卡<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/04/13/2/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
   </div>
-</div></div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/2/" class="alignleft prev">Anterior</a>
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
     <aside id="sidebar" class="alignright">
   <SCRIPT language=javascript>
 function search(formname) {

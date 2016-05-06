@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>小白到小黑 | xiaofeng&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="渗透测试基础知识这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。网络、编程、系统。。。好多、好多、    一、HTTP协议、操作系统    系统：Windows/Linux    服务：HTTP服务、FTP服务、SSH服务等    文件系统、权限、防火墙等    端口、IDS、IPS    二、Web前端    HTML/CSS、XML、JavaScript、Ajax、Jquery    PHP、ASP、.NET、JSP 等    三、数据库    MySql、SqlServer、Oracle、DB2、Nosql    四、常见漏洞    IIS、Apache、Nginx    五、注入    主站相对来说比较安全，没有突破口，可以利用和主站在一个服务器上面的网站进行突破。    六、探测    在线工具网站（ip查询、端口扫描、CDN查询、二级域名、旁站查询、ICP备案、whois、web识别、社工库查询、Email、用户搜索、图片查询、短信验证等）涉及：端口信息、服务信息等    七、漏洞扫描    工具：Burp、AWVS、AppScan、Nessus、W3af、Shipfish    八、测试工具    Sqlmap、Havij、Pangolin、Waf3、Burp、nmap    九、逻辑漏洞    比如：任意用户密码重置、刷积分、信息泄露等    程序的逻辑和人类的逻辑不一致导致漏洞产生    十、XSS（跨站脚本攻击）">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="小白到小黑"/>
+  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-05-06T02:42:07.000Z"><a href="/2016/05/06/10/">2016-05-06</a></time>
+      
+      
+  
+    <h1 class="title">小白到小黑</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="渗透测试基础知识"><a href="#渗透测试基础知识" class="headerlink" title="渗透测试基础知识"></a>渗透测试基础知识</h2><h4 id="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"><a href="#这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。" class="headerlink" title="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"></a>这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。</h4><p>网络、编程、系统。。。好多、好多、<br>    一、HTTP协议、操作系统<br>    系统：Windows/Linux<br>    服务：HTTP服务、FTP服务、SSH服务等<br>    文件系统、权限、防火墙等<br>    端口、IDS、IPS<br>    二、Web前端<br>    HTML/CSS、XML、JavaScript、Ajax、Jquery<br>    PHP、ASP、.NET、JSP 等<br>    三、数据库<br>    MySql、SqlServer、Oracle、DB2、Nosql<br>    四、常见漏洞<br>    IIS、Apache、Nginx<br>    五、注入<br>    主站相对来说比较安全，没有突破口，可以利用和主站在一个服务器上面的网站进行突破。<br>    六、探测<br>    在线工具网站（ip查询、端口扫描、CDN查询、二级域名、旁站查询、ICP备案、whois、web识别、社工库查询、Email、用户搜索、图片查询、短信验证等）涉及：端口信息、服务信息等<br>    七、漏洞扫描<br>    工具：Burp、AWVS、AppScan、Nessus、W3af、Shipfish<br>    八、测试工具<br>    Sqlmap、Havij、Pangolin、Waf3、Burp、nmap<br>    九、逻辑漏洞<br>    比如：任意用户密码重置、刷积分、信息泄露等<br>    程序的逻辑和人类的逻辑不一致导致漏洞产生<br>    十、XSS（跨站脚本攻击）<br><a id="more"></a><br>    Cookie （记录你的账号和密码，方便你下次登录不用输入。）<br>    技术上，他有一个专门接收Cookie的平台（XSS平台）<br>    十一、CSRF漏洞<br>    地址没验证，多次重复提交 等现象<br>    十二、远程代码执行<br>    比如： PHP远程代码执行 / JSP远程代码执行<br>    常见：Struts2命令执行<br>    十三、文件包含<br>    ./ 是当前路径   ../是切换到上级路径<br>    本地包含、远程包含<br>    涉及比较多的编程语言 PHP<br>    十四、常见注入<br>    SQL注入漏洞，直接危害到了数据库和系统安全，攻击者可以数据窃取，写shell后门 等操作。那么在注入里：GET注入、POST注入、HTTP请求头注入、Cookie注入、Json注入、XML注入等，大部分都有相似的地方。大部分影响的全部都是数据库里的数据<br>    十五、内网相关<br>    内网-局域网<br>    账户密码爆破（数据库 FTP 等密码）<br>    扫描端口或者服务（21、135、445、1521、8080、1433、3389 等）<br>    这些端口可能 代表某些服务的开启，这样的话对方提供给你服务<br>    你就可以进行某中操作了。<br>    ARP攻击与嗅探、抓包监听、防火墙绕过等<br>    十六、0day漏洞挖掘相关<br>    尝试了解一些第三方安全产品的使用和挖掘<br>    比如：安全狗、护卫神 等 （包含安全公司防火墙等软件 硬件BUG）<br>    十七、社工与APT攻击先关内容<br>    信息的探测与利用<br>    对心里学有一定研究<br>    十八、组合漏洞<br>    文件包含+上传漏洞获取WebShell<br>    SQL注入+物理路径泄露获取WebShell<br>    XSS+CSRF拿下后台+文件上传+解析漏洞获取WebShell<br>    WebShell+MySql_UDF提权+FTP提权+3389端口沦陷服务器<br>    十九、云计安全<br>    云安全，目前还停留在维护web安全的基础上面，主要利用常见的web安全漏洞来进行查找一些漏洞。<br>    二十、HTTP抓包与调试</p>
+<h4 id="Firefox插件："><a href="#Firefox插件：" class="headerlink" title="Firefox插件："></a>Firefox插件：</h4><pre><code>Firebug、抓包与各种调试、Tamper Data、拦截修改、重放功能、Hackbar、编码解码/POS、提交、Modify Headers、修改头部、Fiddler、浏览器代理神器、拦截请求或响应、抓包、重放、模拟请求、编码解码
+Wireshark：各种强大的过滤器语法
+Tcpdump：命令行的类Wireshark抓包神器
+</code></pre><h3 id="此外关注安全圈动态多看安全圈的最新漏洞、安全事件与技术文章。"><a href="#此外关注安全圈动态多看安全圈的最新漏洞、安全事件与技术文章。" class="headerlink" title="此外关注安全圈动态多看安全圈的最新漏洞、安全事件与技术文章。"></a>此外关注安全圈动态多看安全圈的最新漏洞、安全事件与技术文章。</h3><p>熟悉Windows/Linux<br>学习Windows/Linux基本命令、常用工具；<br>熟悉Windows下的常用的cmd命令，例如：ipconfig,nslookup,tracert,net,tasklist,taskkill等；<br>熟悉Linux下的常用命令，例如：ifconfig,ls,cp,mv,vi,wget,service,sudo等；<br>熟悉Kali Linux系统下的常用工具<br>熟悉metasploit工具，可以参考《Metasploit渗透测试指南》。<br>服务器安全配置<br>学习服务器环境配置，并能通过思考发现配置存在的安全问题。<br>Windows2003/2008环境下的IIS配置，特别注意配置安全和运行权限Linux环境下的LAMP的安全配置，主要考虑运行权限、跨目录、文件夹权限等<br>远程系统加固，限制用户名和口令登陆，通过iptables限制端口；<br>配置软件Waf加强系统安全，在服务器配置mod_security等系统<br>通过Nessus软件对配置环境进行安全检测，发现未知安全威胁。<br>脚本编程学习<br>选择脚本语言Perl/Python/PHP/Go/Java中的一种，对常用库进行编程学习。<br>搭建开发环境和选择IDE，PHP环境推荐Wamp和XAMPP，IDE强烈推荐Sublime，一些Sublime的技巧<br>Python编程学习，学习内容包含：语法、正则、文件、网络、多线程等常用库，推荐《Python核心编程》<br>用Python编写漏洞的exp，然后写一个简单的网络爬虫，可参见SecWiki-爬虫、视频；<br>PHP基本语法学习并书写一个简单的博客系统，参见《PHP与MySQL程序设计（第4版）》、视频；<br>熟悉MVC架构，并试着学习一个PHP框架或者Python框架（可选）；<br>了解Bootstrap的布局或者CSS<br>源码审计与漏洞分析<br>能独立分析脚本源码程序并发现安全问题。<br>熟悉源码审计的动态和静态方法，并知道如何去分析程序，参见SecWiki-审计；<br>从Wooyun上寻找开源程序的漏洞进行分析并试着自己分析；<br>了解Web漏洞的形成原因，然后通过关键字进行查找分析，参见SecWiki-代码审计、高级PHP应用程序漏洞审核技术；<br>研究Web漏洞形成原理和如何从源码层面避免该类漏洞，并整理成checklist。</p>
+<h3 id="哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。"><a href="#哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。" class="headerlink" title="哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。"></a>哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。</h3>
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/渗透学习/">渗透学习</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Comentarios</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/05/06/10/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Etiquetas</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>2</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>1</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
