@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>xiaofeng&#39;s Blog</title>
+  <title>文件上传漏洞初探 | xiaofeng&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等1）没有对上传文件的类型做检测2）没有对上传文件的大小和数量">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="文件上传漏洞初探"/>
   <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
 
   
@@ -48,8 +50,7 @@
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
@@ -59,7 +60,7 @@
       
       
   
-    <h1 class="title"><a href="/2016/06/26/14/">文件上传漏洞初探</a></h1>
+    <h1 class="title">文件上传漏洞初探</h1>
   
 
     </header>
@@ -147,6 +148,43 @@ unlink(&apos;upload/&apos;.$FILES[&apos;up_file&apos;][&apos;name&apos;]);
       
         
         
+  
+  <div class="tags">
+    <a href="/tags/渗透学习/">渗透学习</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
       
       <div class="clearfix"></div>
     </footer>
@@ -154,150 +192,26 @@ unlink(&apos;upload/&apos;.$FILES[&apos;up_file&apos;][&apos;name&apos;]);
 </article>
 
 
+  <h1 class="title">Comments</h1>
 
-
-  <article class="post">
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-06-14T07:33:42.000Z"><a href="/2016/06/14/13/">2016-06-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/06/14/13/">未来的路很窄</a></h1>
-  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 
-    </header>
-    <div class="entry">
-      
-        
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-06-14T07:33:36.000Z"><a href="/2016/06/14/12/">2016-06-14</a></time>
-      
+<div class="fb-comments" data-href="http://yoursite.com/2016/06/26/14/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
-    <h1 class="title"><a href="/2016/06/14/12/">linux加固小脚本</a></h1>
-  
+</section>
 
-    </header>
-    <div class="entry">
-      
-        
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-06-14T07:32:50.000Z"><a href="/2016/06/14/11/">2016-06-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/06/14/11/">关键时候说放弃</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>科比</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-05-06T02:42:07.000Z"><a href="/2016/05/06/10/">2016-05-06</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/05/06/10/">小白到小黑</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="渗透测试基础知识"><a href="#渗透测试基础知识" class="headerlink" title="渗透测试基础知识"></a>渗透测试基础知识</h2><h4 id="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"><a href="#这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。" class="headerlink" title="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"></a>这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。</h4><p>网络、编程、系统。。。好多、好多、</p>
-<p>一、HTTP协议、操作系统<br>系统：Windows/Linux<br>服务：HTTP服务、FTP服务、SSH服务等<br>文件系统、权限、防火墙等<br>端口、IDS、IPS<br>二、Web前端<br>HTML/CSS、XML、JavaScript、Ajax、Jquery<br>PHP、ASP、.NET、JSP 等<br>三、数据库<br>MySql、SqlServer、Oracle、DB2、Nosql<br>四、常见漏洞<br>IIS、Apache、Nginx<br>五、注入<br>主站相对来说比较安全，没有突破口，可以利用和主站在一个服务器上面的网站进行突破。<br>六、探测<br>在线工具网站（ip查询、端口扫描、CDN查询、二级域名、旁站查询、ICP备案、whois、web识别、社工库查询、Email、用户搜索、图片查询、短信验证等）涉及：端口信息、服务信息等<br>七、漏洞扫描<br>工具：Burp、AWVS、AppScan、Nessus、W3af、Shipfish<br>八、测试工具<br>Sqlmap、Havij、Pangolin、Waf3、Burp、nmap<br>九、逻辑漏洞<br>比如：任意用户密码重置、刷积分、信息泄露等<br>程序的逻辑和人类的逻辑不一致导致漏洞产生<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/05/06/10/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-<nav id="pagination">
-  
-  
-    <a href="/page/2/" class="alignright next">Next</a>
-  
-  <div class="clearfix"></div>
-</nav></div></div>
+</div></div>
     <aside id="sidebar" class="alignright">
   <SCRIPT language=javascript>
 function search(formname) {
