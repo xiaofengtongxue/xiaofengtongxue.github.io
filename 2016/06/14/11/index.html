@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>关键时候说放弃 | xiaofeng&#39;s Blog</title>
+  <title>浅谈CSRF | xiaofeng&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
-  <meta name="description" content="科比">
+  <meta name="description" content="0x00 CSRF背景介绍：跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="关键时候说放弃"/>
+  <meta property="og:title" content="浅谈CSRF"/>
   <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
 
   
@@ -60,14 +60,28 @@
       
       
   
-    <h1 class="title">关键时候说放弃</h1>
+    <h1 class="title">浅谈CSRF</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>科比</p>
-
+        <h2 id="0x00-CSRF背景介绍："><a href="#0x00-CSRF背景介绍：" class="headerlink" title="0x00 CSRF背景介绍："></a>0x00 CSRF背景介绍：</h2><h3 id="跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"><a href="#跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。" class="headerlink" title="跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"></a>跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。</h3><h2 id="0x01-成因："><a href="#0x01-成因：" class="headerlink" title="0x01 成因："></a>0x01 成因：</h2><h3 id="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"><a href="#服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。" class="headerlink" title="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"></a>服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。</h3><h2 id="0x02-利用："><a href="#0x02-利用：" class="headerlink" title="0x02 利用："></a>0x02 利用：</h2><h3 id="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"><a href="#1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。" class="headerlink" title="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"></a>1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。</h3><h3 id="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"><a href="#2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。" class="headerlink" title="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"></a>2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。</h3><h3 id="3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如"><a href="#3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如" class="headerlink" title="3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:"></a>3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:</h3><h4 id="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"><a href="#Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据" class="headerlink" title="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"></a>Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据</h4><pre><code>    &lt;cross-domain-policy&gt;
+        &lt;allow-access-from domain=&quot;*&quot;/&gt;
+    &lt;/cross-domain-policy&gt;
+Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传Flash产生CSRF。
+</code></pre><h3 id="4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。"><a href="#4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。" class="headerlink" title="4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。"></a>4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。</h3><h2 id="0x03-修复："><a href="#0x03-修复：" class="headerlink" title="0x03 修复："></a>0x03 修复：</h2><h3 id="关键操作用POST请求，"><a href="#关键操作用POST请求，" class="headerlink" title="关键操作用POST请求，"></a>关键操作用POST请求，</h3><h4 id="1、验证码"><a href="#1、验证码" class="headerlink" title="1、验证码"></a>1、验证码</h4><pre><code>- CSRF攻击的过程，往往是在用户不知情的情况下构造网络请求。所以如果使用验证码，那么每次操作都需要用户进行互动，从而简单有效的防御了CSRF攻击。
+- 但是如果你在一个网站作出任何举动都要输入验证码会严重影响用户体验，所以验证码一般只出现在特殊操作里面，或者在注册时候使用
+</code></pre><h4 id="2、检测refer"><a href="#2、检测refer" class="headerlink" title="2、检测refer"></a>2、检测refer</h4><pre><code>- 常见的互联网页面与页面之间是存在联系的，比如你在www.baidu.com应该是找不到通往www.google.com的链接的，再比如你在论坛留言，那么不管你留言后重定向到哪里去了，之前的那个网址一定会包含留言的输入框，这个之前的网址就会保留在新页面头文件的Referer中
+- 通过检查Referer的值，我们就可以判断这个请求是合法的还是非法的，但是问题出在服务器不是任何时候都能接受到Referer的值，所以Refere Check 一般用于监控CSRF攻击的发生，而不用来抵御攻击。
+</code></pre><h4 id="3、Token"><a href="#3、Token" class="headerlink" title="3、Token"></a>3、Token</h4><pre><code>- 目前主流的做法是使用Token抵御CSRF攻击。下面通过分析CSRF 攻击来理解为什么Token能够有效
+- CSRF攻击要成功的条件在于攻击者能够预测所有的参数从而构造出合法的请求。所以根据不可预测性原则，我们可以对参数进行加密从而防止CSRF攻击。
+- 另一个更通用的做法是保持原有参数不变，另外添加一个参数Token，其值是随机的。这样攻击者因为不知道Token而无法构造出合法的请求进行攻击。
+- Token 使用原则
+  Token要足够随机————只有这样才算不可预测
+  Token是一次性的，即每次请求成功后要更新Token————这样可以增加攻击难度，增加预测难度
+  Token要注意保密性————敏感操作使用post，防止Token出现在URL中
+</code></pre>
       
     </div>
     <footer>
@@ -76,7 +90,7 @@
         
   
   <div class="tags">
-    <a href="/tags/生活感悟/">生活感悟</a>
+    <a href="/tags/渗透学习/">渗透学习</a>
   </div>
 
         <div class="bdsharebuttonbox">
@@ -118,7 +132,7 @@
 </article>
 
 
-  <h1 class="title">Comments</h1>
+  <h1 class="title">Kommentare</h1>
 
   
       <div id="fb-root"></div>
@@ -168,9 +182,9 @@ function search(formname) {
   
     <li><a href="/tags/python/">python</a><small>3</small></li>
   
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>3</small></li>
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
   
-    <li><a href="/tags/生活感悟/">生活感悟</a><small>3</small></li>
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
   
     <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
   

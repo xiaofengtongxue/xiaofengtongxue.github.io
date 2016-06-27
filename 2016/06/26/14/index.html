@@ -90,8 +90,7 @@ echo  &quot;File g uploading  failed.\n&quot;;
 </code></pre></li>
 </ul>
 <h3 id="C-服务端验证绕过-扩展名检测"><a href="#C-服务端验证绕过-扩展名检测" class="headerlink" title="C 服务端验证绕过(扩展名检测)"></a>C 服务端验证绕过(扩展名检测)</h3><ul>
-<li>黑名单检测<br> 找黑名单扩展名的漏网之鱼 - 比如上面就漏掉了 asa 和 cer 之类<br> 可能存在大小写绕过漏洞 - 比如 aSp 和 pHp 之类</li>
-</ul>
+<li><p>黑名单检测<br> 找黑名单扩展名的漏网之鱼 - 比如上面就漏掉了 asa 和 cer 之类<br> 可能存在大小写绕过漏洞 - 比如 aSp 和 pHp 之类</p>
 <pre><code>&lt;!-- 过滤的缺陷 --&gt;
 &lt;?php
 if(isset($_POST[&apos;submit&apos;])){
@@ -102,7 +101,7 @@ $upload = preg_replace(&quot;/[^(w|:|$|.|&lt;|&gt;)]/i&quot;,&quot;&quot;,$upfil
 $tmpfile = $_FILES[&apos;file&apos;][&apos;tmp_name&apos;];
 $ext = trim(get_extension($upfile)); // null
 if(in_array($ext,array(&apos;php&apos;,&apos;php3&apos;,&apos;php5&apos;))){
-  die(&apos;Warning ! File type error..&apos;);
+ die(&apos;Warning ! File type error..&apos;);
 }
 if($ext == &apos;asp&apos; or $ext == &apos;asa&apos; or $ext == &apos;cer&apos; or $ext == &apos;cdx&apos; or $ext == &apos;aspx&apos; or $ext == &apos;htaccess&apos;) $ext = &apos;file&apos;;
 //$savefile = &apos;upload/&apos;.$upfile;
@@ -118,8 +117,8 @@ function get_extension($file){
 return strtolower(substr($file, strrpos($file, &apos;.&apos;)+1));
 }
 ?&gt;
-</code></pre><p>   特别文件名构造 - 比如发送的 http 包里把文件名改成 help.asp. 或 help.asp_(下划线为空格)<br>      IIS 或 nginx 文件名解析漏洞 - 比如 help.asp;.jpg 或 help.jpg/2.php<br>      0x00 截断绕过 - 这个是基于一个组合逻辑漏洞造成的<br>      双扩展名解析绕过攻击(1) - 基于 web 服务的解析逻辑<br>      双扩展名解析绕过攻击(2) - 基于 web 服务的解析方式<br>      危险解析绕过攻击 - 基于 web 服务的解析方式</p>
-<ul>
+</code></pre></li>
+<li>特别文件名构造 - 比如发送的 http 包里把文件名改成 help.asp. 或 help.asp_(下划线为空格)<br> IIS 或 nginx 文件名解析漏洞 - 比如 help.asp;.jpg 或 help.jpg/2.php<br> 0x00 截断绕过 - 这个是基于一个组合逻辑漏洞造成的<br> 双扩展名解析绕过攻击(1) - 基于 web 服务的解析逻辑<br> 双扩展名解析绕过攻击(2) - 基于 web 服务的解析方式<br> 危险解析绕过攻击 - 基于 web 服务的解析方式</li>
 <li>白名单检测<br> 特别文件名构造 (同黑名单攻击第 3 条)<br> IIS 或 nginx 文件名解析漏洞 (同黑名单攻击第 4 条)<br> 0x00 截断绕过 (同黑名单攻击第 5 条)</li>
 <li>.htaccess 文件攻击<br> 在 PHP 安全没配置好的情况下，用自己的.htaccess 覆盖服务上原文件</li>
 <li>文件上传路径未检测<br> 网页编辑语言？截止符：<pre><code>*/newmm.asp?/200409240824.jpg 
@@ -140,7 +139,7 @@ unlink(&apos;upload/&apos;.$FILES[&apos;up_file&apos;][&apos;name&apos;]);
 <li>文件加载检测<br>   用工具对文件空白数据区或注释区进行代码注入绕过<br>  (图像仅能绕过渲染测试，而不能绕过二次渲染)<br>   用恶意文件去攻击加载器本身</li>
 </ul>
 <h3 id="E-相互关系与组合情况"><a href="#E-相互关系与组合情况" class="headerlink" title="E 相互关系与组合情况"></a>E 相互关系与组合情况</h3><p>   首先客户端端验证和服务端验证是相互独立的，所以分开绕过就行了<br>   主要难点是在服务端验证的组合上<br>   文件完整性检测已经包含文件头检测和图像大小及相关信息检测， 但不包含文件扩展名检测<br>   它是以加载来作为检测的方式，比如用图像渲染函数去渲染一张图片<br>   文件扩展名检测和文件头检测都是同级的，相互独立<br>   所以如果是文件扩展名+文件头检测可以同时分开绕过</p>
-<h2 id="0x03-漏洞修复"><a href="#0x03-漏洞修复" class="headerlink" title="0x03 漏洞修复"></a>0x03 漏洞修复</h2><p>1) 重新配置好服务器。<br>2) 若新版编辑器已修复漏洞，请更新编辑器版本。<br>3) 在服务器后端对上传的文件进行过滤。<br>4) 建议使用白名单的方法对文件进行过滤。<br>5) 文件解析漏洞的修复可参考文件上传。<br>6) 使用随机数改写文件名和文件路径,不要使用用户定义的文件名和文件路径。<br>7) 除了以上的方法之外，还可将被上传的文件限制在某一路径下，并在文件上传目录禁止脚本解析。</p>
+<h2 id="0x03-漏洞修复意见"><a href="#0x03-漏洞修复意见" class="headerlink" title="0x03 漏洞修复意见"></a>0x03 漏洞修复意见</h2><p>1) 重新配置好服务器。<br>2) 若新版编辑器已修复漏洞，请更新编辑器版本。<br>3) 在服务器后端对上传的文件进行过滤。<br>4) 建议使用白名单的方法对文件进行过滤。<br>5) 文件解析漏洞的修复可参考文件上传。<br>6) 使用随机数改写文件名和文件路径,不要使用用户定义的文件名和文件路径。<br>7) 除了以上的方法之外，还可将被上传的文件限制在某一路径下，并在文件上传目录禁止脚本解析。</p>
 
       
     </div>
@@ -192,7 +191,7 @@ unlink(&apos;upload/&apos;.$FILES[&apos;up_file&apos;][&apos;name&apos;]);
 </article>
 
 
-  <h1 class="title">Comments</h1>
+  <h1 class="title">Kommentare</h1>
 
   
       <div id="fb-root"></div>
@@ -242,9 +241,9 @@ function search(formname) {
   
     <li><a href="/tags/python/">python</a><small>3</small></li>
   
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>3</small></li>
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
   
-    <li><a href="/tags/生活感悟/">生活感悟</a><small>3</small></li>
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
   
     <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
   
