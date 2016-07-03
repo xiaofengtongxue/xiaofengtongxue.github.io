@@ -6,7 +6,27 @@
   <title>文件上传漏洞初探 | xiaofeng&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
-  <meta name="description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等1）没有对上传文件的类型做检测2）没有对上传文件的大小和数量">
+  <meta name="description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等1）没有对上传文件的类型做检测2）没有对上传文件的大小和数量做检测3）没有对上传文件的扩展名做检测4）使用上传的文件名作为最终存储的文件名5）服务器端缺乏相应的安全配置，给予上传目录执行权限等6）Apache、MySQL等服务器组件没有对用户账号的权限进行限制7）Apache、MySQL等服务器组件没有及时升级
+0x01 上传流程文字图示：PC主机(javascript检测) —-&amp;gt; http POST请求 —-&amp;gt; 服务器(MIME、目录路径、文件扩展名、文件内容等检测)服务器端检测：A 客户端 javascript 检测 (通常为检测文件扩展名)B 服务端 MIME 类型检测 (检测 Content-Type 内容)C 服务端目录路径检测 (检测跟 path 参数相关的内容)D 服务端文件扩展名检测 (检测跟文件 extension 相关的内容)E 服务端文件内容检测 (检测内容是否合法或含有恶意代码)文件上传流程：①文件以http协议上传，将以 POST 请求发送至 web 服务器②web 服务器接收到请求后并同意后，用户与 web 服务器将建立连接，并传输数据。
+A 客户端端验证绕过(javascript 扩展名检测)  用反向代理工具(burp 之类)或禁用 js 便可以绕过客户端端验证
+B 服务端验证绕过(http request 包检测)
+Content-type (Mime type) 检测 用反向代理工具(burp 之类)进行 Content-type 伪造
+&amp;lt;!-- 修改 ：Content-Type:image/gif ( 原为 : Content-Type:text/plain) --&amp;gt;
+&amp;lt;?php  
+if($_FILES[&amp;apos;userfile&amp;apos;][&amp;apos;type&amp;apos;] = != ) &amp;quot;image/gif&amp;quot;) {
+// 检测 Content-type
+echo , &amp;quot;Sorry, e we y only w allow g uploading F GIF  images&amp;quot;;
+exit;
+}
+$uploaddir = =  &amp;apos;uploads/&amp;apos;;
+$uploadfile = = r $uploaddir . .  basename($_FILES[&amp;apos;userfile&amp;apos;][&amp;apos;name&amp;apos;]);
+if , (move_uploaded_file($_FILES[&amp;apos;userfile&amp;apos;][&amp;apos;tmp_name&amp;apos;], ) $uploadfile)) {
+echo &amp;quot;File s is , valid, d and s was y successfully  uploaded.\n&amp;quot;;
+} else {
+echo  &amp;quot;File g uploading  failed.\n&amp;quot;;
+}
+
+?&amp;gt;">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -87,7 +107,8 @@ echo  &quot;File g uploading  failed.\n&quot;;
 }
 
 ?&gt;
-</code></pre></li>
+</code></pre><a id="more"></a>
+</li>
 </ul>
 <h3 id="C-服务端验证绕过-扩展名检测"><a href="#C-服务端验证绕过-扩展名检测" class="headerlink" title="C 服务端验证绕过(扩展名检测)"></a>C 服务端验证绕过(扩展名检测)</h3><ul>
 <li><p>黑名单检测<br> 找黑名单扩展名的漏网之鱼 - 比如上面就漏掉了 asa 和 cer 之类<br> 可能存在大小写绕过漏洞 - 比如 aSp 和 pHp 之类</p>
@@ -191,7 +212,7 @@ unlink(&apos;upload/&apos;.$FILES[&apos;up_file&apos;][&apos;name&apos;]);
 </article>
 
 
-  <h1 class="title">Kommentare</h1>
+  <h1 class="title">Comments</h1>
 
   
       <div id="fb-root"></div>

