@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>文件上传总结【二】 | xiaofeng&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="一、IIS 5.x/6.0解析漏洞IIS 6.0解析利用方法有两种
+1.目录解析  /xx.asp/xx.jpg
+
+2.文件解析  sp.asp;.jpg
+
+
+第一种，在网站下建立文件夹的名字为 .asp、.asa的文件夹，其目录内的任何扩展名的文件都被IIS当作asp文件来解析并执行。例如创建目录 sp.asp，那么/sp.asp/1.jpg将被当作asp文件来执行。假设黑阔可以控制上传文件夹路径,就可以不管你上传后你的图片改不改名都能拿shell了。
+第二种，在IIS6.0下，分号后面的不被解析，也就是说sp.asp;.jpg会被服务器看成是sp.asp还有IIS6.0 默认的可执行文件除了asp还包含这三种/sp.asa/sp.cer/sp.cdx
+二、IIS 7.0/IIS 7.5/ Nginx &amp;lt;8.03畸形解析漏洞Nginx解析漏洞这个伟大的漏洞是我国安全组织80sec发现的,在默认Fast-CGI开启状况下,上传一个名字为1.jpg，内容&amp;lt;?PHP fputs(fopen(&amp;apos;shell.php&amp;apos;,&amp;apos;w&amp;apos;),&amp;apos;&amp;lt;?php eval($_POST[cmd])?&amp;gt;&amp;apos;);?&amp;gt;
+然后访问1.jpg/.php,在这个目录下就会生成一句话木马 shell.php三、Nginx &amp;lt;8.03 空字节代码执行漏洞
+影响版:0.5.,0.6., 0.7 &amp;lt;= 0.7.65, 0.8 &amp;lt;= 0.8.37
+
+Nginx在图片中嵌入PHP代码然后通过访问  xxx.jpg%00.php 来执行其中的代码四、Apache解析漏洞Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.比如 sec.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把sec.php.owf.rar解析成php.如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个sec.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="文件上传总结【二】"/>
+  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-27T00:35:49.000Z"><a href="/2016/07/27/20/">2016-07-27</a></time>
+      
+      
+  
+    <h1 class="title">文件上传总结【二】</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="一、IIS-5-x-6-0解析漏洞"><a href="#一、IIS-5-x-6-0解析漏洞" class="headerlink" title="一、IIS 5.x/6.0解析漏洞"></a>一、IIS 5.x/6.0解析漏洞</h2><h3 id="IIS-6-0解析利用方法有两种"><a href="#IIS-6-0解析利用方法有两种" class="headerlink" title="IIS 6.0解析利用方法有两种"></a>IIS 6.0解析利用方法有两种</h3><ul>
+<li><p>1.目录解析  /xx.asp/xx.jpg</p>
+</li>
+<li><p>2.文件解析  sp.asp;.jpg</p>
+</li>
+</ul>
+<p>第一种，在网站下建立文件夹的名字为 .asp、.asa的文件夹，其目录内的任何扩展名的文件都被IIS当作asp文件来解析并执行。<br>例如创建目录 sp.asp，那么<br>/sp.asp/1.jpg<br>将被当作asp文件来执行。假设黑阔可以控制上传文件夹路径,就可以不管你上传后你的图片改不改名都能拿shell了。</p>
+<p>第二种，在IIS6.0下，分号后面的不被解析，也就是说<br>sp.asp;.jpg<br>会被服务器看成是sp.asp<br>还有IIS6.0 默认的可执行文件除了asp还包含这三种<br>/sp.asa<br>/sp.cer<br>/sp.cdx</p>
+<h2 id="二、IIS-7-0-IIS-7-5-Nginx-lt-8-03畸形解析漏洞"><a href="#二、IIS-7-0-IIS-7-5-Nginx-lt-8-03畸形解析漏洞" class="headerlink" title="二、IIS 7.0/IIS 7.5/ Nginx &lt;8.03畸形解析漏洞"></a>二、IIS 7.0/IIS 7.5/ Nginx &lt;8.03畸形解析漏洞</h2><h4 id="Nginx解析漏洞这个伟大的漏洞是我国安全组织80sec发现的-在默认Fast-CGI开启状况下-上传一个名字为1-jpg，内容"><a href="#Nginx解析漏洞这个伟大的漏洞是我国安全组织80sec发现的-在默认Fast-CGI开启状况下-上传一个名字为1-jpg，内容" class="headerlink" title="Nginx解析漏洞这个伟大的漏洞是我国安全组织80sec发现的,在默认Fast-CGI开启状况下,上传一个名字为1.jpg，内容"></a>Nginx解析漏洞这个伟大的漏洞是我国安全组织80sec发现的,在默认Fast-CGI开启状况下,上传一个名字为1.jpg，内容</h4><pre><code>&lt;?PHP fputs(fopen(&apos;shell.php&apos;,&apos;w&apos;),&apos;&lt;?php eval($_POST[cmd])?&gt;&apos;);?&gt;
+</code></pre><h3 id="然后访问1-jpg-php-在这个目录下就会生成一句话木马-shell-php"><a href="#然后访问1-jpg-php-在这个目录下就会生成一句话木马-shell-php" class="headerlink" title="然后访问1.jpg/.php,在这个目录下就会生成一句话木马 shell.php"></a>然后访问1.jpg/.php,在这个目录下就会生成一句话木马 shell.php</h3><h2 id="三、Nginx-lt-8-03-空字节代码执行漏洞"><a href="#三、Nginx-lt-8-03-空字节代码执行漏洞" class="headerlink" title="三、Nginx &lt;8.03 空字节代码执行漏洞"></a>三、Nginx &lt;8.03 空字节代码执行漏洞</h2><ul>
+<li>影响版:0.5.,0.6., 0.7 &lt;= 0.7.65, 0.8 &lt;= 0.8.37</li>
+</ul>
+<h4 id="Nginx在图片中嵌入PHP代码然后通过访问-xxx-jpg-00-php-来执行其中的代码"><a href="#Nginx在图片中嵌入PHP代码然后通过访问-xxx-jpg-00-php-来执行其中的代码" class="headerlink" title="Nginx在图片中嵌入PHP代码然后通过访问  xxx.jpg%00.php 来执行其中的代码"></a>Nginx在图片中嵌入PHP代码然后通过访问  xxx.jpg%00.php 来执行其中的代码</h4><h2 id="四、Apache解析漏洞"><a href="#四、Apache解析漏洞" class="headerlink" title="四、Apache解析漏洞"></a>四、Apache解析漏洞</h2><h4 id="Apache-是从右到左开始判断解析-如果为不可识别解析-就再往左判断-比如-sec-php-owf-rar-“-owf”和”-rar”-这两种后缀是apache不可识别解析-apache就会把sec-php-owf-rar解析成php-如何判断是不是合法的后缀就是这个漏洞的利用关键-测试时可以尝试上传一个sec-php-rara-jpg-png…（把你知道的常见后缀都写上…）去测试是否是合法后缀"><a href="#Apache-是从右到左开始判断解析-如果为不可识别解析-就再往左判断-比如-sec-php-owf-rar-“-owf”和”-rar”-这两种后缀是apache不可识别解析-apache就会把sec-php-owf-rar解析成php-如何判断是不是合法的后缀就是这个漏洞的利用关键-测试时可以尝试上传一个sec-php-rara-jpg-png…（把你知道的常见后缀都写上…）去测试是否是合法后缀" class="headerlink" title="Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.比如 sec.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把sec.php.owf.rar解析成php.如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个sec.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀"></a>Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.比如 sec.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把sec.php.owf.rar解析成php.如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个sec.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀</h4><a id="more"></a> 
+<h2 id="五、其他"><a href="#五、其他" class="headerlink" title="五、其他"></a>五、其他</h2><h4 id="在windows环境下，xx-jpg-空格-或xx-jpg-这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点-黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除-这样也可以getshell。如果在Apache中-htaccess可被执行-且可被上传-那可以尝试在-htaccess中写入"><a href="#在windows环境下，xx-jpg-空格-或xx-jpg-这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点-黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除-这样也可以getshell。如果在Apache中-htaccess可被执行-且可被上传-那可以尝试在-htaccess中写入" class="headerlink" title="在windows环境下，xx.jpg[空格] 或xx.jpg. 这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点,黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除,这样也可以getshell。如果在Apache中.htaccess可被执行.且可被上传.那可以尝试在.htaccess中写入:"></a>在windows环境下，xx.jpg[空格] 或xx.jpg. 这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点,黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除,这样也可以getshell。如果在Apache中.htaccess可被执行.且可被上传.那可以尝试在.htaccess中写入:</h4><pre><code>&lt;FilesMatch &quot;sec.jpg&quot;&gt; SetHandler application/x-httpd-php &lt;/FilesMatch&gt;
+</code></pre><h4 id="然后再上传shell-jpg的木马-这样shell-jpg就可解析为php文件。"><a href="#然后再上传shell-jpg的木马-这样shell-jpg就可解析为php文件。" class="headerlink" title="然后再上传shell.jpg的木马, 这样shell.jpg就可解析为php文件。"></a>然后再上传shell.jpg的木马, 这样shell.jpg就可解析为php文件。</h4><h3 id="对非法上传的防御机制大致有如下几种："><a href="#对非法上传的防御机制大致有如下几种：" class="headerlink" title="对非法上传的防御机制大致有如下几种："></a>对非法上传的防御机制大致有如下几种：</h3><ul>
+<li>客户端检测，使用JS对上传图片检测，包括文件大小、文件扩展名、文件类型等</li>
+<li>服务端检测，对文件大小、文件路径、文件扩展名、文件类型、文件内容检测，对文件重命名</li>
+<li>其他限制，服务器端上传目录设置不可执行权限</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/php/">php</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/07/27/20/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>5</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>7</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

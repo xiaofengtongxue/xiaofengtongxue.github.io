@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP读文件的常用方法 | xiaofeng&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数1.freadstring fread ( int $handle , int $length )
+　　fread() 从 handle 指向的文件中读取最多 length 个字节。该函数在读取完最多 length 个字节数，或到达 EOF 的时候，或（对于网络流）当一个包可用时，或（在打开用户空间流之后）已读取了 8192 个字节时就会停止读取文件，视乎先碰到哪种情况。　　fread() 返回所读取的字符串，如果出错返回 FALSE。
+&amp;lt;?php
+   $filename = &amp;quot;/usr/local/something.txt&amp;quot;;
+   $handle = fopen($filename, &amp;quot;r&amp;quot;);//读取二进制文件时，需要将第二个参数设置成&amp;apos;rb&amp;apos;
+   //通过filesize获得文件大小，将整个文件一下子读到一个字符串中
+   $contents = fread($handle, filesize ($filename));
+   fclose($handle);
+?&amp;gt;
+　　如果所要读取的文件不是本地普通文件，而是远程文件或者流文件，就不能用这种方法，因为，filesize不能获得这些文件的大小。此时，你需要通过feof()或者fread()的返回值判断是否已经读取到了文件的末尾。
+&amp;lt;?php
+   $handle = fopen(&amp;apos;http://www.baidu.com&amp;apos;, &amp;apos;r&amp;apos;);
+   $content = &amp;apos;&amp;apos;;
+   while(!feof($handle)){
+       $content .= fread($handle, 8080);
+   }
+   echo $content;
+   fclose($handle);
+?&amp;gt;
+
+or
+
+&amp;lt;?php
+   $handle = fopen(&amp;apos;http://www.baidu.com&amp;apos;, &amp;apos;r&amp;apos;);
+   $content = &amp;apos;&amp;apos;;
+   while(false != ($a = fread($handle, 8080))){//返回false表示已经读取到文件末尾
+       $content .= $a;
+   }
+   echo $content;
+   fclose($handle);
+?&amp;gt;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="PHP读文件的常用方法"/>
+  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-27T00:36:11.000Z"><a href="/2016/07/27/22/">2016-07-27</a></time>
+      
+      
+  
+    <h1 class="title">PHP读文件的常用方法</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数"><a href="#php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数" class="headerlink" title="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数"></a>php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数</h3><h2 id="1-fread"><a href="#1-fread" class="headerlink" title="1.fread"></a>1.fread</h2><pre><code>string fread ( int $handle , int $length )
+</code></pre><p>　　<br>fread() 从 handle 指向的文件中读取最多 length 个字节。该函数在读取完最多 length 个字节数，或到达 EOF 的时候，或（对于网络流）当一个包可用时，或（在打开用户空间流之后）已读取了 8192 个字节时就会停止读取文件，视乎先碰到哪种情况。<br>　　fread() 返回所读取的字符串，如果出错返回 FALSE。</p>
+<pre><code>&lt;?php
+   $filename = &quot;/usr/local/something.txt&quot;;
+   $handle = fopen($filename, &quot;r&quot;);//读取二进制文件时，需要将第二个参数设置成&apos;rb&apos;
+   //通过filesize获得文件大小，将整个文件一下子读到一个字符串中
+   $contents = fread($handle, filesize ($filename));
+   fclose($handle);
+?&gt;
+</code></pre><p>　　如果所要读取的文件不是本地普通文件，而是远程文件或者流文件，就不能用这种方法，因为，filesize不能获得这些文件的大小。此时，你需要通过feof()或者fread()的返回值判断是否已经读取到了文件的末尾。</p>
+<pre><code>&lt;?php
+   $handle = fopen(&apos;http://www.baidu.com&apos;, &apos;r&apos;);
+   $content = &apos;&apos;;
+   while(!feof($handle)){
+       $content .= fread($handle, 8080);
+   }
+   echo $content;
+   fclose($handle);
+?&gt;
+
+or
+
+&lt;?php
+   $handle = fopen(&apos;http://www.baidu.com&apos;, &apos;r&apos;);
+   $content = &apos;&apos;;
+   while(false != ($a = fread($handle, 8080))){//返回false表示已经读取到文件末尾
+       $content .= $a;
+   }
+   echo $content;
+   fclose($handle);
+?&gt;
+</code></pre><a id="more"></a> 
+<h2 id="2-fgets"><a href="#2-fgets" class="headerlink" title="2.fgets"></a>2.fgets</h2><pre><code>string fgets ( int $handle [, int $length ] )
+</code></pre><p>　　<br>fgets()从 handle 指向的文件中读取一行并返回长度最多为 length - 1 字节的字符串。碰到换行符（包括在返回值中）、EOF 或者已经读取了 length - 1 字节后停止（看先碰到那一种情况）。如果没有指定 length，则默认为 1K，或者说 1024 字节。</p>
+<pre><code>&lt;?php
+   $handle = fopen(&apos;./file.txt&apos;, &apos;r&apos;);
+   while(!feof($handle)){
+       echo fgets($handle, 1024);
+   }
+   fclose($handle);
+?&gt;
+</code></pre><p>　　Note: length 参数从 PHP 4.2.0 起成为可选项，如果忽略，则行的长度被假定为 1024。从 PHP 4.3 开始，忽略掉 length 将继续从流中读取数据直到行结束。如果文件中的大多数行都大于 8KB，则在脚本中指定最大行的长度在利用资源上更为有效。从 PHP 4.3 开始本函数可以安全用于二进制文件。早期的版本则不行。</p>
+<h2 id="3-fgetss"><a href="#3-fgetss" class="headerlink" title="3.fgetss"></a>3.fgetss</h2><p>　　<br>     string fgetss ( resource $handle [, int $length [, string $allowable_tags ]] )<br>　　<br>跟fgets功能一样，但是fgetss会尝试从读取的文本中去掉任何 HTML 和 PHP 标记，可以用可选的第三个参数指定哪些标记不被去掉。</p>
+<pre><code>&lt;?php
+   $handle = fopen(&apos;./file.txt&apos;, &apos;r&apos;);
+   while(!feof($handle)){
+       echo fgetss($handle, 1024, &apos;&lt;br&gt;&apos;);
+   }
+   fclose($handle);
+?&gt;
+</code></pre><h2 id="4-file"><a href="#4-file" class="headerlink" title="4.file"></a>4.file</h2><pre><code>array file ( string $filename [, int $use_include_path [, resource $context ]] )
+</code></pre><p>　　将文件内容读入一个数组中，数组的每一项对应文件中的一行，包括换行符在内。不需要行结束符时可以使用 rtrim() 函数过滤换行符。</p>
+<pre><code>&lt;?php
+   $a = file(&apos;./file.txt&apos;);
+   foreach($a as $line =&gt; $content){
+       echo &apos;line &apos;.($line + 1).&apos;:&apos;.$content;
+   }
+?&gt;
+</code></pre><h2 id="5-readfile"><a href="#5-readfile" class="headerlink" title="5.readfile"></a>5.readfile</h2><pre><code>int readfile ( string $filename [, bool $use_include_path [, resource $context ]] )
+</code></pre><p>　　读入一个文件并写入到输出缓冲。返回从文件中读入的字节数。如果出错返回 FALSE 并且除非是以 @readfile() 形式调用，否则会显示错误信息。</p>
+<pre><code>&lt;?php
+   $size = readfile(&apos;./file.txt&apos;);
+   echo $size;
+?&gt;
+</code></pre><h2 id="6-file-get-contents"><a href="#6-file-get-contents" class="headerlink" title="6.file_get_contents"></a>6.file_get_contents</h2><pre><code>string file_get_contents ( string $filename [, bool $use_include_path [, resource $context [, int $offset [, int $maxlen ]]]] )
+</code></pre><p>　　<br>将文件读入一个字符串。第三个参数$context可以用来设置一些参数，比如访问远程文件时，设置超时等等。另外，file_get_contents相对于以上几个函数，性能要好得多，所以应该优先考虑使用file_get_contents。但是readfile貌似比file_get_contents性能好一点（？），因为它不需要调用fopen。</p>
+<pre><code>&lt;?php 
+   $ctx = stream_context_create(array( 
+       &apos;http&apos; =&gt; array( 
+           &apos;timeout&apos; =&gt; 1    //设置超时
+           ) 
+       ) 
+   ); 
+   echo file_get_contents(&quot;http://www.baidu.com/&quot;, 0, $ctx); 
+?&gt;
+</code></pre><h2 id="7-fpassthru"><a href="#7-fpassthru" class="headerlink" title="7.fpassthru"></a>7.fpassthru</h2><pre><code>int fpassthru ( resource $handle )
+</code></pre><p>将给定的文件指针从当前的位置读取到 EOF 并把结果写到输出缓冲区。</p>
+<pre><code>&lt;?php 
+    header(&quot;Content-Type:text/html;charset=utf-8&quot;); 
+    $handle = fopen(&apos;./test2.php&apos;, &apos;r&apos;);
+    fseek($handle, 1024);//将指针定位到1024字节处
+    fpassthru($handle);
+?&gt;
+</code></pre><h2 id="8-parse-ini-file"><a href="#8-parse-ini-file" class="headerlink" title="8.parse_ini_file"></a>8.parse_ini_file</h2><pre><code>array parse_ini_file ( string $filename [, bool $process_sections ] )
+</code></pre><p>　　<br>parse_ini_file() 载入一个由 filename 指定的 ini 文件，并将其中的设置作为一个联合数组返回。如果将最后的 process_sections 参数设为 TRUE，将得到一个多维数组，包括了配置文件中每一节的名称和设置。process_sections 的默认值是 FALSE。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h3><ol>
+<li><p>如果 ini 文件中的值包含任何非字母数字的字符，需要将其括在双引号中（”）。</p>
+</li>
+<li><p>有些保留字不能作为 ini 文件中的键名,包括：null，yes，no，true 和 false。值为 null，no 和 false 等效于 “”,值为 yes 和 true 等效于 “1”,字符 {}|&amp;~![()”,也不能用在键名的任何地方,而且这些字符在选项值中有着特殊的意义。</p>
+</li>
+</ol>
+<h4 id="test-ini文件内容"><a href="#test-ini文件内容" class="headerlink" title="test.ini文件内容"></a>test.ini文件内容</h4><pre><code>This is a sample configuration file
+Comments start with &apos;;&apos;, as in php.ini
+
+[first_section]
+one = 1
+five = 5
+animal = BIRD
+
+[second_section]
+path = &quot;/usr/local/bin&quot;
+URL = &quot;http://www.example.com/~username
+</code></pre><p>test.php内容：</p>
+<pre><code>&lt;?php 
+   $config = parse_ini_file(&apos;./test.ini&apos;, ture);
+   print_r($config);
+?&gt;
+</code></pre><p>输出内容：</p>
+<pre><code>Array
+(
+   [first_section] =&gt; Array
+       (
+           [one] =&gt; 1
+           [five] =&gt; 5
+           [animal] =&gt; BIRD
+       )
+
+[second_section] =&gt; Array
+   (
+       [path] =&gt; /usr/local/bin
+       [URL] =&gt; http://www.example.com/~username
+   )
+)
+</code></pre><h3 id="几个注意事项："><a href="#几个注意事项：" class="headerlink" title="几个注意事项："></a>几个注意事项：</h3><ul>
+<li><ol>
+<li>鼓励在处理二进制文件时使用 b 标志，即使系统并不需要，这样可以使脚本的移植性更好。 </li>
+</ol>
+</li>
+<li><ol>
+<li>allow_url_fopen选项激活了 URL 形式的 fopen 封装协议使得可以访问 URL 对象例如文件。默认的封装协议提供用 ftp 和 http 协议来访问远程文件，一些扩展库例如 zlib 可能会注册更多的封装协议。出于安全性考虑，此选项只能在 php.ini 中设置。</li>
+</ol>
+</li>
+<li><ol>
+<li>如果要打开有特殊字符的 URL （比如说有空格），就需要使用 urlencode() 进行 URL 编码。</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/php/">php</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/07/27/22/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>5</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>7</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

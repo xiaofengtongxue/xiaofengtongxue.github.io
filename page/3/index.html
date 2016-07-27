@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Page 3 | xiaofeng&#39;s Blog</title>
+  <title>Seite 3 | xiaofeng&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
   
@@ -55,6 +55,162 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-06-14T07:33:36.000Z"><a href="/2016/06/14/12/">2016-06-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/06/14/12/">linux加固小脚本</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-06-14T07:32:50.000Z"><a href="/2016/06/14/11/">2016-06-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/06/14/11/">浅谈CSRF</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="0x00-CSRF背景介绍："><a href="#0x00-CSRF背景介绍：" class="headerlink" title="0x00 CSRF背景介绍："></a>0x00 CSRF背景介绍：</h2><h3 id="跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"><a href="#跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。" class="headerlink" title="跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"></a>跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。</h3><h2 id="0x01-成因："><a href="#0x01-成因：" class="headerlink" title="0x01 成因："></a>0x01 成因：</h2><h3 id="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"><a href="#服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。" class="headerlink" title="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"></a>服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。</h3><h2 id="0x02-利用："><a href="#0x02-利用：" class="headerlink" title="0x02 利用："></a>0x02 利用：</h2><h3 id="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"><a href="#1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。" class="headerlink" title="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"></a>1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。</h3><h3 id="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"><a href="#2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。" class="headerlink" title="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"></a>2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。</h3><h3 id="3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如"><a href="#3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如" class="headerlink" title="3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:"></a>3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:</h3><h4 id="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"><a href="#Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据" class="headerlink" title="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"></a>Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据</h4><pre><code>    &lt;cross-domain-policy&gt;
+        &lt;allow-access-from domain=&quot;*&quot;/&gt;
+    &lt;/cross-domain-policy&gt;
+Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传Flash产生CSRF。
+</code></pre><h3 id="4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。"><a href="#4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。" class="headerlink" title="4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。"></a>4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。</h3><h2 id="0x03-修复："><a href="#0x03-修复：" class="headerlink" title="0x03 修复："></a>0x03 修复：</h2><h3 id="关键操作用POST请求，"><a href="#关键操作用POST请求，" class="headerlink" title="关键操作用POST请求，"></a>关键操作用POST请求，</h3><h4 id="1、验证码"><a href="#1、验证码" class="headerlink" title="1、验证码"></a>1、验证码</h4><pre><code>- CSRF攻击的过程，往往是在用户不知情的情况下构造网络请求。所以如果使用验证码，那么每次操作都需要用户进行互动，从而简单有效的防御了CSRF攻击。
+- 但是如果你在一个网站作出任何举动都要输入验证码会严重影响用户体验，所以验证码一般只出现在特殊操作里面，或者在注册时候使用
+</code></pre><h4 id="2、检测refer"><a href="#2、检测refer" class="headerlink" title="2、检测refer"></a>2、检测refer</h4><pre><code>- 常见的互联网页面与页面之间是存在联系的，比如你在www.baidu.com应该是找不到通往www.google.com的链接的，再比如你在论坛留言，那么不管你留言后重定向到哪里去了，之前的那个网址一定会包含留言的输入框，这个之前的网址就会保留在新页面头文件的Referer中
+- 通过检查Referer的值，我们就可以判断这个请求是合法的还是非法的，但是问题出在服务器不是任何时候都能接受到Referer的值，所以Refere Check 一般用于监控CSRF攻击的发生，而不用来抵御攻击。
+</code></pre><h4 id="3、Token"><a href="#3、Token" class="headerlink" title="3、Token"></a>3、Token</h4><pre><code>- 目前主流的做法是使用Token抵御CSRF攻击。下面通过分析CSRF 攻击来理解为什么Token能够有效
+- CSRF攻击要成功的条件在于攻击者能够预测所有的参数从而构造出合法的请求。所以根据不可预测性原则，我们可以对参数进行加密从而防止CSRF攻击。
+- 另一个更通用的做法是保持原有参数不变，另外添加一个参数Token，其值是随机的。这样攻击者因为不知道Token而无法构造出合法的请求进行攻击。
+- Token 使用原则
+  Token要足够随机————只有这样才算不可预测
+  Token是一次性的，即每次请求成功后要更新Token————这样可以增加攻击难度，增加预测难度
+  Token要注意保密性————敏感操作使用post，防止Token出现在URL中
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-05-06T02:42:07.000Z"><a href="/2016/05/06/10/">2016-05-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/05/06/10/">小白到小黑</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="渗透测试基础知识"><a href="#渗透测试基础知识" class="headerlink" title="渗透测试基础知识"></a>渗透测试基础知识</h2><h4 id="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"><a href="#这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。" class="headerlink" title="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"></a>这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。</h4><p>网络、编程、系统。。。好多、好多、</p>
+<p>一、HTTP协议、操作系统<br>系统：Windows/Linux<br>服务：HTTP服务、FTP服务、SSH服务等<br>文件系统、权限、防火墙等<br>端口、IDS、IPS<br>二、Web前端<br>HTML/CSS、XML、JavaScript、Ajax、Jquery<br>PHP、ASP、.NET、JSP 等<br>三、数据库<br>MySql、SqlServer、Oracle、DB2、Nosql<br>四、常见漏洞<br>IIS、Apache、Nginx<br>五、注入<br>主站相对来说比较安全，没有突破口，可以利用和主站在一个服务器上面的网站进行突破。<br>六、探测<br>在线工具网站（ip查询、端口扫描、CDN查询、二级域名、旁站查询、ICP备案、whois、web识别、社工库查询、Email、用户搜索、图片查询、短信验证等）涉及：端口信息、服务信息等<br>七、漏洞扫描<br>工具：Burp、AWVS、AppScan、Nessus、W3af、Shipfish<br>八、测试工具<br>Sqlmap、Havij、Pangolin、Waf3、Burp、nmap<br>九、逻辑漏洞<br>比如：任意用户密码重置、刷积分、信息泄露等<br>程序的逻辑和人类的逻辑不一致导致漏洞产生<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/05/06/10/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-05-05T09:24:05.000Z"><a href="/2016/05/05/55/">2016-05-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/05/05/55/">我的大学生活</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="最近不知道怎么了，估计是自己出了问题，还是考虑的太多（以前连未来3天的事都不会考虑的孩子），也不知道为什么总是静不下心来做一件事。。。"><a href="#最近不知道怎么了，估计是自己出了问题，还是考虑的太多（以前连未来3天的事都不会考虑的孩子），也不知道为什么总是静不下心来做一件事。。。" class="headerlink" title="最近不知道怎么了，估计是自己出了问题，还是考虑的太多（以前连未来3天的事都不会考虑的孩子），也不知道为什么总是静不下心来做一件事。。。"></a>最近不知道怎么了，估计是自己出了问题，还是考虑的太多（以前连未来3天的事都不会考虑的孩子），也不知道为什么总是静不下心来做一件事。。。</h3><p>以前看过一本《小团圆》，里面说：“青春太美好，怎么过都是浪费。”曾经自以为豪的青春，在时间的吞噬下慢慢燃尽，最后化为一缕青烟又消失在时间里，哺育着其他人的年少青葱。可青春的确太美好了，以至于这段时光永远被辜负，永远有遗憾。高中的时候，曾无比期待与向往着大学生活，大学有着无数自由，随性等等在人性追求中闪闪发光的特质，也是我们逃离象牙塔的最后一道防线。</p>
+<p>前几天和朋友大概算了一下，能留在学校的时间就只剩下这短短五个月了。当又轮到一个蝉鸣的时分，我对于未来都要尘埃落定了。该考研的埋头苦干，该实习的找好企业、找培训（我也加入了培训的队伍，虽然觉得有些不值），学校对我们的牵绊变得越来越浅。可我回忆了一下过去的两年半（快三年了）的大学时光，不禁仰天长叹，我还有好多遗憾没有达成呢！</p>
+<p>以前总是身体力行着按照那些所谓的标准去做。回望这两年多大学生活，没有一件事让我如今回想起来感到十分快乐，并引以为豪。我似乎拥有了全部，但又一无所有。我近乎机械化的去完成这些所谓的指标，以为达到这些标准就可以收获到一个最好的自己。终究还是太天真，因为这些看似很有道理的必做事件一点也不符合我自身的“基本国情”。</p>
+<p>在这几年里，我从没问过我自己想要什么，只是在盲目的追求那些似乎每个人都要做的事情。去参加学生会，每天被组织活动忙的晕头转向；；去参加强制性无含金量讲座等等学校利益团体活动，其实满心的不愿，但一句为了未来发展而硬着头皮冲了上去。所以我更羡慕有自己生活的人，自己想怎么做就怎么做，不需要看别人的脸色，不需要考虑别人的感受，什么事都是自己开心就好、就去做。</p>
+<p>人生有几十年，但如大学这般美好的四年逝去很难再来。如果再让我选择一次，我不会为了所谓的未来，纯粹的去消磨我的大学时光。人固有目标和志向，但更重要的是活在当下的情怀与梦想。青春不应该在等待和期待中度过，未来我们将有很长一部分精力都在事业和家庭身上，如今就抓紧时间去做想做的事情，去追求那些让别人嘲笑你的梦想。<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/05/05/55/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-04-20T02:51:27.000Z"><a href="/2016/04/20/9/">2016-04-20</a></time>
       
       
@@ -88,213 +244,13 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-20T02:05:55.000Z"><a href="/2016/04/20/8/">2016-04-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/20/8/">构建端口扫描器</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"><a href="#前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。" class="headerlink" title="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"></a>前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。</h3><h4 id="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："><a href="#第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：" class="headerlink" title="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："></a>第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：</h4><pre><code>parser = optparse.OptionParser(&apos;usage %prog –H &lt;target
-host&gt; -p &lt;target port&gt;&apos;)
-parser.add_option(&apos;-H&apos;, dest=&apos;tgtHost&apos;, type=&apos;string&apos;,
-help=&apos;specify target host&apos;)
-parser.add_option(&apos;-p&apos;, dest=&apos;tgtPort&apos;, type=&apos;int&apos;,
-help=&apos;specify target port&apos;)
-(options, args) = parser.parse_args()
-tgtHost = options.tgtHost
-tgtPort = options.tgtPort
-</code></pre><h4 id="第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"><a href="#第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。" class="headerlink" title="第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"></a>第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。</h4><h4 id="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："><a href="#由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：" class="headerlink" title="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："></a>由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：</h4>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/04/20/8/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-20T01:29:47.000Z"><a href="/2016/04/20/4/">2016-04-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/20/4/">python正则表达式</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="最近在看有关正则表达式的一些内容，在这就整理了一下，包括校验数字、字符、一些特殊的需求等等。留个例子，以后自己时常可以看看。嘿嘿！！！"><a href="#最近在看有关正则表达式的一些内容，在这就整理了一下，包括校验数字、字符、一些特殊的需求等等。留个例子，以后自己时常可以看看。嘿嘿！！！" class="headerlink" title="最近在看有关正则表达式的一些内容，在这就整理了一下，包括校验数字、字符、一些特殊的需求等等。留个例子，以后自己时常可以看看。嘿嘿！！！"></a>最近在看有关正则表达式的一些内容，在这就整理了一下，包括校验数字、字符、一些特殊的需求等等。留个例子，以后自己时常可以看看。嘿嘿！！！</h3><h4 id="一、校验数字的表达式"><a href="#一、校验数字的表达式" class="headerlink" title="一、校验数字的表达式"></a>一、校验数字的表达式</h4><pre><code>数字：^[0-9]*$
-n位的数字：^\d{n}$
-至少n位的数字：^\d{n,}$
-m-n位的数字：^\d{m,n}$
-零和非零开头的数字：^(0|[1-9][0-9]*)$
-非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$
-带1-2位小数的正数或负数：^(\-)?\d+(\.\d{1,2})?$
-正数、负数、和小数：^(\-|\+)?\d+(\.\d+)?$
-有两位小数的正实数：^[0-9]+(.[0-9]{2})?$
-有1~3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$
-非零的正整数：^[1-9]\d*$ 或 ^([1-9][0-9]*){1,3}$ 或 ^\+?[1-9][0-9]*$
-非零的负整数：^\-[1-9][]0-9″*$ 或 ^-[1-9]\d*$
-非负整数：^\d+$ 或 ^[1-9]\d*|0$
-非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$
-非负浮点数：^\d+(\.\d+)?$ 或 ^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$
-非正浮点数：^((-\d+(\.\d+)?)|(0+(\.0+)?))$ 或 ^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$
-正浮点数：^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$
-负浮点数：^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$ 或 ^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$
-浮点数：^(-?\d+)(\.\d+)?$ 或 ^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$
-</code></pre>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/04/20/4/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-20T01:02:56.000Z"><a href="/2016/04/20/3/">2016-04-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/20/3/">Linux基础命令</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="find命令："><a href="#find命令：" class="headerlink" title="find命令："></a>find命令：</h3><pre><code>-name   filename             #查找名为filename的文件
--perm                        #按执行权限来查找
--user    username            #按文件属主来查找
-</code></pre><h3 id="sed命令"><a href="#sed命令" class="headerlink" title="sed命令:"></a>sed命令:</h3><h5 id="sed-nefr-动作"><a href="#sed-nefr-动作" class="headerlink" title="sed [-nefr] [动作]"></a>sed [-nefr] [动作]</h5><pre><code>选项与参数：
--n ：使用安静(silent)模式。在一般 sed的用法中，所有来自 STDIN 的数据一般都会被列出到终端上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。
--e ：直接在命令列模式上进行 sed 的动作编辑；
--f ：直接将 sed 的动作写在一个文件内， -f filename 则可以运行 filename 内的 sed 动作；
--r ：sed 的动作支持的是延伸型正规表示法的语法。(默认是基础正规表示法语法)
--i ：直接修改读取的文件内容，而不是输出到终端。
-
-动作说明： [n1[,n2]]function
-n1, n2 ：不见得会存在，一般代表『选择进行动作的行数』，举例来说，如果我的动作是需要在 10 到 20 行之间进行的，则『 10,20[动作行为] 』
-
-function：
-a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～
-c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
-d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；
-i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；
-p ：列印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～
-s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法。
-</code></pre>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/04/20/3/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-16T01:30:56.000Z"><a href="/2016/04/16/6/">2016-04-16</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/04/16/6/">搭建博客</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="1，首先下载git"><a href="#1，首先下载git" class="headerlink" title="1，首先下载git:"></a>1，首先下载git:</h3><pre><code>https://git-scm.com/download/win
-默认安装即可。
-安装后在桌面右键会有 Git Bash Here
-</code></pre><h3 id="2，安装hexo-这是官方中文文档https-hexo-io-zh-cn-docs"><a href="#2，安装hexo-这是官方中文文档https-hexo-io-zh-cn-docs" class="headerlink" title="2，安装hexo 这是官方中文文档https://hexo.io/zh- cn/docs/"></a>2，安装hexo 这是官方中文文档<a href="https://hexo.io/zh-">https://hexo.io/zh-</a> cn/docs/</h3><p>   在桌面右键 Git Bash Here 打开命令模式：<br>     npm install –g hexo</p>
-<h3 id="3，在任意盘创建文件夹（你喜欢的都可以：C-D-E-F-G）命名为hexo（其实什么都可以的）"><a href="#3，在任意盘创建文件夹（你喜欢的都可以：C-D-E-F-G）命名为hexo（其实什么都可以的）" class="headerlink" title="3，在任意盘创建文件夹（你喜欢的都可以：C/D/E/F/G）命名为hexo（其实什么都可以的）"></a>3，在任意盘创建文件夹（你喜欢的都可以：C/D/E/F/G）命名为hexo（其实什么都可以的）</h3><pre><code>进入到你所建文件的目录，记住是你刚创建的命名是什么我就不知道了，我的是hexo，鼠标右键Git Bash 也会出现命令模式
-</code></pre><h3 id="4，生成文件："><a href="#4，生成文件：" class="headerlink" title="4，生成文件："></a>4，生成文件：</h3><pre><code>hexo init
-安装依赖包：
-nmp install
-</code></pre>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/04/16/6/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/page/2/" class="alignleft prev">Prev</a>
+    <a href="/page/2/" class="alignleft prev">Vorherige Seite</a>
   
   
-    <a href="/page/4/" class="alignright next">Next</a>
+    <a href="/page/4/" class="alignright next">Nächste Seite</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -324,7 +280,7 @@ function search(formname) {
   
     <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
   
-    <li><a href="/tags/php/">php</a><small>1</small></li>
+    <li><a href="/tags/php/">php</a><small>5</small></li>
   
     <li><a href="/tags/python/">python</a><small>4</small></li>
   
