@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Seite 2 | xiaofeng&#39;s Blog</title>
+  <title>Página 2 | xiaofeng&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
   
@@ -49,6 +49,80 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-04T12:17:37.000Z"><a href="/2016/07/04/18/">2016-07-04</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/07/04/18/">python多线程爬乌云Drops文章</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。"><a href="#最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。" class="headerlink" title="最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。"></a>最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。</h3><h3 id="没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。"><a href="#没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。" class="headerlink" title="没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。"></a>没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。</h3><h3 id="每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。"><a href="#每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。" class="headerlink" title="每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。"></a>每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。</h3><pre><code>def get_url(PageListUrls):
+   PageUrls = []
+   for url in PageListUrls:
+       patt = re.compile(r&quot;&lt;h2 class=\&quot;entry-title\&quot;&gt;&lt;a href=\&quot;(.*?)\&quot; rel=\&quot;bookmark\&quot; title=\&quot;.*?\&quot;&gt;.*?&lt;/a&gt;&lt;/h2&gt;&quot;)
+       content = requests.get(url)
+       article = patt.findall(content.text)
+       for aurl in article:
+           PageUrls.append(aurl)
+   return PageUrls
+</code></pre><h3 id="我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）"><a href="#我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）" class="headerlink" title="我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）"></a>我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）</h3><pre><code>def get_content(PageUrls):
+   for url in PageUrls:
+       #抓取页面
+       req = requests.get(url)
+       content = req.text
+       #获取标题
+       patt_title = re.compile(r&quot;&lt;h1 class=\&quot;entry-title ng-binding\&quot;&gt;(.*?)&lt;/h1&gt;&quot;)
+       title = patt_title.findall(content)
+       #获取作者
+       path_author = re.compile(r&quot;&lt;a href=\&quot;/author/.*?\&quot; class=\&quot;title ng-binding\&quot;&gt;(.*?)&lt;/a&gt;&quot;)
+       author = path_author.findall(content)
+       #获取文章内容
+       path_section = re.compile(r&quot;&lt;section class=\&quot;entry-content ng-binding\&quot; ng-bind-html=\&quot;postContentTrustedHtml\&quot;&gt;([\w\W]*?)&lt;/section&gt;&quot;)
+       section = path_section.findall(content)
+       #采集数据缓到本地
+       cache_Articles(url,title[0],author[0],section[0])
+</code></pre><h3 id="本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。"><a href="#本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。" class="headerlink" title="本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。"></a>本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。</h3><pre><code>j = 0
+for i in range(0,len(PageUrls)):
+    if j % ThreadExceNum == 0:
+        #加入线程
+        t1 = threading.Thread(target=get_article_content,args=(PageUrlGroup,))
+        threads.append(t1)
+        PageUrlGroup = []
+    else:
+        PageUrlGroup.append(PageUrls[i])
+    j = j + 1
+for t in threads:
+    try:
+        t.setDaemon(True)
+        t.start()
+    except Exception,ex:
+        print &quot;something error!&quot;
+t.join()
+</code></pre><h3 id="基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。"><a href="#基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。" class="headerlink" title="基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。"></a>基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。</h3>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -250,58 +324,13 @@ echo  &quot;File g uploading  failed.\n&quot;;
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-06-14T07:33:42.000Z"><a href="/2016/06/14/13/">2016-06-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/06/14/13/">认识SQL</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="SQL注入是什么"><a href="#SQL注入是什么" class="headerlink" title="SQL注入是什么"></a>SQL注入是什么</h2><h3 id="SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。"><a href="#SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。" class="headerlink" title="SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。"></a>SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。</h3><h2 id="SQL注入漏洞产生原理"><a href="#SQL注入漏洞产生原理" class="headerlink" title="SQL注入漏洞产生原理"></a>SQL注入漏洞产生原理</h2><h3 id="对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。"><a href="#对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。" class="headerlink" title="对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。"></a>对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。</h3><h2 id="哪里能够引发SQL注入"><a href="#哪里能够引发SQL注入" class="headerlink" title="哪里能够引发SQL注入"></a>哪里能够引发SQL注入</h2><pre><code>* get query string
-* port string
-* http header
-</code></pre><h2 id="SQL注入分类"><a href="#SQL注入分类" class="headerlink" title="SQL注入分类"></a>SQL注入分类</h2><pre><code>* UNION query SQL injection（可联合查询注入）
-* Boolean-based blind SQL injection（布尔型注入）
-* Error-based SQL injection（报错型注入）
-* Stacked queries SQL injection（可多语句查询注入）
-* Time-based blind SQL injection（基于时间延迟注入）
-</code></pre><h2 id="如何判断SQL注入"><a href="#如何判断SQL注入" class="headerlink" title="如何判断SQL注入"></a>如何判断SQL注入</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos;</span><br><span class="line">\</span><br><span class="line">and 1=1  / and 1=2</span><br><span class="line">+1 / -1</span><br><span class="line">and sleep(5)</span><br><span class="line">………</span><br></pre></td></tr></table></figure>
-</code></pre><h2 id="SQL注入利用手法"><a href="#SQL注入利用手法" class="headerlink" title="SQL注入利用手法"></a>SQL注入利用手法</h2><h3 id="UNION-query-SQL-injection（可联合查询注入）"><a href="#UNION-query-SQL-injection（可联合查询注入）" class="headerlink" title="UNION query SQL injection（可联合查询注入）"></a>UNION query SQL injection（可联合查询注入）</h3><h4 id="优点：方便-易于利用-快捷"><a href="#优点：方便-易于利用-快捷" class="headerlink" title="优点：方便 易于利用 快捷"></a>优点：方便 易于利用 快捷</h4>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/06/14/13/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/" class="alignleft prev">Vorherige Seite</a>
+    <a href="/" class="alignleft prev">Anterior</a>
   
   
-    <a href="/page/3/" class="alignright next">Nächste Seite</a>
+    <a href="/page/3/" class="alignright next">Siguiente</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -326,7 +355,7 @@ function search(formname) {
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">Etiquetas</h3>
   <ul class="entry">
   
     <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
@@ -335,7 +364,7 @@ function search(formname) {
   
     <li><a href="/tags/python/">python</a><small>4</small></li>
   
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>7</small></li>
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>8</small></li>
   
     <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
   
