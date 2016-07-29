@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>构建端口扫描器 | xiaofeng&#39;s Blog</title>
+  <title>构建端口扫描器 | 小峰&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
   <meta name="description" content="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：parser = optparse.OptionParser(&amp;apos;usage %prog –H &amp;lt;target
@@ -21,14 +21,14 @@ tgtPort = options.tgtPort
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="构建端口扫描器"/>
-  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+  <meta property="og:site_name" content="小峰&#39;s Blog"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -41,7 +41,7 @@ tgtPort = options.tgtPort
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h1><a href="/">小峰&#39;s Blog</a></h1>
   <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
@@ -196,15 +196,21 @@ function search(formname) {
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
   
-    <li><a href="/tags/php/">php</a><small>5</small></li>
+    <li><a href="/tags/php/">php</a><small>6</small></li>
   
-    <li><a href="/tags/python/">python</a><small>4</small></li>
+    <li><a href="/tags/python/">python</a><small>5</small></li>
   
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>8</small></li>
+    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
   
     <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
   
     <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
   

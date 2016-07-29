@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>文件上传漏洞初探 | xiaofeng&#39;s Blog</title>
+  <title>文件上传漏洞初探 | 小峰&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
   <meta name="description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等1）没有对上传文件的类型做检测2）没有对上传文件的大小和数量做检测3）没有对上传文件的扩展名做检测4）使用上传的文件名作为最终存储的文件名5）服务器端缺乏相应的安全配置，给予上传目录执行权限等6）Apache、MySQL等服务器组件没有对用户账号的权限进行限制7）Apache、MySQL等服务器组件没有及时升级
@@ -32,14 +32,14 @@ echo  &amp;quot;File g uploading  failed.\n&amp;quot;;
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="文件上传漏洞初探"/>
-  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+  <meta property="og:site_name" content="小峰&#39;s Blog"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -52,7 +52,7 @@ echo  &amp;quot;File g uploading  failed.\n&amp;quot;;
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h1><a href="/">小峰&#39;s Blog</a></h1>
   <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
@@ -170,7 +170,7 @@ unlink(&apos;upload/&apos;.$FILES[&apos;up_file&apos;][&apos;name&apos;]);
         
   
   <div class="tags">
-    <a href="/tags/渗透学习/">渗透学习</a>
+    <a href="/tags/web安全/">web安全</a>
   </div>
 
         <div class="bdsharebuttonbox">
@@ -256,15 +256,21 @@ function search(formname) {
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
   
-    <li><a href="/tags/php/">php</a><small>5</small></li>
+    <li><a href="/tags/php/">php</a><small>6</small></li>
   
-    <li><a href="/tags/python/">python</a><small>4</small></li>
+    <li><a href="/tags/python/">python</a><small>5</small></li>
   
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>8</small></li>
+    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
   
     <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
   
     <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
   

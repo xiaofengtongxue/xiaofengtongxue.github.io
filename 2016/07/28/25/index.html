@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>web逻辑漏洞认识 | 小峰&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="web逻辑漏洞挖掘关键点
+0x01 身份认证安全1，暴力破解在没有验证码限制或者一次验证码可以多次使用的地方，使用已知用户对密码进行暴力破解或者用一个通用密码对用户进行暴力破解。 简单的验证码爆破。基本工具：Burpsuite、hydry2 session &amp;amp; cookie类会话固定攻击：利">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="web逻辑漏洞认识"/>
+  <meta property="og:site_name" content="小峰&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">小峰&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-28T09:26:14.000Z"><a href="/2016/07/28/25/">2016-07-28</a></time>
+      
+      
+  
+    <h1 class="title">web逻辑漏洞认识</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>web逻辑漏洞挖掘关键点</p>
+<h2 id="0x01-身份认证安全"><a href="#0x01-身份认证安全" class="headerlink" title="0x01 身份认证安全"></a>0x01 身份认证安全</h2><p>1，暴力破解<br>在没有验证码限制或者一次验证码可以多次使用的地方，使用已知用户对密码进行暴力破解或者用一个通用密码对用户进行暴力破解。 简单的验证码爆破。<br>基本工具：Burpsuite、hydry<br>2 session &amp; cookie类<br>会话固定攻击：利用服务器的session不变机制，借他人之手获得认证和授权，冒充他人。<br>Cookie仿冒：修改cookie中的某个参数可以登录其他用户。<br>3 弱加密<br>未使用https，是功能测试点，不好利用。<br>前端加密，用密文去后台校验，并利用smart decode可解</p>
+<h2 id="0x02-业务一致性安全"><a href="#0x02-业务一致性安全" class="headerlink" title="0x02 业务一致性安全"></a>0x02 业务一致性安全</h2><p>1，手机号篡改<br>抓包修改手机号码参数为其他号码尝试，例如在找回密码页面，抓包改包修改手机号码参数为其他人号码，查看是否能找回其他人的业务。<br>2，邮箱或者用户篡改<br>抓包修改用户或者邮箱参数为其他用户或者邮箱<br>3，订单id篡改<br>查看自己的订单id，然后修改id查看是否能查看其它订单信息。<br>4，用户id篡改<br>抓包查看自己的用户id，然后修改id查看是否能查看其它用户id信息。</p>
+<h2 id="0x03-业务数据篡改"><a href="#0x03-业务数据篡改" class="headerlink" title="0x03 业务数据篡改"></a>0x03 业务数据篡改</h2><p>1，金额数据篡改<br>抓包修改金额等字段，比如在支付页面抓取请求中商品的金额字段，修改成任意数额的金额并提交，查看能否以修改后的金额数据完成业务流程。<br>2，商品数量篡改<br>抓包修改商品数量等字段，将请求中的商品数量修改成任意数额，如负数并提交，查看能否以修改后的数量完成业务流程。<br>3，最大数限制突破<br>很多商品限制用户购买数量时，服务器仅在页面通过js脚本限制，未在服务器端校验用户提交的数量，通过抓包修改商品最大数限制，将请求中的商品数量改为大于最大数限制的值，查看能否以修改后的数量完成业务流程。<br>4，本地js参数修改<br>部分应用程序通过Javascript处理用户提交的请求，通过修改Javascript脚本，测试修改后的数据是否影响到用户。</p>
+<h2 id="0x04-密码找回漏洞"><a href="#0x04-密码找回漏洞" class="headerlink" title="0x04 密码找回漏洞"></a>0x04 密码找回漏洞</h2><p>1，密码找回逻辑测试一般流程<br>首先尝试正常密码找回流程，选择不同找回方式，记录所有数据包<br>分析数据包，找到敏感部分<br>分析后台找回机制所采用的验证手段<br>修改数据包验证推测</p>
+<h2 id="0x06-验证码突破"><a href="#0x06-验证码突破" class="headerlink" title="0x06 验证码突破"></a>0x06 验证码突破</h2><p>1，验证码暴力破解测试<br>使用burp对特定的验证码进行暴力破解<br>2，验证码时间、次数测试<br>抓取携带验证码的数据包不断重复提交。<br>3，验证码客户端回显测试<br>当客户端有需要和服务器进行交互，发送验证码时，即可使用firefox按F12调出firebug就可看到客户端与服务器进行交互的详细信息<br>4，验证码绕过测试<br>当第一步向第二步跳转时，抓取数据包，对验证码进行篡改清空测试，验证该步骤验证码是否可以绕过。<br>5，验证码js绕过<br>短信验证码验证程序逻辑存在缺陷，业务流程的第一步、第二部、第三步都是放在同一个页面里，验证第一步验证码是通过js来判断的，可以修改验证码在没有获取验证码的情况下可以填写实名信息，并且提交成功。</p>
+<h2 id="0x07-业务授权安全"><a href="#0x07-业务授权安全" class="headerlink" title="0x07 业务授权安全"></a>0x07 业务授权安全</h2><p>1，未授权访问<br>非授权访问是指用户在没有通过认证授权的情况下能够直接访问需要通过认证才能访问到的页面或文本信息。可以尝试在登录某网站前台或后台之后，将相关的页面链接复制于其他浏览器或其他电脑上进行访问，看是否能访问成功。<br>2，越权访问<br>越权漏洞的成因主要是因为开发人员在对数据进行增、删、改、查询时对客户端请求的数据过分相信而遗漏了权限的判定<br>垂直越权（垂直越权是指使用权限低的用户可以访问权限较高的用户）<br>水平越权（水平越权是指相同权限的不同用户可以互相访问）</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/web安全/">web安全</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/07/28/25/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>6</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>5</small></li>
+  
+    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

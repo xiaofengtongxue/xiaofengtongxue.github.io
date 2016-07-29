@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>渗透学习第一阶段总结[1] | xiaofeng&#39;s Blog</title>
+  <title>渗透学习第一阶段总结[1] | 小峰&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
   <meta name="description" content="写在前面的话学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。0x00 上传部分1.直接上传asp asa jsp cer php aspx htr cdx 格式的木马，不行就利用IIS6.0解析漏洞”:1.asp;1.jpg/1.asp;.jpg/1.asp;jpg/1.asp;.xls2.上传图片木马遇到拦截系统，连图片木马都上传不了，记事本打开图片木马在代码最前面加上gif89a，一般就能逃过拦截系统了。3.上传图片木马把地址复制到数据库备份里备份成asp木马，有时不成功就利用IIs6.0解析漏洞尝试突破。4.上传图片木马再用抓包工具进行抓包，用明小子的综合上传功能，复制上传地址及cookies填到对应的框里，点击上传即可。5.当后台有数据库备份蛋没有上传点时，把一句话木马插到任意处，再到数据库备份里备份成asp木马，之后用一句话客户端连接木马即可。6.后台点击修改密码，新密码设置为：1”:eval request(“h”)’设置成功后连接asp/config.asp即可拿下shell7.当页面提示“上传格式不正确[重新上传]” 则说明存在上传漏洞，复制地址放到明小子里上传，一般都能直接拿下shell。8.当后台没有数据库备份但有数据库恢复的情况下，请不要犹豫，数据库恢复跟数据库备份功能是一样的，直接邪恶吧。9.如果知道网站的数据库是asp的，直接在前台找留言板插入一句话木马，连接配置文件inc/config.asp即可拿下shell。10.当网站前台有“会员注册” 注册一个账户进去看看有没有上传点，有的话直接上传asp木马以及利用iis6.0解析漏洞，不行就抓包用明小子上传。11.先上传一个.ashx的文件，在笔记里搜索可找到方法，结果是访问会生成一句话木马文件，后台上传、编辑器上传、上传漏洞页面均可使用此方法。12.当页面提示只能上传jpg|gif|png等格式的时候，右键查看源文件，本地修改为asp|asa|php再本地上传即可拿下shell。13.当用啊D检测注入点提示SA权限或DB权限的时候，尝试列目录找到网站物理路径，再点击cmd/上传，直接上传asp木马即可，不行就差异备份拿shell。14.对于一些上传漏洞的上传页面，以及后台找到的上传页面，可以尝试用本地双文件上传突破，第一个选jpg第二个选cer，推荐使用火狐浏览器。">
@@ -12,14 +12,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="渗透学习第一阶段总结[1]"/>
-  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+  <meta property="og:site_name" content="小峰&#39;s Blog"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -32,7 +32,7 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h1><a href="/">小峰&#39;s Blog</a></h1>
   <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
@@ -195,15 +195,21 @@ function search(formname) {
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
   
-    <li><a href="/tags/php/">php</a><small>5</small></li>
+    <li><a href="/tags/php/">php</a><small>6</small></li>
   
-    <li><a href="/tags/python/">python</a><small>4</small></li>
+    <li><a href="/tags/python/">python</a><small>5</small></li>
   
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>8</small></li>
+    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
   
     <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
   
     <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
   

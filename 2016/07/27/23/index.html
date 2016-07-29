@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>XSS学习笔记 | xiaofeng&#39;s Blog</title>
+  <title>XSS学习笔记 | 小峰&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
   <meta name="description" content="Cross-Site Scripting（XSS）是一类出现在 web 应用程序上的安全弱点，攻击者可以通过 XSS 插入一 些代码，使得访问页面的其他用户都可以看到，XSS 通常是可以被看作漏洞的。它允许攻击者绕过安全机 制，通过尝试各种不同的方法插入恶意代码，攻击者可以得到敏感页面的权限，会话，cookies，或者其 他的东西，XSS 分为三类0x01 XSS分类：非持久性，持久性和基于 Dom（此类可以是持久的，也可以是不持久的）1)非持久性:非持久性 XSS 也被称为反射性 XSS，是目前最普遍的类型，当攻击者提供了一些代码的时候， 服务器端马上就会返回页面的执行结果。举个例子，就比如某个网页上的搜索引擎，如果攻击者搜索的字 符串包含了一些 html 标签，通常来说，搜索的结果就会以该形式显示出来，或者，至少，搜索的字符串 会包含在页面里。而这个我们是可以修改的，如果任何搜索的字符串都没有被 html 编码，XSS 漏洞就产 生了。
@@ -21,14 +21,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="XSS学习笔记"/>
-  <meta property="og:site_name" content="xiaofeng&#39;s Blog"/>
+  <meta property="og:site_name" content="小峰&#39;s Blog"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="xiaofeng&#39;s Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -41,7 +41,7 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">xiaofeng&#39;s Blog</a></h1>
+  <h1><a href="/">小峰&#39;s Blog</a></h1>
   <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
@@ -182,7 +182,7 @@ Maximum Sized Decimal     &amp;#x0000009   &amp;#x0000009     &amp;#0000009
         
   
   <div class="tags">
-    <a href="/tags/渗透学习/">渗透学习</a>
+    <a href="/tags/web安全/">web安全</a>
   </div>
 
         <div class="bdsharebuttonbox">
@@ -268,15 +268,21 @@ function search(formname) {
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Linux基础/">Linux基础</a><small>3</small></li>
+    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
   
-    <li><a href="/tags/php/">php</a><small>5</small></li>
+    <li><a href="/tags/php/">php</a><small>6</small></li>
   
-    <li><a href="/tags/python/">python</a><small>4</small></li>
+    <li><a href="/tags/python/">python</a><small>5</small></li>
   
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>8</small></li>
+    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
+  
+    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
+  
+    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
   
     <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
+  
+    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
   
     <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
   
