@@ -1,71 +1,283 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
 <head>
-  <meta charset="utf-8">
-  
-  <title>小白到小黑 | 小峰&#39;s Blog</title>
-  <meta name="author" content="xiaofeng">
-  
-  <meta name="description" content="渗透测试基础知识这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。网络、编程、系统。。。好多、好多、
-一、HTTP协议、操作系统系统：Windows/Linux服务：HTTP服务、FTP服务、SSH服务等文件系统、权限、防火墙等端口、IDS、IPS二、Web前端HTML/CSS、XML、JavaScript、Ajax、JqueryPHP、ASP、.NET、JSP 等三、数据库MySql、SqlServer、Oracle、DB2、Nosql四、常见漏洞IIS、Apache、Nginx五、注入主站相对来说比较安全，没有突破口，可以利用和主站在一个服务器上面的网站进行突破。六、探测在线工具网站（ip查询、端口扫描、CDN查询、二级域名、旁站查询、ICP备案、whois、web识别、社工库查询、Email、用户搜索、图片查询、短信验证等）涉及：端口信息、服务信息等七、漏洞扫描工具：Burp、AWVS、AppScan、Nessus、W3af、Shipfish八、测试工具Sqlmap、Havij、Pangolin、Waf3、Burp、nmap九、逻辑漏洞比如：任意用户密码重置、刷积分、信息泄露等程序的逻辑和人类的逻辑不一致导致漏洞产生">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-  <meta property="og:title" content="小白到小黑"/>
-  <meta property="og:site_name" content="小峰&#39;s Blog"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
 
   
-    <meta property="og:image" content="undefined"/>
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
   
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+    
+    
   
 
-<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
-<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
-</a>
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="渗透学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="渗透测试基础知识这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。网络、编程、系统。。。好多、好多、
+一、HTTP协议、操作系统系统：Windows/Linux服务：HTTP服务、FTP服务、S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小白到小黑">
+<meta property="og:url" content="http://lovexiaofeng.cn/2016/05/06/10/index.html">
+<meta property="og:site_name" content="小峰's Blog">
+<meta property="og:description" content="渗透测试基础知识这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。网络、编程、系统。。。好多、好多、
+一、HTTP协议、操作系统系统：Windows/Linux服务：HTTP服务、FTP服务、S">
+<meta property="og:updated_time" content="2016-07-29T13:23:40.170Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小白到小黑">
+<meta name="twitter:description" content="渗透测试基础知识这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。网络、编程、系统。。。好多、好多、
+一、HTTP协议、操作系统系统：Windows/Linux服务：HTTP服务、FTP服务、S">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://lovexiaofeng.cn/2016/05/06/10/"/>
+
+  <title> 小白到小黑 | 小峰's Blog </title>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
 
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">小峰&#39;s Blog</a></h1>
-  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小峰's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一个不抽烟 不喝酒的少年</p>
 </div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="//about">About</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
-</header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-05-06T02:42:07.000Z"><a href="/2016/05/06/10/">2016-05-06</a></time>
-      
-      
-  
-    <h1 class="title">小白到小黑</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
     </header>
-    <div class="entry">
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                小白到小黑
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-05-06T10:42:07+08:00" content="2016-05-06">
+              2016-05-06
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h2 id="渗透测试基础知识"><a href="#渗透测试基础知识" class="headerlink" title="渗透测试基础知识"></a>渗透测试基础知识</h2><h4 id="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"><a href="#这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。" class="headerlink" title="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"></a>这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。</h4><p>网络、编程、系统。。。好多、好多、</p>
 <p>一、HTTP协议、操作系统<br>系统：Windows/Linux<br>服务：HTTP服务、FTP服务、SSH服务等<br>文件系统、权限、防火墙等<br>端口、IDS、IPS<br>二、Web前端<br>HTML/CSS、XML、JavaScript、Ajax、Jquery<br>PHP、ASP、.NET、JSP 等<br>三、数据库<br>MySql、SqlServer、Oracle、DB2、Nosql<br>四、常见漏洞<br>IIS、Apache、Nginx<br>五、注入<br>主站相对来说比较安全，没有突破口，可以利用和主站在一个服务器上面的网站进行突破。<br>六、探测<br>在线工具网站（ip查询、端口扫描、CDN查询、二级域名、旁站查询、ICP备案、whois、web识别、社工库查询、Email、用户搜索、图片查询、短信验证等）涉及：端口信息、服务信息等<br>七、漏洞扫描<br>工具：Burp、AWVS、AppScan、Nessus、W3af、Shipfish<br>八、测试工具<br>Sqlmap、Havij、Pangolin、Waf3、Burp、nmap<br>九、逻辑漏洞<br>比如：任意用户密码重置、刷积分、信息泄露等<br>程序的逻辑和人类的逻辑不一致导致漏洞产生<br><a id="more"></a><br>十、XSS（跨站脚本攻击）<br>Cookie （记录你的账号和密码，方便你下次登录不用输入。）<br>技术上，他有一个专门接收Cookie的平台（XSS平台）<br>十一、CSRF漏洞<br>地址没验证，多次重复提交 等现象<br>十二、远程代码执行<br>比如： PHP远程代码执行 / JSP远程代码执行<br>常见：Struts2命令执行<br>十三、文件包含<br>./ 是当前路径   ../是切换到上级路径<br>本地包含、远程包含<br>涉及比较多的编程语言 PHP<br>十四、常见注入<br>SQL注入漏洞，直接危害到了数据库和系统安全，攻击者可以数据窃取，写shell后门 等操作。那么在注入里：GET注入、POST注入、HTTP请求头注入、Cookie注入、Json注入、XML注入等，大部分都有相似的地方。大部分影响的全部都是数据库里的数据<br>十五、内网相关<br>内网-局域网<br>账户密码爆破（数据库 FTP 等密码）<br>扫描端口或者服务（21、135、445、1521、8080、1433、3389 等）<br>这些端口可能 代表某些服务的开启，这样的话对方提供给你服务<br>你就可以进行某中操作了。<br>ARP攻击与嗅探、抓包监听、防火墙绕过等<br>十六、0day漏洞挖掘相关<br>尝试了解一些第三方安全产品的使用和挖掘<br>比如：安全狗、护卫神 等 （包含安全公司防火墙等软件 硬件BUG）<br>十七、社工与APT攻击先关内容<br>信息的探测与利用<br>对心里学有一定研究<br>十八、组合漏洞<br>文件包含+上传漏洞获取WebShell<br>SQL注入+物理路径泄露获取WebShell<br>XSS+CSRF拿下后台+文件上传+解析漏洞获取WebShell<br>WebShell+MySql_UDF提权+FTP提权+3389端口沦陷服务器<br>十九、云计安全<br>云安全，目前还停留在维护web安全的基础上面，主要利用常见的web全漏洞来进行查找一些漏洞。<br>二十、HTTP抓包与调试</p>
@@ -74,144 +286,325 @@
 <h3 id="哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。"><a href="#哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。" class="headerlink" title="哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。"></a>哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。</h3>
       
     </div>
-    <footer>
+
+    <div>
       
         
-        
-  
-  <div class="tags">
-    <a href="/tags/渗透学习/">渗透学习</a>
-  </div>
 
-        <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
-    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
-    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
-    <a href="#" class="bds_renren" data-cmd="renren"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
-</div>
-
-<script>
-    window._bd_share_config = {
-        "common": {
-            "bdSnsKey": {},
-            "bdText": "",
-            "bdMini": "2",
-            "bdPic": "",
-            "bdStyle": "0",
-            "bdSize": "16"
-        },
-        "share": {},
-        "image": {
-            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
-            "viewText": “分享到",
-            "viewSize": "16"
-        },
-        "selectShare": {
-            "bdContainerClass": null,
-            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
-        }
-    };
-    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-</script>
       
-      <div class="clearfix"></div>
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渗透学习/" rel="tag">#渗透学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/05/55/" rel="next" title="我的大学生活">
+                <i class="fa fa-chevron-left"></i> 我的大学生活
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/14/11/" rel="prev" title="浅谈CSRF">
+                浅谈CSRF <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
-  </div>
-</article>
+  </article>
 
 
-  <h1 class="title">Kommentare</h1>
 
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="http://yoursite.com/2016/05/06/10/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+    <div class="post-spread">
       
-  
-</section>
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <SCRIPT language=javascript>
-function search(formname) {
-    formname.method = "get";
-    formname.action = "http://www.baidu.com/baidu";
-    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
-    return true;
-}
-</SCRIPT>
-
-<div class="search">
-    <form name="search_form" target="_blank" onsubmit="search(this)">
-        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
-        <!-- <input type="submit" value="搜索"> -->
-    </form>
-</div>
-
-  
-
-  
-<div class="widget tag">
-  <h3 class="title">Tags</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
-  
-    <li><a href="/tags/php/">php</a><small>6</small></li>
-  
-    <li><a href="/tags/python/">python</a><small>5</small></li>
-  
-    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
-  
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
-  
-    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
-  
-    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
-  
-    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
-  
-    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
-  
-  </ul>
-</div>
-
-
-  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
-</aside>
-    <div class="clearfix"></div>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
   
-  &copy; 2016 xiaofeng
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/img.jpg"
+               alt="ih0cker" />
+          <p class="site-author-name" itemprop="name">ih0cker</p>
+          <p class="site-description motion-element" itemprop="description">沉默，可以让混乱的心，变得清澈。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaofengtongxue" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005053869837461/home?from=page_100505&mod=TAB&is_hot=1#place" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/helay" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#渗透测试基础知识"><span class="nav-number">1.</span> <span class="nav-text">渗透测试基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"><span class="nav-number">1.0.1.</span> <span class="nav-text">这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Firefox插件："><span class="nav-number">1.0.2.</span> <span class="nav-text">Firefox插件：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#此外关注安全圈动态多看安全圈的最新漏洞、安全事件与技术文章。"><span class="nav-number">1.1.</span> <span class="nav-text">此外关注安全圈动态多看安全圈的最新漏洞、安全事件与技术文章。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。"><span class="nav-number">1.2.</span> <span class="nav-text">哇！！！真的是整理了好长时间，一个上午的时间就这样没了，伤心！毕竟一个初学者，肯定还有很多没提到的地方，不管了，什么时候想到了，在写一篇。我怎么这么机智。。。</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ih0cker</span>
 </div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
 
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
 
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
+        
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
 <script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>

@@ -1,92 +1,298 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
   
-  <title>文件上传总结【一】 | 小峰&#39;s Blog</title>
-  <meta name="author" content="xiaofeng">
   
-  <meta name="description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。编辑器漏洞总结
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="php," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。编辑器漏洞总结
 常见编辑器：
 
 ewebeditorSouthidcEditorfckeditorCuteEditorfreetextbox
 0x01 ewebeditor编辑器：默认后台:
 http://127.0.0.1/ewebeditor/admin_login.asp
-http://127.0.0.1/ewebeditor/admin/login.asp
-默认数据库：
-http://127.0.0.1/ewebeditor/db/ewebeditor.mdb
-http://127.0.0.1/ewebeditor/db/%23ewebeditor.mdb
-有一个版本的密码是在配置文件中
-http://127.0.0.1/ewebeditor/admin/config.asp
-进入编辑器，上传asa或者asp，得到webshell，也可以本地构造一个html进行上传
-&amp;lt;form action=”http://127.0.0.1/ewebditor/upload.asp?action=save&amp;amp;type=&amp;amp;style=样式名” method=post name=myform enctype=”multipart/form-data”&amp;gt;
-&amp;lt;input type=file name=uploadfile size=1 style=”width:100%”&amp;gt;
-&amp;lt;input type=submit value=”上传了”&amp;gt;&amp;lt;/input&amp;gt;
-&amp;lt;/form&amp;gt;
-利用： 
+http://127.0.0.1/ew">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传总结【一】">
+<meta property="og:url" content="http://lovexiaofeng.cn/2016/07/27/19/index.html">
+<meta property="og:site_name" content="小峰's Blog">
+<meta property="og:description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。编辑器漏洞总结
+常见编辑器：
 
-后台如果能进入
-可点击样式管理
+ewebeditorSouthidcEditorfckeditorCuteEditorfreetextbox
+0x01 ewebeditor编辑器：默认后台:
+http://127.0.0.1/ewebeditor/admin_login.asp
+http://127.0.0.1/ew">
+<meta property="og:updated_time" content="2016-07-27T03:11:59.056Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件上传总结【一】">
+<meta name="twitter:description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。编辑器漏洞总结
+常见编辑器：
 
-standard 拷贝一份(直接修改改不了名字可以随便)在拷贝的一份里加入图片类型( asa cer aaspsp )，然后点预览，在编辑器里点设计，然后直接上传asa大马，上传后，右键查看源代码就可以看到OO的位置!(原理:因为在iis里 网站的属性里 应用程序配置一项   asa扩展名还是用asp.dll来解析的,asp也是,还有cer/cdx)">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ewebeditorSouthidcEditorfckeditorCuteEditorfreetextbox
+0x01 ewebeditor编辑器：默认后台:
+http://127.0.0.1/ewebeditor/admin_login.asp
+http://127.0.0.1/ew">
 
-  <meta property="og:title" content="文件上传总结【一】"/>
-  <meta property="og:site_name" content="小峰&#39;s Blog"/>
 
-  
-    <meta property="og:image" content="undefined"/>
-  
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
 
-<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
-<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
-</a>
+
+
+
+  <link rel="canonical" href="http://lovexiaofeng.cn/2016/07/27/19/"/>
+
+  <title> 文件上传总结【一】 | 小峰's Blog </title>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
 
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">小峰&#39;s Blog</a></h1>
-  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小峰's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一个不抽烟 不喝酒的少年</p>
 </div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="//about">About</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
-</header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-07-27T00:35:38.000Z"><a href="/2016/07/27/19/">2016-07-27</a></time>
-      
-      
-  
-    <h1 class="title">文件上传总结【一】</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
     </header>
-    <div class="entry">
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                文件上传总结【一】
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-27T08:35:38+08:00" content="2016-07-27">
+              2016-07-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h3 id="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"><a href="#对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。" class="headerlink" title="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"></a>对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。</h3><h2 id="编辑器漏洞总结"><a href="#编辑器漏洞总结" class="headerlink" title="编辑器漏洞总结"></a>编辑器漏洞总结</h2><ul>
 <li>常见编辑器：</li>
@@ -160,144 +366,325 @@ editor/FCKeditor/editor/filemanager/connectors/asp/connector.asp?Command=CreateF
 <h2 id="0x06-freetextbox编辑器："><a href="#0x06-freetextbox编辑器：" class="headerlink" title="0x06 freetextbox编辑器："></a>0x06 freetextbox编辑器：</h2><h4 id="漏洞描述：所有版本，没做登陆验证可以直接访问上传木马，FTBv3-3-1-可以直接上传任意格式的文件"><a href="#漏洞描述：所有版本，没做登陆验证可以直接访问上传木马，FTBv3-3-1-可以直接上传任意格式的文件" class="headerlink" title="漏洞描述：所有版本，没做登陆验证可以直接访问上传木马，FTBv3-3-1 可以直接上传任意格式的文件"></a>漏洞描述：所有版本，没做登陆验证可以直接访问上传木马，FTBv3-3-1 可以直接上传任意格式的文件</h4><h4 id="Freetextbox-1-6-3-及其他版本可以上传格式为：1-asp-jpg-文件-上传后木马地址为-http-127-0-0-1-images-1-asp-jpg"><a href="#Freetextbox-1-6-3-及其他版本可以上传格式为：1-asp-jpg-文件-上传后木马地址为-http-127-0-0-1-images-1-asp-jpg" class="headerlink" title="Freetextbox 1.6.3 及其他版本可以上传格式为：1.asp;.jpg 文件 上传后木马地址为 http://127.0.0.1/images/1.asp;.jpg"></a>Freetextbox 1.6.3 及其他版本可以上传格式为：1.asp;.jpg 文件 上传后木马地址为 <a href="http://127.0.0.1/images/1.asp;.jpg" target="_blank" rel="external">http://127.0.0.1/images/1.asp;.jpg</a></h4><h4 id="漏洞文件：ftb-imagegallery-aspx"><a href="#漏洞文件：ftb-imagegallery-aspx" class="headerlink" title="漏洞文件：ftb.imagegallery.aspx"></a>漏洞文件：ftb.imagegallery.aspx</h4><h4 id="http-127-0-0-1-freetextbox-ftb-imagegallery-aspx-frame-1”在地址后面加上-amp-rif-amp-cif"><a href="#http-127-0-0-1-freetextbox-ftb-imagegallery-aspx-frame-1”在地址后面加上-amp-rif-amp-cif" class="headerlink" title="http://127.0.0.1/freetextbox/ftb.imagegallery.aspx?frame=1”在地址后面加上&amp;rif=..&amp;cif=.."></a><a href="http://127.0.0.1/freetextbox/ftb.imagegallery.aspx?frame=1”在地址后面加上&amp;rif=..&amp;cif=" target="_blank" rel="external">http://127.0.0.1/freetextbox/ftb.imagegallery.aspx?frame=1”在地址后面加上&amp;rif=..&amp;cif=</a>..</h4><h4 id="再访问-整个网站的目录就呈现在眼前了-下面还有上传删除等按钮"><a href="#再访问-整个网站的目录就呈现在眼前了-下面还有上传删除等按钮" class="headerlink" title="再访问 整个网站的目录就呈现在眼前了,下面还有上传删除等按钮"></a>再访问 整个网站的目录就呈现在眼前了,下面还有上传删除等按钮</h4>
       
     </div>
-    <footer>
+
+    <div>
       
         
-        
-  
-  <div class="tags">
-    <a href="/tags/php/">php</a>
-  </div>
 
-        <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
-    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
-    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
-    <a href="#" class="bds_renren" data-cmd="renren"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
-</div>
-
-<script>
-    window._bd_share_config = {
-        "common": {
-            "bdSnsKey": {},
-            "bdText": "",
-            "bdMini": "2",
-            "bdPic": "",
-            "bdStyle": "0",
-            "bdSize": "16"
-        },
-        "share": {},
-        "image": {
-            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
-            "viewText": “分享到",
-            "viewSize": "16"
-        },
-        "selectShare": {
-            "bdContainerClass": null,
-            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
-        }
-    };
-    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-</script>
       
-      <div class="clearfix"></div>
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/04/18/" rel="next" title="python多线程爬乌云Drops文章">
+                <i class="fa fa-chevron-left"></i> python多线程爬乌云Drops文章
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/27/20/" rel="prev" title="文件上传总结【二】">
+                文件上传总结【二】 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
-  </div>
-</article>
+  </article>
 
 
-  <h1 class="title">Kommentare</h1>
 
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="http://yoursite.com/2016/07/27/19/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+    <div class="post-spread">
       
-  
-</section>
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <SCRIPT language=javascript>
-function search(formname) {
-    formname.method = "get";
-    formname.action = "http://www.baidu.com/baidu";
-    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
-    return true;
-}
-</SCRIPT>
-
-<div class="search">
-    <form name="search_form" target="_blank" onsubmit="search(this)">
-        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
-        <!-- <input type="submit" value="搜索"> -->
-    </form>
-</div>
-
-  
-
-  
-<div class="widget tag">
-  <h3 class="title">Tags</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
-  
-    <li><a href="/tags/php/">php</a><small>6</small></li>
-  
-    <li><a href="/tags/python/">python</a><small>5</small></li>
-  
-    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
-  
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
-  
-    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
-  
-    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
-  
-    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
-  
-    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
-  
-  </ul>
-</div>
-
-
-  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
-</aside>
-    <div class="clearfix"></div>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
   
-  &copy; 2016 xiaofeng
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/img.jpg"
+               alt="ih0cker" />
+          <p class="site-author-name" itemprop="name">ih0cker</p>
+          <p class="site-description motion-element" itemprop="description">沉默，可以让混乱的心，变得清澈。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaofengtongxue" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005053869837461/home?from=page_100505&mod=TAB&is_hot=1#place" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/helay" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"><span class="nav-number">1.</span> <span class="nav-text">对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑器漏洞总结"><span class="nav-number"></span> <span class="nav-text">编辑器漏洞总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-ewebeditor编辑器："><span class="nav-number"></span> <span class="nav-text">0x01 ewebeditor编辑器：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#net-ewebeditor-漏洞利用"><span class="nav-number">0.1.</span> <span class="nav-text">.net ewebeditor 漏洞利用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jsp版-ewebeditor-漏洞利用"><span class="nav-number">0.2.</span> <span class="nav-text">jsp版 ewebeditor 漏洞利用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ewebeditor-asp版-2-1-6-上传漏洞利用程序"><span class="nav-number">0.3.</span> <span class="nav-text">ewebeditor asp版 2.1.6 上传漏洞利用程序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-ewebeditor-PHP3-8-0day漏洞"><span class="nav-number"></span> <span class="nav-text">0x02 ewebeditor PHP3.8 0day漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-SouthidcEditor编辑器："><span class="nav-number"></span> <span class="nav-text">0x03 SouthidcEditor编辑器：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie注入"><span class="nav-number">0.1.</span> <span class="nav-text">cookie注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清空地址栏，利用union语句来注入"><span class="nav-number">0.2.</span> <span class="nav-text">清空地址栏，利用union语句来注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SouthidcEditor默认数据库"><span class="nav-number">0.3.</span> <span class="nav-text">SouthidcEditor默认数据库:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认登录地址："><span class="nav-number">0.4.</span> <span class="nav-text">默认登录地址：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04"><span class="nav-number"></span> <span class="nav-text">0x04</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-查看编辑器版本-FCKeditor-whatsnew-html"><span class="nav-number">0.1.</span> <span class="nav-text">1.查看编辑器版本 FCKeditor/_whatsnew.html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Version-2-2-版本"><span class="nav-number">0.2.</span> <span class="nav-text">2. Version 2.2 版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Version-lt-2-4-2-For-php-在处理PHP-上传的地方并未对Media-类型进行上传文件类型的控制，导致用户上传任意文件！将以下保存为html文件，修改action地址。"><span class="nav-number">0.3.</span> <span class="nav-text">3.Version <=2.4.2 For php 在处理PHP 上传的地方并未对Media 类型进行上传文件类型的控制，导致用户上传任意文件！将以下保存为html文件，修改action地址。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-FCKeditor-文件上传“-”变“-”下划线的绕过方法"><span class="nav-number">0.4.</span> <span class="nav-text">4.FCKeditor 文件上传“.”变“_”下划线的绕过方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-突破建立文件夹"><span class="nav-number">0.5.</span> <span class="nav-text">5. 突破建立文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-爆路径漏洞"><span class="nav-number">0.6.</span> <span class="nav-text">6.爆路径漏洞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-CuteEditor编辑器："><span class="nav-number"></span> <span class="nav-text">0x05 CuteEditor编辑器：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-直接下载load-ashx配置文件"><span class="nav-number">0.1.</span> <span class="nav-text">1.直接下载load.ashx配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法2-2003-iis解析-后台拿webshell"><span class="nav-number">0.2.</span> <span class="nav-text">方法2.2003 iis解析(后台拿webshell)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-freetextbox编辑器："><span class="nav-number"></span> <span class="nav-text">0x06 freetextbox编辑器：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#漏洞描述：所有版本，没做登陆验证可以直接访问上传木马，FTBv3-3-1-可以直接上传任意格式的文件"><span class="nav-number">0.1.</span> <span class="nav-text">漏洞描述：所有版本，没做登陆验证可以直接访问上传木马，FTBv3-3-1 可以直接上传任意格式的文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Freetextbox-1-6-3-及其他版本可以上传格式为：1-asp-jpg-文件-上传后木马地址为-http-127-0-0-1-images-1-asp-jpg"><span class="nav-number">0.2.</span> <span class="nav-text">Freetextbox 1.6.3 及其他版本可以上传格式为：1.asp;.jpg 文件 上传后木马地址为 http://127.0.0.1/images/1.asp;.jpg</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#漏洞文件：ftb-imagegallery-aspx"><span class="nav-number">0.3.</span> <span class="nav-text">漏洞文件：ftb.imagegallery.aspx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-127-0-0-1-freetextbox-ftb-imagegallery-aspx-frame-1”在地址后面加上-amp-rif-amp-cif"><span class="nav-number">0.4.</span> <span class="nav-text">http://127.0.0.1/freetextbox/ftb.imagegallery.aspx?frame=1”在地址后面加上&rif=..&cif=..</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再访问-整个网站的目录就呈现在眼前了-下面还有上传删除等按钮"><span class="nav-number">0.5.</span> <span class="nav-text">再访问 整个网站的目录就呈现在眼前了,下面还有上传删除等按钮</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ih0cker</span>
 </div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
 
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
 
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
+        
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
 <script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>

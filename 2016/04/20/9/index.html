@@ -1,73 +1,280 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
 <head>
-  <meta charset="utf-8">
-  
-  <title>php学习计划篇 | 小峰&#39;s Blog</title>
-  <meta name="author" content="xiaofeng">
-  
-  <meta name="description" content="首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。00x0什么是PHP PHP（Hypertext Preprocessor，超文本预处理器），是一种服务器端、跨平台、HTML嵌入式的脚本语言，其独特的语法混合了C语言、Java语言和Perl语言的特点，是一种被广泛应用的开源式的多用途脚本语言，尤其适合Web开发。PHP是B/S（Browser/Server，浏览器/服务器）体系结构，属于三层结构。服务器启动后，用户可以不使用客户端软件，只使用浏览器即可访问，既保持了图形化的用户界面，又大大减少了应用的维护量。
-00x1PHP语言的优势PHP起源于自由软件，即开放源代码软件，使用PHP进行Web应用程序的开发具有以下优势。安全性高：PHP是开源软件，每个人都可以看到所有PHP的源代码，程序代码与Apache编译在一起的方式让它的安全设定更灵活。PHP具有公认的安全性能。跨平台特性：PHP几乎支持所有的操作系统平台（如Windows/UNIX/Linux/Macintosh/FreeBSD/ OS2等），并且支持Apache、IIS等多种Web服务器。支持广泛的数据库：可操纵多种主流与非主流的数据库，如MySQL、Access、SQL Server、Oracle、DB2等，其中PHP与MySQL是目前最佳的组合，它们的组合可以跨平台运行。易学性：PHP嵌入在HTML语言中，以脚本语言为主，内置丰富函数，语法简单、书写容易，方便读者学习掌握。执行速度快：占用系统资源少，代码执行速度快。免费：在流行的企业应用LAMP平台中，Linux、Apache、MySQL、PHP都是免费软件，这种开源免费的框架结构可以为网站经营者节省很大一笔开支。模板化：实现程序逻辑与用户界面分离。支持面向对象与过程：支持面向对象和过程的两种开发风格，并可向下兼容。内嵌Zend加速引擎，性能稳定快速。
-00x2PHP 5的新特性PHP 5中的对象已经进行了较系统和全面的调整，下面着重讲述PHP 5中新的对象模式。构造函数和析构函数。对象的引用。对象的克隆（clone）。对象中的私有、公共及受保护模式（private、public和protected关键字）。接口（interface）。抽象类:call
-set和__get静态成员">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-  <meta property="og:title" content="php学习计划篇"/>
-  <meta property="og:site_name" content="小峰&#39;s Blog"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
 
   
-    <meta property="og:image" content="undefined"/>
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
   
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+    
+    
   
 
-<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
-<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
-</a>
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="php," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。00x0什么是PHP PHP（Hypertext Preprocessor，超文本预处理器），是一种服务器端、跨平台、HTML嵌入式的脚本语言，其独特的语法混合了C语言、Java语言和Perl语言的特点，是一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php学习计划篇">
+<meta property="og:url" content="http://lovexiaofeng.cn/2016/04/20/9/index.html">
+<meta property="og:site_name" content="小峰's Blog">
+<meta property="og:description" content="首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。00x0什么是PHP PHP（Hypertext Preprocessor，超文本预处理器），是一种服务器端、跨平台、HTML嵌入式的脚本语言，其独特的语法混合了C语言、Java语言和Perl语言的特点，是一">
+<meta property="og:updated_time" content="2016-07-29T13:31:40.866Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php学习计划篇">
+<meta name="twitter:description" content="首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。00x0什么是PHP PHP（Hypertext Preprocessor，超文本预处理器），是一种服务器端、跨平台、HTML嵌入式的脚本语言，其独特的语法混合了C语言、Java语言和Perl语言的特点，是一">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://lovexiaofeng.cn/2016/04/20/9/"/>
+
+  <title> php学习计划篇 | 小峰's Blog </title>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
 
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">小峰&#39;s Blog</a></h1>
-  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小峰's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一个不抽烟 不喝酒的少年</p>
 </div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="//about">About</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
-</header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-20T02:51:27.000Z"><a href="/2016/04/20/9/">2016-04-20</a></time>
-      
-      
-  
-    <h1 class="title">php学习计划篇</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
     </header>
-    <div class="entry">
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                php学习计划篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-04-20T10:51:27+08:00" content="2016-04-20">
+              2016-04-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h3 id="首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。"><a href="#首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。" class="headerlink" title="首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。"></a>首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。</h3><h3 id="00x0什么是PHP"><a href="#00x0什么是PHP" class="headerlink" title="00x0什么是PHP"></a>00x0什么是PHP</h3><p> PHP（Hypertext Preprocessor，超文本预处理器），是一种服务器端、跨平台、HTML嵌入式的脚本语言，其独特的语法混合了C语言、Java语言和Perl语言的特点，是一种被广泛应用的开源式的多用途脚本语言，尤其适合Web开发。<br>PHP是B/S（Browser/Server，浏览器/服务器）体系结构，属于三层结构。服务器启动后，用户可以不使用客户端软件，只使用浏览器即可访问，既保持了图形化的用户界面，又大大减少了应用的维护量。</p>
 <h3 id="00x1PHP语言的优势"><a href="#00x1PHP语言的优势" class="headerlink" title="00x1PHP语言的优势"></a>00x1PHP语言的优势</h3><p>PHP起源于自由软件，即开放源代码软件，使用PHP进行Web应用程序的开发具有以下优势。<br>安全性高：PHP是开源软件，每个人都可以看到所有PHP的源代码，程序代码与Apache编译在一起的方式让它的安全设定更灵活。PHP具有公认的安全性能。<br>跨平台特性：PHP几乎支持所有的操作系统平台（如Windows/UNIX/Linux/Macintosh/FreeBSD/ OS2等），并且支持Apache、IIS等多种Web服务器。<br>支持广泛的数据库：可操纵多种主流与非主流的数据库，如MySQL、Access、SQL Server、Oracle、DB2等，其中PHP与MySQL是目前最佳的组合，它们的组合可以跨平台运行。<br>易学性：PHP嵌入在HTML语言中，以脚本语言为主，内置丰富函数，语法简单、书写容易，方便读者学习掌握。<br>执行速度快：占用系统资源少，代码执行速度快。<br>免费：在流行的企业应用LAMP平台中，Linux、Apache、MySQL、PHP都是免费软件，这种开源免费的框架结构可以为网站经营者节省很大一笔开支。<br>模板化：实现程序逻辑与用户界面分离。<br>支持面向对象与过程：支持面向对象和过程的两种开发风格，并可向下兼容。<br>内嵌Zend加速引擎，性能稳定快速。</p>
@@ -78,144 +285,325 @@ set和__get静态成员">
 
       
     </div>
-    <footer>
+
+    <div>
       
         
-        
-  
-  <div class="tags">
-    <a href="/tags/php/">php</a>
-  </div>
 
-        <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
-    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
-    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
-    <a href="#" class="bds_renren" data-cmd="renren"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
-</div>
-
-<script>
-    window._bd_share_config = {
-        "common": {
-            "bdSnsKey": {},
-            "bdText": "",
-            "bdMini": "2",
-            "bdPic": "",
-            "bdStyle": "0",
-            "bdSize": "16"
-        },
-        "share": {},
-        "image": {
-            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
-            "viewText": “分享到",
-            "viewSize": "16"
-        },
-        "selectShare": {
-            "bdContainerClass": null,
-            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
-        }
-    };
-    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-</script>
       
-      <div class="clearfix"></div>
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/20/8/" rel="next" title="构建端口扫描器">
+                <i class="fa fa-chevron-left"></i> 构建端口扫描器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/05/55/" rel="prev" title="我的大学生活">
+                我的大学生活 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
-  </div>
-</article>
+  </article>
 
 
-  <h1 class="title">Kommentare</h1>
 
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="http://yoursite.com/2016/04/20/9/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+    <div class="post-spread">
       
-  
-</section>
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <SCRIPT language=javascript>
-function search(formname) {
-    formname.method = "get";
-    formname.action = "http://www.baidu.com/baidu";
-    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
-    return true;
-}
-</SCRIPT>
-
-<div class="search">
-    <form name="search_form" target="_blank" onsubmit="search(this)">
-        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
-        <!-- <input type="submit" value="搜索"> -->
-    </form>
-</div>
-
-  
-
-  
-<div class="widget tag">
-  <h3 class="title">Tags</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
-  
-    <li><a href="/tags/php/">php</a><small>6</small></li>
-  
-    <li><a href="/tags/python/">python</a><small>5</small></li>
-  
-    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
-  
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
-  
-    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
-  
-    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
-  
-    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
-  
-    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
-  
-  </ul>
-</div>
-
-
-  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
-</aside>
-    <div class="clearfix"></div>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
   
-  &copy; 2016 xiaofeng
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/img.jpg"
+               alt="ih0cker" />
+          <p class="site-author-name" itemprop="name">ih0cker</p>
+          <p class="site-description motion-element" itemprop="description">沉默，可以让混乱的心，变得清澈。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaofengtongxue" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005053869837461/home?from=page_100505&mod=TAB&is_hot=1#place" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/helay" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。"><span class="nav-number">1.</span> <span class="nav-text">首先作为一名不是前段开发的小菜，有时也会有理想的好不好，今天发现很有学习一下PHP的必要，于是就上网看了看都要学什么，以下都是网上找的资料，很明白自己不会学的这么深的，不过看看还是很有必要的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#00x0什么是PHP"><span class="nav-number">2.</span> <span class="nav-text">00x0什么是PHP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#00x1PHP语言的优势"><span class="nav-number">3.</span> <span class="nav-text">00x1PHP语言的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#00x2PHP-5的新特性"><span class="nav-number">4.</span> <span class="nav-text">00x2PHP 5的新特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何学好PHP语言，这是所有初学者共同面临的问题。其实，每种程序设计语言的学习方法都大同小异，需要注意的有以下几点："><span class="nav-number">5.</span> <span class="nav-text">如何学好PHP语言，这是所有初学者共同面临的问题。其实，每种程序设计语言的学习方法都大同小异，需要注意的有以下几点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我感觉学习php需要做到的："><span class="nav-number">6.</span> <span class="nav-text">我感觉学习php需要做到的：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ih0cker</span>
 </div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
 
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
 
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
+        
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
 <script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>

@@ -1,70 +1,280 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
 <head>
-  <meta charset="utf-8">
-  
-  <title>渗透学习第一阶段总结[1] | 小峰&#39;s Blog</title>
-  <meta name="author" content="xiaofeng">
-  
-  <meta name="description" content="写在前面的话学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。0x00 上传部分1.直接上传asp asa jsp cer php aspx htr cdx 格式的木马，不行就利用IIS6.0解析漏洞”:1.asp;1.jpg/1.asp;.jpg/1.asp;jpg/1.asp;.xls2.上传图片木马遇到拦截系统，连图片木马都上传不了，记事本打开图片木马在代码最前面加上gif89a，一般就能逃过拦截系统了。3.上传图片木马把地址复制到数据库备份里备份成asp木马，有时不成功就利用IIs6.0解析漏洞尝试突破。4.上传图片木马再用抓包工具进行抓包，用明小子的综合上传功能，复制上传地址及cookies填到对应的框里，点击上传即可。5.当后台有数据库备份蛋没有上传点时，把一句话木马插到任意处，再到数据库备份里备份成asp木马，之后用一句话客户端连接木马即可。6.后台点击修改密码，新密码设置为：1”:eval request(“h”)’设置成功后连接asp/config.asp即可拿下shell7.当页面提示“上传格式不正确[重新上传]” 则说明存在上传漏洞，复制地址放到明小子里上传，一般都能直接拿下shell。8.当后台没有数据库备份但有数据库恢复的情况下，请不要犹豫，数据库恢复跟数据库备份功能是一样的，直接邪恶吧。9.如果知道网站的数据库是asp的，直接在前台找留言板插入一句话木马，连接配置文件inc/config.asp即可拿下shell。10.当网站前台有“会员注册” 注册一个账户进去看看有没有上传点，有的话直接上传asp木马以及利用iis6.0解析漏洞，不行就抓包用明小子上传。11.先上传一个.ashx的文件，在笔记里搜索可找到方法，结果是访问会生成一句话木马文件，后台上传、编辑器上传、上传漏洞页面均可使用此方法。12.当页面提示只能上传jpg|gif|png等格式的时候，右键查看源文件，本地修改为asp|asa|php再本地上传即可拿下shell。13.当用啊D检测注入点提示SA权限或DB权限的时候，尝试列目录找到网站物理路径，再点击cmd/上传，直接上传asp木马即可，不行就差异备份拿shell。14.对于一些上传漏洞的上传页面，以及后台找到的上传页面，可以尝试用本地双文件上传突破，第一个选jpg第二个选cer，推荐使用火狐浏览器。">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-  <meta property="og:title" content="渗透学习第一阶段总结[1]"/>
-  <meta property="og:site_name" content="小峰&#39;s Blog"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
 
   
-    <meta property="og:image" content="undefined"/>
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
   
 
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="小峰&#39;s Blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+    
+    
   
 
-<a href="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io.git" target="_blank">
-<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub">
-</a>
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="渗透学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="写在前面的话学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透学习第一阶段总结[1]">
+<meta property="og:url" content="http://lovexiaofeng.cn/2016/07/02/16/index.html">
+<meta property="og:site_name" content="小峰's Blog">
+<meta property="og:description" content="写在前面的话学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3">
+<meta property="og:updated_time" content="2016-07-03T01:10:05.943Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="渗透学习第一阶段总结[1]">
+<meta name="twitter:description" content="写在前面的话学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://lovexiaofeng.cn/2016/07/02/16/"/>
+
+  <title> 渗透学习第一阶段总结[1] | 小峰's Blog </title>
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
 
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">小峰&#39;s Blog</a></h1>
-  <h2><a href="/">一个不抽烟 不喝酒的少年</a></h2>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小峰's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一个不抽烟 不喝酒的少年</p>
 </div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="//about">About</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
-</header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-07-02T12:20:38.000Z"><a href="/2016/07/02/16/">2016-07-02</a></time>
-      
-      
-  
-    <h1 class="title">渗透学习第一阶段总结[1]</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
     </header>
-    <div class="entry">
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                渗透学习第一阶段总结[1]
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-02T20:20:38+08:00" content="2016-07-02">
+              2016-07-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><h3 id="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"><a href="#学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。" class="headerlink" title="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"></a>学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。</h3><h3 id="总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。"><a href="#总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。" class="headerlink" title="总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。"></a>总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。</h3><h2 id="0x00-上传部分"><a href="#0x00-上传部分" class="headerlink" title="0x00 上传部分"></a>0x00 上传部分</h2><p>1.直接上传asp asa jsp cer php aspx htr cdx 格式的木马，不行就利用IIS6.0解析漏洞”:1.asp;1.jpg/1.asp;.jpg/1.asp;jpg/1.asp;.xls<br>2.上传图片木马遇到拦截系统，连图片木马都上传不了，记事本打开图片木马在代码最前面加上gif89a，一般就能逃过拦截系统了。<br>3.上传图片木马把地址复制到数据库备份里备份成asp木马，有时不成功就利用IIs6.0解析漏洞尝试突破。<br>4.上传图片木马再用抓包工具进行抓包，用明小子的综合上传功能，复制上传地址及cookies填到对应的框里，点击上传即可。<br>5.当后台有数据库备份蛋没有上传点时，把一句话木马插到任意处，再到数据库备份里备份成asp木马，之后用一句话客户端连接木马即可。<br>6.后台点击修改密码，新密码设置为：1”:eval request(“h”)’设置成功后连接asp/config.asp即可拿下shell<br>7.当页面提示“上传格式不正确[重新上传]” 则说明存在上传漏洞，复制地址放到明小子里上传，一般都能直接拿下shell。<br>8.当后台没有数据库备份但有数据库恢复的情况下，请不要犹豫，数据库恢复跟数据库备份功能是一样的，直接邪恶吧。<br>9.如果知道网站的数据库是asp的，直接在前台找留言板插入一句话木马，连接配置文件inc/config.asp即可拿下shell。<br>10.当网站前台有“会员注册” 注册一个账户进去看看有没有上传点，有的话直接上传asp木马以及利用iis6.0解析漏洞，不行就抓包用明小子上传。<br>11.先上传一个.ashx的文件，在笔记里搜索可找到方法，结果是访问会生成一句话木马文件，后台上传、编辑器上传、上传漏洞页面均可使用此方法。<br>12.当页面提示只能上传jpg|gif|png等格式的时候，右键查看源文件，本地修改为asp|asa|php再本地上传即可拿下shell。<br>13.当用啊D检测注入点提示SA权限或DB权限的时候，尝试列目录找到网站物理路径，再点击cmd/上传，直接上传asp木马即可，不行就差异备份拿shell。<br>14.对于一些上传漏洞的上传页面，以及后台找到的上传页面，可以尝试用本地双文件上传突破，第一个选jpg第二个选cer，推荐使用火狐浏览器。</p>
 <a id="more"></a>
@@ -103,144 +313,325 @@ $a($_POST[&quot;test&quot;]); ?&gt;
 
       
     </div>
-    <footer>
+
+    <div>
       
         
-        
-  
-  <div class="tags">
-    <a href="/tags/渗透学习/">渗透学习</a>
-  </div>
 
-        <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone"></a>
-    <a href="#" class="bds_tsina" data-cmd="tsina"></a>
-    <a href="#" class="bds_tqq" data-cmd="tqq"></a>
-    <a href="#" class="bds_renren" data-cmd="renren"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin"></a>
-</div>
-
-<script>
-    window._bd_share_config = {
-        "common": {
-            "bdSnsKey": {},
-            "bdText": "",
-            "bdMini": "2",
-            "bdPic": "",
-            "bdStyle": "0",
-            "bdSize": "16"
-        },
-        "share": {},
-        "image": {
-            "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"],
-            "viewText": “分享到",
-            "viewSize": "16"
-        },
-        "selectShare": {
-            "bdContainerClass": null,
-            "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]
-        }
-    };
-    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-</script>
       
-      <div class="clearfix"></div>
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渗透学习/" rel="tag">#渗透学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/26/14/" rel="next" title="文件上传漏洞初探">
+                <i class="fa fa-chevron-left"></i> 文件上传漏洞初探
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/02/15/" rel="prev" title="渗透学习第一阶段总结[2]">
+                渗透学习第一阶段总结[2] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
-  </div>
-</article>
+  </article>
 
 
-  <h1 class="title">Kommentare</h1>
 
-  
-      <div id="fb-root"></div>
-<script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<div class="fb-comments" data-href="http://yoursite.com/2016/07/02/16/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+    <div class="post-spread">
       
-  
-</section>
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <SCRIPT language=javascript>
-function search(formname) {
-    formname.method = "get";
-    formname.action = "http://www.baidu.com/baidu";
-    document.search_form.word.value = document.search_form.word.value + " site:mjiayou.com";
-    return true;
-}
-</SCRIPT>
-
-<div class="search">
-    <form name="search_form" target="_blank" onsubmit="search(this)">
-        <input type="search" name="word" results="0" placeholder="百度站内搜索" onblur="this.value=''">
-        <!-- <input type="submit" value="搜索"> -->
-    </form>
-</div>
-
-  
-
-  
-<div class="widget tag">
-  <h3 class="title">Tags</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Linux基础/">Linux基础</a><small>4</small></li>
-  
-    <li><a href="/tags/php/">php</a><small>6</small></li>
-  
-    <li><a href="/tags/python/">python</a><small>5</small></li>
-  
-    <li><a href="/tags/web安全/">web安全</a><small>5</small></li>
-  
-    <li><a href="/tags/渗透学习/">渗透学习</a><small>4</small></li>
-  
-    <li><a href="/tags/渗透工具/">渗透工具</a><small>1</small></li>
-  
-    <li><a href="/tags/生活感悟/">生活感悟</a><small>2</small></li>
-  
-    <li><a href="/tags/经验总结/">经验总结</a><small>1</small></li>
-  
-    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
-  
-  </ul>
-</div>
-
-
-  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=3&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=3869837461&verifier=7b3bd9e7&dpc=1"></iframe>
-</aside>
-    <div class="clearfix"></div>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
   
-  &copy; 2016 xiaofeng
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/img.jpg"
+               alt="ih0cker" />
+          <p class="site-author-name" itemprop="name">ih0cker</p>
+          <p class="site-description motion-element" itemprop="description">沉默，可以让混乱的心，变得清澈。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaofengtongxue" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005053869837461/home?from=page_100505&mod=TAB&is_hot=1#place" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/helay" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面的话"><span class="nav-number">1.</span> <span class="nav-text">写在前面的话</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"><span class="nav-number">1.1.</span> <span class="nav-text">学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。"><span class="nav-number">1.2.</span> <span class="nav-text">总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-上传部分"><span class="nav-number">2.</span> <span class="nav-text">0x00 上传部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-渗透技巧"><span class="nav-number">3.</span> <span class="nav-text">0x01 渗透技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-手工注入"><span class="nav-number">4.</span> <span class="nav-text">0x02 手工注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：找注入点"><span class="nav-number">4.1.</span> <span class="nav-text">第一步：找注入点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：猜字段数"><span class="nav-number">4.2.</span> <span class="nav-text">第二步：猜字段数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：UNION命令"><span class="nav-number">4.3.</span> <span class="nav-text">第三步：UNION命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：猜库名"><span class="nav-number">4.4.</span> <span class="nav-text">第三步：猜库名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：猜表段"><span class="nav-number">4.5.</span> <span class="nav-text">第四步：猜表段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步：猜字段"><span class="nav-number">4.6.</span> <span class="nav-text">第五步：猜字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六步：猜内容"><span class="nav-number">4.7.</span> <span class="nav-text">第六步：猜内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-常见网站程序"><span class="nav-number">5.</span> <span class="nav-text">0x03 常见网站程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-谷歌黑客语法"><span class="nav-number">6.</span> <span class="nav-text">0x03 谷歌黑客语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-一句话木马"><span class="nav-number">7.</span> <span class="nav-text">0x04 一句话木马</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-解析漏洞总结"><span class="nav-number">8.</span> <span class="nav-text">0x04 解析漏洞总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-ewebeditor编辑器"><span class="nav-number">9.</span> <span class="nav-text">0x05 ewebeditor编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一：文件上传成功了，但是访问不成功，说明该目录-比如：-UploadFile-被设置了权限，返回去换成-上传到根目录就行了-增加asp等不行的时候，可以利用解析asp-jpg"><span class="nav-number">9.0.1.</span> <span class="nav-text">一：文件上传成功了，但是访问不成功，说明该目录(比如：/UploadFile)被设置了权限，返回去换成/ 上传到根目录就行了.增加asp等不行的时候，可以利用解析asp;jpg</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二：下载数据库查看前人留下的痕迹，再访问上传页面拿shell。"><span class="nav-number">9.0.2.</span> <span class="nav-text">二：下载数据库查看前人留下的痕迹，再访问上传页面拿shell。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-fckeditor编辑器"><span class="nav-number">10.</span> <span class="nav-text">0x06 fckeditor编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一：如果是iis6-0，上传两次-1-asp-jpg-或者1-asp-1-jpg-或者创建x-asp目录，再在这个目录下上传x-jpg-或者直接上传1-asp-jpg-都可以完美解析拿下shell"><span class="nav-number">10.0.1.</span> <span class="nav-text">一：如果是iis6.0，上传两次 1.asp;.jpg 或者1.asp;1.jpg 或者创建x.asp目录，再在这个目录下上传x.jpg 或者直接上传1.asp;jpg 都可以完美解析拿下shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二：第一次上传1-asp-1-jpg，被重命名为：1-asp-1-jpg，但是第二次上传1-asp-1-jpg，就有可能变成：1-asp-1-1-jpg"><span class="nav-number">10.0.2.</span> <span class="nav-text">二：第一次上传1.asp;1.jpg，被重命名为：1_asp;1.jpg，但是第二次上传1.asp;1.jpg，就有可能变成：1.asp;1(1).jpg</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三：iis7-5-fck的解析文件为：a-aspx-a-a-aspx-jpg-jpg-aspx"><span class="nav-number">10.0.3.</span> <span class="nav-text">三：iis7.5+fck的解析文件为：a.aspx.a;.a.aspx.jpg..jpg.aspx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四：如果不是iis6-0-上传1-asp-jpg然后抓包，接下来改包，将分号变成空格，再用c32把20改成00，保存，利用-00-截断分号两次"><span class="nav-number">10.0.4.</span> <span class="nav-text">四：如果不是iis6.0 上传1.asp;jpg然后抓包，接下来改包，将分号变成空格，再用c32把20改成00，保存，利用%00 截断分号两次</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五：成功访问别人的一句话木马页面，http-glavesoft-com-UploadFiles-EditorFile-file-2-asp-2-1-jpg-但不知道密码"><span class="nav-number">10.0.5.</span> <span class="nav-text">五：成功访问别人的一句话木马页面，http://glavesoft.com/UploadFiles\EditorFile\file/2.asp;2(1).jpg  但不知道密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六：IIS7-0-7-5-通杀oday，把php一句话木马后缀改成1-jpg传上去，找出一句话的路径后，在1-jpg的后面添加-php-例如：-php"><span class="nav-number">10.0.6.</span> <span class="nav-text">六：IIS7.0/7.5 通杀oday，把php一句话木马后缀改成1.jpg传上去，找出一句话的路径后，在1.jpg的后面添加/.php  例如：/.php</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ih0cker</span>
 </div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
 
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
 
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
+        
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
 <script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>
