@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="web安全" />
 
 
 
@@ -105,7 +105,7 @@
     motion: true,
     duoshuo: {
       userId: 0,
-      author: 'Author'
+      author: '博主'
     }
   };
 </script>
@@ -118,7 +118,7 @@
   <title> 小峰's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            首页
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            归档
           </a>
         </li>
       
@@ -195,7 +195,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -251,7 +261,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-29T07:58:16+08:00" content="2016-07-29">
               2016-07-29
             </time>
@@ -294,7 +304,7 @@
 <h2 id="0x02-LCX转发"><a href="#0x02-LCX转发" class="headerlink" title="0x02 LCX转发"></a>0x02 LCX转发</h2>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/29/29/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -357,7 +367,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-28T17:32:56+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -461,7 +471,7 @@ echo &gt; /var/log/lastlog
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-28T17:30:36+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -495,7 +505,7 @@ echo &gt; /var/log/lastlog
 <h2 id="0x01目录结构简要"><a href="#0x01目录结构简要" class="headerlink" title="0x01目录结构简要"></a>0x01目录结构简要</h2><p>一般来说，从github下载并且解压sqlmap 后，所有文件或者文件夹的数目加起来总共24个，部分目录和结构属于典型的github 项目结构，但是本文依然会做出简单的介绍，方便读者全面理解。<br>.Git —&gt;&gt;&gt;这个是git的代码管理仓库，基本上每个github项目都会有这个文件夹，记录了文件上传更改等版本信息。<br>.gitattributes—&gt;&gt;&gt;这个是git的属性文件，例如何种编程语言、具体文件类型等。<br>.gitignore—&gt;&gt;&gt;这个是git的忽略文件，例如忽略某些文件，不把这些文件上传到git仓库中。<br>.travis.yml—&gt;&gt;&gt;这个标记了Python的版本和设置sqlmap的脚本。<br>doc/ —-&gt;&gt;&gt;该文件夹包含了sqlmap 的具体使用说明，例如多种语言的简要说明、PDF版的详细说明、FAQ、作者信息等。<br>extra/  —&gt;&gt;&gt;这里包含了sqlmap的多种额外功能，例如发出声响（beep)、运行cmd、安全执行、shellcode等。<br>lib/   —&gt;&gt;&gt;这里包含了sqlmap的多种连接库，如五种注入类型请求的参数、提权操作等。<br>plugins/  —&gt;&gt;&gt;这里包含了各种数据库的信息和数据库通用事项。<br>procs/    —&gt;&gt;&gt; 这里包含了mssqlserver、 MySQL、oracle和postgresql的触发程序<br>shell/    —&gt;&gt;&gt;这里包含了多种注入成功后的9种shell 远程连接命令执行和管理数据库<br>tamper/       —&gt;&gt;&gt;这里包含了47种的绕过脚本，例如编码绕过、注释绕过等。<br>thirdparty/  —&gt;&gt;&gt;这里包含了一些其他第三方的插件，例如优化、保持连接、颜色等。<br>txt/        —&gt;&gt;&gt;这里包含了一些字典，例如用户浏览器代理、表、列、关键词等。<br>udf/  —&gt;&gt;&gt;这里包含了用户自己定义的攻击载荷。<br>waf/ —&gt;&gt;&gt;&gt;这里包含了一些44种常见的防火墙特征。<br>xml/ —&gt;&gt;&gt;这里包含了多种数据库的注入检测载荷、旗标信息以及其他信息。在这里可以看到进行注入的。<br>README.md—&gt;&gt;&gt;说明文件，简要地指导我们下载、安装和使用sqlmap，里面有多种语言版本(中文)的安装下载使用介绍说明。<br>sqlmap.conf  —&gt;&gt;&gt;&gt; sqlmap的配置文件，如各种默认参数（默认是没有设置参数、可设置默认参数进行批量或者自动化检测）。<br>sqlmap.py<em>  —&gt;&gt;&gt;&gt; 这是sqlmap 的主程序，可以调用各种参数进行注入任务。<br>sqlmapapi.py</em>  —&gt;&gt;&gt;&gt;  这是sqlmap 的api 文件，可以将sqlmap集成到其他平台上。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/28/27/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -558,7 +568,7 @@ echo &gt; /var/log/lastlog
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-28T17:28:40+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -592,7 +602,7 @@ echo &gt; /var/log/lastlog
 <h2 id="2、Spider-抓取"><a href="#2、Spider-抓取" class="headerlink" title="2、Spider(抓取)"></a>2、Spider(抓取)</h2><p>Burp Spider用来映射Web应用程序.它会自动抓去Web应用程序的链接,提交它发现的所有登陆表单,从而详细的分析整个应用程序.这些链接会传递给Burp Scanner,进行详细的扫描.在这种情况下,我们将使用上DVWA(Damn Vulnerable Web Application).只是需要DVMA使用你的浏览器，确保Burp Suite上的inerrcept is on,并且得到Brup截取的请求,右键单击拦截的请求，选择”Send to Spider”发送给蜘蛛.<br>接下来会弹出一个警告弹窗让我们”add item to scope(添加项目到作用域)”.点击”Yes”.一个范围将在我们运行的测试目标上定义好.<br>我们能够在site map–&gt;target标签看到一个url已经添加进作用域.我们也能看到一些其它的目标已经在目标列表中添加好了.Burp会自动使用代理浏览我们定义好的目标网页.我们可以使用单击右键–&gt;”add item to scope(添加项目到作用域)”添加任何项目到我们的作用域.<br>进入Scope标签,我们能够看到DVWA应用已经添加到作用域.<br>接下来我们进入Spider标签,点击”options(选项)”,我们可以设置各种选项当运行Burp检测应用程序的时候.我没有可以让Burp检查robotx.txt文件(check for the robots.txt)，它会尝试抓去网站管理员不允许搜索引擎索引的目录.另外一个重要的选项是”passively spider as you browse(被动蜘蛛浏览)”。基本上Burp Spider可以以被动和主动模式运行,选择这个就要求Burp Spider保持新的内容和链接进行扫描,因为我们浏览应用程序的时候使用了Burp proxy。<br>另外一个重要的选项是”application login(应用程序登陆)”.一旦Burp Spider提交一个登陆表单的时候就开始爬行(抓取).它可以自动提交我们提供给它的证书.我们同样可以设置admin/password凭证,设置好之后,他们会做为DVWA中的凭证.因此Burp Spider可以自动提交那些信息凭证,并且保持爬行抓取的状态希望能够获得更多的新的信息.你也可以在thread(线程)项来修改线程数.<br>需要开始爬行抓去Web应用程序,只需要右键点击目标展开目标.然后在展开的dvwa项上单击鼠标右键选择”Spider this brach”<br>这样就会启动Burp Spider，在Spider control标签下我们会看到正在做出的请求,我们也可以为Burp Spider自定义一个范围.<br>一旦运行完成之后，我们在dvwa分支上会看到很多新的URL,这些URL为我们提供了很多有关Web信用程序的信息.然后我们就可以发送这些链接给Burp Scanner来进行漏洞扫描.Burp Scanner只有在专业版上才有这个功能.</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/28/26/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -655,7 +665,7 @@ echo &gt; /var/log/lastlog
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-28T17:26:14+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -691,7 +701,7 @@ echo &gt; /var/log/lastlog
 <h2 id="0x03-业务数据篡改"><a href="#0x03-业务数据篡改" class="headerlink" title="0x03 业务数据篡改"></a>0x03 业务数据篡改</h2><p>1，金额数据篡改<br>抓包修改金额等字段，比如在支付页面抓取请求中商品的金额字段，修改成任意数额的金额并提交，查看能否以修改后的金额数据完成业务流程。<br>2，商品数量篡改<br>抓包修改商品数量等字段，将请求中的商品数量修改成任意数额，如负数并提交，查看能否以修改后的数量完成业务流程。<br>3，最大数限制突破<br>很多商品限制用户购买数量时，服务器仅在页面通过js脚本限制，未在服务器端校验用户提交的数量，通过抓包修改商品最大数限制，将请求中的商品数量改为大于最大数限制的值，查看能否以修改后的数量完成业务流程。<br>4，本地js参数修改<br>部分应用程序通过Javascript处理用户提交的请求，通过修改Javascript脚本，测试修改后的数据是否影响到用户。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/28/25/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -754,7 +764,7 @@ echo &gt; /var/log/lastlog
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-28T17:25:06+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -803,7 +813,7 @@ and (select IS_MEMBER(‘public’))=1–  //public
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/28/24/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -866,7 +876,7 @@ and (select IS_MEMBER(‘public’))=1–  //public
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-27T11:16:31+08:00" content="2016-07-27">
               2016-07-27
             </time>
@@ -909,7 +919,7 @@ and (select IS_MEMBER(‘public’))=1–  //public
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/27/23/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -972,7 +982,7 @@ and (select IS_MEMBER(‘public’))=1–  //public
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-27T08:36:11+08:00" content="2016-07-27">
               2016-07-27
             </time>
@@ -1036,7 +1046,7 @@ or
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/27/22/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1099,7 +1109,7 @@ or
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-27T08:36:04+08:00" content="2016-07-27">
               2016-07-27
             </time>
@@ -1145,7 +1155,7 @@ ms.ExecuteStatement(&quot;ev&quot;&amp;&quot;al(request(&quot;&quot;1&quot;&quot
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/27/21/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1208,7 +1218,7 @@ ms.ExecuteStatement(&quot;ev&quot;&amp;&quot;al(request(&quot;&quot;1&quot;&quot
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-07-27T08:35:49+08:00" content="2016-07-27">
               2016-07-27
             </time>
@@ -1253,7 +1263,7 @@ ms.ExecuteStatement(&quot;ev&quot;&amp;&quot;al(request(&quot;&quot;1&quot;&quot
 <h4 id="Nginx在图片中嵌入PHP代码然后通过访问-xxx-jpg-00-php-来执行其中的代码"><a href="#Nginx在图片中嵌入PHP代码然后通过访问-xxx-jpg-00-php-来执行其中的代码" class="headerlink" title="Nginx在图片中嵌入PHP代码然后通过访问  xxx.jpg%00.php 来执行其中的代码"></a>Nginx在图片中嵌入PHP代码然后通过访问  xxx.jpg%00.php 来执行其中的代码</h4><h2 id="四、Apache解析漏洞"><a href="#四、Apache解析漏洞" class="headerlink" title="四、Apache解析漏洞"></a>四、Apache解析漏洞</h2><h4 id="Apache-是从右到左开始判断解析-如果为不可识别解析-就再往左判断-比如-sec-php-owf-rar-“-owf”和”-rar”-这两种后缀是apache不可识别解析-apache就会把sec-php-owf-rar解析成php-如何判断是不是合法的后缀就是这个漏洞的利用关键-测试时可以尝试上传一个sec-php-rara-jpg-png…（把你知道的常见后缀都写上…）去测试是否是合法后缀"><a href="#Apache-是从右到左开始判断解析-如果为不可识别解析-就再往左判断-比如-sec-php-owf-rar-“-owf”和”-rar”-这两种后缀是apache不可识别解析-apache就会把sec-php-owf-rar解析成php-如何判断是不是合法的后缀就是这个漏洞的利用关键-测试时可以尝试上传一个sec-php-rara-jpg-png…（把你知道的常见后缀都写上…）去测试是否是合法后缀" class="headerlink" title="Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.比如 sec.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把sec.php.owf.rar解析成php.如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个sec.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀"></a>Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.比如 sec.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把sec.php.owf.rar解析成php.如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个sec.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀</h4>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/27/20/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1328,7 +1338,7 @@ ms.ExecuteStatement(&quot;ev&quot;&amp;&quot;al(request(&quot;&quot;1&quot;&quot
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
@@ -1338,7 +1348,7 @@ ms.ExecuteStatement(&quot;ev&quot;&amp;&quot;al(request(&quot;&quot;1&quot;&quot
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">标签</span>
               </a>
             </div>
           
@@ -1420,11 +1430,11 @@ ms.ExecuteStatement(&quot;ev&quot;&amp;&quot;al(request(&quot;&quot;1&quot;&quot
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Pisces
   </a>

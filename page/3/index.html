@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="web安全" />
 
 
 
@@ -105,7 +105,7 @@
     motion: true,
     duoshuo: {
       userId: 0,
-      author: 'Author'
+      author: '博主'
     }
   };
 </script>
@@ -118,7 +118,7 @@
   <title> 小峰's Blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zn-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            首页
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            归档
           </a>
         </li>
       
@@ -195,7 +195,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -251,7 +261,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-05-05T17:24:05+08:00" content="2016-05-05">
               2016-05-05
             </time>
@@ -288,7 +298,7 @@
 <p>人生有几十年，但如大学这般美好的四年逝去很难再来。如果再让我选择一次，我不会为了所谓的未来，纯粹的去消磨我的大学时光。人固有目标和志向，但更重要的是活在当下的情怀与梦想。青春不应该在等待和期待中度过，未来我们将有很长一部分精力都在事业和家庭身上，如今就抓紧时间去做想做的事情，去追求那些让别人嘲笑你的梦想。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/05/55/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -351,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-04-20T10:51:27+08:00" content="2016-04-20">
               2016-04-20
             </time>
@@ -387,7 +397,7 @@
 </strong>set和__get<br>静态成员<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/20/9/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -450,7 +460,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-04-20T10:05:55+08:00" content="2016-04-20">
               2016-04-20
             </time>
@@ -492,7 +502,7 @@ tgtPort = options.tgtPort
 </code></pre><h4 id="第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"><a href="#第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。" class="headerlink" title="第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"></a>第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。</h4><h4 id="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："><a href="#由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：" class="headerlink" title="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："></a>由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：</h4>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/20/8/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -555,7 +565,7 @@ tgtPort = options.tgtPort
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-04-20T09:29:47+08:00" content="2016-04-20">
               2016-04-20
             </time>
@@ -607,7 +617,7 @@ m-n位的数字：^\d{m,n}$
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/20/4/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -670,7 +680,7 @@ m-n位的数字：^\d{m,n}$
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-04-20T09:02:56+08:00" content="2016-04-20">
               2016-04-20
             </time>
@@ -723,7 +733,7 @@ s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/20/3/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -786,7 +796,7 @@ s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-04-16T09:30:56+08:00" content="2016-04-16">
               2016-04-16
             </time>
@@ -827,7 +837,7 @@ nmp install
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/16/6/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -890,7 +900,7 @@ nmp install
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-04-15T15:28:04+08:00" content="2016-04-15">
               2016-04-15
             </time>
@@ -925,7 +935,7 @@ nmp install
 <p>  我是一个即将毕业的大学生，“如何创造财富”这张对我的影响很大，技术人有必要建立起对财富的价值观。说到钱，估计是很多人不愿意提的话题，或许是碍于面子吧。但是又是看到很多技术牛人都在谈论股票，谁让我们生活在这个糟糕的时代呢？很少有人能说清楚财富和技术的关系，还好有这本书。金钱只是财富的一种表达方式，但财富不等于金钱，不止是房子与车子。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/15/5/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -988,7 +998,7 @@ nmp install
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-04-15T08:19:45+08:00" content="2016-04-15">
               2016-04-15
             </time>
@@ -1023,7 +1033,7 @@ nmp install
 <p>   此外，他在成为湖人五冠王的同时，还拿到了包括得分王在内的8项队史第一，可以这样讲，他就是紫金军历史头号球星。对于联盟，科比NBA生涯15次入选最佳阵容，历史第一；12次进入最佳防守阵容，NBA历史中仅次于邓肯（15次）。科比还2次成为赛季得分王，他在2005-06赛季场均35分领跑全联盟，这是1987年至今NBA球员单赛季场均最高分。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/15/7/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1086,7 +1096,7 @@ nmp install
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-04-14T15:20:39+08:00" content="2016-04-14">
               2016-04-14
             </time>
@@ -1137,7 +1147,7 @@ nmp install
 </code></pre>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/14/1/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1200,7 +1210,7 @@ nmp install
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-04-13T22:55:22+08:00" content="2016-04-13">
               2016-04-13
             </time>
@@ -1237,7 +1247,7 @@ nmp install
 </code></pre><p>   /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes,IPADDR,NETMASK,GATEWAY等）<br>   /etc/resolv.conf ：设置DNS服务器<br>   service network start|restart|stop ：重启网卡<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/13/2/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1312,7 +1322,7 @@ nmp install
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">30</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
@@ -1322,7 +1332,7 @@ nmp install
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">标签</span>
               </a>
             </div>
           
@@ -1404,11 +1414,11 @@ nmp install
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Pisces
   </a>
