@@ -84,34 +84,16 @@
 
 
 
-<meta name="description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。编辑器漏洞总结
-常见编辑器：
-
-ewebeditorSouthidcEditorfckeditorCuteEditorfreetextbox
-0x01 ewebeditor编辑器：默认后台:
-http://127.0.0.1/ewebeditor/admin_login.asp
-http://127.0.0.1/ew">
+<meta name="description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件上传总结【一】">
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/07/27/19/index.html">
 <meta property="og:site_name" content="小峰's Blog">
-<meta property="og:description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。编辑器漏洞总结
-常见编辑器：
-
-ewebeditorSouthidcEditorfckeditorCuteEditorfreetextbox
-0x01 ewebeditor编辑器：默认后台:
-http://127.0.0.1/ewebeditor/admin_login.asp
-http://127.0.0.1/ew">
-<meta property="og:updated_time" content="2016-07-27T03:11:59.056Z">
+<meta property="og:description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。">
+<meta property="og:updated_time" content="2016-07-30T11:28:22.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件上传总结【一】">
-<meta name="twitter:description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。编辑器漏洞总结
-常见编辑器：
-
-ewebeditorSouthidcEditorfckeditorCuteEditorfreetextbox
-0x01 ewebeditor编辑器：默认后台:
-http://127.0.0.1/ewebeditor/admin_login.asp
-http://127.0.0.1/ew">
+<meta name="twitter:description" content="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。">
 
 
 
@@ -275,7 +257,7 @@ http://127.0.0.1/ew">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-27T08:35:38+08:00" content="2016-07-27">
               2016-07-27
             </time>
@@ -304,7 +286,8 @@ http://127.0.0.1/ew">
       
 
       
-        <h3 id="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"><a href="#对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。" class="headerlink" title="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"></a>对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。</h3><h2 id="编辑器漏洞总结"><a href="#编辑器漏洞总结" class="headerlink" title="编辑器漏洞总结"></a>编辑器漏洞总结</h2><ul>
+        <h3 id="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"><a href="#对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。" class="headerlink" title="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"></a>对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。</h3><a id="more"></a> 
+<h2 id="编辑器漏洞总结"><a href="#编辑器漏洞总结" class="headerlink" title="编辑器漏洞总结"></a>编辑器漏洞总结</h2><ul>
 <li>常见编辑器：</li>
 </ul>
 <p>ewebeditor<br>SouthidcEditor<br>fckeditor<br>CuteEditor<br>freetextbox</p>
@@ -327,7 +310,6 @@ http://127.0.0.1/ewebeditor/db/%23ewebeditor.mdb
 <li>可点击样式管理</li>
 </ul>
 <p>standard 拷贝一份(直接修改改不了名字可以随便)<br>在拷贝的一份里加入图片类型( asa cer aaspsp )，然后点预览，在编辑器里点设计，然后直接上传asa大马，上传后，右键查看源代码就可以看到OO的位置!<br>(原理:因为在iis里 网站的属性里 应用程序配置一项   asa扩展名还是用asp.dll来解析的,asp也是,还有cer/cdx)</p>
-<a id="more"></a> 
 <h4 id="net-ewebeditor-漏洞利用"><a href="#net-ewebeditor-漏洞利用" class="headerlink" title=".net ewebeditor 漏洞利用"></a>.net ewebeditor 漏洞利用</h4><p>默认上传地址:</p>
 <pre><code>http://127.0.0.1/ewebeditor/upload.aspx
 </code></pre><p>直接上传一个cer的木马，在无法上传的情况下，可以地址栏构造以下代码:   </p>
@@ -482,7 +464,7 @@ editor/FCKeditor/editor/filemanager/connectors/asp/connector.asp?Command=CreateF
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -565,6 +547,40 @@ editor/FCKeditor/editor/filemanager/connectors/asp/connector.asp?Command=CreateF
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -602,13 +618,13 @@ editor/FCKeditor/editor/filemanager/connectors/asp/connector.asp?Command=CreateF
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

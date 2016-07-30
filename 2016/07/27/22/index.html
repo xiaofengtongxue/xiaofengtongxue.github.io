@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数1.freadstring fread ( int $handle , int $length )
-　　fread() 从 handle 指向的文件中读取最多 length 个字节。该函数在读取完最多 length 个字节数，或到达 EOF 的时候，或（对于网络流）当一">
+<meta name="description" content="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数1.freadstring fread ( int $handle , int $length )">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP读文件的常用方法">
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/07/27/22/index.html">
 <meta property="og:site_name" content="小峰's Blog">
-<meta property="og:description" content="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数1.freadstring fread ( int $handle , int $length )
-　　fread() 从 handle 指向的文件中读取最多 length 个字节。该函数在读取完最多 length 个字节数，或到达 EOF 的时候，或（对于网络流）当一">
-<meta property="og:updated_time" content="2016-07-27T03:12:01.759Z">
+<meta property="og:description" content="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数1.freadstring fread ( int $handle , int $length )">
+<meta property="og:updated_time" content="2016-07-30T11:31:00.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP读文件的常用方法">
-<meta name="twitter:description" content="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数1.freadstring fread ( int $handle , int $length )
-　　fread() 从 handle 指向的文件中读取最多 length 个字节。该函数在读取完最多 length 个字节数，或到达 EOF 的时候，或（对于网络流）当一">
+<meta name="twitter:description" content="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数1.freadstring fread ( int $handle , int $length )">
 
 
 
@@ -260,7 +257,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-27T08:36:11+08:00" content="2016-07-27">
               2016-07-27
             </time>
@@ -290,7 +287,7 @@
 
       
         <h3 id="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数"><a href="#php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数" class="headerlink" title="php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数"></a>php任意文件下载漏洞做代码审计的时候，遇到几个文件读取的函数，不是很明白，就查了一下手册，总结一些PHP读取文件的几个常用的函数</h3><h2 id="1-fread"><a href="#1-fread" class="headerlink" title="1.fread"></a>1.fread</h2><pre><code>string fread ( int $handle , int $length )
-</code></pre><p>　　<br>fread() 从 handle 指向的文件中读取最多 length 个字节。该函数在读取完最多 length 个字节数，或到达 EOF 的时候，或（对于网络流）当一个包可用时，或（在打开用户空间流之后）已读取了 8192 个字节时就会停止读取文件，视乎先碰到哪种情况。<br>　　fread() 返回所读取的字符串，如果出错返回 FALSE。</p>
+</code></pre><p><a id="more"></a> 　　<br>fread() 从 handle 指向的文件中读取最多 length 个字节。该函数在读取完最多 length 个字节数，或到达 EOF 的时候，或（对于网络流）当一个包可用时，或（在打开用户空间流之后）已读取了 8192 个字节时就会停止读取文件，视乎先碰到哪种情况。<br>　　fread() 返回所读取的字符串，如果出错返回 FALSE。</p>
 <pre><code>&lt;?php
    $filename = &quot;/usr/local/something.txt&quot;;
    $handle = fopen($filename, &quot;r&quot;);//读取二进制文件时，需要将第二个参数设置成&apos;rb&apos;
@@ -320,8 +317,7 @@ or
    echo $content;
    fclose($handle);
 ?&gt;
-</code></pre><a id="more"></a> 
-<h2 id="2-fgets"><a href="#2-fgets" class="headerlink" title="2.fgets"></a>2.fgets</h2><pre><code>string fgets ( int $handle [, int $length ] )
+</code></pre><h2 id="2-fgets"><a href="#2-fgets" class="headerlink" title="2.fgets"></a>2.fgets</h2><pre><code>string fgets ( int $handle [, int $length ] )
 </code></pre><p>　　<br>fgets()从 handle 指向的文件中读取一行并返回长度最多为 length - 1 字节的字符串。碰到换行符（包括在返回值中）、EOF 或者已经读取了 length - 1 字节后停止（看先碰到那一种情况）。如果没有指定 length，则默认为 1K，或者说 1024 字节。</p>
 <pre><code>&lt;?php
    $handle = fopen(&apos;./file.txt&apos;, &apos;r&apos;);
@@ -535,7 +531,7 @@ URL = &quot;http://www.example.com/~username
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -618,6 +614,40 @@ URL = &quot;http://www.example.com/~username
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -655,13 +685,13 @@ URL = &quot;http://www.example.com/~username
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

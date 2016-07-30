@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等1）没有对上传文件的类型做检测2）没有对上传文件的大小和数量做检测3）没有对上传文件的扩展名做检测4）使用上传的文件名作为最终存储的文件名5）服务器端缺乏相应的">
+<meta name="description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件上传漏洞初探">
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/06/26/14/index.html">
 <meta property="og:site_name" content="小峰's Blog">
-<meta property="og:description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等1）没有对上传文件的类型做检测2）没有对上传文件的大小和数量做检测3）没有对上传文件的扩展名做检测4）使用上传的文件名作为最终存储的文件名5）服务器端缺乏相应的">
-<meta property="og:updated_time" content="2016-07-29T12:03:11.217Z">
+<meta property="og:description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等">
+<meta property="og:updated_time" content="2016-07-30T11:29:26.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件上传漏洞初探">
-<meta name="twitter:description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等1）没有对上传文件的类型做检测2）没有对上传文件的大小和数量做检测3）没有对上传文件的扩展名做检测4）使用上传的文件名作为最终存储的文件名5）服务器端缺乏相应的">
+<meta name="twitter:description" content="0x00 web上传漏洞原理JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等">
 
 
 
@@ -257,7 +257,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-06-26T17:53:40+08:00" content="2016-06-26">
               2016-06-26
             </time>
@@ -286,7 +286,7 @@
       
 
       
-        <h2 id="0x00-web上传漏洞原理"><a href="#0x00-web上传漏洞原理" class="headerlink" title="0x00 web上传漏洞原理"></a>0x00 web上传漏洞原理</h2><p>JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等<br>1）没有对上传文件的类型做检测<br>2）没有对上传文件的大小和数量做检测<br>3）没有对上传文件的扩展名做检测<br>4）使用上传的文件名作为最终存储的文件名<br>5）服务器端缺乏相应的安全配置，给予上传目录执行权限等<br>6）Apache、MySQL等服务器组件没有对用户账号的权限进行限制<br>7）Apache、MySQL等服务器组件没有及时升级</p>
+        <h2 id="0x00-web上传漏洞原理"><a href="#0x00-web上传漏洞原理" class="headerlink" title="0x00 web上传漏洞原理"></a>0x00 web上传漏洞原理</h2><p>JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等<br><a id="more"></a><br>1）没有对上传文件的类型做检测<br>2）没有对上传文件的大小和数量做检测<br>3）没有对上传文件的扩展名做检测<br>4）使用上传的文件名作为最终存储的文件名<br>5）服务器端缺乏相应的安全配置，给予上传目录执行权限等<br>6）Apache、MySQL等服务器组件没有对用户账号的权限进行限制<br>7）Apache、MySQL等服务器组件没有及时升级</p>
 <h2 id="0x01-上传流程"><a href="#0x01-上传流程" class="headerlink" title="0x01 上传流程"></a>0x01 上传流程</h2><p>文字图示：<br>PC主机(javascript检测) —-&gt; http POST请求 —-&gt; 服务器(MIME、目录路径、文件扩展名、文件内容等检测)<br>服务器端检测：<br>A 客户端 javascript 检测 (通常为检测文件扩展名)<br>B 服务端 MIME 类型检测 (检测 Content-Type 内容)<br>C 服务端目录路径检测 (检测跟 path 参数相关的内容)<br>D 服务端文件扩展名检测 (检测跟文件 extension 相关的内容)<br>E 服务端文件内容检测 (检测内容是否合法或含有恶意代码)<br>文件上传流程：<br>①文件以http协议上传，将以 POST 请求发送至 web 服务器<br>②web 服务器接收到请求后并同意后，用户与 web 服务器将建立连接，并传输数据。</p>
 <h3 id="A-客户端端验证绕过-javascript-扩展名检测"><a href="#A-客户端端验证绕过-javascript-扩展名检测" class="headerlink" title="A 客户端端验证绕过(javascript 扩展名检测)"></a>A 客户端端验证绕过(javascript 扩展名检测)</h3><p>  用反向代理工具(burp 之类)或禁用 js 便可以绕过客户端端验证</p>
 <h3 id="B-服务端验证绕过-http-request-包检测"><a href="#B-服务端验证绕过-http-request-包检测" class="headerlink" title="B 服务端验证绕过(http request 包检测)"></a>B 服务端验证绕过(http request 包检测)</h3><ul>
@@ -309,7 +309,6 @@ echo  &quot;File g uploading  failed.\n&quot;;
 ?&gt;
 </code></pre></li>
 </ul>
-<a id="more"></a>
 <h3 id="C-服务端验证绕过-扩展名检测"><a href="#C-服务端验证绕过-扩展名检测" class="headerlink" title="C 服务端验证绕过(扩展名检测)"></a>C 服务端验证绕过(扩展名检测)</h3><ul>
 <li><p>黑名单检测<br> 找黑名单扩展名的漏网之鱼 - 比如上面就漏掉了 asa 和 cer 之类<br> 可能存在大小写绕过漏洞 - 比如 aSp 和 pHp 之类</p>
 <pre><code>&lt;!-- 过滤的缺陷 --&gt;
@@ -470,7 +469,7 @@ unlink(&apos;upload/&apos;.$FILES[&apos;up_file&apos;][&apos;name&apos;]);
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -553,6 +552,40 @@ unlink(&apos;upload/&apos;.$FILES[&apos;up_file&apos;][&apos;name&apos;]);
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -590,13 +623,13 @@ unlink(&apos;upload/&apos;.$FILES[&apos;up_file&apos;][&apos;name&apos;]);
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="自己学习Linux基础：   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。
-下面是几条常用到的命令：00x1：手动临时配置
-   Ifconfig eth0 up/down ：开启/关闭 eth0网卡   Ifconfig eth0 192.168.1.110 （netmask 255.2">
+<meta name="description" content="自己学习Linux基础：   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux基础操作">
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/04/13/2/index.html">
 <meta property="og:site_name" content="小峰's Blog">
-<meta property="og:description" content="自己学习Linux基础：   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。
-下面是几条常用到的命令：00x1：手动临时配置
-   Ifconfig eth0 up/down ：开启/关闭 eth0网卡   Ifconfig eth0 192.168.1.110 （netmask 255.2">
-<meta property="og:updated_time" content="2016-07-29T13:23:58.330Z">
+<meta property="og:description" content="自己学习Linux基础：   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。">
+<meta property="og:updated_time" content="2016-07-30T11:26:57.672Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux基础操作">
-<meta name="twitter:description" content="自己学习Linux基础：   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。
-下面是几条常用到的命令：00x1：手动临时配置
-   Ifconfig eth0 up/down ：开启/关闭 eth0网卡   Ifconfig eth0 192.168.1.110 （netmask 255.2">
+<meta name="twitter:description" content="自己学习Linux基础：   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。">
 
 
 
@@ -263,7 +257,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-04-13T22:55:22+08:00" content="2016-04-13">
               2016-04-13
             </time>
@@ -292,11 +286,11 @@
       
 
       
-        <h2 id="自己学习Linux基础："><a href="#自己学习Linux基础：" class="headerlink" title="自己学习Linux基础："></a>自己学习Linux基础：</h2><p>   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。</p>
+        <h2 id="自己学习Linux基础："><a href="#自己学习Linux基础：" class="headerlink" title="自己学习Linux基础："></a>自己学习Linux基础：</h2><p>   我给自己虚拟机上安装CentOs（玩软件的，都玩过虚拟机吧！），首先是配置IP，DNS，通过Xshell连接虚拟机(开启ssh服务)，创建用户设置权限等。<br><a id="more"></a></p>
 <h3 id="下面是几条常用到的命令："><a href="#下面是几条常用到的命令：" class="headerlink" title="下面是几条常用到的命令："></a>下面是几条常用到的命令：</h3><pre><code>00x1：手动临时配置
 </code></pre><p>   Ifconfig eth0 up/down ：开启/关闭 eth0网卡<br>   Ifconfig eth0 192.168.1.110 （netmask 255.255.255.0）：设置eth0网卡的IP地址（此时设置的IP是临时的，重启消失）<br>   Ifconfig：查看与设置IP地址，子网掩码<br>   route add/del default gw 192.168.1.2 ：设置默认网关为192.168.1.2</p>
 <pre><code>00x2：文件写入永久配置
-</code></pre><p>   /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes,IPADDR,NETMASK,GATEWAY等）<br>   /etc/resolv.conf ：设置DNS服务器<br>   service network start|restart|stop ：重启网卡<br><a id="more"></a><br>    00x3：安装一些基础软件包<br>   安装MySQL命令：yum –y install mysql-server<br>   开机自启：chkonfig mysql on<br>   安装Apache命令：yum install httpd<br>   开机自启：chkconfig –levevs 235 httpd on<br>   安装Php命令：yum –y inastall php<br>   目录：/var/wwww/<br>   phpMyadmin目录：/usr/share/phpMyAdmin<br>   Apache配置：/etc/httpd/conf.d/php.conf</p>
+</code></pre><p>   /etc/sysconfig/network-scripts/ifcfg-eth0/eth1 （此文件中添加ONBOOT=yes,IPADDR,NETMASK,GATEWAY等）<br>   /etc/resolv.conf ：设置DNS服务器<br>   service network start|restart|stop ：重启网卡<br>    00x3：安装一些基础软件包<br>   安装MySQL命令：yum –y install mysql-server<br>   开机自启：chkonfig mysql on<br>   安装Apache命令：yum install httpd<br>   开机自启：chkconfig –levevs 235 httpd on<br>   安装Php命令：yum –y inastall php<br>   目录：/var/wwww/<br>   phpMyadmin目录：/usr/share/phpMyAdmin<br>   Apache配置：/etc/httpd/conf.d/php.conf</p>
 <h2 id="虚拟机挂载硬盘："><a href="#虚拟机挂载硬盘：" class="headerlink" title="虚拟机挂载硬盘："></a>虚拟机挂载硬盘：</h2><h3 id="感觉这个不是非常重要，但是要会的…"><a href="#感觉这个不是非常重要，但是要会的…" class="headerlink" title="感觉这个不是非常重要，但是要会的…"></a>感觉这个不是非常重要，但是要会的…</h3><pre><code>00x1：手动临时挂硬盘
 </code></pre><p>   首先在虚拟机虚拟网卡上添加一块硬盘，然后重启虚拟机，运行fdisk –l 查看虚拟机主机硬盘的分区情况（如果之前是虚拟机安装的是一块硬盘，就会发现会多出一条信息，Disk: /dev/sdb 存在未分区的情况），然后就需要进行分区操作：<br>   fdisk /dev/sdb  机会让你选择对该硬盘进行操作 m（帮助） n（新建一块分区） d（删去硬盘上分区） w（将分区写在硬盘上 前提是已经将硬盘分好区了）<br>   再次运行上面命令发现硬盘已经分区了，df –lh 看到硬盘并没有挂在到任何目录下，这是肯定的，因为还没有对硬盘进行挂载<br>   挂载命令：<br>   mkfs.ext3 /dev/sdb1  是对刚分好的区进行格式化<br>   mount –t ext3 –o rw /dev/sdb1 /home/fans  该命令是将/dev/sdb1硬盘挂载到/home/fans目录下（前提是在/home/下已经创建过fans目录，cd到该目录，命令mkdir 文件 进行创建）</p>
 <pre><code>00x2：永久性挂载硬盘
@@ -408,7 +402,7 @@
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -491,6 +485,40 @@
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -528,13 +556,13 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

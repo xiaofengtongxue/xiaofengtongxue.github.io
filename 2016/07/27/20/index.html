@@ -84,34 +84,16 @@
 
 
 
-<meta name="description" content="一、IIS 5.x/6.0解析漏洞IIS 6.0解析利用方法有两种
-1.目录解析  /xx.asp/xx.jpg
-
-2.文件解析  sp.asp;.jpg
-
-
-第一种，在网站下建立文件夹的名字为 .asp、.asa的文件夹，其目录内的任何扩展名的文件都被IIS当作asp文件来解析并执行。例如创建目录 sp.asp，那么/sp.asp/1.jpg将被当作asp文件来执行。假设黑阔可以控制上传文件夹路">
+<meta name="description" content="一、IIS 5.x/6.0解析漏洞IIS 6.0解析利用方法有两种">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件上传总结【二】">
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/07/27/20/index.html">
 <meta property="og:site_name" content="小峰's Blog">
-<meta property="og:description" content="一、IIS 5.x/6.0解析漏洞IIS 6.0解析利用方法有两种
-1.目录解析  /xx.asp/xx.jpg
-
-2.文件解析  sp.asp;.jpg
-
-
-第一种，在网站下建立文件夹的名字为 .asp、.asa的文件夹，其目录内的任何扩展名的文件都被IIS当作asp文件来解析并执行。例如创建目录 sp.asp，那么/sp.asp/1.jpg将被当作asp文件来执行。假设黑阔可以控制上传文件夹路">
-<meta property="og:updated_time" content="2016-07-27T03:12:00.207Z">
+<meta property="og:description" content="一、IIS 5.x/6.0解析漏洞IIS 6.0解析利用方法有两种">
+<meta property="og:updated_time" content="2016-07-30T11:28:42.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件上传总结【二】">
-<meta name="twitter:description" content="一、IIS 5.x/6.0解析漏洞IIS 6.0解析利用方法有两种
-1.目录解析  /xx.asp/xx.jpg
-
-2.文件解析  sp.asp;.jpg
-
-
-第一种，在网站下建立文件夹的名字为 .asp、.asa的文件夹，其目录内的任何扩展名的文件都被IIS当作asp文件来解析并执行。例如创建目录 sp.asp，那么/sp.asp/1.jpg将被当作asp文件来执行。假设黑阔可以控制上传文件夹路">
+<meta name="twitter:description" content="一、IIS 5.x/6.0解析漏洞IIS 6.0解析利用方法有两种">
 
 
 
@@ -275,7 +257,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-27T08:35:49+08:00" content="2016-07-27">
               2016-07-27
             </time>
@@ -304,7 +286,8 @@
       
 
       
-        <h2 id="一、IIS-5-x-6-0解析漏洞"><a href="#一、IIS-5-x-6-0解析漏洞" class="headerlink" title="一、IIS 5.x/6.0解析漏洞"></a>一、IIS 5.x/6.0解析漏洞</h2><h3 id="IIS-6-0解析利用方法有两种"><a href="#IIS-6-0解析利用方法有两种" class="headerlink" title="IIS 6.0解析利用方法有两种"></a>IIS 6.0解析利用方法有两种</h3><ul>
+        <h2 id="一、IIS-5-x-6-0解析漏洞"><a href="#一、IIS-5-x-6-0解析漏洞" class="headerlink" title="一、IIS 5.x/6.0解析漏洞"></a>一、IIS 5.x/6.0解析漏洞</h2><h3 id="IIS-6-0解析利用方法有两种"><a href="#IIS-6-0解析利用方法有两种" class="headerlink" title="IIS 6.0解析利用方法有两种"></a>IIS 6.0解析利用方法有两种</h3><a id="more"></a> 
+<ul>
 <li><p>1.目录解析  /xx.asp/xx.jpg</p>
 </li>
 <li><p>2.文件解析  sp.asp;.jpg</p>
@@ -316,8 +299,7 @@
 </code></pre><h3 id="然后访问1-jpg-php-在这个目录下就会生成一句话木马-shell-php"><a href="#然后访问1-jpg-php-在这个目录下就会生成一句话木马-shell-php" class="headerlink" title="然后访问1.jpg/.php,在这个目录下就会生成一句话木马 shell.php"></a>然后访问1.jpg/.php,在这个目录下就会生成一句话木马 shell.php</h3><h2 id="三、Nginx-lt-8-03-空字节代码执行漏洞"><a href="#三、Nginx-lt-8-03-空字节代码执行漏洞" class="headerlink" title="三、Nginx &lt;8.03 空字节代码执行漏洞"></a>三、Nginx &lt;8.03 空字节代码执行漏洞</h2><ul>
 <li>影响版:0.5.,0.6., 0.7 &lt;= 0.7.65, 0.8 &lt;= 0.8.37</li>
 </ul>
-<h4 id="Nginx在图片中嵌入PHP代码然后通过访问-xxx-jpg-00-php-来执行其中的代码"><a href="#Nginx在图片中嵌入PHP代码然后通过访问-xxx-jpg-00-php-来执行其中的代码" class="headerlink" title="Nginx在图片中嵌入PHP代码然后通过访问  xxx.jpg%00.php 来执行其中的代码"></a>Nginx在图片中嵌入PHP代码然后通过访问  xxx.jpg%00.php 来执行其中的代码</h4><h2 id="四、Apache解析漏洞"><a href="#四、Apache解析漏洞" class="headerlink" title="四、Apache解析漏洞"></a>四、Apache解析漏洞</h2><h4 id="Apache-是从右到左开始判断解析-如果为不可识别解析-就再往左判断-比如-sec-php-owf-rar-“-owf”和”-rar”-这两种后缀是apache不可识别解析-apache就会把sec-php-owf-rar解析成php-如何判断是不是合法的后缀就是这个漏洞的利用关键-测试时可以尝试上传一个sec-php-rara-jpg-png…（把你知道的常见后缀都写上…）去测试是否是合法后缀"><a href="#Apache-是从右到左开始判断解析-如果为不可识别解析-就再往左判断-比如-sec-php-owf-rar-“-owf”和”-rar”-这两种后缀是apache不可识别解析-apache就会把sec-php-owf-rar解析成php-如何判断是不是合法的后缀就是这个漏洞的利用关键-测试时可以尝试上传一个sec-php-rara-jpg-png…（把你知道的常见后缀都写上…）去测试是否是合法后缀" class="headerlink" title="Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.比如 sec.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把sec.php.owf.rar解析成php.如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个sec.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀"></a>Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.比如 sec.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把sec.php.owf.rar解析成php.如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个sec.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀</h4><a id="more"></a> 
-<h2 id="五、其他"><a href="#五、其他" class="headerlink" title="五、其他"></a>五、其他</h2><h4 id="在windows环境下，xx-jpg-空格-或xx-jpg-这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点-黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除-这样也可以getshell。如果在Apache中-htaccess可被执行-且可被上传-那可以尝试在-htaccess中写入"><a href="#在windows环境下，xx-jpg-空格-或xx-jpg-这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点-黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除-这样也可以getshell。如果在Apache中-htaccess可被执行-且可被上传-那可以尝试在-htaccess中写入" class="headerlink" title="在windows环境下，xx.jpg[空格] 或xx.jpg. 这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点,黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除,这样也可以getshell。如果在Apache中.htaccess可被执行.且可被上传.那可以尝试在.htaccess中写入:"></a>在windows环境下，xx.jpg[空格] 或xx.jpg. 这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点,黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除,这样也可以getshell。如果在Apache中.htaccess可被执行.且可被上传.那可以尝试在.htaccess中写入:</h4><pre><code>&lt;FilesMatch &quot;sec.jpg&quot;&gt; SetHandler application/x-httpd-php &lt;/FilesMatch&gt;
+<h4 id="Nginx在图片中嵌入PHP代码然后通过访问-xxx-jpg-00-php-来执行其中的代码"><a href="#Nginx在图片中嵌入PHP代码然后通过访问-xxx-jpg-00-php-来执行其中的代码" class="headerlink" title="Nginx在图片中嵌入PHP代码然后通过访问  xxx.jpg%00.php 来执行其中的代码"></a>Nginx在图片中嵌入PHP代码然后通过访问  xxx.jpg%00.php 来执行其中的代码</h4><h2 id="四、Apache解析漏洞"><a href="#四、Apache解析漏洞" class="headerlink" title="四、Apache解析漏洞"></a>四、Apache解析漏洞</h2><h4 id="Apache-是从右到左开始判断解析-如果为不可识别解析-就再往左判断-比如-sec-php-owf-rar-“-owf”和”-rar”-这两种后缀是apache不可识别解析-apache就会把sec-php-owf-rar解析成php-如何判断是不是合法的后缀就是这个漏洞的利用关键-测试时可以尝试上传一个sec-php-rara-jpg-png…（把你知道的常见后缀都写上…）去测试是否是合法后缀"><a href="#Apache-是从右到左开始判断解析-如果为不可识别解析-就再往左判断-比如-sec-php-owf-rar-“-owf”和”-rar”-这两种后缀是apache不可识别解析-apache就会把sec-php-owf-rar解析成php-如何判断是不是合法的后缀就是这个漏洞的利用关键-测试时可以尝试上传一个sec-php-rara-jpg-png…（把你知道的常见后缀都写上…）去测试是否是合法后缀" class="headerlink" title="Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.比如 sec.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把sec.php.owf.rar解析成php.如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个sec.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀"></a>Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.比如 sec.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把sec.php.owf.rar解析成php.如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个sec.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀</h4><h2 id="五、其他"><a href="#五、其他" class="headerlink" title="五、其他"></a>五、其他</h2><h4 id="在windows环境下，xx-jpg-空格-或xx-jpg-这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点-黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除-这样也可以getshell。如果在Apache中-htaccess可被执行-且可被上传-那可以尝试在-htaccess中写入"><a href="#在windows环境下，xx-jpg-空格-或xx-jpg-这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点-黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除-这样也可以getshell。如果在Apache中-htaccess可被执行-且可被上传-那可以尝试在-htaccess中写入" class="headerlink" title="在windows环境下，xx.jpg[空格] 或xx.jpg. 这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点,黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除,这样也可以getshell。如果在Apache中.htaccess可被执行.且可被上传.那可以尝试在.htaccess中写入:"></a>在windows环境下，xx.jpg[空格] 或xx.jpg. 这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点,黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单。若上传成功，空格和点都会被windows自动消除,这样也可以getshell。如果在Apache中.htaccess可被执行.且可被上传.那可以尝试在.htaccess中写入:</h4><pre><code>&lt;FilesMatch &quot;sec.jpg&quot;&gt; SetHandler application/x-httpd-php &lt;/FilesMatch&gt;
 </code></pre><h4 id="然后再上传shell-jpg的木马-这样shell-jpg就可解析为php文件。"><a href="#然后再上传shell-jpg的木马-这样shell-jpg就可解析为php文件。" class="headerlink" title="然后再上传shell.jpg的木马, 这样shell.jpg就可解析为php文件。"></a>然后再上传shell.jpg的木马, 这样shell.jpg就可解析为php文件。</h4><h3 id="对非法上传的防御机制大致有如下几种："><a href="#对非法上传的防御机制大致有如下几种：" class="headerlink" title="对非法上传的防御机制大致有如下几种："></a>对非法上传的防御机制大致有如下几种：</h3><ul>
 <li>客户端检测，使用JS对上传图片检测，包括文件大小、文件扩展名、文件类型等</li>
 <li>服务端检测，对文件大小、文件路径、文件扩展名、文件类型、文件内容检测，对文件重命名</li>
@@ -432,7 +414,7 @@
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -515,6 +497,40 @@
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -552,13 +568,13 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

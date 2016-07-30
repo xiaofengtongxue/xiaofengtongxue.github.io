@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://lovexiaofeng.cn/2016/06/14/11/index.html">
 <meta property="og:site_name" content="小峰's Blog">
 <meta property="og:description" content="0x00 CSRF背景介绍：跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到">
-<meta property="og:updated_time" content="2016-07-29T12:02:42.400Z">
+<meta property="og:updated_time" content="2016-07-30T11:28:45.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈CSRF">
 <meta name="twitter:description" content="0x00 CSRF背景介绍：跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到">
@@ -257,7 +257,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-06-14T15:32:50+08:00" content="2016-06-14">
               2016-06-14
             </time>
@@ -286,7 +286,8 @@
       
 
       
-        <h2 id="0x00-CSRF背景介绍："><a href="#0x00-CSRF背景介绍：" class="headerlink" title="0x00 CSRF背景介绍："></a>0x00 CSRF背景介绍：</h2><h3 id="跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"><a href="#跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。" class="headerlink" title="跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"></a>跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。</h3><h2 id="0x01-成因："><a href="#0x01-成因：" class="headerlink" title="0x01 成因："></a>0x01 成因：</h2><h3 id="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"><a href="#服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。" class="headerlink" title="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"></a>服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。</h3><h2 id="0x02-利用："><a href="#0x02-利用：" class="headerlink" title="0x02 利用："></a>0x02 利用：</h2><h3 id="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"><a href="#1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。" class="headerlink" title="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"></a>1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。</h3><h3 id="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"><a href="#2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。" class="headerlink" title="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"></a>2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。</h3><h3 id="3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如"><a href="#3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如" class="headerlink" title="3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:"></a>3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:</h3><h4 id="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"><a href="#Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据" class="headerlink" title="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"></a>Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据</h4><pre><code>    &lt;cross-domain-policy&gt;
+        <h2 id="0x00-CSRF背景介绍："><a href="#0x00-CSRF背景介绍：" class="headerlink" title="0x00 CSRF背景介绍："></a>0x00 CSRF背景介绍：</h2><h3 id="跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"><a href="#跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。" class="headerlink" title="跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"></a>跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。</h3><a id="more"></a> 
+<h2 id="0x01-成因："><a href="#0x01-成因：" class="headerlink" title="0x01 成因："></a>0x01 成因：</h2><h3 id="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"><a href="#服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。" class="headerlink" title="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"></a>服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。</h3><h2 id="0x02-利用："><a href="#0x02-利用：" class="headerlink" title="0x02 利用："></a>0x02 利用：</h2><h3 id="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"><a href="#1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。" class="headerlink" title="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"></a>1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。</h3><h3 id="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"><a href="#2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。" class="headerlink" title="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"></a>2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。</h3><h3 id="3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如"><a href="#3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如" class="headerlink" title="3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:"></a>3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:</h3><h4 id="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"><a href="#Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据" class="headerlink" title="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"></a>Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据</h4><pre><code>    &lt;cross-domain-policy&gt;
         &lt;allow-access-from domain=&quot;*&quot;/&gt;
     &lt;/cross-domain-policy&gt;
 Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传Flash产生CSRF。
@@ -410,7 +411,7 @@ Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            博主简介
           </li>
         </ul>
       
@@ -493,6 +494,40 @@ Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -530,13 +565,13 @@ Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 

